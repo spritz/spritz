@@ -6,3 +6,7 @@ repositories:
 
 artifacts:
   idea_codestyle: au.com.stocksoftware.idea.codestyle:idea-codestyle:xml:1.9
+
+  javax_annotation: org.realityforge.javax.annotation:javax.annotation:jar:1.0.0
+
+  braincheck: org.realityforge.braincheck:braincheck:jar:1.12.0

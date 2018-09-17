@@ -14,6 +14,9 @@ define 'rxs' do
   pom.add_github_project('realityforge/rxs')
   pom.add_developer('realityforge', 'Peter Donald')
 
+  compile.with :javax_annotation,
+               :braincheck
+
   package(:jar)
   package(:sources)
   package(:javadoc)
