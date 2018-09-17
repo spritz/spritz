@@ -1,5 +1,6 @@
 package org.realityforge.rxs;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
@@ -10,6 +11,8 @@ import static org.realityforge.braincheck.Guards.invariant;
 public final class ValidatingSubscriber<T>
   implements Flow.Subscriber<T>
 {
+  private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
+
   private enum State
   {
     CREATED,
@@ -43,9 +46,10 @@ public final class ValidatingSubscriber<T>
         throw new NullPointerException();
       }
     }
-    _state = State.SUBSCRIBED;
     try
     {
+      pushContext( this );
+      _state = State.SUBSCRIBED;
       _target.onSubscribe( subscription );
     }
     catch ( final Throwable throwable )
@@ -56,6 +60,10 @@ public final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
+    }
+    finally
+    {
+      popContext( this );
     }
   }
 
@@ -76,6 +84,7 @@ public final class ValidatingSubscriber<T>
 
     try
     {
+      pushContext( this );
       _target.onNext( item );
     }
     catch ( final Throwable throwable )
@@ -86,6 +95,10 @@ public final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
+    }
+    finally
+    {
+      popContext( this );
     }
   }
 
@@ -103,9 +116,9 @@ public final class ValidatingSubscriber<T>
         throw new NullPointerException();
       }
     }
-
     try
     {
+      pushContext( this );
       _state = State.ERRORED;
       _target.onError( throwable );
     }
@@ -117,6 +130,10 @@ public final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
+    }
+    finally
+    {
+      popContext( this );
     }
   }
 
@@ -132,6 +149,7 @@ public final class ValidatingSubscriber<T>
 
     try
     {
+      pushContext( this );
       _state = State.COMPLETED;
       _target.onComplete();
     }
@@ -143,6 +161,44 @@ public final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
+    }
+    finally
+    {
+      popContext( this );
+    }
+  }
+
+  static ValidatingSubscriber<?> currentContext()
+  {
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> !c_subscriberContext.isEmpty(),
+                 () -> "Rxs-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
+    }
+    final int index = c_subscriberContext.size() - 1;
+    return c_subscriberContext.remove( index );
+  }
+
+  private static void pushContext( @Nonnull final ValidatingSubscriber<?> subscriber )
+  {
+    c_subscriberContext.add( Objects.requireNonNull( subscriber ) );
+  }
+
+  private static void popContext( @Nonnull final ValidatingSubscriber<?> subscriber )
+  {
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> !c_subscriberContext.isEmpty(),
+                 () -> "Rxs-0010: Invoking Subscriber.popContext(...) but no subscriber on stack. " +
+                       "Expecting subscriber: " + subscriber );
+    }
+    final int index = c_subscriberContext.size() - 1;
+    final ValidatingSubscriber<?> removed = c_subscriberContext.remove( index );
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> removed == subscriber,
+                 () -> "Rxs-0011: Invoking Subscriber.popContext(...) popped subscriber '" + removed +
+                       "' but was expecting subscriber '" + subscriber + "'." );
     }
   }
 }
