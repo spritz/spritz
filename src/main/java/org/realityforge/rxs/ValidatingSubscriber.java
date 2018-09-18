@@ -13,7 +13,7 @@ public final class ValidatingSubscriber<T>
 {
   private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
 
-  private enum State
+  enum State
   {
     CREATED,
     SUBSCRIBED,
@@ -166,6 +166,12 @@ public final class ValidatingSubscriber<T>
     {
       popContext( this );
     }
+  }
+
+  @Nonnull
+  State getState()
+  {
+    return _state;
   }
 
   static ValidatingSubscriber<?> currentContext()
