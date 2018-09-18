@@ -7,7 +7,7 @@ public final class Rxs
   }
 
   @SafeVarargs
-  public static <T> Flow.Publisher<T> just( final T... values )
+  public static <T> Flow.Publisher<T> of( final T... values )
   {
     return new StaticPublisher<T>( values );
   }

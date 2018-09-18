@@ -40,7 +40,7 @@ public class Main
       } ) );
 
     Rxs
-      .just( 1, 2, 3, 4 )
+      .of( 1, 2, 3, 4 )
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
       {
         @Override
