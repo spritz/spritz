@@ -50,7 +50,7 @@ public final class ValidatingSubscriber<T>
     {
       pushContext( this );
       _state = State.SUBSCRIBED;
-      _target.onSubscribe( subscription );
+      _target.onSubscribe( new ValidatingSubscription( this, subscription ) );
     }
     catch ( final Throwable throwable )
     {
