@@ -6,7 +6,7 @@ import org.realityforge.braincheck.BrainCheckConfig;
 import static org.realityforge.braincheck.Guards.fail;
 import static org.realityforge.braincheck.Guards.invariant;
 
-public final class ValidatingSubscription
+final class ValidatingSubscription
   implements Flow.Subscription
 {
   @Nonnull
@@ -15,8 +15,8 @@ public final class ValidatingSubscription
   private final Flow.Subscription _subscription;
   private boolean _cancelled;
 
-  public ValidatingSubscription( @Nonnull final ValidatingSubscriber<?> subscriber,
-                                 @Nonnull final Flow.Subscription subscription )
+  ValidatingSubscription( @Nonnull final ValidatingSubscriber<?> subscriber,
+                          @Nonnull final Flow.Subscription subscription )
   {
     _subscriber = Objects.requireNonNull( subscriber );
     _subscription = Objects.requireNonNull( subscription );
