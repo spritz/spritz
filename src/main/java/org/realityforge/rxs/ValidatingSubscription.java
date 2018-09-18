@@ -36,6 +36,9 @@ public final class ValidatingSubscription
       invariant( () -> ValidatingSubscriber.State.SUBSCRIBED == _subscriber.getState(),
                  () -> "Rxs-0015: Invoking Subscription.request(...) when the subscriber '" + subscriber +
                        "' is not in the expected SUBSCRIBED state." );
+      invariant( () -> count > 0,
+                 () -> "Rxs-0021: Invoking Subscription.request(...) with count " +
+                       count + " but count must be a positive number." );
     }
     if ( !_cancelled )
     {
