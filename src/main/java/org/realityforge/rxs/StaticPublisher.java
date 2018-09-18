@@ -19,7 +19,7 @@ public final class StaticPublisher<T>
     subscriber.onSubscribe( new StaticSubscription( subscriber ) );
   }
 
-  private class StaticSubscription
+  private final class StaticSubscription
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super T> _subscriber;
