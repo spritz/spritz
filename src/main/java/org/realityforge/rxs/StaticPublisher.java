@@ -16,35 +16,50 @@ public final class StaticPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    subscriber.onSubscribe( new StaticSubscription( subscriber ) );
+    Objects.requireNonNull( subscriber ).onSubscribe( new StaticSubscription<T>( subscriber, _data ) );
   }
 
-  private final class StaticSubscription
+  private static final class StaticSubscription<T>
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super T> _subscriber;
+    private final T[] _data;
+
+    /**
+     * Index into data.
+     * _offset == _data.length implies next action is onComplete.
+     * _offset == _data.length + 1 implies cancelled or onComplete has been invoked.
+     */
     private int _offset;
 
-    StaticSubscription( final Flow.Subscriber<? super T> subscriber )
+    StaticSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
     {
-      _subscriber = subscriber;
+      _subscriber = Objects.requireNonNull( subscriber );
+      _data = Objects.requireNonNull( data );
     }
 
     @Override
     public void request( final int count )
     {
-      final int requestEnd = _offset + count;
-      if ( requestEnd <= _data.length )
+      assert count > 0;
+      if ( !isDone() )
       {
-        for ( int i = _offset; i < requestEnd; i++ )
+        final int maxSize = _data.length;
+        final int requestEnd = Math.min( _offset + count, maxSize );
+        do
         {
-          _subscriber.onNext( _data[ i ] );
+          final int current = _offset;
+          _offset++;
+          _subscriber.onNext( _data[ current ] );
+          // Subscriber can call cancel in onNext so we have to test against _offset rather than using local index
+          // Should have generic test to verify this.
         }
-        _offset = requestEnd;
-        if ( _offset == _data.length )
+        while ( _offset < requestEnd );
+
+        if ( _offset == maxSize )
         {
           _subscriber.onComplete();
-          _offset = _data.length + 1;
+          done();
         }
       }
     }
@@ -52,11 +67,17 @@ public final class StaticPublisher<T>
     @Override
     public void cancel()
     {
-      if ( _offset <= _data.length )
-      {
-        _subscriber.onComplete();
-        _offset = _data.length + 1;
-      }
+      done();
+    }
+
+    private void done()
+    {
+      _offset = _data.length + 1;
+    }
+
+    private boolean isDone()
+    {
+      return _offset > _data.length;
     }
   }
 }
