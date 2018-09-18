@@ -174,11 +174,17 @@ public final class ValidatingSubscriber<T>
     return _state;
   }
 
+  static boolean hasContext()
+  {
+    return !c_subscriberContext.isEmpty();
+  }
+
+  @Nonnull
   static ValidatingSubscriber<?> currentContext()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
-      invariant( () -> !c_subscriberContext.isEmpty(),
+      invariant( ValidatingSubscriber::hasContext,
                  () -> "Rxs-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
     }
     final int index = c_subscriberContext.size() - 1;
