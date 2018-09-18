@@ -10,20 +10,20 @@ public class Main
   public static void main( String[] args )
   {
     Rxs
-      .just( 1, 2, 3, 4 )
+      .range( 42, 20 )
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
       {
         @Override
         public void onSubscribe( @Nonnull final Flow.Subscription subscription )
         {
-          System.out.println( "onSubscribe(" + subscription + ")" );
+          System.out.println( "Range.onSubscribe(" + subscription + ")" );
           subscription.request( 1000 );
         }
 
         @Override
         public void onNext( @Nonnull final Integer item )
         {
-          System.out.println( "onNext(" + item + ")" );
+          System.out.println( "Range.onNext(" + item + ")" );
         }
 
         @Override
@@ -35,7 +35,37 @@ public class Main
         @Override
         public void onComplete()
         {
-          System.out.println( "onComplete()" );
+          System.out.println( "Range.onComplete()" );
+        }
+      } ) );
+
+    Rxs
+      .just( 1, 2, 3, 4 )
+      .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
+      {
+        @Override
+        public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+        {
+          System.out.println( "Just.onSubscribe(" + subscription + ")" );
+          subscription.request( 1000 );
+        }
+
+        @Override
+        public void onNext( @Nonnull final Integer item )
+        {
+          System.out.println( "Just.onNext(" + item + ")" );
+        }
+
+        @Override
+        public void onError( @Nonnull final Throwable throwable )
+        {
+          throwable.printStackTrace();
+        }
+
+        @Override
+        public void onComplete()
+        {
+          System.out.println( "Just.onComplete()" );
         }
       } ) );
   }
