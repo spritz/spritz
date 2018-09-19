@@ -18,6 +18,7 @@ public final class Rxs
    *
    * @param start the starting value of the range
    * @param count the number of items to emit
+   * @return the created publisher.
    */
   public static Flow.Publisher<Integer> range( final int start, final int count )
   {
