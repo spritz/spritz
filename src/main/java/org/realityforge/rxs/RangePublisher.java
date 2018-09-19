@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  * will receive range of monotonically increasing integer values on demand.
  */
 final class RangePublisher
-  implements Flow.Publisher<Integer>
+  extends AbstractPublisher<Integer>
 {
   /**
    * The starting value of the range.

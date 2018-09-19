@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 public final class StaticPublisher<T>
-  implements Flow.Publisher<T>
+  extends AbstractPublisher<T>
 {
   private final T[] _data;
 

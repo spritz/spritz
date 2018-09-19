@@ -34,8 +34,8 @@ public final class Flow
     void onComplete();
   }
 
-  @FunctionalInterface
   public interface Publisher<T>
+    extends PublisherExtension<T>
   {
     void subscribe( @Nonnull Subscriber<? super T> subscriber );
   }
