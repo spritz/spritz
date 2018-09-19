@@ -41,6 +41,7 @@ public class Main
 
     Rxs
       .of( 1, 2, 3, 4 )
+      .filter( v -> v > 2 )
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
       {
         @Override
