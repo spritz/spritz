@@ -19,6 +19,6 @@ final class FilterPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new FilterSubscriber<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new PredicateFilterSubscriber<>( subscriber, _predicate ) );
   }
 }
