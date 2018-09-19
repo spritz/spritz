@@ -40,8 +40,8 @@ public final class Flow
     void subscribe( @Nonnull Subscriber<? super T> subscriber );
   }
 
-  public interface Processor<T, R>
-    extends Subscriber<T>, Publisher<R>
+  public interface Processor<P, S>
+    extends Publisher<P>, Subscriber<S>
   {
   }
 }
