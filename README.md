@@ -32,6 +32,10 @@ Must have processors:
 * `merge(Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError
 * `combineLates(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function. onComplete if all onComplete, onError if any onError
 
+**Terminator Subscribers**
+
+* `forEach(Action)` - perform action for each value.
+
 -----
 
 * Map - convert value from one type to another
