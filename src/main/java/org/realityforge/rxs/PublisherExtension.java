@@ -10,6 +10,16 @@ public interface PublisherExtension<T>
     return new PredicateFilterPublisher<>( self(), predicate );
   }
 
+  default Flow.Publisher<T> take( final int count )
+  {
+    return new TakeFilterPublisher<>( self(), count );
+  }
+
+  default Flow.Publisher<T> first()
+  {
+    return take( 1 );
+  }
+
   @Nonnull
   Flow.Publisher<T> self();
 }

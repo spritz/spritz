@@ -11,6 +11,7 @@ public class Main
   {
     Rxs
       .range( 42, 20 )
+      .take( 5 )
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
       {
         @Override
@@ -42,6 +43,7 @@ public class Main
     Rxs
       .of( 1, 2, 3, 4 )
       .filter( v -> v > 2 )
+      .first()
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
       {
         @Override
