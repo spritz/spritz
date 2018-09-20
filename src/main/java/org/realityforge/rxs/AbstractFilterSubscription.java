@@ -28,7 +28,6 @@ abstract class AbstractFilterSubscription<T>
         // Todo: This could cause recursive stack blowout if multiple requests rejected????
         getUpstreamSubscription().request( 1 );
       }
-
     }
   }
 
