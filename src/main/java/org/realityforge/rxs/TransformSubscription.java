@@ -36,9 +36,14 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   {
     if ( isLive() )
     {
-      _done = true;
+      markAsDone();
       getDownstreamSubscriber().onError( throwable );
     }
+  }
+
+  protected void markAsDone()
+  {
+    _done = true;
   }
 
   /**
@@ -48,7 +53,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   {
     if ( isLive() )
     {
-      _done = true;
+      markAsDone();
       getDownstreamSubscriber().onComplete();
     }
   }
