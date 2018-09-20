@@ -3,7 +3,7 @@ package org.realityforge.rxs;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public final class StaticPublisher<T>
+final class StaticPublisher<T>
   extends AbstractPublisher<T>
 {
   private final T[] _data;
