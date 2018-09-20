@@ -15,7 +15,7 @@ abstract class SubscriptionWithDownstream<T>
   private Flow.Subscription _upstreamSubscription;
   private boolean _done;
 
-  protected SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
+  SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -88,7 +88,7 @@ abstract class SubscriptionWithDownstream<T>
    * @return the downstream subscriber.
    */
   @Nonnull
-  protected final Flow.Subscriber<? super T> getDownstreamSubscriber()
+  final Flow.Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }
@@ -99,7 +99,7 @@ abstract class SubscriptionWithDownstream<T>
    * @return the subscription used to interact with the upstream publisher.
    */
   @Nonnull
-  protected final Flow.Subscription getUpstreamSubscription()
+  final Flow.Subscription getUpstreamSubscription()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
@@ -115,7 +115,7 @@ abstract class SubscriptionWithDownstream<T>
    *
    * @return true if the upstream is done and will not pass any more signals.
    */
-  protected final boolean isDone()
+  final boolean isDone()
   {
     return _done;
   }
@@ -125,7 +125,7 @@ abstract class SubscriptionWithDownstream<T>
    *
    * @return true if the upstream is not done and may pass any more signals.
    */
-  protected final boolean isLive()
+  final boolean isLive()
   {
     return !isDone();
   }
