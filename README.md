@@ -54,4 +54,4 @@ Must have processors:
 
 ## TODO
 
-* Rename project to something short ... possibly `Straz`?
+* Rename project to something short ... possibly `Straz`? or `Krast`
