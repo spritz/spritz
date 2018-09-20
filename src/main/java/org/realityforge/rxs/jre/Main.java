@@ -71,5 +71,36 @@ public class Main
           System.out.println( "Just.onComplete()" );
         }
       } ) );
+
+    Rxs
+      .range( 42, 20 )
+      .skipUntil( v -> v == 55 )
+      .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
+      {
+        @Override
+        public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+        {
+          System.out.println( "onSubscribe(" + subscription + ")" );
+          subscription.request( 1000 );
+        }
+
+        @Override
+        public void onNext( @Nonnull final Integer item )
+        {
+          System.out.println( "Range.onNext(" + item + ")" );
+        }
+
+        @Override
+        public void onError( @Nonnull final Throwable throwable )
+        {
+          throwable.printStackTrace();
+        }
+
+        @Override
+        public void onComplete()
+        {
+          System.out.println( "Range.onComplete()" );
+        }
+      } ) );
   }
 }

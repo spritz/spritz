@@ -20,6 +20,11 @@ public interface PublisherExtension<T>
     return take( 1 );
   }
 
+  default Flow.Publisher<T> skipUntil( @Nonnull final Predicate<T> predicate )
+  {
+    return new SkipUntilPredicateFilterPublisher<>( self(), predicate );
+  }
+
   @Nonnull
   Flow.Publisher<T> self();
 }
