@@ -5,8 +5,7 @@
 
 Rxs contains some experiments with reactive streaming code.
 
-
-## TODO
+## To Implement
 
 Must have publishers:
 * `Interval(Duration)` - Every N time frame produce a value (monotonically increasing counter?)
@@ -52,3 +51,7 @@ Must have processors:
 * distinct() - only send item first time it appears in stream. Potentially needs a very large buffer.
 * distinctInSuccession() - only send item first time it appears in stream. Need to buffer last.
 * sort() - buffer all items until onComplete then apply some sorting
+
+## TODO
+
+* Rename project to something short ... possibly `Straz`?
