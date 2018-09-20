@@ -17,15 +17,15 @@ final class TakeFilterPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new TakeFilterSubscription<>( subscriber, _count ) );
+    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _count ) );
   }
 
-  private static final class TakeFilterSubscription<T>
+  private static final class WorkerSubscription<T>
     extends AbstractFilterSubscription<T>
   {
     private int _remaining;
 
-    TakeFilterSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, final int remaining )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, final int remaining )
     {
       super( subscriber );
       _remaining = remaining;

@@ -40,10 +40,10 @@ final class RangePublisher
   @Override
   public void subscribe( @Nonnull Flow.Subscriber<? super Integer> subscriber )
   {
-    Objects.requireNonNull( subscriber ).onSubscribe( new RangeSubscription( subscriber, _start, _start + _count ) );
+    Objects.requireNonNull( subscriber ).onSubscribe( new WorkerSubscription( subscriber, _start, _start + _count ) );
   }
 
-  private static final class RangeSubscription
+  private static final class WorkerSubscription
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super Integer> _subscriber;
@@ -58,14 +58,14 @@ final class RangePublisher
     private int _current;
 
     /**
-     * Constructs a stateful RangeSubscription that emits signals to the given
+     * Constructs a stateful WorkerSubscription that emits signals to the given
      * downstream from an integer range of [_start, end).
      *
      * @param subscriber the Subscriber receiving the integer values and the completion signal.
      * @param start      the first integer value emitted, _start of the range
      * @param end        the end of the range, exclusive
      */
-    RangeSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, int start, int end )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, int start, int end )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _current = start;

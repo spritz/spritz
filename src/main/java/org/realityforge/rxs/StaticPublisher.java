@@ -16,10 +16,10 @@ final class StaticPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    Objects.requireNonNull( subscriber ).onSubscribe( new StaticSubscription<T>( subscriber, _data ) );
+    Objects.requireNonNull( subscriber ).onSubscribe( new WorkerSubscription<T>( subscriber, _data ) );
   }
 
-  private static final class StaticSubscription<T>
+  private static final class WorkerSubscription<T>
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super T> _subscriber;
@@ -32,7 +32,7 @@ final class StaticPublisher<T>
      */
     private int _offset;
 
-    StaticSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _data = Objects.requireNonNull( data );

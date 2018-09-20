@@ -20,17 +20,17 @@ final class PredicateFilterPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new PredicateFilterSubscription<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
   }
 
-  private static final class PredicateFilterSubscription<T>
+  private static final class WorkerSubscription<T>
     extends AbstractFilterSubscription<T>
   {
     @Nonnull
     private final Predicate<? super T> _predicate;
 
-    PredicateFilterSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber,
-                                 @Nonnull final Predicate<? super T> predicate )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber,
+                        @Nonnull final Predicate<? super T> predicate )
     {
       super( subscriber );
       _predicate = Objects.requireNonNull( predicate );
