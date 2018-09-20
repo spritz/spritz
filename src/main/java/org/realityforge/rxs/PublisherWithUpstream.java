@@ -16,7 +16,7 @@ abstract class PublisherWithUpstream<T>
   }
 
   @Nonnull
-  protected final Flow.Publisher<? extends T> getUpstream()
+  final Flow.Publisher<? extends T> getUpstream()
   {
     return _upstream;
   }
