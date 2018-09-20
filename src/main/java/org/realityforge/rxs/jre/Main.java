@@ -75,6 +75,7 @@ public class Main
     Rxs
       .range( 42, 20 )
       .skipUntil( v -> v == 55 )
+      .map( v -> "*" + v + "*" )
       .forEach( v -> System.out.println( "Bang! " + v ) );
   }
 }
