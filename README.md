@@ -5,6 +5,16 @@
 
 Rxs contains some experiments with reactive streaming code.
 
+## Links
+
+* ReactiveX Scheduler: http://reactivex.io/documentation/scheduler.html
+* ReactiveX Operators: http://reactivex.io/documentation/operators.html
+* Reactive Streams Specification: https://github.com/reactive-streams/reactive-streams-jvm
+* Reactive Streams Simple unicast implementation: https://github.com/reactive-streams/reactive-streams-jvm/tree/v1.0.2/examples/src/main/java/org/reactivestreams/example/unicast
+* A basic js implementation: https://github.com/zenparsing/zen-observable
+* RxJava implementation: https://github.com/ReactiveX/RxJava
+* Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
+
 ## To Implement
 
 Must have publishers:
