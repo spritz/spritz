@@ -1,4 +1,4 @@
-package org.realityforge.rxs;
+package streak;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

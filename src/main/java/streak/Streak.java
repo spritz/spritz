@@ -1,8 +1,8 @@
-package org.realityforge.rxs;
+package streak;
 
-public final class Rxs
+public final class Streak
 {
-  private Rxs()
+  private Streak()
   {
   }
 

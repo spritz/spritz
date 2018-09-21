@@ -1,7 +1,6 @@
-package org.realityforge.rxs;
+package streak;
 
 import java.util.Objects;
-import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 
 abstract class PublisherWithUpstream<T>

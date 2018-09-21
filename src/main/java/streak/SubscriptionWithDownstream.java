@@ -1,4 +1,4 @@
-package org.realityforge.rxs;
+package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
@@ -6,16 +6,16 @@ import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
 
-abstract class TransformSubscription<UpstreamT, DownstreamT>
-  implements Flow.Subscription, Flow.Subscriber<UpstreamT>
+abstract class SubscriptionWithDownstream<T>
+  implements Flow.Subscription, Flow.Subscriber<T>
 {
   @Nonnull
-  private final Flow.Subscriber<? super DownstreamT> _downstreamSubscriber;
+  private final Flow.Subscriber<? super T> _downstreamSubscriber;
   @Nullable
   private Flow.Subscription _upstreamSubscription;
   private boolean _done;
 
-  TransformSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber )
+  SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -32,18 +32,24 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   /**
    * {@inheritDoc}
    */
+  public void onNext( @Nonnull final T item )
+  {
+    if ( isLive() )
+    {
+      getDownstreamSubscriber().onNext( item );
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public void onError( @Nonnull final Throwable throwable )
   {
     if ( isLive() )
     {
-      markAsDone();
+      _done = true;
       getDownstreamSubscriber().onError( throwable );
     }
-  }
-
-  protected void markAsDone()
-  {
-    _done = true;
   }
 
   /**
@@ -53,7 +59,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   {
     if ( isLive() )
     {
-      markAsDone();
+      _done = true;
       getDownstreamSubscriber().onComplete();
     }
   }
@@ -82,7 +88,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    * @return the downstream subscriber.
    */
   @Nonnull
-  final Flow.Subscriber<? super DownstreamT> getDownstreamSubscriber()
+  final Flow.Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }
@@ -98,7 +104,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
     if ( BrainCheckConfig.checkInvariants() )
     {
       Guards.invariant( () -> null != _upstreamSubscription,
-                        () -> "Rxs-0002: Attempted to invoke getUpstreamSubscription() when subscription is not present" );
+                        () -> "Streak-0002: Attempted to invoke getUpstreamSubscription() when subscription is not present" );
     }
     assert null != _upstreamSubscription;
     return _upstreamSubscription;

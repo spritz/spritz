@@ -1,15 +1,15 @@
-package org.realityforge.rxs.jre;
+package streak.examples;
 
 import javax.annotation.Nonnull;
-import org.realityforge.rxs.Flow;
-import org.realityforge.rxs.Rxs;
-import org.realityforge.rxs.ValidatingSubscriber;
+import streak.Flow;
+import streak.Streak;
+import streak.ValidatingSubscriber;
 
 public class Main
 {
   public static void main( String[] args )
   {
-    Rxs
+    Streak
       .range( 42, 20 )
       .take( 5 )
       .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
@@ -40,7 +40,7 @@ public class Main
         }
       } ) );
 
-    Rxs
+    Streak
       .of( 1, 2, 3, 4 )
       .filter( v -> v > 2 )
       .first()
@@ -72,7 +72,7 @@ public class Main
         }
       } ) );
 
-    Rxs
+    Streak
       .range( 42, 20 )
       .skipUntil( v -> v == 55 )
       .map( v -> "*" + v + "*" )

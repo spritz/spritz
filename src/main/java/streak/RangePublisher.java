@@ -1,4 +1,4 @@
-package org.realityforge.rxs;
+package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;

@@ -1,4 +1,4 @@
-package org.realityforge.rxs;
+package streak;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -38,7 +38,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> State.CREATED == _state,
-                 () -> "Rxs-0001: Subscriber.onSubscribe(...) called and expected state " +
+                 () -> "Streak-0001: Subscriber.onSubscribe(...) called and expected state " +
                        "to be CREATED but is " + _state );
       if ( null == subscription )
       {
@@ -56,7 +56,7 @@ public final class ValidatingSubscriber<T>
     {
       if ( BrainCheckConfig.checkInvariants() )
       {
-        fail( () -> "Rxs-0003: Invoking Subscriber.onSubscribe(...) incorrectly threw an exception. " +
+        fail( () -> "Streak-0003: Invoking Subscriber.onSubscribe(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
@@ -73,7 +73,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> State.SUBSCRIBED == _state,
-                 () -> "Rxs-0005: Subscriber.onNext(...) called and expected state " +
+                 () -> "Streak-0005: Subscriber.onNext(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
       if ( null == item )
       {
@@ -91,7 +91,7 @@ public final class ValidatingSubscriber<T>
     {
       if ( BrainCheckConfig.checkInvariants() )
       {
-        fail( () -> "Rxs-0004: Invoking Subscriber.onNext(...) incorrectly threw an exception. " +
+        fail( () -> "Streak-0004: Invoking Subscriber.onNext(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
@@ -108,7 +108,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> State.SUBSCRIBED == _state,
-                 () -> "Rxs-0006: Subscriber.onError(...) called and expected state " +
+                 () -> "Streak-0006: Subscriber.onError(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
       if ( null == throwable )
       {
@@ -126,7 +126,7 @@ public final class ValidatingSubscriber<T>
     {
       if ( BrainCheckConfig.checkInvariants() )
       {
-        fail( () -> "Rxs-0007: Invoking Subscriber.onError(...) incorrectly threw an exception. " +
+        fail( () -> "Streak-0007: Invoking Subscriber.onError(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
@@ -143,7 +143,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> State.SUBSCRIBED == _state,
-                 () -> "Rxs-0008: Subscriber.onComplete(...) called and expected state " +
+                 () -> "Streak-0008: Subscriber.onComplete(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
     }
 
@@ -157,7 +157,7 @@ public final class ValidatingSubscriber<T>
     {
       if ( BrainCheckConfig.checkInvariants() )
       {
-        fail( () -> "Rxs-0009: Invoking Subscriber.onComplete(...) incorrectly threw an exception. " +
+        fail( () -> "Streak-0009: Invoking Subscriber.onComplete(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
@@ -185,7 +185,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( ValidatingSubscriber::hasContext,
-                 () -> "Rxs-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
+                 () -> "Streak-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
     }
     final int index = c_subscriberContext.size() - 1;
     return c_subscriberContext.remove( index );
@@ -201,7 +201,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> !c_subscriberContext.isEmpty(),
-                 () -> "Rxs-0010: Invoking Subscriber.popContext(...) but no subscriber on stack. " +
+                 () -> "Streak-0010: Invoking Subscriber.popContext(...) but no subscriber on stack. " +
                        "Expecting subscriber: " + subscriber );
     }
     final int index = c_subscriberContext.size() - 1;
@@ -209,7 +209,7 @@ public final class ValidatingSubscriber<T>
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> removed == subscriber,
-                 () -> "Rxs-0011: Invoking Subscriber.popContext(...) popped subscriber '" + removed +
+                 () -> "Streak-0011: Invoking Subscriber.popContext(...) popped subscriber '" + removed +
                        "' but was expecting subscriber '" + subscriber + "'." );
     }
   }
@@ -235,16 +235,16 @@ public final class ValidatingSubscriber<T>
       if ( BrainCheckConfig.checkInvariants() )
       {
         invariant( ValidatingSubscriber::hasContext,
-                   () -> "Rxs-0013: Invoking Subscription.request(...) but not in the context of a subscriber." );
+                   () -> "Streak-0013: Invoking Subscription.request(...) but not in the context of a subscriber." );
         final ValidatingSubscriber<?> subscriber = currentContext();
         invariant( () -> subscriber == _subscriber,
-                   () -> "Rxs-0014: Invoking Subscription.request(...) in the context of subscriber '" + subscriber +
+                   () -> "Streak-0014: Invoking Subscription.request(...) in the context of subscriber '" + subscriber +
                          "' but expected to be in the context of subscriber '" + _subscriber + "'." );
         invariant( () -> State.SUBSCRIBED == _subscriber.getState(),
-                   () -> "Rxs-0015: Invoking Subscription.request(...) when the subscriber '" + subscriber +
+                   () -> "Streak-0015: Invoking Subscription.request(...) when the subscriber '" + subscriber +
                          "' is not in the expected SUBSCRIBED state." );
         invariant( () -> count > 0,
-                   () -> "Rxs-0021: Invoking Subscription.request(...) with count " +
+                   () -> "Streak-0021: Invoking Subscription.request(...) with count " +
                          count + " but count must be a positive number." );
       }
       if ( !_cancelled )
@@ -257,7 +257,7 @@ public final class ValidatingSubscriber<T>
         {
           if ( BrainCheckConfig.checkInvariants() )
           {
-            fail( () -> "Rxs-0017: Invoking Subscription.request(...) incorrectly threw an exception. " +
+            fail( () -> "Streak-0017: Invoking Subscription.request(...) incorrectly threw an exception. " +
                         "Exception:\n" + ErrorUtil.throwableToString( t ) );
           }
           throw t;
@@ -271,10 +271,10 @@ public final class ValidatingSubscriber<T>
       if ( BrainCheckConfig.checkInvariants() )
       {
         invariant( ValidatingSubscriber::hasContext,
-                   () -> "Rxs-0018: Invoking Subscription.cancel(...) but not in the context of a subscriber." );
+                   () -> "Streak-0018: Invoking Subscription.cancel(...) but not in the context of a subscriber." );
         final ValidatingSubscriber<?> subscriber = currentContext();
         invariant( () -> subscriber == _subscriber,
-                   () -> "Rxs-0019: Invoking Subscription.cancel(...) in the context of subscriber '" + subscriber +
+                   () -> "Streak-0019: Invoking Subscription.cancel(...) in the context of subscriber '" + subscriber +
                          "' but expected to be in the context of subscriber '" + _subscriber + "'." );
       }
       if ( !_cancelled )
@@ -288,7 +288,7 @@ public final class ValidatingSubscriber<T>
         {
           if ( BrainCheckConfig.checkInvariants() )
           {
-            fail( () -> "Rxs-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
+            fail( () -> "Streak-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
                         "Exception:\n" + ErrorUtil.throwableToString( t ) );
           }
           throw t;
