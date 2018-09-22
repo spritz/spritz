@@ -1,9 +1,9 @@
 require 'buildr/git_auto_version'
 require 'buildr/gpg'
 
-desc 'rxs: Reactive Stream Experiments'
-define 'rxs' do
-  project.group = 'org.realityforge.rxs'
+desc 'streak: Reactive Stream Experiments'
+define 'streak' do
+  project.group = 'org.realityforge.streak'
   compile.options.source = '1.8'
   compile.options.target = '1.8'
   compile.options.lint = 'all'
@@ -11,7 +11,7 @@ define 'rxs' do
   project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
 
   pom.add_apache_v2_license
-  pom.add_github_project('realityforge/rxs')
+  pom.add_github_project('realityforge/streak')
   pom.add_developer('realityforge', 'Peter Donald')
 
   compile.with :javax_annotation,
