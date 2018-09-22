@@ -17,6 +17,8 @@ define 'streak' do
   compile.with :javax_annotation,
                :braincheck
 
+  test.using :testng
+
   package(:jar)
   package(:sources)
   package(:javadoc)
