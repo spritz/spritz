@@ -20,8 +20,7 @@ public abstract class AbstractStreakTest
     BrainCheckTestUtil.resetConfig( true );
   }
 
-  protected void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable,
-                                         @Nonnull final String message )
+  final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable, @Nonnull final String message )
   {
     assertEquals( expectThrows( IllegalStateException.class, throwingRunnable ).getMessage(), message );
   }
