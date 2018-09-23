@@ -9,11 +9,11 @@ def load_error_codes
     select {|f| !(f =~ /[\/\\]src[\/\\]test[\/\\]/)}.
     each do |f|
     content = IO.read(f)
-    matches = content.scan(/"Rxs\-(\d\d\d\d): /)
+    matches = content.scan(/"Streak\-(\d\d\d\d): /)
     matches.each do |match|
       match = match.first
       if error_map[match]
-        raise "Duplicate error code used - Rxs-#{match}.\n First use: #{error_map[match]}\nSecond use: #{f}"
+        raise "Duplicate error code used - Streak-#{match}.\n First use: #{error_map[match]}\nSecond use: #{f}"
       else
         error_map[match] = f
       end
@@ -31,7 +31,7 @@ end
 desc 'Print out a list of all error codes used in codebase'
 task 'error_codes:print' do
   error_codes = load_error_codes
-  puts load_error_codes.keys.sort.collect{|k| "Rxs-#{k}: #{error_codes[k]}"}.join("\n")
+  puts load_error_codes.keys.sort.collect{|k| "Streak-#{k}: #{error_codes[k]}"}.join("\n")
 end
 
 desc 'Print out a list of all error codes unused used in codebase'
@@ -40,14 +40,14 @@ task 'error_codes:print_unused' do
   max_value = keys.last.to_i
   1.upto(max_value).collect{|v| '%04d' % v }.each do |v|
     unless keys.delete(v.to_s)
-      puts "Rxs-#{v} unused"
+      puts "Streak-#{v} unused"
     end
   end
 end
 
 desc 'Print out new error_code that has not yet been used'
 task 'error_codes:print_new_error_code' do
-  puts "Rxs-#{sprintf('%04d',load_error_codes.keys.sort.last.to_i + 1)}"
+  puts "Streak-#{sprintf('%04d',load_error_codes.keys.sort.last.to_i + 1)}"
 end
 
 desc 'Print out next error code. Reusing any that have been retired.'
@@ -57,10 +57,10 @@ task 'error_codes:next' do
   max_value = keys.last.to_i
   1.upto(max_value).collect{|v| '%04d' % v }.each do |v|
     unless keys.delete(v.to_s)
-      puts "Rxs-#{v} (previously used)"
+      puts "Streak-#{v} (previously used)"
       found = true
       break
     end
   end
-  puts "Rxs-#{sprintf('%04d',max_value + 1)} (new)" unless found
+  puts "Streak-#{sprintf('%04d',max_value + 1)} (new)" unless found
 end
