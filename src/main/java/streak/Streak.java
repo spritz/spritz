@@ -6,6 +6,18 @@ public final class Streak
   {
   }
 
+  public static boolean areNamesEnabled()
+  {
+    //TODO: Convert this into compile-time constraint.
+    return true;
+  }
+
+  public static boolean shouldCheckApiInvariants()
+  {
+    //TODO: Convert this into compile-time constraint.
+    return true;
+  }
+
   @SafeVarargs
   public static <T> Flow.Publisher<T> of( final T... values )
   {
