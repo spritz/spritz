@@ -47,7 +47,7 @@ Must have processors:
 - [ ] `startWith(value)` == `prepend(of(value))`
 - [ ] `merge(Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError
 - [ ] `combineLates(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function. onComplete if all onComplete, onError if any onError
-- [ ] `firstEmitting(Publisher...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
+- [ ] `firstEmitting(Publisher...)` or `selectFirstEmitting(Publisher...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
 
 **Terminator Subscribers**
 
