@@ -74,3 +74,23 @@ Must have processors:
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
 
 ## TODO
+
+### Schedulers
+
+Each executor has N circular queues to perform tasks with N being the number of priority levels. There is different
+executors for different events:
+* `currentTask` executor. i.e. Will run tasks next explicit trigger. Same as current loop as in Arez.
+* Maybe microtask executor? (i.e. `Promise.resovle().then( () -> doStuff() )`). Micro tasks run after javascript task stack returns to runtime.
+* `requestAnimationFrame` executor
+* `requestIdleCallback` executor.
+
+There is also a `setTimout`/`setInterval` schedulers that will keep task records and then queue them on `currentTask`
+executor and trigger the executor.
+
+Whenever an executor is processing tasks it is marked as current and any task that schedule using default mechanisms
+are added to the same executor.
+
+Each executor may have different policy on determining when to stop processing tasks.
+* Arez uses round based approach that but will try to process all.
+* `requestIdleCallback` uses a deadline and will keep processing work until deadline would be exceeded (uses a guess at mimium task times).
+* Others may keep processing tasks until a minimum time  has been processed or a single round has occurred or etc.
