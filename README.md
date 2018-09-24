@@ -53,7 +53,8 @@ Must have processors:
 
 **Accumulating Processors** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
-- [x] `scan((accumulator, item) => {...function...}, initialValue)` a.k.a `reduce(....)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. Final value is emitted on onComplete.
+- [ ] `scan((accumulator, item) => {...function...}, initialValue)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
+- [ ] `reduce((accumulator, item) => {...function...}, initialValue)` - Same as scan except final value is emitted on onComplete.
 
 **Terminator Subscribers**
 
