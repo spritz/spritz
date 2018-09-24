@@ -69,5 +69,3 @@ Must have processors:
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
 
 ## TODO
-
-* Rename project to something short ... possibly `Straz`? or `Krast` or `Streak`
