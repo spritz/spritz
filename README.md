@@ -55,6 +55,10 @@ Must have processors:
 
 - [ ] `scan((accumulator, item) => {...function...}, initialValue)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
 - [ ] `reduce((accumulator, item) => {...function...}, initialValue)` - Same as scan except final value is emitted on onComplete.
+- [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?
+- [ ] `bufferByTime` - wait for time buffering items.
+- [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
+- [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
 **Terminator Subscribers**
 
