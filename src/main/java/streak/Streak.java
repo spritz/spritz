@@ -12,7 +12,19 @@ public final class Streak
     return true;
   }
 
+  public static boolean shouldCheckInvariants()
+  {
+    //TODO: Convert this into compile-time constraint.
+    return true;
+  }
+
   public static boolean shouldCheckApiInvariants()
+  {
+    //TODO: Convert this into compile-time constraint.
+    return true;
+  }
+
+  public static boolean purgeTasksWhenRunawayDetected()
   {
     //TODO: Convert this into compile-time constraint.
     return true;
