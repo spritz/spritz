@@ -18,6 +18,14 @@ final class MultiPriorityTaskQueue
   implements TaskQueue
 {
   /**
+   * The default number of priorities.
+   */
+  private static final int DEFAULT_PRIORITY_COUNT = 5;
+  /**
+   * The default of slots in each priority buffer.
+   */
+  private static final int DEFAULT_BUFFER_SIZE = 100;
+  /**
    * A buffer per priority containing tasks that have been scheduled but are not executing.
    */
   @Nonnull
@@ -25,10 +33,38 @@ final class MultiPriorityTaskQueue
   @Nonnull
   private final Function<Task, Integer> _priorityMapper;
 
+  /**
+   * Construct queue with priority count specified by {@link #DEFAULT_PRIORITY_COUNT} where each priority is backed by a buffer with default size specified by {@link #DEFAULT_BUFFER_SIZE}.
+   *
+   * @param priorityMapper the function that maps task to priority.
+   */
+  MultiPriorityTaskQueue( @Nonnull final Function<Task, Integer> priorityMapper )
+  {
+    this( DEFAULT_PRIORITY_COUNT, priorityMapper, DEFAULT_BUFFER_SIZE );
+  }
+
+  /**
+   * Construct queue with specified priority count where each priority is backed by a buffer with default size specified by {@link #DEFAULT_BUFFER_SIZE}.
+   *
+   * @param priorityCount  the number of priorities supported.
+   * @param priorityMapper the function that maps task to priority.
+   */
+  MultiPriorityTaskQueue( final int priorityCount, @Nonnull final Function<Task, Integer> priorityMapper )
+  {
+    this( priorityCount, priorityMapper, DEFAULT_BUFFER_SIZE );
+  }
+
+  /**
+   * Construct queue with specified priority count where each priority is backed by a buffer with specified size.
+   *
+   * @param priorityCount  the number of priorities supported.
+   * @param priorityMapper the function that maps task to priority.
+   * @param bufferSize     the initial size of buffer for each priority.
+   */
   @SuppressWarnings( "unchecked" )
   MultiPriorityTaskQueue( final int priorityCount,
-                          final int bufferSize,
-                          @Nonnull final Function<Task, Integer> priorityMapper )
+                          @Nonnull final Function<Task, Integer> priorityMapper,
+                          final int bufferSize )
   {
     assert priorityCount > 0;
     assert bufferSize > 0;
