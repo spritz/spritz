@@ -1,4 +1,4 @@
-package streak.schedulers;
+package streak.schedulers.m1;
 
 import org.testng.annotations.Test;
 import streak.AbstractStreakTest;

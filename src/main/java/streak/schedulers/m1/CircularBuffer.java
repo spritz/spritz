@@ -1,4 +1,4 @@
-package streak.schedulers;
+package streak.schedulers.m1;
 
 import java.util.Objects;
 import java.util.stream.Stream;
