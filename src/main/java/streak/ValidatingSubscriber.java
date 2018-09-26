@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import static org.realityforge.braincheck.Guards.fail;
-import static org.realityforge.braincheck.Guards.invariant;
+import static org.realityforge.braincheck.Guards.*;
 
 @SuppressWarnings( "ConstantConditions" )
 public final class ValidatingSubscriber<T>

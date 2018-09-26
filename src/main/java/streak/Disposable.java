@@ -2,7 +2,7 @@ package streak;
 
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import static org.realityforge.braincheck.Guards.apiInvariant;
+import static org.realityforge.braincheck.Guards.*;
 
 /**
  * Interface that allows caller to release any resources associated with element.

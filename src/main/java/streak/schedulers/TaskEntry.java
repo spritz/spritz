@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.Disposable;
 import streak.Streak;
-import static org.realityforge.braincheck.Guards.apiInvariant;
+import static org.realityforge.braincheck.Guards.*;
 
 /**
  * Entry for task scheduled by scheduler.
