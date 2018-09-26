@@ -94,3 +94,5 @@ Each executor may have different policy on determining when to stop processing t
 * Arez uses round based approach that but will try to process all.
 * `requestIdleCallback` uses a deadline and will keep processing work until deadline would be exceeded (uses a guess at mimium task times).
 * Others may keep processing tasks until a minimum time  has been processed or a single round has occurred or etc.
+
+A task can only be scheduled on a single executor at any one time.
