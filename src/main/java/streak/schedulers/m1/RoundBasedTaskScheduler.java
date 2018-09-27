@@ -16,7 +16,7 @@ import static org.realityforge.braincheck.Guards.*;
  * tasks being scheduled. Tasks have a priority and higher priority tasks will execute first, while tasks with the
  * same priority will execute in FIFO order.
  */
-public final class RoundBasedTaskScheduler
+final class RoundBasedTaskScheduler
 {
   /**
    * The default value for maximum number of rounds.
