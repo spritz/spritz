@@ -2,7 +2,6 @@ package streak.schedulers.m1;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
@@ -10,23 +9,19 @@ import streak.Streak;
 import static org.realityforge.braincheck.Guards.*;
 
 /**
- * This scheduler executes tasks in rounds.
- * At the start of the round, the number of tasks currently queued is recorded and the scheduler executes that
- * number of tasks. At the end of the round there may be tasks remaining as execution of a task may result in
- * tasks being scheduled. Tasks have a priority and higher priority tasks will execute first, while tasks with the
- * same priority will execute in FIFO order.
+ * This executor runs tasks in rounds.
+ * At the start of the round, the number of tasks currently queued is recorded and the executor runs that
+ * number of tasks. There may be tasks remaining at the end of the round, as running a task may result in
+ * one or more tasks being scheduled. The executor may have a round budget and if it exceeds the round budget
+ * will stop running tasks and optionally emptying the task queue.
  */
 final class RoundBasedTaskExecutor
+  extends AbstractTaskExecutor
 {
   /**
    * The default value for maximum number of rounds.
    */
   private static final int DEFAULT_MAX_ROUNDS = 100;
-  /**
-   * A task queue.
-   */
-  @Nonnull
-  private final TaskQueue _taskQueue;
   /**
    * The maximum number of iterations that can be triggered in sequence without triggering an error. Set this
    * to 0 to disable check, otherwise trigger
@@ -48,8 +43,8 @@ final class RoundBasedTaskExecutor
 
   RoundBasedTaskExecutor( @Nonnull final TaskQueue taskQueue, final int maxRounds )
   {
+    super( taskQueue );
     assert maxRounds > 0;
-    _taskQueue = Objects.requireNonNull( taskQueue );
     _maxRounds = maxRounds;
   }
 
@@ -71,24 +66,6 @@ final class RoundBasedTaskExecutor
   boolean areTasksExecuting()
   {
     return 0 != _currentRound;
-  }
-
-  /**
-   * Add the specified task to the list of pending tasks.
-   * The task must not already be in the list of pending tasks.
-   *
-   * @param task the task.
-   */
-  void scheduleTask( @Nonnull final Task task )
-  {
-    if ( Streak.shouldCheckInvariants() )
-    {
-      invariant( () -> !task.isScheduled(),
-                 () -> "Streak-0095: Attempting to schedule task named '" + task.getName() +
-                       "' when task is already scheduled." );
-    }
-    task.markAsScheduled();
-    _taskQueue.queueTask( task );
   }
 
   /**
@@ -124,7 +101,7 @@ final class RoundBasedTaskExecutor
     // determine if we need any more rounds and if we do ensure
     if ( 0 == _remainingTasksInCurrentRound )
     {
-      final int pendingTasksCount = _taskQueue.getQueueSize();
+      final int pendingTasksCount = getTaskQueue().getQueueSize();
       if ( 0 == pendingTasksCount )
       {
         _currentRound = 0;
@@ -153,29 +130,10 @@ final class RoundBasedTaskExecutor
      */
     _remainingTasksInCurrentRound--;
 
-    final Task task = _taskQueue.dequeueTask();
+    final Task task = getTaskQueue().dequeueTask();
     assert null != task;
     executeTask( task );
     return true;
-  }
-
-  protected void executeTask( @Nonnull final Task task )
-  {
-    // It is possible that the task was executed outside the executor and
-    // may no longer need to be executed. This particularly true when executing tasks
-    // using the "idle until urgent" strategy.
-    if ( task.isScheduled() )
-    {
-      task.markAsExecuted();
-      try
-      {
-        task.getTask().run();
-      }
-      catch ( final Throwable t )
-      {
-        //TODO: Send error to per-task or global error handler?
-      }
-    }
   }
 
   /**
@@ -187,14 +145,14 @@ final class RoundBasedTaskExecutor
   {
     final List<String> taskNames =
       Streak.shouldCheckInvariants() && BrainCheckConfig.verboseErrorMessages() ?
-      _taskQueue.getOrderedTasks()
+      getTaskQueue().getOrderedTasks()
         .map( Task::getName )
         .collect( Collectors.toList() ) :
       null;
 
     if ( Streak.purgeTasksWhenRunawayDetected() )
     {
-      final Collection<Task> tasks = _taskQueue.clear();
+      final Collection<Task> tasks = getTaskQueue().clear();
       for ( final Task task : tasks )
       {
         task.markAsExecuted();
