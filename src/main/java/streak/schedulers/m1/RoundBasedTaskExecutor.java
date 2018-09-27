@@ -155,10 +155,27 @@ final class RoundBasedTaskExecutor
 
     final Task task = _taskQueue.dequeueTask();
     assert null != task;
-    assert task.isScheduled();
-    task.markAsExecuted();
-    //TODO: task.invokeReaction();
+    executeTask( task );
     return true;
+  }
+
+  protected void executeTask( @Nonnull final Task task )
+  {
+    // It is possible that the task was executed outside the executor and
+    // may no longer need to be executed. This particularly true when executing tasks
+    // using the "idle until urgent" strategy.
+    if ( task.isScheduled() )
+    {
+      task.markAsExecuted();
+      try
+      {
+        task.getTask().run();
+      }
+      catch ( final Throwable t )
+      {
+        //TODO: Send error to per-task or global error handler?
+      }
+    }
   }
 
   /**
