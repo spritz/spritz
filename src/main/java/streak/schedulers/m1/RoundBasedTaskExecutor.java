@@ -69,14 +69,13 @@ final class RoundBasedTaskExecutor
   }
 
   /**
-   * If the scheduler is not already executing pending tasks then run pending tasks until
-   * complete or runaway tasks detected.
+   * Run tasks until complete or runaway tasks detected.
    */
-  void executeTasks()
+  void runTasks()
   {
     while ( true )
     {
-      if ( !runTask() )
+      if ( !runNextTask() )
       {
         break;
       }
@@ -84,7 +83,7 @@ final class RoundBasedTaskExecutor
   }
 
   /**
-   * Execute the next pending task if any.
+   * Execute the next task if any.
    * <ul>
    * <li>If there is any reactions left in this round then run the next reaction and consume a token.</li>
    * <li> If there are more rounds left in budget and more pending tasks then start a new round,
@@ -95,7 +94,7 @@ final class RoundBasedTaskExecutor
    *
    * @return true if a task was ran, false otherwise.
    */
-  boolean runTask()
+  boolean runNextTask()
   {
     // If we have reached the last task in this round then
     // determine if we need any more rounds and if we do ensure
