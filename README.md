@@ -66,12 +66,17 @@ Must have processors:
 
 -----
 
-- [ ] `delay(DelayTime)` - delay each item by DelayTime
-- [ ] `delaySubscription(DelayTime)` - delay subscription of upstream by DelayTime
+- [ ] `delayBy(DelayFunction) where DelayTime DelayFunction(Item)` - delay each item by variable time returned by delay function. This involves buffering them for a time and may result in reordered messages.
+- [ ] `delay(DelayTime) == delayBy(_ -> DelayTime) ` - delay each item by DelayTime. This involves buffering them by a fixed time.
+- [ ] `delaySubscriptionBy(DelayFunction) where DelayTime DelayFunction(Subscription)` - delay subscription of upstream by variable time returned by delay function.
+- [ ] `delaySubscription(DelayTime) == delaySubscriptionBy(_ -> DelayTime)` - delay subscription of upstream by DelayTime
 - [ ] `peek(Action)` - perform an action on each value that goes by
 - [ ] `distinct()` - only send item first time it appears in stream. Potentially needs a very large buffer.
 - [ ] `distinctInSuccession()` or `distinctUntilChanged()` - only send item first time it appears in stream. Need to buffer last.
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
+- [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - emit an item from stream if DebounceTime has passed without another value being emitted from upstream.
+- [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)`
+- [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter. 
 
 ## TODO
 
