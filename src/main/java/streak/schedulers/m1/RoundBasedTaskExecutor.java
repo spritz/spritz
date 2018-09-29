@@ -72,7 +72,7 @@ final class RoundBasedTaskExecutor
    * If the scheduler is not already executing pending tasks then run pending tasks until
    * complete or runaway tasks detected.
    */
-  void runPendingTasks()
+  void executeTasks()
   {
     while ( true )
     {
