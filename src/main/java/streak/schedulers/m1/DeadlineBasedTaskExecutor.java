@@ -25,7 +25,7 @@ final class DeadlineBasedTaskExecutor
    *
    * @param function    the function that specifies deadline, if any.
    * @param minTaskTime the minimum task time in milliseconds.
-   * @return true to yielf to caller, false to continue executing tasks.
+   * @return true to yield to the caller, false to continue executing tasks.
    */
   private boolean shouldYield( @Nullable final DeadlineFunction function, final int minTaskTime )
   {
