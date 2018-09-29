@@ -71,12 +71,41 @@ Must have processors:
 - [ ] `delaySubscriptionBy(DelayFunction) where DelayTime DelayFunction(Subscription)` - delay subscription of upstream by variable time returned by delay function.
 - [ ] `delaySubscription(DelayTime) == delaySubscriptionBy(_ -> DelayTime)` - delay subscription of upstream by DelayTime
 - [ ] `peek(Action)` - perform an action on each value that goes by
-- [ ] `distinct()` - only send item first time it appears in stream. Potentially needs a very large buffer.
+- [ ] `distinct()` - only send item first time it appears in stream. Potentially needs a very large map in which items are registered. A variant on this accepts another stream and when that stream emits an item the registry is cleared.
 - [ ] `distinctInSuccession()` or `distinctUntilChanged()` - only send item first time it appears in stream. Need to buffer last.
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
 - [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - emit an item from stream if DebounceTime has passed without another value being emitted from upstream.
 - [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)`
 - [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter.
+
+**Control FLow**
+
+- [ ] `catch((error, downstream) -> myFunction)` - If `onError` then call callback. Often this will replace onError signal with onComplete or do something like omit error and re-subscribe
+- [ ] `retry(RetryCount)` - The retry operator is an `onError` operator that simply resubscribes on error and starts again and it will do it `RetryCount` times or infinite times if not specified. If ceases to retry then pass onError signal down.
+- [ ] `retryWhen(RetryCount, RetryWhenFunction)` - Like retry but a function indicates when should start retry.
+- [ ] `repeat(RepeatCount)` - Replace `onComplete` with subscription to stream again a `RepeatCount` number of times..
+
+**Subjects**
+
+
+
+Multicast producers allow you to add N (a.k.a. subscribe) multiple subscribers which it will publish to. i.e. they
+are processors - both publishers an subscribers. In rxjs they are `Subjects`. There is also `BehaviourSubjects` that
+cache the last value emitted so new subscriptions will send the "current" value or the last value emitted by upstream.
+`ReplaySubjects` are similar to `BehaviourSubjects` except they cache N values rather than 1 and replay all N when new
+subscribers connect. `BehaviourSubjects` may also have a time window after which signals will be dropped. So replay
+subjects have a buffer bound by size and time window. `BehaviourSubjects` will also not emit a value if you subscribe
+after they are complete where-as replay will always replay signals.
+
+
+- [ ] `replay()` - Replay many signals before or after completion
+- [ ] `behaviourSubject()` - Replay one value, only before completion
+- [ ] `asyncSubject()` - Replay one, only after completion
+
+
+Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
+delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
+occur and will be unsubscribed from after that.
 
 ## TODO
 
