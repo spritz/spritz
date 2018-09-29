@@ -27,6 +27,11 @@ public interface PublisherExtension<T>
     return new SkipUntilPredicateFilterPublisher<>( self(), predicate );
   }
 
+  default Flow.Publisher<T> distinctInSuccession()
+  {
+    return new DistinctInSuccessionFilterPublisher<>( self() );
+  }
+
   default <DownstreamT> Flow.Publisher<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
   {
     return new MapPublisher<>( self(), transform );
