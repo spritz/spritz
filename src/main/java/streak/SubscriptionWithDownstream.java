@@ -34,7 +34,7 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onNext( @Nonnull final T item )
   {
-    if ( isLive() )
+    if ( isNotDisposed() )
     {
       getDownstreamSubscriber().onNext( item );
     }
@@ -45,7 +45,7 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onError( @Nonnull final Throwable throwable )
   {
-    if ( isLive() )
+    if ( isNotDisposed() )
     {
       _done = true;
       getDownstreamSubscriber().onError( throwable );
@@ -57,7 +57,7 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onComplete()
   {
-    if ( isLive() )
+    if ( isNotDisposed() )
     {
       _done = true;
       getDownstreamSubscriber().onComplete();
@@ -77,9 +77,19 @@ abstract class SubscriptionWithDownstream<T>
    * {@inheritDoc}
    */
   @Override
-  public void cancel()
+  public void dispose()
   {
-    getUpstreamSubscription().cancel();
+    _done = true;
+    getUpstreamSubscription().dispose();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isDisposed()
+  {
+    return _done;
   }
 
   /**
@@ -108,25 +118,5 @@ abstract class SubscriptionWithDownstream<T>
     }
     assert null != _upstreamSubscription;
     return _upstreamSubscription;
-  }
-
-  /**
-   * Return true if the upstream is done and will not pass any more signals.
-   *
-   * @return true if the upstream is done and will not pass any more signals.
-   */
-  final boolean isDone()
-  {
-    return _done;
-  }
-
-  /**
-   * Return true if the upstream is not done and may pass any more signals.
-   *
-   * @return true if the upstream is not done and may pass any more signals.
-   */
-  final boolean isLive()
-  {
-    return !isDone();
   }
 }

@@ -76,7 +76,7 @@ final class RangePublisher
     public void request( final int count )
     {
       assert count > 0;
-      if ( !isDone() )
+      if ( isNotDisposed() )
       {
         final int maxSize = _end;
         final int requestEnd = Math.min( _current + count, maxSize );
@@ -93,25 +93,21 @@ final class RangePublisher
         if ( _current == maxSize )
         {
           _subscriber.onComplete();
-          done();
+          dispose();
         }
       }
     }
 
     @Override
-    public void cancel()
-    {
-      done();
-    }
-
-    private void done()
-    {
-      _current = _end + 1;
-    }
-
-    private boolean isDone()
+    public boolean isDisposed()
     {
       return _current > _end;
+    }
+
+    @Override
+    public void dispose()
+    {
+      _current = _end + 1;
     }
   }
 }

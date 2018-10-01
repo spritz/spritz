@@ -16,14 +16,14 @@ abstract class AbstractFilterSubscription<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    if ( isLive() )
+    if ( isNotDisposed() )
     {
       if ( includeItem( item ) )
       {
         getDownstreamSubscriber().onNext( item );
       }
       // includeItem(item) can invoke onError so need to check if subscription is still live
-      else if ( isLive() )
+      else if ( isNotDisposed() )
       {
         // Todo: This could cause recursive stack blowout if multiple requests rejected????
         getUpstreamSubscription().request( 1 );

@@ -44,7 +44,7 @@ final class MapPublisher<UpstreamT, DownstreamT>
      */
     public void onNext( @Nonnull final UpstreamT item )
     {
-      if ( isLive() )
+      if ( isNotDisposed() )
       {
         getDownstreamSubscriber().onNext( _transform.apply( item ) );
       }

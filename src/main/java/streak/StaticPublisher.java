@@ -42,7 +42,7 @@ final class StaticPublisher<T>
     public void request( final int count )
     {
       assert count > 0;
-      if ( !isDone() )
+      if ( isNotDisposed() )
       {
         final int maxSize = _data.length;
         final int requestEnd = Math.min( _offset + count, maxSize );
@@ -59,23 +59,19 @@ final class StaticPublisher<T>
         if ( _offset == maxSize )
         {
           _subscriber.onComplete();
-          done();
+          dispose();
         }
       }
     }
 
     @Override
-    public void cancel()
-    {
-      done();
-    }
-
-    private void done()
+    public void dispose()
     {
       _offset = _data.length + 1;
     }
 
-    private boolean isDone()
+    @Override
+    public boolean isDisposed()
     {
       return _offset > _data.length;
     }

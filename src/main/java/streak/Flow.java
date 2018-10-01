@@ -14,13 +14,12 @@ public final class Flow
   }
 
   public interface Subscription
+    extends Disposable
   {
     /**
      * @param count number of items to request. Must be positive (this is different from reactive-streams API)
      */
     void request( int count );
-
-    void cancel();
   }
 
   public interface Subscriber<T>

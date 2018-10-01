@@ -44,7 +44,7 @@ final class TakeFilterPublisher<T>
       }
       else
       {
-        getUpstreamSubscription().cancel();
+        getUpstreamSubscription().dispose();
         onComplete();
         return false;
       }

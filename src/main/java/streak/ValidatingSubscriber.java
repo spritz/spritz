@@ -220,14 +220,18 @@ public final class ValidatingSubscriber<T>
     private final ValidatingSubscriber<T> _subscriber;
     @Nonnull
     private final Flow.Subscription _subscription;
-    private boolean _cancelled;
+    private boolean _disposed;
 
-    WorkerSubscription( @Nonnull final ValidatingSubscriber<T> subscriber, @Nonnull final Flow.Subscription subscription )
+    WorkerSubscription( @Nonnull final ValidatingSubscriber<T> subscriber,
+                        @Nonnull final Flow.Subscription subscription )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _subscription = Objects.requireNonNull( subscription );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void request( final int count )
     {
@@ -246,7 +250,7 @@ public final class ValidatingSubscriber<T>
                    () -> "Streak-0021: Invoking Subscription.request(...) with count " +
                          count + " but count must be a positive number." );
       }
-      if ( !_cancelled )
+      if ( !_disposed )
       {
         try
         {
@@ -264,8 +268,20 @@ public final class ValidatingSubscriber<T>
       }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void cancel()
+    public boolean isDisposed()
+    {
+      return _disposed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void dispose()
     {
       if ( BrainCheckConfig.checkInvariants() )
       {
@@ -276,18 +292,18 @@ public final class ValidatingSubscriber<T>
                    () -> "Streak-0019: Invoking Subscription.cancel(...) in the context of subscriber '" + subscriber +
                          "' but expected to be in the context of subscriber '" + _subscriber + "'." );
       }
-      if ( !_cancelled )
+      if ( !_disposed )
       {
         try
         {
-          _cancelled = true;
-          _subscription.cancel();
+          _disposed = true;
+          _subscription.dispose();
         }
         catch ( final Throwable t )
         {
           if ( BrainCheckConfig.checkInvariants() )
           {
-            fail( () -> "Streak-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
+            fail( () -> "Streak-0020: Invoking Subscription.dispose(...) incorrectly threw an exception. " +
                         "Exception:\n" + ErrorUtil.throwableToString( t ) );
           }
           throw t;
