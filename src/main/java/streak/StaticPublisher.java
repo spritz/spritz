@@ -24,7 +24,6 @@ final class StaticPublisher<T>
   {
     private final Flow.Subscriber<? super T> _subscriber;
     private final T[] _data;
-
     /**
      * Index into data.
      * _offset == _data.length implies next action is onComplete.

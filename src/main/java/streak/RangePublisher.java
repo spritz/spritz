@@ -15,7 +15,6 @@ final class RangePublisher
    * The starting value of the range.
    */
   private final int _start;
-
   /**
    * The number of items to emit.
    */
@@ -51,7 +50,6 @@ final class RangePublisher
      * The end index (exclusive).
      */
     private final int _end;
-
     /**
      * The current value and within the [_start, _start + count) range that will be emitted as subscriber.onNext().
      */
