@@ -15,6 +15,9 @@ Streak contains some experiments with reactive streaming code.
 * RxJava implementation: https://github.com/ReactiveX/RxJava
 * Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
 
+* Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and
+  [xstream](https://github.com/staltz/xstream)
+
 ## To Implement
 
 Must have publishers:
