@@ -24,6 +24,7 @@ Must have publishers:
 - [ ] `Interval(Duration)` - Every N time frame produce a value (monotonically increasing counter?)
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromCollection(Collection)` - A collection.
+- [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 
 Must have processors:
 
@@ -40,15 +41,16 @@ Must have processors:
 **Transformation Processors** (Take items from one stream and transform them)
 
 - [ ] `flatMap(Function<Publisher[]>)` - given one input, produce zero or more publishers. The items from publishers are flattened into source stream.
+                                         Alternatively we could replace with `map(Function<Publisher[]>).flatten()` which seems a better approach.
 - [x] `map` - convert value from one type to another
 
 **Combination Processors** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [ ] `append(Publishers)` - for each publisher wait till it produces onComplete, elide that signal and then
-                       subscribe to next. (a.k.a `concat`)
+- [ ] `append(Publishers) == merge(1,Publishers)` - for each publisher wait till it produces onComplete, elide that signal and then subscribe to next. (a.k.a `concat` or `concatAll`)
 - [ ] `prepend(Publishers)` == `append(reverse(Publishers))`
 - [ ] `startWith(value)` == `prepend(of(value))`
-- [ ] `merge(Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError
+
+- [ ] `merge(ConcurrentCount,Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError. Optionally can pass a `ConcurrentCount` which is the maximum number of concurrent observers, `0` to disable.
 - [ ] `combineLatest(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
 - [ ] `withLatestFrom(Publisher,Publishers)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
 - [ ] `zip(Publishers)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
@@ -57,15 +59,31 @@ Must have processors:
 **Accumulating Processors** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
 - [ ] `scan((accumulator, item) => {...function...}, initialValue)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
-- [ ] `reduce((accumulator, item) => {...function...}, initialValue)` - Same as scan except final value is emitted on onComplete.
 - [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?
 - [ ] `bufferByTime` - wait for time buffering items.
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
+**HigherOrder Observers**
+
+- [ ] `switch` - Input stream contains streams. Each time new item appears, switch stage unsubscribes from current (if any) and subscribes to new item.
+- [ ] `switchMap(MapFn) == map(MapFn).switch()` - Extremely useful
+
+All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.
+
+- [ ] `window(ControlStream)` - Create an inner stream each time next occurs on control stream and forward all `onNext` calls onto inner stream.
+- [ ] `windowByTime(WindowTime)` - Create a new inner stream every `WindowTime` time.
+- [ ] `windowByCount(Count)` - Create a new inner stream every `Count` items.
+- [ ] `window(OnControlStream,OffControlStream)` - Create a new inner stream every starting on signal from `OnControlStream` and then ending when signal occurs on `OffControlStream`.
+
+Other
+
+- [ ] `groupBy(GroupByFunction)` - Create an inner stream based on group returned by function. Stream can be concurrent.
+
 **Terminator Subscribers**
 
 - [x] `forEach(Action)` - perform action for each value.
+- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1)` - Same as scan except final value is emitted on onComplete.
 
 -----
 
@@ -90,7 +108,12 @@ Must have processors:
 
 **Subjects**
 
-
+- [ ] `multicast(Subject)` - Add Subject as observer. Returns a "Connectible" processor that you need to call Connect on before it activates.
+- [ ] `refCount()` - Called on a "Connectible" processor. Will call connect after a subscriber added to it, and will disconnect when no more subscribers.
+- [ ] `publish() == multicast(new Subject())`
+- [ ] `share() == publish().refCount()`
+- [ ] `publishReplay(count) == multicast(new ReplaySubject(count))`
+- [ ] `publishBehaviour(initialValue) == multicast(new BehaviourSubject(initialValue))`
 
 Multicast producers allow you to add N (a.k.a. subscribe) multiple subscribers which it will publish to. i.e. they
 are processors - both publishers an subscribers. In rxjs they are `Subjects`. There is also `BehaviourSubjects` that
