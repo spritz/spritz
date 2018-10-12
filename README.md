@@ -135,6 +135,12 @@ occur and will be unsubscribed from after that.
 
 ## TODO
 
+The factory DSL (i.e. `var a = Streak.of( 1, 2, 3, 4 ).filter( v -> v > 2 ).first()`) contains no execution data
+and thus could subscribe to the same sequence multiple times to get multiple executions. "Subjects" are used to
+create a single execution that are streaks could subscribe to.
+
+`StreamingProperties` or `StreamingValues` may be a different way to think of an event stream.
+
 ### Schedulers
 
 Each executor has N circular queues to perform tasks with N being the number of priority levels. There is different
@@ -156,3 +162,46 @@ Each executor may have different policy on determining when to stop processing t
 * Others may keep processing tasks until a minimum time  has been processed or a single round has occurred or etc.
 
 A task can only be scheduled on a single executor at any one time.
+
+### Rethink
+
+A stream is a series of steps. Some sequences of steps are push based. i.e. The agent that pushes value executes
+the sequence of steps and can not be told to stop generating values except via unsusbcribe. Some sequences are
+pull based in that the agent that requests a number of values and each step will execute the steps in the requesters
+execution context or if not enough values are present could execute in a scheduler context but will only send as many
+values as has been requested. Separating these sequences are barriers and the barriers may consist of queues. Sometimes
+these barriers will try and signal to upstream to pause delivery (will be ignored for push based sequences) or will
+employ other strategies to deal with event stream  not being consumed at a fast enough rate (i.e. store, drop newest,
+drop latest etc). Barriers that are queues will often be scheduled in the same executor when values are added but may
+also be scheduled at some point in the future. (i.e. schedule at next requestIdleCallback)
+
+* `.queue()` - create a barrier containing a queue
+
+* Maybe the flow control object can be passed up and down without wrapping if step needs no mods
+
+
+    interface FlowControl
+    {
+      // pull based
+      void requestItems(Count)
+
+      // push based with flow control
+      void activate()
+      void pause()
+      void resume()
+      void deactivate()
+
+      // push based without flow control
+      void activate()
+      void deactivate()
+    }
+
+
+Some notes about xstream that may be useful inspiration:
+
+    In xstream, all streams are hot. They are a hybrid between RxJS’s Subject and a publish-refCount cold Observable.
+    All streams keep a list of listeners, and have operators to create new streams dependent on the source stream.
+    Stream execution is lazy through reference counting, with a synchronous start (“connect”) and an asynchronous
+    and cancelable stop (“disconnect”). This is built to allow for those cases where we synchronously swap the single
+    listener of a stream but we don’t want to restart the stream’s execution. The goal is to have a smart default
+    behavior that “just works” transparently in Cycle.js apps. But we want to keep laziness, to avoid wasting resources.
