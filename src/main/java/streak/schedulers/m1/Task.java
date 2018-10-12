@@ -7,7 +7,10 @@ import streak.Disposable;
 import streak.Streak;
 import static org.realityforge.braincheck.Guards.*;
 
-public class Task
+/**
+ * A task represents an executable element that can be ran by a task executor.
+ */
+public final class Task
   implements Disposable
 {
   /**
