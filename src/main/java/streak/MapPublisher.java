@@ -9,7 +9,6 @@ final class MapPublisher<UpstreamT, DownstreamT>
 {
   @Nonnull
   private final Flow.Publisher<? extends UpstreamT> _upstream;
-
   @Nonnull
   private final Function<UpstreamT, DownstreamT> _transform;
 
