@@ -1,5 +1,7 @@
 package streak;
 
+import javax.annotation.Nonnull;
+
 public final class Streak
 {
   private Streak()
@@ -47,5 +49,11 @@ public final class Streak
   public static Flow.Publisher<Integer> range( final int start, final int count )
   {
     return new RangePublisher( start, count );
+  }
+
+  @SafeVarargs
+  public static <T> Flow.Publisher<T> concat( @Nonnull final Flow.Publisher<T>... upstreams )
+  {
+    return new ConcatPublisher<>( upstreams );
   }
 }
