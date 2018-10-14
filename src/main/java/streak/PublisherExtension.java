@@ -46,7 +46,7 @@ public interface PublisherExtension<T>
   @Nonnull
   default <DownstreamT> Flow.Publisher<DownstreamT> compose( @Nonnull final Function<Flow.Publisher<T>, Flow.Publisher<DownstreamT>> composeFunction )
   {
-    return composeFunction.apply( self() );
+    return composeFunction.apply( new ValidatingPublisher<>( self() ) );
   }
 
   default void terminate( @Nonnull final Supplier<Flow.Subscriber<T>> terminateFunction )
