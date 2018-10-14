@@ -51,7 +51,7 @@ public interface PublisherExtension<T>
 
   default void terminate( @Nonnull final Supplier<Flow.Subscriber<T>> terminateFunction )
   {
-    self().subscribe( terminateFunction.get() );
+    self().subscribe( new ValidatingSubscriber<>( terminateFunction.get() ) );
   }
 
   @Nonnull

@@ -3,7 +3,6 @@ package streak.examples;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.Streak;
-import streak.ValidatingSubscriber;
 
 public class Example2
 {
@@ -13,7 +12,7 @@ public class Example2
       .of( 1, 2, 3, 4 )
       .filter( v -> v > 2 )
       .first()
-      .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
+      .subscribe( new Flow.Subscriber<Integer>()
       {
         @Override
         public void onSubscribe( @Nonnull final Flow.Subscription subscription )
@@ -38,6 +37,6 @@ public class Example2
         {
           System.out.println( "onComplete()" );
         }
-      } ) );
+      } );
   }
 }

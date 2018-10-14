@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import static org.realityforge.braincheck.Guards.*;
 
-public final class ValidatingSubscriber<T>
+final class ValidatingSubscriber<T>
   implements Flow.Subscriber<T>
 {
   private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
@@ -24,7 +24,7 @@ public final class ValidatingSubscriber<T>
   @Nonnull
   private State _state;
 
-  public ValidatingSubscriber( @Nonnull final Flow.Subscriber<T> target )
+  ValidatingSubscriber( @Nonnull final Flow.Subscriber<T> target )
   {
     _target = Objects.requireNonNull( target );
     _state = State.CREATED;

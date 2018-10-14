@@ -3,7 +3,6 @@ package streak.examples;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.Streak;
-import streak.ValidatingSubscriber;
 
 public class Example1
 {
@@ -12,7 +11,7 @@ public class Example1
     Streak
       .range( 42, 20 )
       .take( 5 )
-      .subscribe( new ValidatingSubscriber<>( new Flow.Subscriber<Integer>()
+      .subscribe( new Flow.Subscriber<Integer>()
       {
         @Override
         public void onSubscribe( @Nonnull final Flow.Subscription subscription )
@@ -37,6 +36,6 @@ public class Example1
         {
           System.out.println( "Range.onComplete()" );
         }
-      } ) );
+      } );
   }
 }
