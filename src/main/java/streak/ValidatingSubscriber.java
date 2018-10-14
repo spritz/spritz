@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import static org.realityforge.braincheck.Guards.*;
 
-@SuppressWarnings( "ConstantConditions" )
 public final class ValidatingSubscriber<T>
   implements Flow.Subscriber<T>
 {
