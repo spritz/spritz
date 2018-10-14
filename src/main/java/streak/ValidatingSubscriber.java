@@ -155,12 +155,6 @@ public final class ValidatingSubscriber<T>
     }
   }
 
-  @Nonnull
-  private State getState()
-  {
-    return _state;
-  }
-
   private static boolean hasContext()
   {
     return !c_subscriberContext.isEmpty();
