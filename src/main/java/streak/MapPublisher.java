@@ -43,10 +43,8 @@ final class MapPublisher<UpstreamT, DownstreamT>
      */
     public void onNext( @Nonnull final UpstreamT item )
     {
-      if ( isNotDisposed() )
-      {
-        getDownstreamSubscriber().onNext( _transform.apply( item ) );
-      }
+      assert isNotDisposed();
+      getDownstreamSubscriber().onNext( _transform.apply( item ) );
     }
   }
 }

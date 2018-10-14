@@ -30,10 +30,8 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onNext( @Nonnull final T item )
   {
-    if ( isNotDisposed() )
-    {
-      getDownstreamSubscriber().onNext( item );
-    }
+    assert isNotDisposed();
+    getDownstreamSubscriber().onNext( item );
   }
 
   /**
@@ -41,11 +39,9 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onError( @Nonnull final Throwable throwable )
   {
-    if ( isNotDisposed() )
-    {
-      _done = true;
-      getDownstreamSubscriber().onError( throwable );
-    }
+    assert isNotDisposed();
+    _done = true;
+    getDownstreamSubscriber().onError( throwable );
   }
 
   /**
@@ -53,11 +49,9 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onComplete()
   {
-    if ( isNotDisposed() )
-    {
-      _done = true;
-      getDownstreamSubscriber().onComplete();
-    }
+    assert isNotDisposed();
+    _done = true;
+    getDownstreamSubscriber().onComplete();
   }
 
   /**
