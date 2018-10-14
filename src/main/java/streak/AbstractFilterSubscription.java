@@ -47,7 +47,6 @@ abstract class AbstractFilterSubscription<T>
     catch ( final Throwable throwable )
     {
       onError( throwable );
-      getUpstream().dispose();
       return false;
     }
   }
