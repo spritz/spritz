@@ -2,17 +2,13 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.realityforge.braincheck.BrainCheckConfig;
-import org.realityforge.braincheck.Guards;
 
 abstract class TransformSubscription<UpstreamT, DownstreamT>
-  implements Flow.Subscription, Flow.Subscriber<UpstreamT>
+  extends AbstractChainedSubscription
+  implements Flow.Subscriber<UpstreamT>
 {
   @Nonnull
   private final Flow.Subscriber<? super DownstreamT> _downstreamSubscriber;
-  @Nullable
-  private Flow.Subscription _upstreamSubscription;
   private boolean _done;
 
   TransformSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber )
@@ -25,7 +21,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    */
   public void onSubscribe( @Nonnull final Flow.Subscription subscription )
   {
-    _upstreamSubscription = subscription;
+    setUpstream( subscription );
     _downstreamSubscriber.onSubscribe( this );
   }
 
@@ -71,7 +67,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   {
     if ( isNotDisposed() )
     {
-      getUpstreamSubscription().dispose();
+      getUpstream().dispose();
     }
   }
 
@@ -84,22 +80,5 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   final Flow.Subscriber<? super DownstreamT> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
-  }
-
-  /**
-   * Return the subscription used to interact with the upstream publisher.
-   *
-   * @return the subscription used to interact with the upstream publisher.
-   */
-  @Nonnull
-  final Flow.Subscription getUpstreamSubscription()
-  {
-    if ( BrainCheckConfig.checkInvariants() )
-    {
-      Guards.invariant( () -> null != _upstreamSubscription,
-                        () -> "Streak-0002: Attempted to invoke getUpstreamSubscription() when subscription is not present" );
-    }
-    assert null != _upstreamSubscription;
-    return _upstreamSubscription;
   }
 }
