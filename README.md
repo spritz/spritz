@@ -20,7 +20,8 @@ Streak contains some experiments with reactive streaming code.
 
 ## To Implement
 
-Must have publishers:
+**Source Factories**
+
 - [ ] `Interval(Duration)` - Every N time frame produce a value (monotonically increasing counter?)
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromCollection(Collection)` - A collection.
