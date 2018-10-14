@@ -14,9 +14,27 @@ Streak contains some experiments with reactive streaming code.
 * A basic js implementation: https://github.com/zenparsing/zen-observable
 * RxJava implementation: https://github.com/ReactiveX/RxJava
 * Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
+* "Learning Observable By Building Observable": https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
 
 * Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and
   [xstream](https://github.com/staltz/xstream)
+
+* A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources
+  and push/pull sinks.
+  - https://github.com/staltz/callbag-basics/blob/master/readme.md#api
+  - https://github.com/callbag/callbag/blob/master/getting-started.md
+  - https://github.com/staltz/callbag-basics
+  - Operators - https://github.com/callbag/callbag/wiki
+
+In particular here is a snippet of some terminology.
+
+* source: a callbag that delivers data
+* sink: a callbag that receives data
+* puller sink: a sink that actively requests data from the source
+* pullable source: a source that delivers data only on demand (on receiving a request)
+* listener sink: a sink that passively receives data from the source
+* listenable source: source which sends data to the sink without waiting for requests
+* operator: a callbag based on another callbag which applies some operation
 
 ## To Implement
 
