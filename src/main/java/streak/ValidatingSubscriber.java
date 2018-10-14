@@ -39,11 +39,7 @@ public final class ValidatingSubscriber<T>
       invariant( () -> State.CREATED == _state,
                  () -> "Streak-0001: Subscriber.onSubscribe(...) called and expected state " +
                        "to be CREATED but is " + _state );
-      if ( null == subscription )
-      {
-        // This is in a guard so it is optimized out in production code
-        throw new NullPointerException();
-      }
+      Objects.requireNonNull( subscription );
     }
     try
     {
@@ -74,11 +70,7 @@ public final class ValidatingSubscriber<T>
       invariant( () -> State.SUBSCRIBED == _state,
                  () -> "Streak-0005: Subscriber.onNext(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
-      if ( null == item )
-      {
-        // This is in a guard so it is optimized out in production code
-        throw new NullPointerException();
-      }
+      Objects.requireNonNull( item );
     }
 
     try
@@ -109,11 +101,7 @@ public final class ValidatingSubscriber<T>
       invariant( () -> State.SUBSCRIBED == _state,
                  () -> "Streak-0006: Subscriber.onError(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
-      if ( null == throwable )
-      {
-        // This is in a guard so it is optimized out in production code
-        throw new NullPointerException();
-      }
+      Objects.requireNonNull( throwable );
     }
     try
     {
