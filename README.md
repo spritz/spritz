@@ -227,3 +227,10 @@ Some notes about xstream that may be useful inspiration:
 
 Alternative design: Only the "source" publisher can perform flow control. That is optionally accessible
 from subscription via something like `@Nullable Subscription.getFlowControl()`
+
+### React4j Integration
+
+Interesting idea - enhance react4j so that can convert handlers into stream sources. Also bind props to output
+streams. This is based on vue integration that uses similar thing inside template language ala
+https://egghead.io/courses/build-async-vue-js-apps-with-rxjs - In react4j the approach is probably to create a
+wrapper component? stream pipes in new props each time?
