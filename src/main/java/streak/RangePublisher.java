@@ -29,6 +29,7 @@ final class RangePublisher
    */
   RangePublisher( final int start, final int count )
   {
+    assert count >= 0;
     _start = start;
     _count = count;
   }
@@ -66,33 +67,17 @@ final class RangePublisher
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, int start, int end )
     {
       _subscriber = Objects.requireNonNull( subscriber );
-      _current = start;
       _end = end;
-    }
-
-    @Override
-    public void request( final int count )
-    {
-      assert count > 0;
+      _current = start;
+      while ( _current <= _end )
+      {
+        _subscriber.onNext( _current );
+        _current++;
+      }
       if ( isNotDisposed() )
       {
-        final int maxSize = _end;
-        final int requestEnd = Math.min( _current + count, maxSize );
-        do
-        {
-          final int current = _current;
-          _current++;
-          _subscriber.onNext( current );
-          // Subscriber can call cancel in onNext so we have to test against _current rather than using local index
-          // Should have generic test to verify this.
-        }
-        while ( _current < requestEnd );
-
-        if ( _current == maxSize )
-        {
-          _subscriber.onComplete();
-          dispose();
-        }
+        _subscriber.onComplete();
+        dispose();
       }
     }
 

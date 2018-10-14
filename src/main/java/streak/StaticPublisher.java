@@ -16,7 +16,9 @@ final class StaticPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    Objects.requireNonNull( subscriber ).onSubscribe( new WorkerSubscription<>( subscriber, _data ) );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
+    Objects.requireNonNull( subscriber ).onSubscribe( subscription );
+    subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
@@ -35,31 +37,21 @@ final class StaticPublisher<T>
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _data = Objects.requireNonNull( data );
+      _offset = 0;
     }
 
-    @Override
-    public void request( final int count )
+    void pushData()
     {
-      assert count > 0;
+      while ( _offset < _data.length )
+      {
+        final T item = _data[ _offset ];
+        _offset++;
+        _subscriber.onNext( item );
+      }
       if ( isNotDisposed() )
       {
-        final int maxSize = _data.length;
-        final int requestEnd = Math.min( _offset + count, maxSize );
-        do
-        {
-          final int current = _offset;
-          _offset++;
-          _subscriber.onNext( _data[ current ] );
-          // Subscriber can call cancel in onNext so we have to test against _offset rather than using local index
-          // Should have generic test to verify this.
-        }
-        while ( _offset < requestEnd );
-
-        if ( _offset == maxSize )
-        {
-          _subscriber.onComplete();
-          dispose();
-        }
+        _subscriber.onComplete();
+        dispose();
       }
     }
 

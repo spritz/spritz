@@ -20,14 +20,12 @@ final class ForEachSubscriber<T>
   public void onSubscribe( @Nonnull final Flow.Subscription subscription )
   {
     _subscription = subscription;
-    _subscription.request( 1 );
   }
 
   @Override
   public void onNext( @Nonnull final T item )
   {
     _action.accept( item );
-    _subscription.request( 1 );
   }
 
   @Override

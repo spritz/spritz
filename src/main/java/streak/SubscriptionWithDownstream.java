@@ -2,17 +2,13 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.realityforge.braincheck.BrainCheckConfig;
-import org.realityforge.braincheck.Guards;
 
 abstract class SubscriptionWithDownstream<T>
-  implements Flow.Subscription, Flow.Subscriber<T>
+  extends AbstractChainedSubscription
+  implements Flow.Subscriber<T>
 {
   @Nonnull
   private final Flow.Subscriber<? super T> _downstreamSubscriber;
-  @Nullable
-  private Flow.Subscription _upstreamSubscription;
   private boolean _done;
 
   SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
@@ -25,7 +21,7 @@ abstract class SubscriptionWithDownstream<T>
    */
   public void onSubscribe( @Nonnull final Flow.Subscription subscription )
   {
-    _upstreamSubscription = subscription;
+    setUpstream( subscription );
     _downstreamSubscriber.onSubscribe( this );
   }
 
@@ -68,19 +64,10 @@ abstract class SubscriptionWithDownstream<T>
    * {@inheritDoc}
    */
   @Override
-  public void request( final int count )
-  {
-    getUpstreamSubscription().request( count );
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public void dispose()
   {
     _done = true;
-    getUpstreamSubscription().dispose();
+    getUpstream().dispose();
   }
 
   /**
@@ -101,22 +88,5 @@ abstract class SubscriptionWithDownstream<T>
   final Flow.Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
-  }
-
-  /**
-   * Return the subscription used to interact with the upstream publisher.
-   *
-   * @return the subscription used to interact with the upstream publisher.
-   */
-  @Nonnull
-  final Flow.Subscription getUpstreamSubscription()
-  {
-    if ( BrainCheckConfig.checkInvariants() )
-    {
-      Guards.invariant( () -> null != _upstreamSubscription,
-                        () -> "Streak-0002: Attempted to invoke getUpstreamSubscription() when subscription is not present" );
-    }
-    assert null != _upstreamSubscription;
-    return _upstreamSubscription;
   }
 }

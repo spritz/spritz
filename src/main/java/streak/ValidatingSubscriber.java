@@ -233,45 +233,6 @@ public final class ValidatingSubscriber<T>
      * {@inheritDoc}
      */
     @Override
-    public void request( final int count )
-    {
-      if ( BrainCheckConfig.checkInvariants() )
-      {
-        invariant( ValidatingSubscriber::hasContext,
-                   () -> "Streak-0013: Invoking Subscription.request(...) but not in the context of a subscriber." );
-        final ValidatingSubscriber<?> subscriber = currentContext();
-        invariant( () -> subscriber == _subscriber,
-                   () -> "Streak-0014: Invoking Subscription.request(...) in the context of subscriber '" + subscriber +
-                         "' but expected to be in the context of subscriber '" + _subscriber + "'." );
-        invariant( () -> State.SUBSCRIBED == _subscriber.getState(),
-                   () -> "Streak-0015: Invoking Subscription.request(...) when the subscriber '" + subscriber +
-                         "' is not in the expected SUBSCRIBED state." );
-        invariant( () -> count > 0,
-                   () -> "Streak-0021: Invoking Subscription.request(...) with count " +
-                         count + " but count must be a positive number." );
-      }
-      if ( !_disposed )
-      {
-        try
-        {
-          _subscription.request( count );
-        }
-        catch ( final Throwable t )
-        {
-          if ( BrainCheckConfig.checkInvariants() )
-          {
-            fail( () -> "Streak-0017: Invoking Subscription.request(...) incorrectly threw an exception. " +
-                        "Exception:\n" + ErrorUtil.throwableToString( t ) );
-          }
-          throw t;
-        }
-      }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public boolean isDisposed()
     {
       return _disposed;

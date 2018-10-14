@@ -62,15 +62,6 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    * {@inheritDoc}
    */
   @Override
-  public void request( final int count )
-  {
-    getUpstreamSubscription().request( count );
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
   public boolean isDisposed()
   {
     return _done;

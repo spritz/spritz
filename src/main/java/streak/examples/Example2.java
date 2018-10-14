@@ -18,14 +18,13 @@ public class Example2
         @Override
         public void onSubscribe( @Nonnull final Flow.Subscription subscription )
         {
-          System.out.println( "Just.onSubscribe(" + subscription + ")" );
-          subscription.request( 1000 );
+          System.out.println( "onSubscribe(" + subscription + ")" );
         }
 
         @Override
         public void onNext( @Nonnull final Integer item )
         {
-          System.out.println( "Just.onNext(" + item + ")" );
+          System.out.println( "onNext(" + item + ")" );
         }
 
         @Override
@@ -37,7 +36,7 @@ public class Example2
         @Override
         public void onComplete()
         {
-          System.out.println( "Just.onComplete()" );
+          System.out.println( "onComplete()" );
         }
       } ) );
   }

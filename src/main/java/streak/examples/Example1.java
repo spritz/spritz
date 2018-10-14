@@ -18,7 +18,6 @@ public class Example1
         public void onSubscribe( @Nonnull final Flow.Subscription subscription )
         {
           System.out.println( "Range.onSubscribe(" + subscription + ")" );
-          subscription.request( 1000 );
         }
 
         @Override

@@ -22,7 +22,9 @@ final class ConcatPublisher<T>
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    Objects.requireNonNull( subscriber ).onSubscribe( new WorkerSubscription<>( subscriber, _upstreams ) );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _upstreams );
+    Objects.requireNonNull( subscriber ).onSubscribe( subscription );
+    subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
@@ -33,7 +35,6 @@ final class ConcatPublisher<T>
     private final Flow.Subscriber<? super T> _downstream;
     private int _upstreamIndex = 0;
     private Flow.Subscription _upstreamSubscription;
-    private int _itemsRequested = 0;
 
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstream,
                         @Nonnull final Flow.Publisher<? extends T>[] upstreams )
@@ -41,6 +42,11 @@ final class ConcatPublisher<T>
       assert upstreams.length > 0;
       _downstream = downstream;
       _upstreams = upstreams;
+    }
+
+    void pushData()
+    {
+      _upstreams[ 0 ].subscribe( this );
     }
 
     @Override
@@ -61,39 +67,17 @@ final class ConcatPublisher<T>
     }
 
     @Override
-    public void request( final int count )
-    {
-      assert isNotDisposed();
-      assert count > 0;
-      _itemsRequested += count;
-      if ( null == _upstreamSubscription )
-      {
-        assert 0 == _upstreamIndex;
-        _upstreams[ 0 ].subscribe( this );
-      }
-      else
-      {
-        _upstreamSubscription.request( count );
-      }
-    }
-
-    @Override
     public void onSubscribe( @Nonnull final Flow.Subscription subscription )
     {
       assert isNotDisposed();
       assert null == _upstreamSubscription;
       _upstreamSubscription = subscription;
-      if ( 0 != _itemsRequested )
-      {
-        subscription.request( _itemsRequested );
-      }
     }
 
     @Override
     public void onNext( @Nonnull final T item )
     {
       assert isNotDisposed();
-      _itemsRequested--;
       _downstream.onNext( item );
     }
 
