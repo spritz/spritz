@@ -224,3 +224,6 @@ Some notes about xstream that may be useful inspiration:
     and cancelable stop (“disconnect”). This is built to allow for those cases where we synchronously swap the single
     listener of a stream but we don’t want to restart the stream’s execution. The goal is to have a smart default
     behavior that “just works” transparently in Cycle.js apps. But we want to keep laziness, to avoid wasting resources.
+
+Alternative design: Only the "source" publisher can perform flow control. That is optionally accessible
+from subscription via something like `@Nullable Subscription.getFlowControl()`
