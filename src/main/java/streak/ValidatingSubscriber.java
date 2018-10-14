@@ -45,7 +45,7 @@ public final class ValidatingSubscriber<T>
     {
       pushContext( this );
       _state = State.SUBSCRIBED;
-      _target.onSubscribe( new WorkerSubscription<T>( this, subscription ) );
+      _target.onSubscribe( new WorkerSubscription<>( this, subscription ) );
     }
     catch ( final Throwable throwable )
     {
