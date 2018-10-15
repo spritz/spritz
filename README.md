@@ -20,8 +20,7 @@ Streak contains some experiments with reactive streaming code.
 * Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and
   [xstream](https://github.com/staltz/xstream)
 
-* A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources
-  and push/pull sinks.
+* A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources/sinks.
   - https://github.com/staltz/callbag-basics/blob/master/readme.md#api
   - https://github.com/callbag/callbag/blob/master/getting-started.md
   - https://github.com/staltz/callbag-basics
