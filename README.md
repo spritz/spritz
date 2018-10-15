@@ -7,6 +7,7 @@ Streak contains some experiments with reactive streaming code.
 
 ## Links
 
+* http://xgrommx.github.io/rx-book/index.html
 * ReactiveX Scheduler: http://reactivex.io/documentation/scheduler.html
 * ReactiveX Operators: http://reactivex.io/documentation/operators.html
 * Reactive Streams Specification: https://github.com/reactive-streams/reactive-streams-jvm
