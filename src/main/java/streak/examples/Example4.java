@@ -10,7 +10,7 @@ public class Example4
   {
     Streak
       .of( 1, 1, 1, 1, 1, 2, 2, 2, 1, 3, 3, 4 )
-      .distinctInSuccession()
+      .skipDuplicates()
       .subscribe( new Flow.Subscriber<Integer>()
       {
         @Override

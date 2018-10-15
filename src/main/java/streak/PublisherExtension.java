@@ -28,9 +28,12 @@ public interface PublisherExtension<T>
     return compose( p -> new SkipUntilPredicateFilterPublisher<>( p, predicate ) );
   }
 
-  default Flow.Publisher<T> distinctInSuccession()
+  /**
+   * drops consecutive equal elements
+   */
+  default Flow.Publisher<T> skipDuplicates()
   {
-    return compose( DistinctInSuccessionFilterPublisher::new );
+    return compose( SkipDuplicatesFilterPublisher::new );
   }
 
   default <DownstreamT> Flow.Publisher<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
