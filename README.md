@@ -234,3 +234,6 @@ Interesting idea - enhance react4j so that can convert handlers into stream sour
 streams. This is based on vue integration that uses similar thing inside template language ala
 https://egghead.io/courses/build-async-vue-js-apps-with-rxjs - In react4j the approach is probably to create a
 wrapper component? stream pipes in new props each time?
+
+Another react4j integration is to add a "<Stream/>" component that takes a stream as a prop and has a render prop
+that has output of stream as parameter
