@@ -27,16 +27,6 @@ public final class BasicScheduler
    */
   @Nonnull
   @Override
-  public Disposable schedule( @Nullable final String name, @Nonnull final Runnable task, final int delayInMillis )
-  {
-    return scheduleAtFixedRate( name, task, delayInMillis, 0 );
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Nonnull
-  @Override
   public Disposable scheduleAtFixedRate( @Nullable final String name,
                                          @Nonnull final Runnable task,
                                          final int initialDelayInMillis,
