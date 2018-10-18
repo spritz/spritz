@@ -38,45 +38,45 @@ public interface Scheduler
   /**
    * Schedules the execution of the given task after a specified delay.
    *
-   * @param name          the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
-   * @param task          the task to execute.
-   * @param delayInMillis the delay before the task should execute measured in milliseconds.
+   * @param name  the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
+   * @param task  the task to execute.
+   * @param delay the delay before the task should execute.
    * @return the {@link Disposable} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default Disposable schedule( @Nullable final String name, @Nonnull final Runnable task, final int delayInMillis )
+  default Disposable schedule( @Nullable final String name, @Nonnull final Runnable task, final int delay )
   {
-    return scheduleAtFixedRate( name, task, delayInMillis, 0 );
+    return scheduleAtFixedRate( name, task, delay, 0 );
   }
 
   /**
    * Schedules the periodic execution of the given task with specified period, after a specified delay.
    *
-   * @param name           the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
-   * @param task           the task to execute.
-   * @param periodInMillis the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 ndicates tasks is never rescheduled.
+   * @param name   the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
+   * @param task   the task to execute.
+   * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
    * @return the {@link Disposable} instance that can be used to cancel execution of task.
    */
   @Nonnull
   default Disposable scheduleAtFixedRate( @Nullable final String name,
                                           @Nonnull final Runnable task,
-                                          final int periodInMillis )
+                                          final int period )
   {
-    return scheduleAtFixedRate( name, task, 0, periodInMillis );
+    return scheduleAtFixedRate( name, task, 0, period );
   }
 
   /**
    * Schedules the periodic execution of the given task with specified period, after a specified delay.
    *
-   * @param name                 the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
-   * @param task                 the task to execute.
-   * @param initialDelayInMillis the initial delay before the task should execute measured in milliseconds.
-   * @param periodInMillis       the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 ndicates tasks is never rescheduled.
+   * @param name         the name of the task. Must be null unless {@link Streak#areNamesEnabled()} returns <code>true</code>.
+   * @param task         the task to execute.
+   * @param initialDelay the initial delay before the task should execute.
+   * @param period       the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
    * @return the {@link Disposable} instance that can be used to cancel execution of task.
    */
   @Nonnull
   Disposable scheduleAtFixedRate( @Nullable String name,
                                   @Nonnull Runnable task,
-                                  int initialDelayInMillis,
-                                  int periodInMillis );
+                                  int initialDelay,
+                                  int period );
 }
