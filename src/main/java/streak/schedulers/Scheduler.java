@@ -8,12 +8,15 @@ import streak.Streak;
 /**
  * The scheduler is responsible for scheduling and executing tasks asynchronously.
  * The scheduler provides an "abstract asynchronous boundary" to stream operators.
+ *
+ * <p>The scheduler has an internal clock that represents time as a monotonically increasing
+ * <code>int</code> value. The value may or may not have a direct relationship to wall-clock
+ * time and the unit of the value is defined by the implementation..</p>
  */
 public interface Scheduler
 {
   /**
-   * Returns the "current time" of the scheduler.
-   * This time is an abstract time measure that is only guaranteed to be a monotonically increasing value.
+   * Return a value representing the "current time" of the scheduler.
    *
    * @return the "current time" of the scheduler.
    */
