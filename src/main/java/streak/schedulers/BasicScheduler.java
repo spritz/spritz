@@ -29,11 +29,11 @@ public final class BasicScheduler
   @Override
   public Disposable scheduleAtFixedRate( @Nullable final String name,
                                          @Nonnull final Runnable task,
-                                         final int initialDelayInMillis,
-                                         final int periodInMillis )
+                                         final int initialDelay,
+                                         final int period )
   {
-    final TaskEntry entry = new TaskEntry( this, name, task, periodInMillis );
-    entry.setNextTime( _now + initialDelayInMillis );
+    final TaskEntry entry = new TaskEntry( this, name, task, period );
+    entry.setNextTime( _now + initialDelay );
     _queue.add( entry );
     return entry;
   }
