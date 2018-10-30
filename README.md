@@ -18,7 +18,7 @@ Streak contains some experiments with reactive streaming code.
 * "Learning Observable By Building Observable": https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
 
 * Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and
-  [xstream](https://github.com/staltz/xstream)
+  [xstream](https://github.com/staltz/xstream) although [Most](https://github.com/cujojs/most) has some qualities
 
 * A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources/sinks.
   - https://github.com/staltz/callbag-basics/blob/master/readme.md#api
@@ -237,3 +237,15 @@ wrapper component? stream pipes in new props each time?
 
 Another react4j integration is to add a "<Stream/>" component that takes a stream as a prop and has a render prop
 that has output of stream as parameter
+
+
+
+
+
+### Schedulers
+
+* Immediate - directly invoke now
+* Current - queue in current Execution and will invoke before exiting runtime and returning to invoking application/system code
+* Mircotask - in next microtask execution. == Current if current execution in microtask
+* Animation - in next animation frame
+* Idle - in next idle frame
