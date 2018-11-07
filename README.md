@@ -238,6 +238,8 @@ wrapper component? stream pipes in new props each time?
 Another react4j integration is to add a "<Stream/>" component that takes a stream as a prop and has a render prop
 that has output of stream as parameter - https://github.com/johnlindquist/react-streams/
 
+Another possibility is to create field for subscription and let contain subscribe and dispose - template
+language extracts it - ala angular
 
 
 ### Schedulers
