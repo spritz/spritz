@@ -236,7 +236,7 @@ https://egghead.io/courses/build-async-vue-js-apps-with-rxjs - In react4j the ap
 wrapper component? stream pipes in new props each time?
 
 Another react4j integration is to add a "<Stream/>" component that takes a stream as a prop and has a render prop
-that has output of stream as parameter
+that has output of stream as parameter - https://github.com/johnlindquist/react-streams/
 
 
 
