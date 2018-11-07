@@ -240,8 +240,6 @@ that has output of stream as parameter
 
 
 
-
-
 ### Schedulers
 
 * Immediate - directly invoke now
