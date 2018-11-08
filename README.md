@@ -38,6 +38,10 @@ In particular here is a snippet of some terminology.
 
 ## To Implement
 
+Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
+
+Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
+
 **Source Factories**
 
 - [ ] `Interval(Duration)` - Every N time frame produce a value (monotonically increasing counter?)
@@ -151,6 +155,10 @@ after they are complete where-as replay will always replay signals.
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
 occur and will be unsubscribed from after that.
+
+## Fetch/http controller
+
+* Make use of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
 
 ## TODO
 
