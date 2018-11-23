@@ -5,6 +5,23 @@
 
 Streak contains some experiments with reactive streaming code.
 
+----
+
+Notes from https://reactive.how/rxjs/pipeable-operators:
+
+----
+
+A stream is a sequence of events over time (eg. a stream of click events). In this episode, I’ll use ❚ interval to create a stream that emits incremental numbers, periodically.
+
+A listener reacts to events emitted by a stream (values, error and completion notification). This is the reactivity principle. I’ll use console.log as a listener to react to the emitted values.
+
+Operators transform, filter and combine streams. An operator never modifies the input stream. Instead, it returns a new stream. This is the immutability principle. To create a “gaussian” stream from interval I need:
+
+the mapping operator ❚ map. It projects each event of the input stream with a project function.
+the filtering operator ❚ take to set a maximum amount of events to emit. Indeed, interval emits an infinite number of events, but I want to print only 25 lines on the console.
+
+----
+
 Seriously consider aligning with RXJS 7 as they seem to have adopted some interesting ideas.
 See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 
