@@ -5,6 +5,9 @@
 
 Streak contains some experiments with reactive streaming code.
 
+Seriously consider aligning with RXJS 7 as they seem to have adopted some interesting ideas.
+See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
+
 ## Links
 
 * http://xgrommx.github.io/rx-book/index.html
