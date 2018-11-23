@@ -160,6 +160,10 @@ occur and will be unsubscribed from after that.
 
 * Make use of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
 
+## Naming
+
+Why not something similar like `EventSource` `EventSink` etc?
+
 ## TODO
 
 The factory DSL (i.e. `var a = Streak.of( 1, 2, 3, 4 ).filter( v -> v > 2 ).first()`) contains no execution data
