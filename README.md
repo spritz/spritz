@@ -7,6 +7,14 @@ Streak contains some experiments with reactive streaming code.
 
 ----
 
+We should adopt terminology from microprofile reactive streams proposal as it will soon be present in most java
+backend APIs.
+
+* https://github.com/eclipse/microprofile-reactive-streams
+* https://github.com/eclipse/microprofile-reactive-messaging
+
+----
+
 Notes from https://reactive.how/rxjs/pipeable-operators:
 
 ----
