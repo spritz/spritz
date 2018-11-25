@@ -72,7 +72,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Source Factories**
 
-- [ ] `Interval(Duration)` - Every N time frame produce a value (monotonically increasing counter?)
+- [ ] `Interval(Duration)` or `periodic(Duration)`- Every N time frame produce a value (monotonically increasing counter?)
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromCollection(Collection)` - A collection.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
@@ -109,7 +109,7 @@ Must have processors:
 
 **Accumulating Processors** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
-- [ ] `scan((accumulator, item) => {...function...}, initialValue)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
+- [ ] `scan((accumulator, item) => {...function...}, initialValue)` or `fold(...)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
 - [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?
 - [ ] `bufferByTime` - wait for time buffering items.
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
