@@ -281,6 +281,8 @@ that has output of stream as parameter - https://github.com/johnlindquist/react-
 Another possibility is to create field for subscription and let contain subscribe and dispose - template
 language extracts it - ala angular
 
+`Yolk` is an interesting framework. Essentially it is react-like in that it uses jsx and vdom/reconcilliation
+but it differs as both props and event handlers are streams and streams are passed as jsx.
 
 ### Schedulers
 
