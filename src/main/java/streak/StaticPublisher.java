@@ -42,7 +42,7 @@ final class StaticPublisher<T>
 
     void pushData()
     {
-      while ( _offset < _data.length )
+      while ( _offset < _data.length && isNotDisposed() )
       {
         final T item = _data[ _offset ];
         _offset++;
