@@ -1,9 +1,9 @@
 package streak.schedulers;
 
+import arez.Disposable;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Disposable;
 import streak.Streak;
 import static org.realityforge.braincheck.Guards.*;
 

@@ -1,5 +1,6 @@
 package streak;
 
+import arez.Disposable;
 import javax.annotation.Nonnull;
 
 public final class Flow

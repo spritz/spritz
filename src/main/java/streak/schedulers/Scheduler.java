@@ -1,8 +1,8 @@
 package streak.schedulers;
 
+import arez.Disposable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Disposable;
 import streak.Streak;
 
 /**

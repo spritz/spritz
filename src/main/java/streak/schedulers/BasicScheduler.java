@@ -1,10 +1,10 @@
 package streak.schedulers;
 
+import arez.Disposable;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Disposable;
 
 public final class BasicScheduler
   implements Scheduler
