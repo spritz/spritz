@@ -56,4 +56,9 @@ public final class Streak
   {
     return new ConcatPublisher<>( upstreams );
   }
+
+  public static Flow.Publisher<Integer> periodic( final int period )
+  {
+    return new PeriodicPublisher( period );
+  }
 }
