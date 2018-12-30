@@ -21,7 +21,7 @@ public interface FilteringOperators2<T>
    * @return the stream.
    */
   @Nonnull
-  default Flow.Stream<T> filter( @Nonnull final Predicate<T> predicate )
+  default Flow.Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new PredicateFilterPublisher<>( p, predicate ) );
   }
@@ -96,7 +96,7 @@ public interface FilteringOperators2<T>
    * @see #skipUntil(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> dropWhile( @Nonnull final Predicate<T> predicate )
+  default Flow.Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new DropWhileOperator<>( p, predicate ) );
   }
@@ -113,7 +113,7 @@ public interface FilteringOperators2<T>
    * @see #dropWhile(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> skipUntil( @Nonnull final Predicate<T> predicate )
+  default Flow.Stream<T> skipUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return dropWhile( predicate.negate() );
   }
