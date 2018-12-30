@@ -5,6 +5,7 @@
 
 Streak contains some experiments with reactive streaming code.
 
+Streak is best used when coordinating events.
 ----
 
 We should adopt terminology from microprofile reactive streams proposal as it will soon be present in most java
