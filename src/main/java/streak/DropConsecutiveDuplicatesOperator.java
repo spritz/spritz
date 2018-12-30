@@ -4,10 +4,10 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-final class SkipConsecutiveDuplicatesOperator<T>
+final class DropConsecutiveDuplicatesOperator<T>
   extends PublisherWithUpstream<T>
 {
-  SkipConsecutiveDuplicatesOperator( @Nonnull final Flow.Stream<? extends T> upstream )
+  DropConsecutiveDuplicatesOperator( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     super( upstream );
   }

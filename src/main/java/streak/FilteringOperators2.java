@@ -34,8 +34,13 @@ public interface FilteringOperators2<T>
   /**
    * drops consecutive equal elements
    */
+  default Flow.Stream<T> dropConsecutiveDuplicates()
+  {
+    return compose( DropConsecutiveDuplicatesOperator::new );
+  }
+
   default Flow.Stream<T> skipConsecutiveDuplicates()
   {
-    return compose( SkipConsecutiveDuplicatesOperator::new );
+    return dropConsecutiveDuplicates();
   }
 }
