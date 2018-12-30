@@ -14,7 +14,6 @@ public interface FilteringOperators2<T>
    * Filter the elements emitted by this stream using the specified {@link Predicate}.
    * Any elements that return {@code true} when passed to the {@link Predicate} will be
    * emitted while all other elements will be dropped.
-
    *
    * @param predicate The predicate to apply to each element.
    * @return the stream.
