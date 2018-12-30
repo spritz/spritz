@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 final class ValidatingPublisher<T>
   extends PublisherWithUpstream<T>
 {
-  ValidatingPublisher( @Nonnull final Flow.Publisher<? extends T> upstream )
+  ValidatingPublisher( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     super( upstream );
   }

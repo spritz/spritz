@@ -10,7 +10,7 @@ final class DropWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  DropWhileOperator( @Nonnull final Flow.Publisher<? extends T> upstream,
+  DropWhileOperator( @Nonnull final Flow.Stream<? extends T> upstream,
                      @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );

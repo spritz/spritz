@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 /**
- * A synchronous implementation of the {@link Flow.Publisher} that can
+ * A synchronous implementation of the {@link Flow.Stream} that can
  * be subscribed to multiple times and each individual subscription
  * will receive range of monotonically increasing integer values on demand.
  */

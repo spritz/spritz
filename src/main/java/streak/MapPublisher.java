@@ -8,11 +8,11 @@ final class MapPublisher<UpstreamT, DownstreamT>
   extends AbstractPublisher<DownstreamT>
 {
   @Nonnull
-  private final Flow.Publisher<? extends UpstreamT> _upstream;
+  private final Flow.Stream<? extends UpstreamT> _upstream;
   @Nonnull
   private final Function<UpstreamT, DownstreamT> _transform;
 
-  MapPublisher( @Nonnull final Flow.Publisher<? extends UpstreamT> upstream,
+  MapPublisher( @Nonnull final Flow.Stream<? extends UpstreamT> upstream,
                 @Nonnull final Function<UpstreamT, DownstreamT> transform )
   {
     _upstream = Objects.requireNonNull( upstream );

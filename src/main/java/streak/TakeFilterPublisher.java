@@ -7,7 +7,7 @@ final class TakeFilterPublisher<T>
 {
   private final int _count;
 
-  TakeFilterPublisher( @Nonnull final Flow.Publisher<? extends T> upstream, final int count )
+  TakeFilterPublisher( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;

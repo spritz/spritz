@@ -3,11 +3,11 @@ package streak;
 import javax.annotation.Nonnull;
 
 abstract class AbstractPublisher<T>
-  implements Flow.Publisher<T>
+  implements Flow.Stream<T>
 {
   @Nonnull
   @Override
-  public Flow.Publisher<T> self()
+  public Flow.Stream<T> self()
   {
     return this;
   }

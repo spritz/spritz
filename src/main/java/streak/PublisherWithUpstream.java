@@ -7,15 +7,15 @@ abstract class PublisherWithUpstream<T>
   extends AbstractPublisher<T>
 {
   @Nonnull
-  private final Flow.Publisher<? extends T> _upstream;
+  private final Flow.Stream<? extends T> _upstream;
 
-  PublisherWithUpstream( @Nonnull final Flow.Publisher<? extends T> upstream )
+  PublisherWithUpstream( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     _upstream = Objects.requireNonNull( upstream );
   }
 
   @Nonnull
-  final Flow.Publisher<? extends T> getUpstream()
+  final Flow.Stream<? extends T> getUpstream()
   {
     return _upstream;
   }

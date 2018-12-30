@@ -7,13 +7,13 @@ final class ConcatPublisher<T>
   extends AbstractPublisher<T>
 {
   @Nonnull
-  private final Flow.Publisher<? extends T>[] _upstreams;
+  private final Flow.Stream<? extends T>[] _upstreams;
 
-  ConcatPublisher( @Nonnull final Flow.Publisher<? extends T>[] upstreams )
+  ConcatPublisher( @Nonnull final Flow.Stream<? extends T>[] upstreams )
   {
     _upstreams = Objects.requireNonNull( upstreams );
     assert _upstreams.length > 0;
-    for ( final Flow.Publisher<? extends T> upstream : upstreams )
+    for ( final Flow.Stream<? extends T> upstream : upstreams )
     {
       Objects.requireNonNull( upstream );
     }
@@ -31,13 +31,13 @@ final class ConcatPublisher<T>
     implements Flow.Subscription, Flow.Subscriber<T>
   {
     @Nonnull
-    private final Flow.Publisher<? extends T>[] _upstreams;
+    private final Flow.Stream<? extends T>[] _upstreams;
     private final Flow.Subscriber<? super T> _downstream;
     private int _upstreamIndex = 0;
     private Flow.Subscription _upstreamSubscription;
 
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstream,
-                        @Nonnull final Flow.Publisher<? extends T>[] upstreams )
+                        @Nonnull final Flow.Stream<? extends T>[] upstreams )
     {
       assert upstreams.length > 0;
       _downstream = downstream;

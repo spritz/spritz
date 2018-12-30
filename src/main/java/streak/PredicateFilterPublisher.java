@@ -10,7 +10,7 @@ final class PredicateFilterPublisher<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterPublisher( @Nonnull final Flow.Publisher<? extends T> upstream,
+  PredicateFilterPublisher( @Nonnull final Flow.Stream<? extends T> upstream,
                             @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );

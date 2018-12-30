@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 final class SkipConsecutiveDuplicatesOperator<T>
   extends PublisherWithUpstream<T>
 {
-  SkipConsecutiveDuplicatesOperator( @Nonnull final Flow.Publisher<? extends T> upstream )
+  SkipConsecutiveDuplicatesOperator( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     super( upstream );
   }

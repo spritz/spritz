@@ -25,7 +25,7 @@ public final class Flow
     void onComplete();
   }
 
-  public interface Publisher<T>
+  public interface Stream<T>
     extends PublisherExtension<T>
   {
     void subscribe( @Nonnull Subscriber<? super T> subscriber );

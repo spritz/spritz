@@ -33,7 +33,7 @@ public final class Streak
   }
 
   @SafeVarargs
-  public static <T> Flow.Publisher<T> of( final T... values )
+  public static <T> Flow.Stream<T> of( final T... values )
   {
     return new StaticPublisher<T>( values );
   }
@@ -46,18 +46,18 @@ public final class Streak
    * @param count the number of items to emit
    * @return the created publisher.
    */
-  public static Flow.Publisher<Integer> range( final int start, final int count )
+  public static Flow.Stream<Integer> range( final int start, final int count )
   {
     return new RangePublisher( start, count );
   }
 
   @SafeVarargs
-  public static <T> Flow.Publisher<T> concat( @Nonnull final Flow.Publisher<T>... upstreams )
+  public static <T> Flow.Stream<T> concat( @Nonnull final Flow.Stream<T>... upstreams )
   {
     return new ConcatPublisher<>( upstreams );
   }
 
-  public static Flow.Publisher<Integer> periodic( final int period )
+  public static Flow.Stream<Integer> periodic( final int period )
   {
     return new PeriodicPublisher( period );
   }
