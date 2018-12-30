@@ -2,12 +2,12 @@ package streak;
 
 import javax.annotation.Nonnull;
 
-final class TakeFilterPublisher<T>
+final class LimitOperator<T>
   extends PublisherWithUpstream<T>
 {
   private final int _count;
 
-  TakeFilterPublisher( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
+  LimitOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;

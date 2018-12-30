@@ -52,7 +52,7 @@ public interface FilteringOperators2<T>
   @Nonnull
   default Flow.Stream<T> limit( final int maxSize )
   {
-    return compose( p -> new TakeFilterPublisher<>( p, maxSize ) );
+    return compose( p -> new LimitOperator<>( p, maxSize ) );
   }
 
   /**
