@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 public interface PublisherExtension<T>
   extends StreamExtension<T>, FilteringOperators2<T>
 {
+  @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
   {
     return compose( p -> new MapPublisher<>( p, transform ) );
