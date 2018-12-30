@@ -70,6 +70,19 @@ public interface FilteringOperators2<T>
   }
 
   /**
+   * Drop the first {@code count} elements of this stream. If the stream contains fewer
+   * than {@code count} elements then the stream will effectively be an empty stream.
+   *
+   * @param count the number of elements to drop.
+   * @return the stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> skip( final int count )
+  {
+    return compose( p -> new SkipOperator<>( p, count ) );
+  }
+
+  /**
    * Drop elements from this stream until an element no longer match the supplied {@code predicate}.
    * As long as the {@code predicate} returns true, no elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns false, all subsequent
