@@ -23,9 +23,14 @@ public interface PublisherExtension<T>
     return take( 1 );
   }
 
+  default Flow.Publisher<T> dropWhile( @Nonnull final Predicate<T> predicate )
+  {
+    return compose( p -> new DropWhileOperator<>( p, predicate ) );
+  }
+
   default Flow.Publisher<T> skipUntil( @Nonnull final Predicate<T> predicate )
   {
-    return compose( p -> new SkipUntilPredicateFilterPublisher<>( p, predicate ) );
+    return dropWhile( predicate.negate() );
   }
 
   /**
