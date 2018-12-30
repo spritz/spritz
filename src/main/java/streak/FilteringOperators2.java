@@ -6,6 +6,8 @@ import javax.annotation.Nonnull;
 
 /**
  * Operators for filtering elements from a stream.
+ *
+ * @param <T> The type of the elements that the stream consumes and emits.
  */
 public interface FilteringOperators2<T>
   extends StreamExtension<T>
