@@ -31,9 +31,9 @@ public interface PublisherExtension<T>
   /**
    * drops consecutive equal elements
    */
-  default Flow.Publisher<T> skipDuplicates()
+  default Flow.Publisher<T> skipConsecutiveDuplicates()
   {
-    return compose( SkipDuplicatesFilterPublisher::new );
+    return compose( SkipConsecutiveDuplicatesOperator::new );
   }
 
   default <DownstreamT> Flow.Publisher<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
