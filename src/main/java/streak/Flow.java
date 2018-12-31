@@ -2,6 +2,9 @@ package streak;
 
 import arez.Disposable;
 import javax.annotation.Nonnull;
+import streak.internal.consuming.ConsumingOperators;
+import streak.internal.filtering.FilteringOperators;
+import streak.internal.transforming.TransformingOperators;
 
 public final class Flow
 {
@@ -26,7 +29,7 @@ public final class Flow
   }
 
   public interface Stream<T>
-    extends PublisherExtension<T>
+    extends FilteringOperators<T>, TransformingOperators<T>, ConsumingOperators<T>
   {
     void subscribe( @Nonnull Subscriber<? super T> subscriber );
   }
