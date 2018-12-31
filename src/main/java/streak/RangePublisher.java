@@ -43,6 +43,7 @@ final class RangePublisher
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count );
     subscriber.onSubscribe( subscription );
+    subscription.pushData();
   }
 
   private static final class WorkerSubscription
@@ -71,6 +72,10 @@ final class RangePublisher
       _subscriber = Objects.requireNonNull( subscriber );
       _end = end;
       _current = start;
+    }
+
+    void pushData()
+    {
       while ( _current <= _end )
       {
         _subscriber.onNext( _current );
