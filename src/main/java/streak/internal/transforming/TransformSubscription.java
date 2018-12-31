@@ -32,7 +32,6 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    */
   public void onError( @Nonnull final Throwable throwable )
   {
-    assert isNotDisposed();
     markAsDone();
     getDownstreamSubscriber().onError( throwable );
   }
@@ -47,7 +46,6 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    */
   public void onComplete()
   {
-    assert isNotDisposed();
     markAsDone();
     getDownstreamSubscriber().onComplete();
   }
