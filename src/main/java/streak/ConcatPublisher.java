@@ -1,6 +1,7 @@
 package streak;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import streak.internal.AbstractPublisher;
 
@@ -24,7 +25,7 @@ final class ConcatPublisher<T>
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _upstreams );
-    Objects.requireNonNull( subscriber ).onSubscribe( subscription );
+    subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
@@ -40,9 +41,10 @@ final class ConcatPublisher<T>
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstream,
                         @Nonnull final Flow.Stream<? extends T>[] upstreams )
     {
+      _downstream = Objects.requireNonNull( downstream );
+      _upstreams = Objects.requireNonNull( upstreams );
       assert upstreams.length > 0;
-      _downstream = downstream;
-      _upstreams = upstreams;
+      assert Stream.of( upstreams ).allMatch( Objects::nonNull );
     }
 
     void pushData()
