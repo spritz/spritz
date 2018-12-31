@@ -18,6 +18,7 @@ public interface StreamExtension<T>
    * @param <DownstreamT> the type of element emitted by downstream stage.
    * @param <S> the type of the downstream stage.
    * @param function the function used to compose stream operations.
+   * @return the new stream.
    */
   @Nonnull
   default <DownstreamT, S extends Flow.Stream<DownstreamT>> S compose( @Nonnull final Function<Flow.Stream<T>, S> function )
