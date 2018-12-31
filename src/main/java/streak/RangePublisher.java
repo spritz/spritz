@@ -41,7 +41,8 @@ final class RangePublisher
   @Override
   public void subscribe( @Nonnull Flow.Subscriber<? super Integer> subscriber )
   {
-    Objects.requireNonNull( subscriber ).onSubscribe( new WorkerSubscription( subscriber, _start, _start + _count ) );
+    final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count );
+    subscriber.onSubscribe( subscription );
   }
 
   private static final class WorkerSubscription
