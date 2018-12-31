@@ -10,7 +10,10 @@ public class Example1
   {
     Streak
       .range( 42, 20 )
+      .peek( v -> System.out.println( "Pre Take Peek: " + v ) )
       .take( 5 )
+      .peek( v -> System.out.println( "Post Take Peek: " + v ) )
+      .onTerminate( () -> System.out.println( "onTerminate()" ) )
       .subscribe( new Flow.Subscriber<Integer>()
       {
         @Override

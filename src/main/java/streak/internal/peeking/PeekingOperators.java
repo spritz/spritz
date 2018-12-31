@@ -23,7 +23,7 @@ public interface PeekingOperators<T>
   @Nonnull
   default Flow.Stream<T> peek( @Nonnull final Consumer<? super T> action )
   {
-    return null;
+    return new PeekOperator<>( self(), action, null, null, null );
   }
 
   /**
@@ -36,7 +36,7 @@ public interface PeekingOperators<T>
   @Nonnull
   default Flow.Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
-    return null;
+    return new PeekOperator<>( self(), null, action, null, null );
   }
 
   /**
@@ -49,7 +49,7 @@ public interface PeekingOperators<T>
   @Nonnull
   default Flow.Stream<T> onComplete( @Nonnull final Runnable action )
   {
-    return null;
+    return new PeekOperator<>( self(), null, null, action, null );
   }
 
   /**
@@ -64,6 +64,6 @@ public interface PeekingOperators<T>
   @Nonnull
   default Flow.Stream<T> onTerminate( @Nonnull final Runnable action )
   {
-    return null;
+    return new PeekOperator<>( self(), null, e -> action.run(), action, action );
   }
 }
