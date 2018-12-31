@@ -82,12 +82,18 @@ final class RangePublisher
       }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDisposed()
     {
       return _current > _end;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void dispose()
     {

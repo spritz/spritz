@@ -56,12 +56,18 @@ final class StaticPublisher<T>
       }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void dispose()
     {
       _offset = _data.length + 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDisposed()
     {
