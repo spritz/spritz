@@ -27,6 +27,23 @@ public interface FilteringOperators2<T>
   }
 
   /**
+   * Filter the elements if they have been previously emitted.
+   * To determine whether an element has been previous emitted the {@link Object#equals(Object)}
+   * and {@link Object#hashCode()} must be correctly implemented for elements type.
+   *
+   * <p>WARNING: It should be noted that every distinct element is retained until the stream
+   * completes. As a result this operator can cause significant amount of memory pressure if many
+   * distinct elements exist or the stream persists for a long time.</p>
+   *
+   * @return the stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> distinct()
+  {
+    return compose( DistinctOperator::new );
+  }
+
+  /**
    * Truncate the stream, ensuring the stream is no longer than {@code maxSize} elements in length.
    * If {@code maxSize} is reached then the element will be passed downstream, the downstream will be
    * completed and then the upstream will be disposed. This method is an alias for {@link #limit(int)}
