@@ -3,10 +3,10 @@ package streak.internal.filtering;
 import java.util.HashSet;
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.internal.PublisherWithUpstream;
+import streak.internal.StreamWithUpstream;
 
 final class DistinctOperator<T>
-  extends PublisherWithUpstream<T>
+  extends StreamWithUpstream<T>
 {
   DistinctOperator( @Nonnull final Flow.Stream<? extends T> upstream )
   {

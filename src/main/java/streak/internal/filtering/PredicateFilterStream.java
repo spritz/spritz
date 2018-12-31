@@ -4,16 +4,16 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.internal.PublisherWithUpstream;
+import streak.internal.StreamWithUpstream;
 
-final class PredicateFilterPublisher<T>
-  extends PublisherWithUpstream<T>
+final class PredicateFilterStream<T>
+  extends StreamWithUpstream<T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterPublisher( @Nonnull final Flow.Stream<? extends T> upstream,
-                            @Nonnull final Predicate<? super T> predicate )
+  PredicateFilterStream( @Nonnull final Flow.Stream<? extends T> upstream,
+                         @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );

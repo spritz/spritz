@@ -3,10 +3,10 @@ package streak;
 import java.util.Objects;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
-import streak.internal.AbstractPublisher;
+import streak.internal.AbstractStream;
 
 final class ConcatPublisher<T>
-  extends AbstractPublisher<T>
+  extends AbstractStream<T>
 {
   @Nonnull
   private final Flow.Stream<? extends T>[] _upstreams;

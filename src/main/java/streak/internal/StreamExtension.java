@@ -14,7 +14,7 @@ public interface StreamExtension<T>
   @Nonnull
   default <DownstreamT, S extends Flow.Stream<DownstreamT>> S compose( @Nonnull final Function<Flow.Stream<T>, S> composeFunction )
   {
-    return composeFunction.apply( new ValidatingPublisher<>( self() ) );
+    return composeFunction.apply( new ValidatingStream<>( self() ) );
   }
 
   @Nonnull

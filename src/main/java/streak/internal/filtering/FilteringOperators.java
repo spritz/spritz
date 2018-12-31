@@ -25,7 +25,7 @@ public interface FilteringOperators<T>
   @Nonnull
   default Flow.Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new PredicateFilterPublisher<>( p, predicate ) );
+    return compose( p -> new PredicateFilterStream<>( p, predicate ) );
   }
 
   /**

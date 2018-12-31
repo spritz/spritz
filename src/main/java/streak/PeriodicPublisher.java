@@ -4,10 +4,10 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.Nonnull;
-import streak.internal.AbstractPublisher;
+import streak.internal.AbstractStream;
 
 final class PeriodicPublisher
-  extends AbstractPublisher<Integer>
+  extends AbstractStream<Integer>
 {
   private final int _period;
 

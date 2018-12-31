@@ -4,10 +4,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.internal.AbstractPublisher;
+import streak.internal.AbstractStream;
 
 final class MapPublisher<UpstreamT, DownstreamT>
-  extends AbstractPublisher<DownstreamT>
+  extends AbstractStream<DownstreamT>
 {
   @Nonnull
   private final Flow.Stream<? extends UpstreamT> _upstream;

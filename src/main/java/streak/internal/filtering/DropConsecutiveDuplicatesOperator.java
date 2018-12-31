@@ -4,10 +4,10 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.Flow;
-import streak.internal.PublisherWithUpstream;
+import streak.internal.StreamWithUpstream;
 
 final class DropConsecutiveDuplicatesOperator<T>
-  extends PublisherWithUpstream<T>
+  extends StreamWithUpstream<T>
 {
   DropConsecutiveDuplicatesOperator( @Nonnull final Flow.Stream<? extends T> upstream )
   {

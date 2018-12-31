@@ -2,10 +2,10 @@ package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.internal.PublisherWithUpstream;
+import streak.internal.StreamWithUpstream;
 
 final class SkipOperator<T>
-  extends PublisherWithUpstream<T>
+  extends StreamWithUpstream<T>
 {
   private final int _count;
 

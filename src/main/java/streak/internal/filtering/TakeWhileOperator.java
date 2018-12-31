@@ -4,10 +4,10 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.internal.PublisherWithUpstream;
+import streak.internal.StreamWithUpstream;
 
 final class TakeWhileOperator<T>
-  extends PublisherWithUpstream<T>
+  extends StreamWithUpstream<T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;

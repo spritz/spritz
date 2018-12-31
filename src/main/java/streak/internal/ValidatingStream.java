@@ -3,10 +3,10 @@ package streak.internal;
 import javax.annotation.Nonnull;
 import streak.Flow;
 
-final class ValidatingPublisher<T>
-  extends PublisherWithUpstream<T>
+final class ValidatingStream<T>
+  extends StreamWithUpstream<T>
 {
-  ValidatingPublisher( @Nonnull final Flow.Stream<? extends T> upstream )
+  ValidatingStream( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     super( upstream );
   }

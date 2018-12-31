@@ -3,7 +3,7 @@ package streak.internal;
 import javax.annotation.Nonnull;
 import streak.Flow;
 
-public abstract class AbstractPublisher<T>
+public abstract class AbstractStream<T>
   implements Flow.Stream<T>
 {
   @Nonnull
