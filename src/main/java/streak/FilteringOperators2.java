@@ -89,11 +89,11 @@ public interface FilteringOperators2<T>
    * As long as the {@code predicate} returns true, no elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns false, all subsequent
    * elements will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
-   * to {@link #skipUntil(Predicate)} if the predicate is negated.
+   * to {@link #dropUntil(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
    * @return the stream.
-   * @see #skipUntil(Predicate)
+   * @see #dropUntil(Predicate)
    */
   @Nonnull
   default Flow.Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
@@ -113,7 +113,7 @@ public interface FilteringOperators2<T>
    * @see #dropWhile(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> skipUntil( @Nonnull final Predicate<? super T> predicate )
+  default Flow.Stream<T> dropUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return dropWhile( predicate.negate() );
   }

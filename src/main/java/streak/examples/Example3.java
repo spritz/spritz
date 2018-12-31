@@ -8,7 +8,7 @@ public class Example3
   {
     Streak
       .range( 42, 20 )
-      .skipUntil( v -> v == 55 )
+      .dropUntil( v -> v == 55 )
       .map( v -> "*" + v + "*" )
       .forEach( v -> System.out.println( "Bang! " + v ) );
   }
