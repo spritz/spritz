@@ -18,7 +18,7 @@ final class StaticPublisher<T>
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
-    Objects.requireNonNull( subscriber ).onSubscribe( subscription );
+    subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
