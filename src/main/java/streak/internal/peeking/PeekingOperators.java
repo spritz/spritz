@@ -18,7 +18,7 @@ public interface PeekingOperators<T>
    * action for each element.
    *
    * @param action the function called for every element.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> peek( @Nonnull final Consumer<? super T> action )
@@ -31,7 +31,7 @@ public interface PeekingOperators<T>
    * action when the stream fails.
    *
    * @param action the function called with the failure.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> onError( @Nonnull final Consumer<Throwable> action )
@@ -44,7 +44,7 @@ public interface PeekingOperators<T>
    * action when the stream completes.
    *
    * @param action the function called when the stream completes.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> onComplete( @Nonnull final Runnable action )
@@ -59,7 +59,7 @@ public interface PeekingOperators<T>
    * the action is called if the stream is disposed by a downstream stage.
    *
    * @param action the function called when the stream completes or failed.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> onTerminate( @Nonnull final Runnable action )

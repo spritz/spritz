@@ -20,7 +20,7 @@ public interface FilteringOperators<T>
    * emitted while all other elements will be dropped.
    *
    * @param predicate The predicate to apply to each element.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
@@ -37,7 +37,7 @@ public interface FilteringOperators<T>
    * completes. As a result this operator can cause significant amount of memory pressure if many
    * distinct elements exist or the stream persists for a long time.</p>
    *
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> distinct()
@@ -51,7 +51,7 @@ public interface FilteringOperators<T>
    * completed and then the upstream will be disposed. This method is an alias for {@link #limit(int)}
    *
    * @param maxSize The maximum number of elements returned by the stream.
-   * @return the stream.
+   * @return the new stream.
    * @see #limit(int)
    */
   @Nonnull
@@ -66,7 +66,7 @@ public interface FilteringOperators<T>
    * completed and then the upstream will be disposed. This method is an alias for {@link #take(int)}
    *
    * @param maxSize The maximum number of elements returned by the stream.
-   * @return the stream.
+   * @return the new stream.
    * @see #take(int)
    */
   @Nonnull
@@ -80,7 +80,7 @@ public interface FilteringOperators<T>
    * This method is an alias for {@link #take(int)} or {@link #limit(int)} where <code>1</code> is
    * passed as the parameter.
    *
-   * @return the stream.
+   * @return the new stream.
    * @see #take(int)
    * @see #limit(int)
    */
@@ -95,7 +95,7 @@ public interface FilteringOperators<T>
    * than {@code count} elements then the stream will effectively be an empty stream.
    *
    * @param count the number of elements to drop.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default Flow.Stream<T> skip( final int count )
@@ -111,7 +111,7 @@ public interface FilteringOperators<T>
    * to {@link #dropUntil(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
-   * @return the stream.
+   * @return the new stream.
    * @see #dropUntil(Predicate)
    */
   @Nonnull
@@ -128,7 +128,7 @@ public interface FilteringOperators<T>
    * to {@link #dropWhile(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
-   * @return the stream.
+   * @return the new stream.
    * @see #dropWhile(Predicate)
    */
   @Nonnull
@@ -145,7 +145,7 @@ public interface FilteringOperators<T>
    * if the predicate is negated.
    *
    * @param predicate The predicate.
-   * @return the stream.
+   * @return the new stream.
    * @see #takeUntil(Predicate)
    */
   @Nonnull
@@ -162,7 +162,7 @@ public interface FilteringOperators<T>
    * if the predicate is negated.
    *
    * @param predicate The predicate.
-   * @return the stream.
+   * @return the new stream.
    * @see #takeUntil(Predicate)
    */
   @Nonnull
@@ -176,7 +176,7 @@ public interface FilteringOperators<T>
    * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
    * This method is an alias for {@link #skipConsecutiveDuplicates()}.
    *
-   * @return the stream.
+   * @return the new stream.
    * @see #skipConsecutiveDuplicates()
    */
   @Nonnull
@@ -190,7 +190,7 @@ public interface FilteringOperators<T>
    * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
    * This method is an alias for {@link #dropConsecutiveDuplicates()}.
    *
-   * @return the stream.
+   * @return the new stream.
    * @see #dropConsecutiveDuplicates()
    */
   @Nonnull

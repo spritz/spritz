@@ -18,7 +18,7 @@ public interface TransformingOperators<T>
    *
    * @param <DownstreamT> the type of the elements that the {@code transform} function emits.
    * @param transform     the function to use to map the elements.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
@@ -31,7 +31,7 @@ public interface TransformingOperators<T>
    *
    * @param <DownstreamT> the type of the constant value emitted.
    * @param value         the constant value to emit.
-   * @return the stream.
+   * @return the new stream.
    */
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> mapTo( final DownstreamT value )
