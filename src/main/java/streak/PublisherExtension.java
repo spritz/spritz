@@ -1,20 +1,14 @@
 package streak;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import streak.internal.filtering.FilteringOperators;
+import streak.internal.transforming.TransformingOperators;
 
 public interface PublisherExtension<T>
-  extends StreamExtension<T>, FilteringOperators<T>
+  extends FilteringOperators<T>, TransformingOperators<T>
 {
-  @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
-  {
-    return compose( p -> new MapPublisher<>( p, transform ) );
-  }
-
   default void forEach( @Nonnull final Consumer<T> action )
   {
     terminate( () -> new ForEachSubscriber<>( action ) );

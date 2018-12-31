@@ -1,8 +1,9 @@
-package streak;
+package streak.internal.transforming;
 
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import streak.Flow;
 import streak.internal.AbstractPublisher;
 
 final class MapPublisher<UpstreamT, DownstreamT>
