@@ -2,6 +2,7 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import streak.internal.AbstractPublisher;
 
 /**
  * A synchronous implementation of the {@link Flow.Stream} that can

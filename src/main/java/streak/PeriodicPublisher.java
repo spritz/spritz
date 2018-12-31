@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.Nonnull;
+import streak.internal.AbstractPublisher;
 
 final class PeriodicPublisher
   extends AbstractPublisher<Integer>

@@ -3,6 +3,7 @@ package streak;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import streak.internal.AbstractPublisher;
 
 final class MapPublisher<UpstreamT, DownstreamT>
   extends AbstractPublisher<DownstreamT>

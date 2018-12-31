@@ -1,8 +1,10 @@
-package streak;
+package streak.internal.filtering;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import streak.Flow;
+import streak.StreamExtension;
 
 /**
  * Operators for filtering elements from a stream.

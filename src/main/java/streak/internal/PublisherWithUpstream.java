@@ -1,21 +1,22 @@
-package streak;
+package streak.internal;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import streak.Flow;
 
-abstract class PublisherWithUpstream<T>
+public abstract class PublisherWithUpstream<T>
   extends AbstractPublisher<T>
 {
   @Nonnull
   private final Flow.Stream<? extends T> _upstream;
 
-  PublisherWithUpstream( @Nonnull final Flow.Stream<? extends T> upstream )
+  protected PublisherWithUpstream( @Nonnull final Flow.Stream<? extends T> upstream )
   {
     _upstream = Objects.requireNonNull( upstream );
   }
 
   @Nonnull
-  final Flow.Stream<? extends T> getUpstream()
+  protected final Flow.Stream<? extends T> getUpstream()
   {
     return _upstream;
   }

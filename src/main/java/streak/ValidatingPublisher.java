@@ -1,6 +1,7 @@
 package streak;
 
 import javax.annotation.Nonnull;
+import streak.internal.PublisherWithUpstream;
 
 final class ValidatingPublisher<T>
   extends PublisherWithUpstream<T>

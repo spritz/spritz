@@ -1,13 +1,15 @@
-package streak;
+package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
+import streak.Flow;
+import streak.internal.PublisherWithUpstream;
 
-final class SkipOperator<T>
+final class LimitOperator<T>
   extends PublisherWithUpstream<T>
 {
   private final int _count;
 
-  SkipOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
+  LimitOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;
@@ -40,11 +42,13 @@ final class SkipOperator<T>
       if ( _remaining > 0 )
       {
         _remaining--;
-        return false;
+        return true;
       }
       else
       {
-        return true;
+        getUpstream().dispose();
+        onComplete();
+        return false;
       }
     }
   }

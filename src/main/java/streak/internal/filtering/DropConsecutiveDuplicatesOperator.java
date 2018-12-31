@@ -1,8 +1,10 @@
-package streak;
+package streak.internal.filtering;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import streak.Flow;
+import streak.internal.PublisherWithUpstream;
 
 final class DropConsecutiveDuplicatesOperator<T>
   extends PublisherWithUpstream<T>

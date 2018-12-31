@@ -1,12 +1,13 @@
-package streak;
+package streak.internal;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
+import streak.Flow;
 
-abstract class AbstractChainedSubscription
+public abstract class AbstractChainedSubscription
   implements Flow.Subscription
 {
   @Nullable

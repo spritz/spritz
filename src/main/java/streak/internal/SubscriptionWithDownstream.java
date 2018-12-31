@@ -1,9 +1,10 @@
-package streak;
+package streak.internal;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import streak.Flow;
 
-abstract class SubscriptionWithDownstream<T>
+public abstract class SubscriptionWithDownstream<T>
   extends AbstractChainedSubscription
   implements Flow.Subscriber<T>
 {
@@ -11,7 +12,7 @@ abstract class SubscriptionWithDownstream<T>
   private final Flow.Subscriber<? super T> _downstreamSubscriber;
   private boolean _done;
 
-  SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
+  public SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -79,7 +80,7 @@ abstract class SubscriptionWithDownstream<T>
    * @return the downstream subscriber.
    */
   @Nonnull
-  final Flow.Subscriber<? super T> getDownstreamSubscriber()
+  public final Flow.Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }

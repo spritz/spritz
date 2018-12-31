@@ -1,6 +1,8 @@
-package streak;
+package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
+import streak.Flow;
+import streak.internal.SubscriptionWithDownstream;
 
 abstract class AbstractFilterSubscription<T>
   extends SubscriptionWithDownstream<T>
