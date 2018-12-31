@@ -85,7 +85,7 @@ public interface FilteringOperators2<T>
   }
 
   /**
-   * Drop elements from this stream until an element no longer match the supplied {@code predicate}.
+   * Drop elements from this stream until an element no longer matches the supplied {@code predicate}.
    * As long as the {@code predicate} returns true, no elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns false, all subsequent
    * elements will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
