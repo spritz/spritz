@@ -31,7 +31,6 @@ public abstract class SubscriptionWithDownstream<T>
    */
   public void onNext( @Nonnull final T item )
   {
-    assert isNotDisposed();
     getDownstreamSubscriber().onNext( item );
   }
 
@@ -40,7 +39,6 @@ public abstract class SubscriptionWithDownstream<T>
    */
   public void onError( @Nonnull final Throwable throwable )
   {
-    assert isNotDisposed();
     _done = true;
     getDownstreamSubscriber().onError( throwable );
   }
@@ -50,7 +48,6 @@ public abstract class SubscriptionWithDownstream<T>
    */
   public void onComplete()
   {
-    assert isNotDisposed();
     _done = true;
     getDownstreamSubscriber().onComplete();
   }
