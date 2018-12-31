@@ -23,7 +23,7 @@ public interface TransformingOperators<T>
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
   {
-    return compose( p -> new MapPublisher<>( p, transform ) );
+    return compose( p -> new MapOperator<>( p, transform ) );
   }
 
   /**

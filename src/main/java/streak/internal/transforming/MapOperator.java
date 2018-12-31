@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class MapPublisher<UpstreamT, DownstreamT>
+final class MapOperator<UpstreamT, DownstreamT>
   extends AbstractStream<DownstreamT>
 {
   @Nonnull
@@ -14,8 +14,8 @@ final class MapPublisher<UpstreamT, DownstreamT>
   @Nonnull
   private final Function<UpstreamT, DownstreamT> _transform;
 
-  MapPublisher( @Nonnull final Flow.Stream<? extends UpstreamT> upstream,
-                @Nonnull final Function<UpstreamT, DownstreamT> transform )
+  MapOperator( @Nonnull final Flow.Stream<? extends UpstreamT> upstream,
+               @Nonnull final Function<UpstreamT, DownstreamT> transform )
   {
     _upstream = Objects.requireNonNull( upstream );
     _transform = Objects.requireNonNull( transform );
