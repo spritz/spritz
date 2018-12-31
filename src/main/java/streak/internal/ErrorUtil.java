@@ -1,4 +1,4 @@
-package streak;
+package streak.internal;
 
 import javax.annotation.Nonnull;
 

@@ -1,7 +1,8 @@
-package streak;
+package streak.internal;
 
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import streak.Flow;
 
 /**
  * Base interface used to define stream extensions.

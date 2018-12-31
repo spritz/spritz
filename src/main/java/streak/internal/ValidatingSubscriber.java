@@ -1,12 +1,13 @@
-package streak;
+package streak.internal;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
+import streak.Flow;
 import static org.realityforge.braincheck.Guards.*;
 
-final class ValidatingSubscriber<T>
+public final class ValidatingSubscriber<T>
   implements Flow.Subscriber<T>
 {
   private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
@@ -24,7 +25,7 @@ final class ValidatingSubscriber<T>
   @Nonnull
   private State _state;
 
-  ValidatingSubscriber( @Nonnull final Flow.Subscriber<T> target )
+  public ValidatingSubscriber( @Nonnull final Flow.Subscriber<T> target )
   {
     _target = Objects.requireNonNull( target );
     _state = State.CREATED;

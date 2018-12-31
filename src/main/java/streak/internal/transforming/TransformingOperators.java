@@ -3,7 +3,7 @@ package streak.internal.transforming;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import streak.Flow;
-import streak.StreamExtension;
+import streak.internal.StreamExtension;
 
 /**
  * Operators for filtering elements from a stream.

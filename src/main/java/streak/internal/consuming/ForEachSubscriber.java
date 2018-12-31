@@ -1,15 +1,15 @@
-package streak;
+package streak.internal.consuming;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
+import streak.Flow;
 
 final class ForEachSubscriber<T>
   implements Flow.Subscriber<T>
 {
   @Nonnull
   private final Consumer<T> _action;
-  private Flow.Subscription _subscription;
 
   ForEachSubscriber( @Nonnull final Consumer<T> action )
   {
@@ -19,7 +19,6 @@ final class ForEachSubscriber<T>
   @Override
   public void onSubscribe( @Nonnull final Flow.Subscription subscription )
   {
-    _subscription = subscription;
   }
 
   @Override
