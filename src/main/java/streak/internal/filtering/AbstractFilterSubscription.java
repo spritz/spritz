@@ -18,7 +18,6 @@ abstract class AbstractFilterSubscription<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    assert isNotDisposed();
     if ( includeItem( item ) )
     {
       getDownstreamSubscriber().onNext( item );
