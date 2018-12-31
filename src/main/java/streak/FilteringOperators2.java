@@ -119,6 +119,40 @@ public interface FilteringOperators2<T>
   }
 
   /**
+   * Return elements from this stream until an element fails to match the supplied {@code predicate}.
+   * As long as the {@code predicate} returns true, elements will be emitted from this stream. Once
+   * the first element is encountered for which the {@code predicate} returns false, the stream will
+   * be completed and the upstream disposed. This is equivalent to {@link #takeUntil(Predicate)}
+   * if the predicate is negated.
+   *
+   * @param predicate The predicate.
+   * @return the stream.
+   * @see #takeUntil(Predicate)
+   */
+  @Nonnull
+  default Flow.Stream<T> takeWhile( @Nonnull final Predicate<? super T> predicate )
+  {
+    return compose( p -> new TakeWhileOperator<>( p, predicate ) );
+  }
+
+  /**
+   * Return elements from this stream until an element matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns false, elements will be emitted from this stream. Once
+   * the first element is encountered for which the {@code predicate} returns true, the stream will
+   * be completed and the upstream disposed. This is equivalent to {@link #takeWhile(Predicate)}
+   * if the predicate is negated.
+   *
+   * @param predicate The predicate.
+   * @return the stream.
+   * @see #takeUntil(Predicate)
+   */
+  @Nonnull
+  default Flow.Stream<T> takeUntil( @Nonnull final Predicate<? super T> predicate )
+  {
+    return takeWhile( predicate.negate() );
+  }
+
+  /**
    * Drops elements from the stream if they are equal to the previous element emitted in the stream.
    * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
    * This method is an alias for {@link #skipConsecutiveDuplicates()}.

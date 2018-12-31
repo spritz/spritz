@@ -10,6 +10,7 @@ public class Example6
   {
     Streak
       .periodic( 100 )
+      .takeUntil( v -> v > 5 )
       .subscribe( new Flow.Subscriber<Integer>()
       {
         @Override
