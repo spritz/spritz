@@ -18,7 +18,9 @@ define 'streak' do
 
   compile.with :javax_annotation,
                :braincheck,
-               :arez_core
+               :arez_core,
+               :jsinterop_annotations,
+               :jsinterop_base
 
   test.using :testng
 
