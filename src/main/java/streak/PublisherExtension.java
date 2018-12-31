@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 
 public interface PublisherExtension<T>
-  extends StreamExtension<T>, FilteringOperators2<T>
+  extends StreamExtension<T>, FilteringOperators<T>
 {
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )

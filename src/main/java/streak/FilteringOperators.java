@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  *
  * @param <T> The type of the elements that the stream consumes and emits.
  */
-public interface FilteringOperators2<T>
+public interface FilteringOperators<T>
   extends StreamExtension<T>
 {
   /**
