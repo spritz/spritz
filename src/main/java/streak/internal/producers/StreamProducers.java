@@ -10,7 +10,7 @@ public interface StreamProducers
   /**
    * Creates a stream that emits the parameters as elements.
    *
-   * @param <T> the type of elements contained in the stream.
+   * @param <T>    the type of elements contained in the stream.
    * @param values the values to emit.
    * @return the new stream.
    */
@@ -30,6 +30,17 @@ public interface StreamProducers
   default <T> Flow.Stream<T> empty()
   {
     return of();
+  }
+
+  /**
+   * Creates a stream that emits no elements, never completes and never fails.
+   *
+   * @param <T> the type of elements that the stream declared as containing (despite never containing any elements).
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> never()
+  {
+    return new NeverPublisher<>();
   }
 
   /**
