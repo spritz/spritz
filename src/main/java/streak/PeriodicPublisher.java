@@ -21,7 +21,7 @@ final class PeriodicPublisher
   public void subscribe( @Nonnull final Flow.Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _period );
-    Objects.requireNonNull( subscriber ).onSubscribe( subscription );
+    subscriber.onSubscribe( subscription );
   }
 
   private static final class WorkerSubscription
@@ -59,7 +59,7 @@ final class PeriodicPublisher
     @Override
     public void dispose()
     {
-      if( null != _timer)
+      if ( null != _timer )
       {
         _timer.cancel();
         _timer = null;
