@@ -45,7 +45,6 @@ final class MapOperator<UpstreamT, DownstreamT>
      */
     public void onNext( @Nonnull final UpstreamT item )
     {
-      assert isNotDisposed();
       getDownstreamSubscriber().onNext( _transform.apply( item ) );
     }
   }
