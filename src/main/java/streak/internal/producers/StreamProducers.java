@@ -10,6 +10,7 @@ public interface StreamProducers
   /**
    * Creates a stream that emits the parameters as elements.
    *
+   * @param <T> the type of elements contained in the stream.
    * @param values the values to emit.
    * @return the new stream.
    */
@@ -22,6 +23,7 @@ public interface StreamProducers
   /**
    * Creates a stream that emits no elements to the stream and immediately emits a completion notification.
    *
+   * @param <T> the type of elements that the stream declared as containing (despite never containing any elements).
    * @return the new stream.
    */
   @SuppressWarnings( "unchecked" )
