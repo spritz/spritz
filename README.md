@@ -226,7 +226,7 @@ A task can only be scheduled on a single executor at any one time.
 ### Rethink
 
 A stream is a series of steps. Some sequences of steps are push based. i.e. The agent that pushes value executes
-the sequence of steps and can not be told to stop generating values except via unsusbcribe. Some sequences are
+the sequence of steps and can not be told to stop generating values except via unsubscribe. Some sequences are
 pull based in that the agent that requests a number of values and each step will execute the steps in the requesters
 execution context or if not enough values are present could execute in a scheduler context but will only send as many
 values as has been requested. Separating these sequences are barriers and the barriers may consist of queues. Sometimes
