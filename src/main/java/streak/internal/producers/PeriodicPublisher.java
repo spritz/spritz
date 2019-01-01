@@ -1,9 +1,10 @@
-package streak;
+package streak.internal.producers;
 
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.Nonnull;
+import streak.Flow;
 import streak.internal.AbstractStream;
 
 final class PeriodicPublisher

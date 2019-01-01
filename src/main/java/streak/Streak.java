@@ -1,9 +1,12 @@
 package streak;
 
 import javax.annotation.Nonnull;
+import streak.internal.producers.StreamProducers;
 
 public final class Streak
 {
+  private static final StreakStreamProducers PRODUCERS = new StreakStreamProducers();
+
   private Streak()
   {
   }
@@ -26,23 +29,51 @@ public final class Streak
     return true;
   }
 
+  /**
+   * Creates a stream that emits the parameters as elements.
+   *
+   * @param values the values to emit.
+   * @return the new stream.
+   */
   @SafeVarargs
   public static <T> Flow.Stream<T> of( final T... values )
   {
-    return new StaticPublisher<T>( values );
+    return PRODUCERS.of( values );
   }
 
   /**
-   * Constructs a RangePublisher instance with the given start and count values
-   * that yields a sequence of [start, start + count).
+   * Creates a stream that emits no elements to the stream and immediately emits a completion notification.
+   *
+   * @return the new stream.
+   */
+  public static <T> Flow.Stream<T> empty()
+  {
+    return PRODUCERS.empty();
+  }
+
+  /**
+   * Create a stream that emits a sequence of numbers within a specified range.
+   * The stream create a sequence of [start, start + count).
    *
    * @param start the starting value of the range
    * @param count the number of items to emit
-   * @return the created publisher.
+   * @return the new stream.
    */
   public static Flow.Stream<Integer> range( final int start, final int count )
   {
-    return new RangePublisher( start, count );
+    return PRODUCERS.range( start, count );
+  }
+
+  /**
+   * Create a stream that emits sequential numbers every specified interval of time.
+   * The stream create a sequence of [start, start + count).
+   *
+   * @param period the period with which emit elements.
+   * @return the new stream.
+   */
+  public static Flow.Stream<Integer> periodic( final int period )
+  {
+    return PRODUCERS.periodic( period );
   }
 
   @SafeVarargs
@@ -51,8 +82,8 @@ public final class Streak
     return new ConcatPublisher<>( upstreams );
   }
 
-  public static Flow.Stream<Integer> periodic( final int period )
+  private static final class StreakStreamProducers
+    implements StreamProducers
   {
-    return new PeriodicPublisher( period );
   }
 }
