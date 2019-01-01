@@ -9,6 +9,7 @@ public class Example1
   public static void main( String[] args )
   {
     Streak
+      .context()
       .range( 42, 20 )
       .peek( v -> System.out.println( "Pre Take Peek: " + v ) )
       .take( 5 )

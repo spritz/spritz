@@ -3,13 +3,15 @@ package streak.examples;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.Streak;
+import streak.StreakContext;
 
 public class Example5
 {
   public static void main( String[] args )
   {
+    final StreakContext context = Streak.context();
     Streak
-      .concat( Streak.of( 1, 2, 3 ), Streak.of( 4, 5, 6 ), Streak.of( 7, 8, 9 ) )
+      .concat( context.of( 1, 2, 3 ), context.of( 4, 5, 6 ), context.of( 7, 8, 9 ) )
       .skip( 4 )
       .subscribe( new Flow.Subscriber<Integer>()
       {

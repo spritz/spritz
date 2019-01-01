@@ -1,11 +1,10 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import streak.internal.producers.StreamProducers;
 
 public final class Streak
 {
-  private static final StreakStreamProducers PRODUCERS = new StreakStreamProducers();
+  private static final StreakContext CONTEXT = new StreakContext();
 
   private Streak()
   {
@@ -30,62 +29,18 @@ public final class Streak
   }
 
   /**
-   * Creates a stream that emits the parameters as elements.
+   * Return the current Streak context.
    *
-   * @param <T> the type of elements contained in the stream.
-   * @param values the values to emit.
-   * @return the new stream.
+   * @return the current Streak context.
    */
-  @SafeVarargs
-  public static <T> Flow.Stream<T> of( final T... values )
+  public static StreakContext context()
   {
-    return PRODUCERS.of( values );
-  }
-
-  /**
-   * Creates a stream that emits no elements to the stream and immediately emits a completion notification.
-   *
-   * @param <T> the type of elements that the stream declared as containing (despite never containing any elements).
-   * @return the new stream.
-   */
-  public static <T> Flow.Stream<T> empty()
-  {
-    return PRODUCERS.empty();
-  }
-
-  /**
-   * Create a stream that emits a sequence of numbers within a specified range.
-   * The stream create a sequence of [start, start + count).
-   *
-   * @param start the starting value of the range
-   * @param count the number of items to emit
-   * @return the new stream.
-   */
-  public static Flow.Stream<Integer> range( final int start, final int count )
-  {
-    return PRODUCERS.range( start, count );
-  }
-
-  /**
-   * Create a stream that emits sequential numbers every specified interval of time.
-   * The stream create a sequence of [start, start + count).
-   *
-   * @param period the period with which emit elements.
-   * @return the new stream.
-   */
-  public static Flow.Stream<Integer> periodic( final int period )
-  {
-    return PRODUCERS.periodic( period );
+    return CONTEXT;
   }
 
   @SafeVarargs
   public static <T> Flow.Stream<T> concat( @Nonnull final Flow.Stream<T>... upstreams )
   {
     return new ConcatPublisher<>( upstreams );
-  }
-
-  private static final class StreakStreamProducers
-    implements StreamProducers
-  {
   }
 }

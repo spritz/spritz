@@ -9,6 +9,7 @@ public class Example6
   public static void main( String[] args )
   {
     Streak
+      .context()
       .periodic( 100 )
       .takeUntil( v -> v > 5 )
       .subscribe( new Flow.Subscriber<Integer>()
