@@ -1,7 +1,5 @@
 package streak;
 
-import javax.annotation.Nonnull;
-
 public final class Streak
 {
   private static final StreakContext CONTEXT = new StreakContext();
@@ -36,11 +34,5 @@ public final class Streak
   public static StreakContext context()
   {
     return CONTEXT;
-  }
-
-  @SafeVarargs
-  public static <T> Flow.Stream<T> concat( @Nonnull final Flow.Stream<T>... upstreams )
-  {
-    return new ConcatPublisher<>( upstreams );
   }
 }

@@ -1,5 +1,6 @@
 package streak.internal.producers;
 
+import javax.annotation.Nonnull;
 import streak.Flow;
 
 /**
@@ -66,5 +67,17 @@ public interface StreamProducers
   default Flow.Stream<Integer> periodic( final int period )
   {
     return new PeriodicPublisher( period );
+  }
+
+  @SuppressWarnings( "unchecked" )
+  default <T> Flow.Stream<T> concat( @Nonnull final Flow.Stream<T>... upstreams )
+  {
+    return of( upstreams ).concatMap( v -> v );
+  }
+
+  @SuppressWarnings( "unchecked" )
+  default <T> Flow.Stream<T> merge( @Nonnull final Flow.Stream<T>... upstreams )
+  {
+    return of( upstreams ).mergeMap( v -> v );
   }
 }
