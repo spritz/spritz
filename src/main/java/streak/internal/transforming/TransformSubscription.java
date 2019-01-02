@@ -11,7 +11,6 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
 {
   @Nonnull
   private final Flow.Subscriber<? super DownstreamT> _downstreamSubscriber;
-  private boolean _done;
 
   TransformSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber )
   {
@@ -32,13 +31,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    */
   public void onError( @Nonnull final Throwable throwable )
   {
-    markAsDone();
     getDownstreamSubscriber().onError( throwable );
-  }
-
-  private void markAsDone()
-  {
-    _done = true;
   }
 
   /**
@@ -46,7 +39,6 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    */
   public void onComplete()
   {
-    markAsDone();
     getDownstreamSubscriber().onComplete();
   }
 
@@ -56,7 +48,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   @Override
   public boolean isDisposed()
   {
-    return _done;
+    return getUpstream().isDisposed();
   }
 
   /**
