@@ -109,6 +109,17 @@ public interface TransformingOperators<T>
     return compose( p -> new MapOperator<>( p, mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) ) );
   }
 
+  /**
+   * Map each input element to a stream and flatten the elements produced by the inner stream into this stream.
+   * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MAX_CONCURRENCY}.
+   * Invoking this method is equivalent to invoking {@link #mergeMap(Function, int)} and passing the
+   * {@link #DEFAULT_MAX_CONCURRENCY} constant as the {@code maxConcurrency} parameter.
+   *
+   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
+   * @param mapper        the function to map the elements to the inner stream.
+   * @return the new stream.
+   * @see #mergeMap(Function, int)
+   */
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
   {
