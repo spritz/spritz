@@ -89,8 +89,9 @@ public interface TransformingOperators<T>
    * of memory conditions if the upstream produces elements at a faster rate than the merge stream can
    * complete the inner streams.</p>
    *
-   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT>  the type of the elements that the {@code mapper} function emits.
+   * @param mapper         the function to map the elements to the inner stream.
+   * @param maxConcurrency the maximum number of inner stream that can be subscribed to at one time.
    * @return the new stream.
    */
   @Nonnull
