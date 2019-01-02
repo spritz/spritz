@@ -7,6 +7,7 @@ import streak.StreakContext;
 
 public class Example7
 {
+  @SuppressWarnings( "unchecked" )
   public static void main( String[] args )
   {
     final StreakContext context = Streak.context();
