@@ -29,6 +29,17 @@ public interface FilteringOperators<T>
   }
 
   /**
+   * Drop all elements from this stream, only emitting completion or failed signal.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> ignoreElements()
+  {
+    return filter( e -> false );
+  }
+
+  /**
    * Filter the elements if they have been previously emitted.
    * To determine whether an element has been previous emitted the {@link Object#equals(Object)}
    * and {@link Object#hashCode()} must be correctly implemented for elements type.
