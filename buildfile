@@ -24,6 +24,13 @@ define 'streak' do
 
   test.using :testng
 
+  doc.using(:javadoc,
+            :windowtitle => 'Streak API Documentation',
+            :linksource => true,
+            :timestamp => false,
+            :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
+  )
+
   package(:jar)
   package(:sources)
   package(:javadoc)
