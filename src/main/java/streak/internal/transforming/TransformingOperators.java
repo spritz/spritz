@@ -14,16 +14,16 @@ public interface TransformingOperators<T>
   extends StreamExtension<T>
 {
   /**
-   * Transform elements emitted by this stream using the {@code transform} function.
+   * Transform elements emitted by this stream using the {@code mapper} function.
    *
-   * @param <DownstreamT> the type of the elements that the {@code transform} function emits.
-   * @param transform     the function to use to map the elements.
+   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
+   * @param mapper        the function to use to map the elements.
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> transform )
+  default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> mapper )
   {
-    return compose( p -> new MapOperator<>( p, transform ) );
+    return compose( p -> new MapOperator<>( p, mapper ) );
   }
 
   /**
