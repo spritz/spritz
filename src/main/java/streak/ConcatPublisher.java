@@ -72,7 +72,6 @@ final class ConcatPublisher<T>
     @Override
     public void onSubscribe( @Nonnull final Flow.Subscription subscription )
     {
-      assert isNotDisposed();
       assert null == _upstreamSubscription;
       _upstreamSubscription = subscription;
     }
@@ -80,14 +79,12 @@ final class ConcatPublisher<T>
     @Override
     public void onNext( @Nonnull final T item )
     {
-      assert isNotDisposed();
       _downstream.onNext( item );
     }
 
     @Override
     public void onError( @Nonnull final Throwable throwable )
     {
-      assert isNotDisposed();
       _upstreamSubscription = null;
       _upstreamIndex = -1;
       _downstream.onError( throwable );
@@ -96,7 +93,6 @@ final class ConcatPublisher<T>
     @Override
     public void onComplete()
     {
-      assert isNotDisposed();
       _upstreamSubscription = null;
       if ( _upstreamIndex + 1 == _upstreams.length )
       {
