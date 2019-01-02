@@ -14,6 +14,13 @@ public interface TransformingOperators<T>
   extends StreamExtension<T>
 {
   /**
+   * The maximum concurrency of {@link #mergeMap(Function)} operator that does not specify concurrency.
+   * This value is high enough that it is expected to be effectively infinite while not causing numeric
+   * overflow in either JS or java compile targets.
+   */
+  int DEFAULT_MAX_CONCURRENCY = 1024 * 1024;
+
+  /**
    * Transform elements emitted by this stream using the {@code mapper} function.
    *
    * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
@@ -104,6 +111,6 @@ public interface TransformingOperators<T>
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
   {
-    return mergeMap( mapper, 1024 * 1024 );
+    return mergeMap( mapper, DEFAULT_MAX_CONCURRENCY );
   }
 }
