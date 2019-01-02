@@ -100,6 +100,7 @@ public interface TransformingOperators<T>
    * @param mapper         the function to map the elements to the inner stream.
    * @param maxConcurrency the maximum number of inner stream that can be subscribed to at one time.
    * @return the new stream.
+   * @see #mergeMap(Function)
    */
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper,
