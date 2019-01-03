@@ -79,7 +79,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 - [x] `Interval(Duration)` or `periodic(Duration)`- Every N time frame produce a value (monotonically increasing counter?)
 - [ ] `fromIterable(Iterable)` - From an iterable
-- [ ] `fromCollection(Collection)` - A collection.
+- [x] `fromCollection(Collection)` - A collection.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 
 Must have processors:
@@ -106,7 +106,7 @@ Must have processors:
 - [x] `prepend(Publishers)` == `append(reverse(Publishers))`
 - [x] `startWith(value)` == `prepend(of(value))`
 
-- [ ] `merge(ConcurrentCount,Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError. Optionally can pass a `ConcurrentCount` which is the maximum number of concurrent observers, `0` to disable.
+- [x] `merge(ConcurrentCount,Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError. Optionally can pass a `ConcurrentCount` which is the maximum number of concurrent observers, `0` to disable.
 - [ ] `combineLatest(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
 - [ ] `withLatestFrom(Publisher,Publishers)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
 - [ ] `zip(Publishers)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
