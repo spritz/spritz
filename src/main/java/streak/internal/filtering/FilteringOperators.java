@@ -233,7 +233,9 @@ public interface FilteringOperators<T>
   /**
    * Drops elements from the stream if they are equal to the previous element emitted in the stream.
    * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
-   * This method is an alias for {@link #skipConsecutiveDuplicates()}.
+   * This method is an alias for {@link #skipConsecutiveDuplicates()}. It is equivalent to invoking
+   * {@link #filterSuccessive(SuccessivePredicate)} passing a {@link SuccessivePredicate} filters
+   * out successive elements that are equal.
    *
    * @return the new stream.
    * @see #skipConsecutiveDuplicates()
@@ -241,7 +243,7 @@ public interface FilteringOperators<T>
   @Nonnull
   default Flow.Stream<T> dropConsecutiveDuplicates()
   {
-    return compose( DropConsecutiveDuplicatesOperator::new );
+    return filterSuccessive( ( prev, current ) -> !Objects.equals( prev, current ) );
   }
 
   /**
@@ -257,4 +259,20 @@ public interface FilteringOperators<T>
   {
     return dropConsecutiveDuplicates();
   }
+
+  /**
+   * Filter consecutive elements emitted by this stream using the specified {@link SuccessivePredicate}.
+   * Any candidate elements that return {@code true} when passed to the {@link Predicate} will be
+   * emitted while all other elements will be dropped. The predicate passes the last emitted element
+   * as well as the candidate element.
+   *
+   * @param predicate the comparator to determine whether two successive elements are equal.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> filterSuccessive( @Nonnull final SuccessivePredicate<T> predicate )
+  {
+    return compose( s -> new FilterSuccessiveOperator<>( s, predicate ) );
+  }
+
 }
