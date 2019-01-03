@@ -1,8 +1,11 @@
 package streak.internal.transforming;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import streak.Flow;
+import streak.Streak;
 import streak.internal.StreamExtension;
 
 /**
@@ -124,5 +127,56 @@ public interface TransformingOperators<T>
   default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
   {
     return mergeMap( mapper, DEFAULT_MAX_CONCURRENCY );
+  }
+
+  /**
+   * Emit all the elements from this stream and then when the complete signal is emitted then
+   * merge the elements from the specified streams one after another until all streams complete.
+   *
+   * @param streams the streams to append to this stream.
+   * @return the new stream.
+   * @see #prepend(Flow.Stream[])
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  default Flow.Stream<T> append( @Nonnull final Flow.Stream<T>... streams )
+  {
+    final ArrayList<Flow.Stream<T>> s = new ArrayList<>( streams.length + 1 );
+    s.add( self() );
+    Collections.addAll( s, streams );
+    return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+  }
+
+  /**
+   * Merge the elements from the specified streams before the elements from this stream sequentially.
+   * For each of the supplied streams, emit all elements from the stream until it completes an then move
+   * to the next stream. If no more streams have been supplied then emit the elements from this stream.
+   *
+   * @param streams the stream to prepend to this stream.
+   * @return the new stream.
+   * @see #prepend(Flow.Stream[])
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  default Flow.Stream<T> prepend( @Nonnull final Flow.Stream<T>... streams )
+  {
+    final ArrayList<Flow.Stream<T>> s = new ArrayList<>( streams.length + 1 );
+    Collections.addAll( s, streams );
+    s.add( self() );
+    return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+  }
+
+  /**
+   * Emit the specified element before emitting elements form this stream.
+   *
+   * @param value the initial value to emit.
+   * @return the new stream.
+   * @see #prepend(Flow.Stream[])
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  default Flow.Stream<T> startWith( @Nonnull final T value )
+  {
+    return prepend( Streak.context().of( value ) );
   }
 }

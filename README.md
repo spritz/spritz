@@ -102,9 +102,9 @@ Must have processors:
 
 **Combination Processors** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [ ] `append(Publishers) == merge(1,Publishers)` - for each publisher wait till it produces onComplete, elide that signal and then subscribe to next. (a.k.a `concat` or `concatAll`)
-- [ ] `prepend(Publishers)` == `append(reverse(Publishers))`
-- [ ] `startWith(value)` == `prepend(of(value))`
+- [x] `append(Publishers) == merge(1,Publishers)` - for each publisher wait till it produces onComplete, elide that signal and then subscribe to next. (a.k.a `concat` or `concatAll`)
+- [x] `prepend(Publishers)` == `append(reverse(Publishers))`
+- [x] `startWith(value)` == `prepend(of(value))`
 
 - [ ] `merge(ConcurrentCount,Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError. Optionally can pass a `ConcurrentCount` which is the maximum number of concurrent observers, `0` to disable.
 - [ ] `combineLatest(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
