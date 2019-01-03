@@ -59,16 +59,6 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
   - https://github.com/staltz/callbag-basics
   - Operators - https://github.com/callbag/callbag/wiki
 
-In particular here is a snippet of some terminology.
-
-* source: a callbag that delivers data
-* sink: a callbag that receives data
-* puller sink: a sink that actively requests data from the source
-* pullable source: a source that delivers data only on demand (on receiving a request)
-* listener sink: a sink that passively receives data from the source
-* listenable source: source which sends data to the sink without waiting for requests
-* operator: a callbag based on another callbag which applies some operation
-
 ## To Implement
 
 Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
