@@ -3,9 +3,13 @@
 [![Build Status](https://secure.travis-ci.org/realityforge-experiments/streak.png?branch=master)](http://travis-ci.org/realityforge-experiments/streak)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.streak/streak.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.streak%22%20a%3A%22streak%22)
 
-Streak contains some experiments with reactive streaming code.
+Streak contains some experiments with reactive streaming code or reactive streams. It is best
+used when coordinating events.
 
-Streak is best used when coordinating events.
+A stream is a sequence of events over time. For example a stream of click events from a UI control
+or a stream of messages over a WebSocket. A listener reacts to events emitted by a stream and these
+events may be values, errors and completion notification. Operators filter, transform and combine
+input streams. An operator never modifies the input stream but instead creates a new stream.
 
 ----
 
@@ -14,21 +18,6 @@ backend APIs.
 
 * https://github.com/eclipse/microprofile-reactive-streams
 * https://github.com/eclipse/microprofile-reactive-messaging
-
-----
-
-Notes from https://reactive.how/rxjs/pipeable-operators:
-
-----
-
-A stream is a sequence of events over time (eg. a stream of click events). In this episode, I’ll use ❚ interval to create a stream that emits incremental numbers, periodically.
-
-A listener reacts to events emitted by a stream (values, error and completion notification). This is the reactivity principle. I’ll use console.log as a listener to react to the emitted values.
-
-Operators transform, filter and combine streams. An operator never modifies the input stream. Instead, it returns a new stream. This is the immutability principle. To create a “gaussian” stream from interval I need:
-
-the mapping operator ❚ map. It projects each event of the input stream with a project function.
-the filtering operator ❚ take to set a maximum amount of events to emit. Indeed, interval emits an infinite number of events, but I want to print only 25 lines on the console.
 
 ----
 
@@ -241,15 +230,6 @@ also be scheduled at some point in the future. (i.e. schedule at next requestIdl
       void deactivate()
     }
 
-
-Some notes about xstream that may be useful inspiration:
-
-    In xstream, all streams are hot. They are a hybrid between RxJS’s Subject and a publish-refCount cold Observable.
-    All streams keep a list of listeners, and have operators to create new streams dependent on the source stream.
-    Stream execution is lazy through reference counting, with a synchronous start (“connect”) and an asynchronous
-    and cancelable stop (“disconnect”). This is built to allow for those cases where we synchronously swap the single
-    listener of a stream but we don’t want to restart the stream’s execution. The goal is to have a smart default
-    behavior that “just works” transparently in Cycle.js apps. But we want to keep laziness, to avoid wasting resources.
 
 Alternative design: Only the "source" publisher can perform flow control. That is optionally accessible
 from subscription via something like `@Nullable Subscription.getFlowControl()`
