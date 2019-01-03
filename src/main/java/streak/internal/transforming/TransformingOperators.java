@@ -179,4 +179,18 @@ public interface TransformingOperators<T>
   {
     return prepend( Streak.context().of( value ) );
   }
+
+  /**
+   * Emit the specified element after emitting elements from this stream.
+   *
+   * @param value the last value to emit.
+   * @return the new stream.
+   * @see #append(Flow.Stream[])
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  default Flow.Stream<T> endWith( @Nonnull final T value )
+  {
+    return append( Streak.context().of( value ) );
+  }
 }
