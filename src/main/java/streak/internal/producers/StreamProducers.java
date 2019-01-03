@@ -1,5 +1,6 @@
 package streak.internal.producers;
 
+import java.util.Collection;
 import javax.annotation.Nonnull;
 import streak.Flow;
 
@@ -16,7 +17,7 @@ public interface StreamProducers
    * @return the new stream.
    */
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> of( final T... values )
+  default <T> Flow.Stream<T> of( @Nonnull final T... values )
   {
     return new StaticPublisher<>( values );
   }
@@ -31,6 +32,18 @@ public interface StreamProducers
   default <T> Flow.Stream<T> empty()
   {
     return of();
+  }
+
+  /**
+   * Creates a stream that emits elements of the supplied collection.
+   *
+   * @param <T>    the type of elements contained in the stream.
+   * @param values the collection of values to emit.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> fromCollection( @Nonnull final Collection<T> values )
+  {
+    return new CollectionPublisher<>( values );
   }
 
   /**
