@@ -23,6 +23,7 @@ final class PeriodicPublisher
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _period );
     subscriber.onSubscribe( subscription );
+    subscription.startTimer();
   }
 
   private static final class WorkerSubscription
@@ -38,6 +39,10 @@ final class PeriodicPublisher
       _subscriber = Objects.requireNonNull( subscriber );
       _period = period;
       _timer = new Timer();
+    }
+
+    void startTimer()
+    {
       _timer.schedule( new TimerTask()
       {
         @Override
