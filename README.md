@@ -62,6 +62,8 @@ Must have processors:
 
 - [x] `Filter(Predicate)` - only pass next value if predicate returns true
 - [x] `Take(Count)` - take first "count" items (then unsubscribe from source?)
+- [ ] `TakeUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
+- [ ] `SkipUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
 - [x] `First` == `Take(1)`
 - [x] `Skip(Count)` - filter out the first "count" items
 - [x] `SkipUntil(Predicate)` - filter out all items until predicate returns true the first time.
