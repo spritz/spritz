@@ -77,7 +77,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Source Factories**
 
-- [ ] `Interval(Duration)` or `periodic(Duration)`- Every N time frame produce a value (monotonically increasing counter?)
+- [x] `Interval(Duration)` or `periodic(Duration)`- Every N time frame produce a value (monotonically increasing counter?)
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromCollection(Collection)` - A collection.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
@@ -96,7 +96,7 @@ Must have processors:
 
 **Transformation Processors** (Take items from one stream and transform them)
 
-- [ ] `flatMap(Function<Publisher[]>)` - given one input, produce zero or more publishers. The items from publishers are flattened into source stream.
+- [x] `flatMap(Function<Publisher[]>)` - given one input, produce zero or more publishers. The items from publishers are flattened into source stream.
                                          Alternatively we could replace with `map(Function<Publisher[]>).flatten()` which seems a better approach.
 - [x] `map` - convert value from one type to another
 
