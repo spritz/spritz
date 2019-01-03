@@ -130,6 +130,25 @@ public interface TransformingOperators<T>
   }
 
   /**
+   * Map each input element to a stream and emit the elements from the most recently
+   * mapped stream. The stream that the input element is mapped to is the active stream
+   * and all elements emitted on the active stream are merged into this stream. If the
+   * active stream completes then it is no longer the active stream but this stream does
+   * not complete. If a new input element is received while there is an active stream is
+   * present then the active stream is disposed and the new input element is mapped to a
+   * new stream that is made active.
+   *
+   * @param <DownstreamT> the type of the elements that this stream emits.
+   * @param mapper        the function to map the elements to the inner stream.
+   * @return the new stream.
+   */
+  @Nonnull
+  default <DownstreamT> Flow.Stream<DownstreamT> switchMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  {
+    return compose( p -> new MapOperator<>( p, mapper ).compose( SwitchOperator::new ) );
+  }
+
+  /**
    * Emit all the elements from this stream and then when the complete signal is emitted then
    * merge the elements from the specified streams one after another until all streams complete.
    *

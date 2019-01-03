@@ -98,8 +98,8 @@ Must have processors:
 
 **HigherOrder Observers**
 
-- [ ] `switch` - Input stream contains streams. Each time new item appears, switch stage unsubscribes from current (if any) and subscribes to new item.
-- [ ] `switchMap(MapFn) == map(MapFn).switch()` - Extremely useful
+- [x] `switch` - Input stream contains streams. Each time new item appears, switch stage unsubscribes from current (if any) and subscribes to new item.
+- [x] `switchMap(MapFn) == map(MapFn).switch()` - Extremely useful
 - [ ] `exhaust` - Input stream contains streams. When item received then merge elements into stream and ignore elements on input stream until inner stream completes.
 - [ ] `exhaustMap(MapFn) == map(MapFn).exhaust()`
 
