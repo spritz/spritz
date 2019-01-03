@@ -6,3 +6,9 @@
   compile time, dynamically at runtime (in development mode), or dynamically at runtime using spies or ...
   This would allow us to detect poorly constructed stream like adding onError on streams that produce no
   errors or reduce on a stream that never completes.
+
+* Each operator should supply N different marble diagram inputs. These inputs are picked up and used to
+  test the operators. Some diagrams are also tagged so that a documentation tool runs over them and produces
+  diagrams that can be included in javadocs and other documentation. Develop a custom javadoc plugin that
+  includes marble diagrams in the generated javadocs based on the same tags. Each diagram can potentially
+  have a label and a description as well as annotations inside the diagram.
