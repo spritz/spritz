@@ -127,8 +127,8 @@ Other
 - [x] `distinct()` - only send item first time it appears in stream. Potentially needs a very large map in which items are registered. A variant on this accepts another stream and when that stream emits an item the registry is cleared.
 - [x] `skipDuplicates()` or `distinctInSuccession()` or `distinctUntilChanged()` - only send item first time it appears in stream. Need to buffer last.
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
-- [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - emit an item from stream if DebounceTime has passed without another value being emitted from upstream.
-- [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)`
+- [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - delay emit an item from stream if `DebounceTime` has passed without another value being emitted from upstream.
+- [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)` - only emit an item from an Observable if a `DebounceTime` timespan has passed without it emitting another item.
 - [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter.
 
 **Control FLow**
