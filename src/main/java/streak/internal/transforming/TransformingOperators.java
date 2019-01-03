@@ -167,7 +167,7 @@ public interface TransformingOperators<T>
   }
 
   /**
-   * Emit the specified element before emitting elements form this stream.
+   * Emit the specified element before emitting elements from this stream.
    *
    * @param value the initial value to emit.
    * @return the new stream.
