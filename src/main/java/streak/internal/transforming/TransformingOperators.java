@@ -50,29 +50,30 @@ public interface TransformingOperators<T>
   }
 
   /**
-   * Map each input element to a stream and flatten the elements produced by the inner stream into this stream.
-   * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MAX_CONCURRENCY}.
-   * Invoking this method is equivalent to invoking {@link #mergeMap(Function, int)} and passing the
-   * {@link #DEFAULT_MAX_CONCURRENCY} constant as the {@code maxConcurrency} parameter. This method is an alias
-   * for {@link #mergeMap(Function)}.
+   * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
+   * into this stream. The method operates on a single stream at a time and the result is a concatenation of
+   * elements emitted from all the streams produced by the mapper function. This method is equivalent to
+   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
+   * method is also an alias for {@link #concatMap(Function)}.
    *
    * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
    * @param mapper        the function to map the elements to the inner stream.
    * @return the new stream.
+   * @see #concatMap(Function)
    * @see #mergeMap(Function, int)
-   * @see #mergeMap(Function)
    */
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> flatMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
   {
-    return mergeMap( mapper );
+    return mergeMap( mapper, 1 );
   }
 
   /**
    * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
    * elements emitted from all the streams produced by the mapper function. This method is equivalent to
-   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>.
+   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
+   * method is also an alias for {@link #flatMap(Function)}.
    *
    * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
    * @param mapper        the function to map the elements to the inner stream.
@@ -83,7 +84,7 @@ public interface TransformingOperators<T>
   @Nonnull
   default <DownstreamT> Flow.Stream<DownstreamT> concatMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
   {
-    return mergeMap( mapper, 1 );
+    return flatMap( mapper );
   }
 
   /**
