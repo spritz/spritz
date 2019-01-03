@@ -91,8 +91,8 @@ Must have processors:
 - [x] `First` == `Take(1)`
 - [x] `Skip(Count)` - filter out the first "count" items
 - [x] `SkipUntil(Predicate)` - filter out all items until predicate returns true the first time.
-- [ ] `TaskLast(Count)` -- take last "count" items. i.e. Wait to onComplete and send last Count items. Needs a buffer `Count` long.
-- [ ] `Last` == `TaskLast(1)`
+- [x] `TaskLast(Count)` -- take last "count" items. i.e. Wait to onComplete and send last Count items. Needs a buffer `Count` long.
+- [x] `Last` == `TaskLast(1)`
 
 **Transformation Processors** (Take items from one stream and transform them)
 

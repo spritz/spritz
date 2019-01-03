@@ -115,6 +115,54 @@ public interface FilteringOperators<T>
   }
 
   /**
+   * Drop all elements except for the last element.
+   * Once the complete signal has been received the operator will emit the last element received
+   * if any prior to sending the complete signal. This is equivalent to invoking the {@link #last(int)}
+   * method and passing the value <code>1</code> to the parameter <code>maxElements</code>.
+   *
+   * @return the new stream.
+   * @see #last(int)
+   */
+  @Nonnull
+  default Flow.Stream<T> last()
+  {
+    return last( 1 );
+  }
+
+  /**
+   * Drop all elements except for the last {@code maxElements} elements.
+   * This operator will buffer up to {@code maxElements} elements until it receives the complete
+   * signal and then it will send all the buffered elements and the complete signal. If less than
+   * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
+   * less than {@code maxElements} elements.
+   *
+   * @param maxElements the maximum number
+   * @return the new stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> last( final int maxElements )
+  {
+    return compose( p -> new LastOperator<>( p, maxElements ) );
+  }
+
+  /**
+   * Drop all elements except for the last {@code maxElements} elements.
+   * This operator will buffer up to {@code maxElements} elements until it receives the complete
+   * signal and then it will send all the buffered elements and the complete signal. If less than
+   * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
+   * less than {@code maxElements} elements. This method is an alias for the {@link #last(int)} method.
+   *
+   * @param maxElements the maximum number
+   * @return the new stream.
+   * @see #last(int)
+   */
+  @Nonnull
+  default Flow.Stream<T> takeLast( final int maxElements )
+  {
+    return last( maxElements );
+  }
+
+  /**
    * Drop elements from this stream until an element no longer matches the supplied {@code predicate}.
    * As long as the {@code predicate} returns true, no elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns false, all subsequent
