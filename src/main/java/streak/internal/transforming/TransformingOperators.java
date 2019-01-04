@@ -231,4 +231,19 @@ public interface TransformingOperators<T>
   {
     return append( Streak.context().of( value ) );
   }
+
+  /**
+   * Apply an accumulator function to each element in the stream emit the accumulated value.
+   *
+   * @param <DownstreamT>       the type of the elements that the {@code accumulatorFunction} function emits.
+   * @param accumulatorFunction the function to use to accumulate the values.
+   * @param initialValue        the initial value to begin accumulation from.
+   * @return the new stream.
+   */
+  @Nonnull
+  default <DownstreamT> Flow.Stream<DownstreamT> scan( @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
+                                                       @Nonnull final DownstreamT initialValue )
+  {
+    return compose( p -> new ScanOperator<>( p, accumulatorFunction, initialValue ) );
+  }
 }
