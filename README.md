@@ -149,6 +149,8 @@ create a single execution that are streaks could subscribe to.
 
 * Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
 
+* Consider renaming `Producers` to `Factories`
+
 ### Schedulers
 
 Each executor has N circular queues to perform tasks with N being the number of priority levels. There is different
