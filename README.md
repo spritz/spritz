@@ -26,8 +26,8 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 
 ## Links
 
-
-* Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and [Most](https://github.com/cujojs/most).
+* [Most](https://mostcore.readthedocs.io/en/latest/concepts.html)
+* [Bacon](http://baconjs.github.io/api2.html)
 * [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
 * [ReactiveX Operators](http://reactivex.io/documentation/operators.html)
 * [RxJava](https://github.com/ReactiveX/RxJava)
