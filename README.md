@@ -128,7 +128,7 @@ The factory DSL (i.e. `var a = Streak.of( 1, 2, 3, 4 ).filter( v -> v > 2 ).firs
 and thus could subscribe to the same sequence multiple times to get multiple executions. "Subjects" are used to
 create a single execution that are streaks could subscribe to.
 
-`StreamingProperties` or `StreamingValues` may be a different way to think of an event stream.
+* Consider creating a `StreamingProperties`/`StreamingValues` in Arez component model for values emitted via event stream.
 
 * Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
 
