@@ -35,6 +35,18 @@ public interface StreamProducers
   }
 
   /**
+   * Creates a stream that emits no elements and immediately emits an error signal.
+   *
+   * @param <T>   the type of elements that the stream declared as containing (despite never containing any elements).
+   * @param error the error to emit.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> fail( @Nonnull final Throwable error )
+  {
+    return new FailPublisher<>( error );
+  }
+
+  /**
    * Creates a stream that emits elements of the supplied collection.
    *
    * @param <T>    the type of elements contained in the stream.
