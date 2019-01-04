@@ -56,29 +56,27 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [x] `fromCollection(Collection)` - A collection.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 
-Must have processors:
-
-**Filtering Processors** (Remove items from stream)
+**Filtering Operators**
 
 - [ ] `FilterByControlStreams(OnControlStream, OffControlStream)` - allow elements to pass after `OnControlStream` emits an element but before `OffControlStream` emits an element. Complete if both streams complete. Error if either completes.
 - [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Streak.empty())` - take until `ControlStream` emits an element or completes.
 - [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Streak.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
 
-**Combination Processors** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
+**Combination Operators** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [ ] `combineLatest(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
-- [ ] `withLatestFrom(Publisher,Publishers)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
-- [ ] `zip(Publishers)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
-- [ ] `firstEmitting(Publisher...)` or `selectFirstEmitting(Publisher...)` or `race(Publisher...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
+- [ ] `combineLatest(Streams)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
+- [ ] `withLatestFrom(Stream,Streams)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
+- [ ] `zip(Streams)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
+- [ ] `firstEmitting(Stream...)` or `selectFirstEmitting(Stream...)` or `race(Stream...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
 
-**Accumulating Processors** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
+**Accumulating Operators** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
 - [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?
 - [ ] `bufferByTime` - wait for time buffering items.
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
-**HigherOrder Observers**
+**HigherOrder Operators**
 
 All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.
 
