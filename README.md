@@ -60,8 +60,9 @@ Must have processors:
 
 **Filtering Processors** (Remove items from stream)
 
-- [ ] `TakeUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
-- [ ] `SkipUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
+- [ ] `FilterByControlStreams(OnControlStream, OffControlStream)` - allow elements to pass after `OnControlStream` emits an element but before `OffControlStream` emits an element. Complete if both streams complete. Error if either completes.
+- [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Streak.empty())` - take until `ControlStream` emits an element or completes.
+- [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Streak.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
 
 **Combination Processors** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
