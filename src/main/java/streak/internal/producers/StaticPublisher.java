@@ -8,6 +8,7 @@ import streak.internal.AbstractStream;
 final class StaticPublisher<T>
   extends AbstractStream<T>
 {
+  @Nonnull
   private final T[] _data;
 
   StaticPublisher( @Nonnull final T[] data )
