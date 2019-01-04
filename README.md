@@ -31,7 +31,6 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 * ReactiveX Operators: http://reactivex.io/documentation/operators.html
 * RxJava implementation: https://github.com/ReactiveX/RxJava
 * Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
-* "Learning Observable By Building Observable": https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
 
 * Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and
   [xstream](https://github.com/staltz/xstream) although [Most](https://github.com/cujojs/most) has some qualities
