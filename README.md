@@ -26,12 +26,12 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 
 ## Links
 
-* ReactiveX Scheduler: http://reactivex.io/documentation/scheduler.html
-* ReactiveX Operators: http://reactivex.io/documentation/operators.html
-* RxJava implementation: https://github.com/ReactiveX/RxJava
-* Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
 
 * Best API seems to be a combination of [Bacon](http://baconjs.github.io/api2.html) and [Most](https://github.com/cujojs/most).
+* [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
+* [ReactiveX Operators](http://reactivex.io/documentation/operators.html)
+* [RxJava](https://github.com/ReactiveX/RxJava)
+* [Reactor Overview](https://www.infoq.com/articles/reactor-by-example)
 
 * A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources/sinks.
   - https://github.com/staltz/callbag-basics/blob/master/readme.md#api
