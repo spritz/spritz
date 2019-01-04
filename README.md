@@ -11,11 +11,6 @@ or a stream of messages over a WebSocket. A listener reacts to events emitted by
 events may be values, errors and completion notification. Operators filter, transform and combine
 input streams. An operator never modifies the input stream but instead creates a new stream.
 
-----
-
-Seriously consider aligning with RXJS 7 as they seem to have adopted some interesting ideas.
-See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
-
 ## Links
 
 * [Microprofile Reactive Streams](https://github.com/eclipse/microprofile-reactive-streams) - good source of naming that is java-esque.
