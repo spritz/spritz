@@ -14,4 +14,6 @@
   test the operators. Some diagrams are also tagged so that a documentation tool runs over them and produces
   diagrams that can be included in javadocs and other documentation. Develop a custom javadoc plugin that
   includes marble diagrams in the generated javadocs based on the same tags. Each diagram can potentially
-  have a label and a description as well as annotations inside the diagram.
+  have a label and a description as well as annotations inside the diagram. An even better regime would be
+  to allow example code for each example. The example code is checked to ensure it matches the expected
+  marble diagram and can be formatted and places in the documentation.
