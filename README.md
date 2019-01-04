@@ -75,7 +75,9 @@ Other
 
 **Terminator Subscribers**
 
-- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1)` - Same as scan except final value is emitted on onComplete.
+- [ ] `toValue()` - Extract the first element from stream and return it.
+- [ ] `toList()` - Return all the values in stream as a list.
+- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).toValue()` - Similar to scan except only final value is emitted.
 
 -----
 
