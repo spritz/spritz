@@ -186,11 +186,3 @@ language extracts it - ala angular
 
 `Yolk` is an interesting framework. Essentially it is react-like in that it uses jsx and vdom/reconcilliation
 but it differs as both props and event handlers are streams and streams are passed as jsx.
-
-### Schedulers
-
-* Immediate - directly invoke now
-* Current - queue in current Execution and will invoke before exiting runtime and returning to invoking application/system code
-* Mircotask - in next microtask execution. == Current if current execution in microtask
-* Animation - in next animation frame
-* Idle - in next idle frame
