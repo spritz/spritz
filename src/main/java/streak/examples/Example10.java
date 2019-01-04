@@ -13,7 +13,7 @@ public class Example10
     context
       .periodic( 1000 )
       .takeWhile( v -> v < 4 )
-      .switchMap( v -> context.periodic( 200 ).map( s -> v + "." + s ) )
+      .switchMap( v -> context.periodic( 200 ).takeWhile( e -> e < 10 ).map( e -> v + "." + e ) )
       .subscribe( new Flow.Subscriber<String>()
       {
         @Override
