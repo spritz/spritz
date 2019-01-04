@@ -60,29 +60,11 @@ Must have processors:
 
 **Filtering Processors** (Remove items from stream)
 
-- [x] `Filter(Predicate)` - only pass next value if predicate returns true
-- [x] `Take(Count)` - take first "count" items (then unsubscribe from source?)
 - [ ] `TakeUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
 - [ ] `SkipUntil(ControlStream)` - take until `ControlStream` emits an element or completes.
-- [x] `First` == `Take(1)`
-- [x] `Skip(Count)` - filter out the first "count" items
-- [x] `SkipUntil(Predicate)` - filter out all items until predicate returns true the first time.
-- [x] `TaskLast(Count)` -- take last "count" items. i.e. Wait to onComplete and send last Count items. Needs a buffer `Count` long.
-- [x] `Last` == `TaskLast(1)`
-
-**Transformation Processors** (Take items from one stream and transform them)
-
-- [x] `flatMap(Function<Publisher[]>)` - given one input, produce zero or more publishers. The items from publishers are flattened into source stream.
-                                         Alternatively we could replace with `map(Function<Publisher[]>).flatten()` which seems a better approach.
-- [x] `map` - convert value from one type to another
 
 **Combination Processors** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [x] `append(Publishers) == merge(1,Publishers)` - for each publisher wait till it produces onComplete, elide that signal and then subscribe to next. (a.k.a `concat` or `concatAll`)
-- [x] `prepend(Publishers)` == `append(reverse(Publishers))`
-- [x] `startWith(value)` == `prepend(of(value))`
-
-- [x] `merge(ConcurrentCount,Publishers)` (a.k.a. `or(Publishers)`) - for each stream if it produces a value then pass on value. onComplete if all onComplete, onError if any onError. Optionally can pass a `ConcurrentCount` which is the maximum number of concurrent observers, `0` to disable.
 - [ ] `combineLatest(Publishers)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
 - [ ] `withLatestFrom(Publisher,Publishers)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
 - [ ] `zip(Publishers)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
@@ -90,18 +72,12 @@ Must have processors:
 
 **Accumulating Processors** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
-- [x] `scan((accumulator, item) => {...function...}, initialValue)` or `fold(...)` - For each value in stream pass it into accumulating function that takes current accumulated value and new value to produce new value. Initial value for accumulator is specified at startup. A new value is emitted for each item.
 - [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?
 - [ ] `bufferByTime` - wait for time buffering items.
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
 **HigherOrder Observers**
-
-- [x] `switch` - Input stream contains streams. Each time new item appears, switch stage unsubscribes from current (if any) and subscribes to new item.
-- [x] `switchMap(MapFn) == map(MapFn).switch()` - Extremely useful
-- [x] `exhaust` - Input stream contains streams. When item received then merge elements into stream and ignore elements on input stream until inner stream completes.
-- [x] `exhaustMap(MapFn) == map(MapFn).exhaust()`
 
 All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.
 
@@ -116,7 +92,6 @@ Other
 
 **Terminator Subscribers**
 
-- [x] `forEach(Action)` - perform action for each value.
 - [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1)` - Same as scan except final value is emitted on onComplete.
 
 -----
@@ -125,9 +100,6 @@ Other
 - [ ] `delay(DelayTime) == delayBy(_ -> DelayTime) ` - delay each item by DelayTime. This involves buffering them by a fixed time.
 - [ ] `delaySubscriptionBy(DelayFunction) where DelayTime DelayFunction(Subscription)` - delay subscription of upstream by variable time returned by delay function.
 - [ ] `delaySubscription(DelayTime) == delaySubscriptionBy(_ -> DelayTime)` - delay subscription of upstream by DelayTime
-- [x] `peek(Action)` - perform an action on each value that goes by
-- [x] `distinct()` - only send item first time it appears in stream. Potentially needs a very large map in which items are registered. A variant on this accepts another stream and when that stream emits an item the registry is cleared.
-- [x] `skipDuplicates()` or `distinctInSuccession()` or `distinctUntilChanged()` - only send item first time it appears in stream. Need to buffer last.
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
 - [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - delay emit an item from stream if `DebounceTime` has passed without another value being emitted from upstream.
 - [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)` - only emit an item from an Observable if a `DebounceTime` timespan has passed without it emitting another item.
