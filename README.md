@@ -26,7 +26,6 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 
 ## Links
 
-* http://xgrommx.github.io/rx-book/index.html
 * ReactiveX Scheduler: http://reactivex.io/documentation/scheduler.html
 * ReactiveX Operators: http://reactivex.io/documentation/operators.html
 * RxJava implementation: https://github.com/ReactiveX/RxJava
