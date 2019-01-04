@@ -1,6 +1,7 @@
 package streak.internal.producers;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.Flow;
@@ -70,6 +71,18 @@ public interface StreamProducers
   default <T> Flow.Stream<T> fromCollection( @Nonnull final Collection<T> values )
   {
     return new CollectionPublisher<>( values );
+  }
+
+  /**
+   * Creates a stream that emits elements from the supplied {@link java.util.stream.Stream}.
+   *
+   * @param <T>    the type of elements contained in the stream.
+   * @param stream the java.util.stream.Stream stream of values to emit.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> fromStream( @Nonnull final java.util.stream.Stream<T> stream )
+  {
+    return fromCollection( stream.collect( Collectors.toList() ) );
   }
 
   /**
