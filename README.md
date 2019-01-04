@@ -29,7 +29,6 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 * http://xgrommx.github.io/rx-book/index.html
 * ReactiveX Scheduler: http://reactivex.io/documentation/scheduler.html
 * ReactiveX Operators: http://reactivex.io/documentation/operators.html
-* A basic js implementation: https://github.com/zenparsing/zen-observable
 * RxJava implementation: https://github.com/ReactiveX/RxJava
 * Reactor Overview - reactor another implementation: https://www.infoq.com/articles/reactor-by-example
 * "Learning Observable By Building Observable": https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
