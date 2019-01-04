@@ -37,6 +37,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 - [ ] `fromSupplier(Supplier<? extends T>)` - Infinite stream created by invoking supplier.
 - [ ] `fromSupplier(Supplier<? extends T>, int period)` a.k.a. `periodic(period).map(_ -> Supplier.get())` - Infinite stream created by invoking supplier at specific period.
+- [ ] `fromStream(java.util.Stream)` - A stream from a java.util.Stream.
 
 **Elemental2 Source Factories**
 
