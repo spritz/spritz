@@ -11,6 +11,10 @@ or a stream of messages over a WebSocket. A listener reacts to events emitted by
 events may be values, errors and completion notification. Operators filter, transform and combine
 input streams. An operator never modifies the input stream but instead creates a new stream.
 
+A stream does not define an execution and in most cases could subscribe to the same stream multiple
+times to get multiple executions. `"Subjects"` are the mechanism where a stream can control if new
+execution data is created when subscriptions occur.
+
 ## Links
 
 * [Microprofile Reactive Streams](https://github.com/eclipse/microprofile-reactive-streams) - good source of naming that is java-esque.
@@ -123,10 +127,6 @@ occur and will be unsubscribed from after that.
 * Make use of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
 
 ## TODO
-
-The factory DSL (i.e. `var a = Streak.of( 1, 2, 3, 4 ).filter( v -> v > 2 ).first()`) contains no execution data
-and thus could subscribe to the same sequence multiple times to get multiple executions. "Subjects" are used to
-create a single execution that are streaks could subscribe to.
 
 * Consider creating a `StreamingProperties`/`StreamingValues` in Arez component model for values emitted via event stream.
 
