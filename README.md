@@ -35,9 +35,12 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Source Factories**
 
-- [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
 - [ ] `fromSupplier(Supplier<? extends T>)` - Infinite stream created by invoking supplier.
 - [ ] `fromSupplier(Supplier<? extends T>, int period)` a.k.a. `periodic(period).map(_ -> Supplier.get())` - Infinite stream created by invoking supplier at specific period.
+
+**Elemental2 Source Factories**
+
+- [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 - [ ] `fetch()` - Fetch/http controller that must make use of `AbortController`.
 - [ ] `webSocket()` - WebSocket source.
