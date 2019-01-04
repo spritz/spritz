@@ -39,6 +39,8 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 - [ ] `fail()` - Create a stream that immediately emits an error signal.
+- [ ] `fetch()` - Fetch/http controller that must make use of `AbortController`.
+- [ ] `webSocket()` - WebSocket source.
 
 **Filtering Operators**
 
@@ -123,10 +125,6 @@ after they are complete where-as replay will always replay signals.
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
 occur and will be unsubscribed from after that.
-
-## Fetch/http controller
-
-* Make use of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
 
 ## TODO
 
