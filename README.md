@@ -48,6 +48,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Source Factories**
 
+- [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
 - [ ] `fromIterable(Iterable)` - From an iterable
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
 - [ ] `fail()` - Create a stream that immediately emits an error signal.
