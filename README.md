@@ -147,6 +147,8 @@ create a single execution that are streaks could subscribe to.
 
 `StreamingProperties` or `StreamingValues` may be a different way to think of an event stream.
 
+Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
+
 ### Schedulers
 
 Each executor has N circular queues to perform tasks with N being the number of priority levels. There is different
