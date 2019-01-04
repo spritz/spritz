@@ -38,7 +38,7 @@ final class StaticPublisher<T>
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
     {
       _subscriber = Objects.requireNonNull( subscriber );
-      _data = Objects.requireNonNull( data );
+      _data = data;
       _offset = 0;
     }
 
