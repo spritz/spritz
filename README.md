@@ -62,6 +62,8 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
+- [ ] `defaultIfEmpty(value)` - If the stream completes but has emitted no value then emit specified value.
+
 **HigherOrder Operators**
 
 All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.
@@ -80,7 +82,7 @@ Other
 - [ ] `toValue()` - Extract the first element from stream and return it. This only possible if no async.
 - [ ] `toList()` - Return all the values in stream as a list. This only possible if no async.
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
-- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).toValue()` - Similar to scan except only final value is emitted.
+- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).defaultIfEmpty(initialValue).toValue()` - Similar to scan except only final value is emitted.
 
 -----
 
