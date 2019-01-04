@@ -13,19 +13,12 @@ input streams. An operator never modifies the input stream but instead creates a
 
 ----
 
-We should adopt terminology from microprofile reactive streams proposal as it will soon be present in most java
-backend APIs.
-
-* https://github.com/eclipse/microprofile-reactive-streams
-* https://github.com/eclipse/microprofile-reactive-messaging
-
-----
-
 Seriously consider aligning with RXJS 7 as they seem to have adopted some interesting ideas.
 See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 
 ## Links
 
+* [Microprofile Reactive Streams](https://github.com/eclipse/microprofile-reactive-streams) - good source of naming that is java-esque.
 * [Most](https://mostcore.readthedocs.io/en/latest/concepts.html)
 * [Bacon](http://baconjs.github.io/api2.html)
 * [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
