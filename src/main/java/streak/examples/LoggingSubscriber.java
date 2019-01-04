@@ -21,7 +21,7 @@ final class LoggingSubscriber<T>
   @Override
   public void onError( @Nonnull final Throwable throwable )
   {
-    throwable.printStackTrace();
+    System.out.println( "onError(" + throwable + ")" );
   }
 
   @Override
