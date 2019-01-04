@@ -104,7 +104,7 @@ Other
 - [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)` - only emit an item from an Observable if a `DebounceTime` timespan has passed without it emitting another item.
 - [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter.
 
-**Control FLow**
+**Control Flow**
 
 - [ ] `catch((error, downstream) -> myFunction)` - If `onError` then call callback. Often this will replace onError signal with onComplete or do something like omit error and re-subscribe
 - [ ] `retry(RetryCount)` - The retry operator is an `onError` operator that simply resubscribes on error and starts again and it will do it `RetryCount` times or infinite times if not specified. If ceases to retry then pass onError signal down.
