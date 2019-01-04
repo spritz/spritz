@@ -79,6 +79,7 @@ Other
 
 - [ ] `toValue()` - Extract the first element from stream and return it.
 - [ ] `toList()` - Return all the values in stream as a list.
+- [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 - [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).toValue()` - Similar to scan except only final value is emitted.
 
 -----
