@@ -129,11 +129,9 @@ subscribers connect. `BehaviourSubjects` may also have a time window after which
 subjects have a buffer bound by size and time window. `BehaviourSubjects` will also not emit a value if you subscribe
 after they are complete where-as replay will always replay signals.
 
-
 - [ ] `replay()` - Replay many signals before or after completion
 - [ ] `behaviourSubject()` - Replay one value, only before completion
 - [ ] `asyncSubject()` - Replay one, only after completion
-
 
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
