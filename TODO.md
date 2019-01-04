@@ -2,6 +2,8 @@
 
 * Ensure tests all verify that predicates can accept supertypes of T
 
+* Ensure tests all verify that take control streams gracefully handle completion and error signals.
+
 * Ensure tests verify scenario where stream has a `takeWhile( v -> false )` to make sure we correctly
   separate out onSubscribe from initial delivery of elements.
 
