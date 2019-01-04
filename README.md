@@ -26,12 +26,7 @@ See https://github.com/ReactiveX/rxjs/blob/experimental/EXPERIMENTAL_NOTES.md
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [RxJs](https://rxjs-dev.firebaseapp.com/api)
 * [Reactor Overview](https://www.infoq.com/articles/reactor-by-example)
-
-* A very interesting library conceptually is callbag. It explicitly calls out differences between push/pull sources/sinks.
-  - https://github.com/staltz/callbag-basics/blob/master/readme.md#api
-  - https://github.com/callbag/callbag/blob/master/getting-started.md
-  - https://github.com/staltz/callbag-basics
-  - Operators - https://github.com/callbag/callbag/wiki
+* [Callbag Operators](https://github.com/callbag/callbag/wiki)
 
 ## To Implement
 
