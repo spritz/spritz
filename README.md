@@ -117,6 +117,7 @@ Other
 - [ ] `share() == publish().refCount()`
 - [ ] `publishReplay(count) == multicast(new ReplaySubject(count))`
 - [ ] `publishBehaviour(initialValue) == multicast(new BehaviourSubject(initialValue))`
+- [ ] `remember() == multicast(new BehaviourSubject())` - create a subject that remembers the last value
 
 Multicast producers allow you to add N (a.k.a. subscribe) multiple subscribers which it will publish to. i.e. they
 are processors - both publishers an subscribers. In rxjs they are `Subjects`. There is also `BehaviourSubjects` that
