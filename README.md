@@ -62,8 +62,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
 
-- [ ] `defaultIfEmpty(value)` - If the stream completes but has emitted no value then emit specified value.
-
 **HigherOrder Operators**
 
 All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.

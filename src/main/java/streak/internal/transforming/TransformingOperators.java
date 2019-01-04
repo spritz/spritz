@@ -246,4 +246,16 @@ public interface TransformingOperators<T>
   {
     return compose( p -> new ScanOperator<>( p, accumulatorFunction, initialValue ) );
   }
+
+  /**
+   * If upstream emits no elements and then completes then emit the {@code defaultValue} before completing this stream.
+   *
+   * @param defaultValue the default value to emit if upstream completes and is empty.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
+  {
+    return compose( p -> new DefaultIfEmptyOperator<>( p, defaultValue ) );
+  }
 }
