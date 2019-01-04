@@ -2,6 +2,7 @@ package streak.internal.producers;
 
 import java.util.Collection;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import streak.Flow;
 
 /**
@@ -32,6 +33,19 @@ public interface StreamProducers
   default <T> Flow.Stream<T> empty()
   {
     return of();
+  }
+
+  /**
+   * Creates a stream that emits the value parameter as an element if the value is not null.
+   *
+   * @param <T>   the type of elements contained in the stream.
+   * @param value the value to emit if non null.
+   * @return the new stream.
+   */
+  @SuppressWarnings( "unchecked" )
+  default <T> Flow.Stream<T> ofNullable( @Nullable final T value )
+  {
+    return null == value ? empty() : of( value );
   }
 
   /**
