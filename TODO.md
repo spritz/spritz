@@ -19,3 +19,12 @@
   have a label and a description as well as annotations inside the diagram. An even better regime would be
   to allow example code for each example. The example code is checked to ensure it matches the expected
   marble diagram and can be formatted and places in the documentation.
+
+* Use consistent terminology throughout the javadocs and code.
+  - Use `item` or `element` to refer to the data elements that are passed downstream. At the moment the
+    code uses both terms but one should be selected and the other purged. Consider renaming `onNext` to
+    `onItem` or `onElement` to align with the selected terminology.
+  - Use `emit` rather than `notify` or `send` to describe passing items or signals downstream.
+  - Use the term `signal` rather than `notification` or `event` or `message` when referring to invoking
+    the `onError` or `onComplete` methods in downstream. It is unclear if there is a consistent term for
+    passing the data element downstream.
