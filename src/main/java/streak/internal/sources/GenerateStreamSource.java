@@ -1,6 +1,7 @@
 package streak.internal.sources;
 
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import streak.Flow;
@@ -10,9 +11,9 @@ final class GenerateStreamSource<T>
   extends AbstractStream<T>
 {
   @Nonnull
-  private final Supplier<T> _supplier;
+  private final Callable<T> _supplier;
 
-  GenerateStreamSource( @Nonnull final Supplier<T> supplier )
+  GenerateStreamSource( @Nonnull final Callable<T> supplier )
   {
     _supplier = Objects.requireNonNull( supplier );
   }
@@ -30,10 +31,10 @@ final class GenerateStreamSource<T>
   {
     private final Flow.Subscriber<? super T> _subscriber;
     @Nonnull
-    private final Supplier<T> _supplier;
+    private final Callable<T> _supplier;
     private boolean _done;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Supplier<T> supplier )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Callable<T> supplier )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _supplier = supplier;
@@ -45,7 +46,7 @@ final class GenerateStreamSource<T>
       {
         while ( isNotDisposed() )
         {
-          _subscriber.onNext( _supplier.get() );
+          _subscriber.onNext( _supplier.call() );
         }
       }
       catch ( final Throwable error )

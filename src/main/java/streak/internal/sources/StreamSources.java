@@ -1,6 +1,7 @@
 package streak.internal.sources;
 
 import java.util.Collection;
+import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
@@ -87,6 +88,20 @@ public interface StreamSources
   }
 
   /**
+   * Creates an infinite stream that emits elements from the {@link Callable} parameter.
+   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * otherwise this source will result in an infinite loop.
+   *
+   * @param <T>      the type of elements contained in the stream.
+   * @param callable the function that generates values to emit.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> fromCallable( @Nonnull final Callable<T> callable )
+  {
+    return new GenerateStreamSource<>( callable );
+  }
+
+  /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter.
    * The user must be very careful to add a subsequent stream stage that disposes the stream
    * otherwise this source will result in an infinite loop.
@@ -95,9 +110,9 @@ public interface StreamSources
    * @param supplier the function that generates values to emit.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> generate( @Nonnull final Supplier<T> supplier )
+  default <T> Flow.Stream<T> fromSupplier( @Nonnull final Supplier<T> supplier )
   {
-    return new GenerateStreamSource<>( supplier );
+    return new GenerateStreamSource<>( supplier::get );
   }
 
   /**
