@@ -41,9 +41,16 @@ final class GenerateStreamSource<T>
 
     void pushData()
     {
-      while ( isNotDisposed() )
+      try
       {
-        _subscriber.onNext( _supplier.get() );
+        while ( isNotDisposed() )
+        {
+          _subscriber.onNext( _supplier.get() );
+        }
+      }
+      catch ( final Throwable error )
+      {
+        _subscriber.onError( error );
       }
     }
 
