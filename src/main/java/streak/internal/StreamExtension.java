@@ -16,8 +16,8 @@ public interface StreamExtension<T>
    * This method is used to compose chains of stream operations.
    *
    * @param <DownstreamT> the type of element emitted by downstream stage.
-   * @param <S> the type of the downstream stage.
-   * @param function the function used to compose stream operations.
+   * @param <S>           the type of the downstream stage.
+   * @param function      the function used to compose stream operations.
    * @return the new stream.
    */
   @Nonnull
