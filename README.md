@@ -33,7 +33,7 @@ Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-p
 
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
 
-**Elemental2 Source Factories**
+**Elemental2 Sources**
 
 - [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
 - [ ] `fromPromise(Promise)` - This conversion is also built into several other higher-order operations (i.e. `switchMap()` so that if you map to to promise it will convert to promise).
