@@ -104,6 +104,7 @@ Other
 - [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - delay emit an item from stream if `DebounceTime` has passed without another value being emitted from upstream.
 - [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)` - only emit an item from an Observable if a `DebounceTime` timespan has passed without it emitting another item.
 - [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter.
+- [ ] `timeout(Timeout)` - Terminates stream with a `TimeoutException` if the next item is not emitted within the specified timeout duration starting from the previous item.
 
 **Control Flow**
 
