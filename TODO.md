@@ -2,8 +2,8 @@
 
 * Ensure tests all verify that predicates can accept supertypes of T
 
-* Every supplier/predicate/function passed to an operator should be tested to ensure errors are
-  caught if thrown.
+* Every callable/supplier/predicate/runnable/function passed to an operator should be tested to ensure
+  errors are caught and emitted as error signals.
 
 * Ensure tests all verify that take control streams gracefully handle completion and error signals.
 

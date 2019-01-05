@@ -132,6 +132,19 @@ public interface StreamSources
   }
 
   /**
+   * Creates a stream that completes when the {@link Runnable} parameter completes running.
+   * The stream will signal an error if the runnable generates an error while running.
+   *
+   * @param <T>      the type of elements that the stream declared as containing (despite never containing any elements).
+   * @param runnable the runnable to execute.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> fromRunnable( @Nonnull final Runnable runnable )
+  {
+    return new RunnableStreamSource<>( runnable );
+  }
+
+  /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter at specified period.
    * The user must be very careful to add a subsequent stream stage that disposes the stream
    * otherwise this source will result in an infinite loop.
