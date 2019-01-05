@@ -131,8 +131,6 @@ occur and will be unsubscribed from after that.
 
 * Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
 
-* Consider renaming `Producers` to `Factories`
-
 ### Rethink
 
 A stream is a series of steps. Some sequences of steps are push based. i.e. The agent that pushes value executes
