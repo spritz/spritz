@@ -57,6 +57,8 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.
 - [ ] `singleOrDefault(DefaultValue)` - Emits the only item emitted by the stream, or emits `DefaultValue` if the stream completes after emitting 0 or more than 1 items.
 
+- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).defaultIfEmpty(initialValue)` - Similar to scan except only final value is emitted.
+
 - [ ] `FilterByControlStreams(OnControlStream, OffControlStream)` - allow elements to pass after `OnControlStream` emits an element but before `OffControlStream` emits an element. Complete if both streams complete. Error if either completes.
 - [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Streak.empty())` - take until `ControlStream` emits an element or completes.
 - [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Streak.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
@@ -74,6 +76,7 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `bufferByTime` - wait for time buffering items.
 - [ ] `bufferByPredicate` - use predicate to determine when to emit - predicate passed each item.
 - [ ] `bufferBySignal` - Another stream signals when to open and/or close buffering operation.
+- [ ] `toList()` - Return all the values in stream as a list.
 
 **HigherOrder Operators**
 
@@ -90,9 +93,7 @@ Other
 
 **Terminator Subscribers**
 
-- [ ] `toList()` - Return all the values in stream as a list. This only possible if no async.
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
-- [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).defaultIfEmpty(initialValue).toValue()` - Similar to scan except only final value is emitted.
 
 -----
 
