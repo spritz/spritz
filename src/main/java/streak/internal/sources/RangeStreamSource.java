@@ -77,7 +77,7 @@ final class RangeStreamSource
 
     void pushData()
     {
-      while ( _current <= _end )
+      while ( _current <= _end && isNotDisposed() )
       {
         _subscriber.onNext( _current );
         _current++;
@@ -95,7 +95,7 @@ final class RangeStreamSource
     @Override
     public boolean isDisposed()
     {
-      return _current > _end;
+      return -1 == _current;
     }
 
     /**
@@ -104,7 +104,7 @@ final class RangeStreamSource
     @Override
     public void dispose()
     {
-      _current = _end + 1;
+      _current = -1;
     }
   }
 }
