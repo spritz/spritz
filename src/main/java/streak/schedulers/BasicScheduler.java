@@ -1,17 +1,35 @@
 package streak.schedulers;
 
 import arez.Disposable;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public final class BasicScheduler
-  implements Scheduler
+final class BasicScheduler
+  implements Scheduler, Disposable
 {
-  private final PriorityQueue<TaskEntry> _queue =
-    new PriorityQueue<>( 10, Comparator.comparingInt( TaskEntry::getNextTime ) );
-  private int _now = 0;
+  private final long _schedulerStart = System.currentTimeMillis();
+  private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 100 );
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void dispose()
+  {
+    _executorService.shutdown();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isDisposed()
+  {
+    return _executorService.isShutdown();
+  }
 
   /**
    * {@inheritDoc}
@@ -19,7 +37,7 @@ public final class BasicScheduler
   @Override
   public int now()
   {
-    return _now;
+    return (int) ( System.currentTimeMillis() - _schedulerStart );
   }
 
   /**
@@ -27,19 +45,24 @@ public final class BasicScheduler
    */
   @Nonnull
   @Override
-  public Disposable scheduleAtFixedRate( @Nullable final String name,
-                                         @Nonnull final Runnable task,
-                                         final int initialDelay,
-                                         final int period )
+  public Disposable schedule( @Nonnull final Runnable task,
+                              final int initialDelay,
+                              final int period )
   {
-    final TaskEntry entry = new TaskEntry( this, name, task, period );
-    entry.setNextTime( _now + initialDelay );
-    _queue.add( entry );
-    return entry;
-  }
+    final ScheduledFuture<?> future = _executorService.schedule( task, now() + initialDelay, TimeUnit.MILLISECONDS );
+    return new Disposable()
+    {
+      @Override
+      public void dispose()
+      {
+        future.cancel( true );
+      }
 
-  final void cancelTask( @Nonnull final TaskEntry taskEntry )
-  {
-    //TODO: Remove?
+      @Override
+      public boolean isDisposed()
+      {
+        return future.isCancelled();
+      }
+    };
   }
 }
