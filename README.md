@@ -48,6 +48,15 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Filtering Operators**
 
+- [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
+- [ ] `ofType(Type)` - Filters items emitted by a reactive source by only emitting those of the specified type and changing type of stream to match that type.
+- [ ] `firstOrError()` - Emits the first item emitted by the stream, or signals a `NoSuchElementException` error if the source completes without emitting an item.
+- [ ] `firstOrDefault(DefaultValue)` - Emits the first item emitted by the stream, or emits `DefaultValue` if the source completes without emitting an item.
+- [ ] `lastOrError()` - Emits the last item emitted by the stream, or signals a `NoSuchElementException` error if the source completes without emitting an item.
+- [ ] `lastOrDefault(DefaultValue)` - Emits the last item emitted by the stream, or emits `DefaultValue` if the source completes without emitting an item.
+- [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.
+- [ ] `singleOrDefault(DefaultValue)` - Emits the only item emitted by the stream, or emits `DefaultValue` if the stream completes after emitting 0 or more than 1 items.
+
 - [ ] `FilterByControlStreams(OnControlStream, OffControlStream)` - allow elements to pass after `OnControlStream` emits an element but before `OffControlStream` emits an element. Complete if both streams complete. Error if either completes.
 - [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Streak.empty())` - take until `ControlStream` emits an element or completes.
 - [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Streak.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
