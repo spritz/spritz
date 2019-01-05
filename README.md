@@ -36,7 +36,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 **Sources**
 
 - [ ] `fromRunnable(Runnable)` - Just emits completion or error.
-- [ ] `error(Throwable)` - alias for `fail(Throwable)`.
 
 **Elemental2 Sources**
 

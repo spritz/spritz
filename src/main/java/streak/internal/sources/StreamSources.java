@@ -53,12 +53,28 @@ public interface StreamSources
 
   /**
    * Creates a stream that emits no elements and immediately emits an error signal.
+   * This is an alias for {@link #error(Throwable)}.
    *
    * @param <T>   the type of elements that the stream declared as containing (despite never containing any elements).
    * @param error the error to emit.
    * @return the new stream.
+   * @see #error(Throwable)
    */
   default <T> Flow.Stream<T> fail( @Nonnull final Throwable error )
+  {
+    return new FailStreamSource<>( error );
+  }
+
+  /**
+   * Creates a stream that emits no elements and immediately emits an error signal.
+   * This is an alias for {@link #fail(Throwable)}.
+   *
+   * @param <T>   the type of elements that the stream declared as containing (despite never containing any elements).
+   * @param error the error to emit.
+   * @return the new stream.
+   * @see #fail(Throwable)
+   */
+  default <T> Flow.Stream<T> error( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
   }
