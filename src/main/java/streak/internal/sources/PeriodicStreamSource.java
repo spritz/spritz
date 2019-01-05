@@ -1,11 +1,12 @@
 package streak.internal.sources;
 
+import arez.Disposable;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import streak.Flow;
 import streak.internal.AbstractStream;
+import streak.schedulers.Schedulers;
 
 final class PeriodicStreamSource
   extends AbstractStream<Integer>
@@ -32,25 +33,18 @@ final class PeriodicStreamSource
     private final Flow.Subscriber<? super Integer> _subscriber;
     private final int _period;
     private int _counter;
-    private Timer _timer;
+    @Nullable
+    private Disposable _task;
 
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, final int period )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _period = period;
-      _timer = new Timer();
     }
 
     void startTimer()
     {
-      _timer.schedule( new TimerTask()
-      {
-        @Override
-        public void run()
-        {
-          pushItem();
-        }
-      }, 0, _period );
+      _task = Schedulers.current().scheduleAtFixedRate( this::pushItem, _period );
     }
 
     void pushItem()
@@ -65,17 +59,17 @@ final class PeriodicStreamSource
     @Override
     public void dispose()
     {
-      if ( null != _timer )
+      if ( null != _task )
       {
-        _timer.cancel();
-        _timer = null;
+        _task.dispose();
+        _task = null;
       }
     }
 
     @Override
     public boolean isDisposed()
     {
-      return null == _timer;
+      return null == _task;
     }
   }
 }
