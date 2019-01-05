@@ -2,6 +2,9 @@
 
 * Ensure tests all verify that predicates can accept supertypes of T
 
+* Every supplier/predicate/function passed to an operator should be tested to ensure errors are
+  caught if thrown.
+
 * Ensure tests all verify that take control streams gracefully handle completion and error signals.
 
 * Ensure tests verify scenario where stream has a `takeWhile( v -> false )` to make sure we correctly
