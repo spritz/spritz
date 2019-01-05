@@ -10,17 +10,17 @@ final class GenerateStreamSource<T>
   extends AbstractStream<T>
 {
   @Nonnull
-  private final Callable<T> _supplier;
+  private final Callable<T> _callable;
 
-  GenerateStreamSource( @Nonnull final Callable<T> supplier )
+  GenerateStreamSource( @Nonnull final Callable<T> callable )
   {
-    _supplier = Objects.requireNonNull( supplier );
+    _callable = Objects.requireNonNull( callable );
   }
 
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _supplier );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _callable );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
@@ -30,13 +30,13 @@ final class GenerateStreamSource<T>
   {
     private final Flow.Subscriber<? super T> _subscriber;
     @Nonnull
-    private final Callable<T> _supplier;
+    private final Callable<T> _callable;
     private boolean _done;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Callable<T> supplier )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Callable<T> callable )
     {
       _subscriber = Objects.requireNonNull( subscriber );
-      _supplier = supplier;
+      _callable = callable;
     }
 
     void pushData()
@@ -45,7 +45,7 @@ final class GenerateStreamSource<T>
       {
         while ( isNotDisposed() )
         {
-          _subscriber.onNext( _supplier.call() );
+          _subscriber.onNext( _callable.call() );
         }
       }
       catch ( final Throwable error )
