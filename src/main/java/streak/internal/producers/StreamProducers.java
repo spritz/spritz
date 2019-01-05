@@ -1,6 +1,7 @@
 package streak.internal.producers;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -86,6 +87,35 @@ public interface StreamProducers
   }
 
   /**
+   * Creates an infinite stream that emits elements from the {@link Supplier} parameter.
+   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * otherwise this factory will produce an infinite loop.
+   *
+   * @param <T>      the type of elements contained in the stream.
+   * @param supplier the function that generates values to emit.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> generate( @Nonnull final Supplier<T> supplier )
+  {
+    return new GeneratePublisher<>( supplier );
+  }
+
+  /**
+   * Creates an infinite stream that emits elements from the {@link Supplier} parameter at specified period.
+   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * otherwise this factory will produce an infinite loop.
+   *
+   * @param <T>      the type of elements contained in the stream.
+   * @param supplier the function that generates values to emit.
+   * @param period   the period with which elements are emitted.
+   * @return the new stream.
+   */
+  default <T> Flow.Stream<T> generate( @Nonnull final Supplier<T> supplier, final int period )
+  {
+    return periodic( period ).map( e -> supplier.get() );
+  }
+
+  /**
    * Creates a stream that emits no elements, never completes and never fails.
    *
    * @param <T> the type of elements that the stream declared as containing (despite never containing any elements).
@@ -113,7 +143,7 @@ public interface StreamProducers
    * Create a stream that emits sequential numbers every specified interval of time.
    * The stream create a sequence of [start, start + count).
    *
-   * @param period the period with which emit elements.
+   * @param period the period with which elements are emitted.
    * @return the new stream.
    */
   default Flow.Stream<Integer> periodic( final int period )
