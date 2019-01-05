@@ -16,29 +16,53 @@ final class PeekOperator<T>
   @Nullable
   private final Consumer<? super T> _onNext;
   @Nullable
+  private final Consumer<? super T> _afterNext;
+  @Nullable
   private final Consumer<Throwable> _onError;
+  @Nullable
+  private final Consumer<Throwable> _afterError;
   @Nullable
   private final Runnable _onComplete;
   @Nullable
+  private final Runnable _afterComplete;
+  @Nullable
   private final Runnable _onDispose;
+  @Nullable
+  private final Runnable _afterDispose;
 
   PeekOperator( @Nonnull final Flow.Stream<? extends T> upstream,
                 @Nullable final Consumer<? super T> onNext,
+                @Nullable final Consumer<? super T> afterNext,
                 @Nullable final Consumer<Throwable> onError,
+                @Nullable final Consumer<Throwable> afterError,
                 @Nullable final Runnable onComplete,
-                @Nullable final Runnable onDispose )
+                @Nullable final Runnable afterComplete,
+                @Nullable final Runnable onDispose,
+                @Nullable final Runnable afterDispose )
   {
     _upstream = Objects.requireNonNull( upstream );
     _onNext = onNext;
+    _afterNext = afterNext;
     _onError = onError;
+    _afterError = afterError;
     _onComplete = onComplete;
+    _afterComplete = afterComplete;
     _onDispose = onDispose;
+    _afterDispose = afterDispose;
   }
 
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber, _onNext, _onError, _onComplete, _onDispose ) );
+    _upstream.subscribe( new WorkerSubscription<>( subscriber,
+                                                   _onNext,
+                                                   _afterNext,
+                                                   _onError,
+                                                   _afterError,
+                                                   _onComplete,
+                                                   _afterComplete,
+                                                   _onDispose,
+                                                   _afterDispose ) );
   }
 
   private static final class WorkerSubscription<T>
@@ -50,23 +74,39 @@ final class PeekOperator<T>
     @Nullable
     private final Consumer<? super T> _onNext;
     @Nullable
+    private final Consumer<? super T> _afterNext;
+    @Nullable
     private final Consumer<Throwable> _onError;
+    @Nullable
+    private final Consumer<Throwable> _afterError;
     @Nullable
     private final Runnable _onComplete;
     @Nullable
+    private final Runnable _afterComplete;
+    @Nullable
     private final Runnable _onDispose;
+    @Nullable
+    private final Runnable _afterDispose;
 
     WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber,
                         @Nullable final Consumer<? super T> onNext,
+                        @Nullable final Consumer<? super T> afterNext,
                         @Nullable final Consumer<Throwable> onError,
+                        @Nullable final Consumer<Throwable> afterError,
                         @Nullable final Runnable onComplete,
-                        @Nullable final Runnable onDispose )
+                        @Nullable final Runnable afterComplete,
+                        @Nullable final Runnable onDispose,
+                        @Nullable final Runnable afterDispose )
     {
       _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
       _onNext = onNext;
+      _afterNext = afterNext;
       _onError = onError;
+      _afterError = afterError;
       _onComplete = onComplete;
+      _afterComplete = afterComplete;
       _onDispose = onDispose;
+      _afterDispose = afterDispose;
     }
 
     /**
@@ -86,6 +126,10 @@ final class PeekOperator<T>
         _onNext.accept( item );
       }
       _downstreamSubscriber.onNext( item );
+      if ( null != _afterNext )
+      {
+        _afterNext.accept( item );
+      }
     }
 
     /**
@@ -98,6 +142,10 @@ final class PeekOperator<T>
         _onError.accept( throwable );
       }
       _downstreamSubscriber.onError( throwable );
+      if ( null != _afterError )
+      {
+        _afterError.accept( throwable );
+      }
     }
 
     /**
@@ -110,6 +158,10 @@ final class PeekOperator<T>
         _onComplete.run();
       }
       _downstreamSubscriber.onComplete();
+      if ( null != _afterComplete )
+      {
+        _afterComplete.run();
+      }
     }
 
     /**
@@ -134,6 +186,10 @@ final class PeekOperator<T>
           _onDispose.run();
         }
         getUpstream().dispose();
+        if ( null != _afterDispose )
+        {
+          _afterDispose.run();
+        }
       }
     }
   }
