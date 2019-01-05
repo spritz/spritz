@@ -1,17 +1,17 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class FailPublisher<T>
+final class FailStreamSource<T>
   extends AbstractStream<T>
 {
   @Nonnull
   private final Throwable _error;
 
-  FailPublisher( @Nonnull final Throwable error )
+  FailStreamSource( @Nonnull final Throwable error )
   {
     _error = Objects.requireNonNull( error );
   }

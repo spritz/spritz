@@ -1,4 +1,4 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
@@ -10,7 +10,7 @@ import streak.internal.AbstractStream;
  * be subscribed to multiple times and each individual subscription
  * will receive range of monotonically increasing integer values on demand.
  */
-final class RangePublisher
+final class RangeStreamSource
   extends AbstractStream<Integer>
 {
   /**
@@ -23,13 +23,13 @@ final class RangePublisher
   private final int _count;
 
   /**
-   * Constructs a RangePublisher instance with the given start and count values
+   * Constructs a RangeStreamSource instance with the given start and count values
    * that yields a sequence of [start, start + count).
    *
    * @param start the starting value of the range
    * @param count the number of items to emit
    */
-  RangePublisher( final int start, final int count )
+  RangeStreamSource( final int start, final int count )
   {
     assert count >= 0;
     _start = start;

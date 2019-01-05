@@ -1,4 +1,4 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
 import java.util.Objects;
 import java.util.Timer;
@@ -7,12 +7,12 @@ import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class PeriodicPublisher
+final class PeriodicStreamSource
   extends AbstractStream<Integer>
 {
   private final int _period;
 
-  PeriodicPublisher( final int period )
+  PeriodicStreamSource( final int period )
   {
     assert period >= 0;
     _period = period;

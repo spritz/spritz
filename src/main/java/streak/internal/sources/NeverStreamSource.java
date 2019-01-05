@@ -1,13 +1,13 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class NeverPublisher<T>
+final class NeverStreamSource<T>
   extends AbstractStream<T>
 {
-  NeverPublisher()
+  NeverStreamSource()
   {
   }
 

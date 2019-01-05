@@ -1,4 +1,4 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
 import java.util.Collection;
 import java.util.function.Supplier;
@@ -8,9 +8,9 @@ import javax.annotation.Nullable;
 import streak.Flow;
 
 /**
- * Container for methods that produce a single stream.
+ * Container for methods that create a stream.
  */
-public interface StreamProducers
+public interface StreamSources
 {
   /**
    * Creates a stream that emits the parameters as elements.
@@ -22,7 +22,7 @@ public interface StreamProducers
   @SuppressWarnings( "unchecked" )
   default <T> Flow.Stream<T> of( @Nonnull final T... values )
   {
-    return new StaticPublisher<>( values );
+    return new StaticStreamSource<>( values );
   }
 
   /**
@@ -59,7 +59,7 @@ public interface StreamProducers
    */
   default <T> Flow.Stream<T> fail( @Nonnull final Throwable error )
   {
-    return new FailPublisher<>( error );
+    return new FailStreamSource<>( error );
   }
 
   /**
@@ -71,7 +71,7 @@ public interface StreamProducers
    */
   default <T> Flow.Stream<T> fromCollection( @Nonnull final Collection<T> values )
   {
-    return new CollectionPublisher<>( values );
+    return new CollectionStreamSource<>( values );
   }
 
   /**
@@ -89,7 +89,7 @@ public interface StreamProducers
   /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter.
    * The user must be very careful to add a subsequent stream stage that disposes the stream
-   * otherwise this factory will produce an infinite loop.
+   * otherwise this source will result in an infinite loop.
    *
    * @param <T>      the type of elements contained in the stream.
    * @param supplier the function that generates values to emit.
@@ -97,13 +97,13 @@ public interface StreamProducers
    */
   default <T> Flow.Stream<T> generate( @Nonnull final Supplier<T> supplier )
   {
-    return new GeneratePublisher<>( supplier );
+    return new GenerateStreamSource<>( supplier );
   }
 
   /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter at specified period.
    * The user must be very careful to add a subsequent stream stage that disposes the stream
-   * otherwise this factory will produce an infinite loop.
+   * otherwise this source will result in an infinite loop.
    *
    * @param <T>      the type of elements contained in the stream.
    * @param supplier the function that generates values to emit.
@@ -123,7 +123,7 @@ public interface StreamProducers
    */
   default <T> Flow.Stream<T> never()
   {
-    return new NeverPublisher<>();
+    return new NeverStreamSource<>();
   }
 
   /**
@@ -136,7 +136,7 @@ public interface StreamProducers
    */
   default Flow.Stream<Integer> range( final int start, final int count )
   {
-    return new RangePublisher( start, count );
+    return new RangeStreamSource( start, count );
   }
 
   /**
@@ -148,7 +148,7 @@ public interface StreamProducers
    */
   default Flow.Stream<Integer> periodic( final int period )
   {
-    return new PeriodicPublisher( period );
+    return new PeriodicStreamSource( period );
   }
 
   @SuppressWarnings( "unchecked" )

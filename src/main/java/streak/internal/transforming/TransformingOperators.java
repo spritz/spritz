@@ -52,7 +52,7 @@ public interface TransformingOperators<T>
   /**
    * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
-   * elements emitted from all the streams produced by the mapper function. This method is equivalent to
+   * elements emitted from all the streams returned by the mapper function. This method is equivalent to
    * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
    * method is also an alias for {@link #concatMap(Function)}.
    *
@@ -71,7 +71,7 @@ public interface TransformingOperators<T>
   /**
    * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
-   * elements emitted from all the streams produced by the mapper function. This method is equivalent to
+   * elements emitted from all the streams returned by the mapper function. This method is equivalent to
    * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
    * method is also an alias for {@link #flatMap(Function)}.
    *
@@ -96,7 +96,7 @@ public interface TransformingOperators<T>
    * <p>If an input element is received when the merged stream has already subscribed to the maximum
    * number of inner streams as defined by the <code>maxConcurrency</code> parameter then the extra
    * elements are placed on an unbounded buffer. This can lead to significant memory pressure and out
-   * of memory conditions if the upstream produces elements at a faster rate than the merge stream can
+   * of memory conditions if the upstream emits elements at a faster rate than the merge stream can
    * complete the inner streams.</p>
    *
    * @param <DownstreamT>  the type of the elements that the {@code mapper} function emits.
@@ -113,7 +113,7 @@ public interface TransformingOperators<T>
   }
 
   /**
-   * Map each input element to a stream and flatten the elements produced by the inner stream into this stream.
+   * Map each input element to a stream and flatten the elements emitted by the inner stream into this stream.
    * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MAX_CONCURRENCY}.
    * Invoking this method is equivalent to invoking {@link #mergeMap(Function, int)} and passing the
    * {@link #DEFAULT_MAX_CONCURRENCY} constant as the {@code maxConcurrency} parameter.

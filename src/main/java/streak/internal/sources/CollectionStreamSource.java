@@ -1,17 +1,17 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
+import java.util.Collection;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class StaticPublisher<T>
+final class CollectionStreamSource<T>
   extends AbstractStream<T>
 {
-  @Nonnull
-  private final T[] _data;
+  private final Collection<T> _data;
 
-  StaticPublisher( @Nonnull final T[] data )
+  CollectionStreamSource( @Nonnull final Collection<T> data )
   {
     _data = Objects.requireNonNull( data );
   }
@@ -28,27 +28,23 @@ final class StaticPublisher<T>
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super T> _subscriber;
-    private final T[] _data;
-    /**
-     * Index into data.
-     * _offset == _data.length implies next action is onComplete.
-     * _offset == _data.length + 1 implies cancelled or onComplete has been invoked.
-     */
-    private int _offset;
+    private final Collection<T> _data;
+    private boolean _done;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Collection<T> data )
     {
       _subscriber = Objects.requireNonNull( subscriber );
-      _data = data;
-      _offset = 0;
+      _data = Objects.requireNonNull( data );
     }
 
     void pushData()
     {
-      while ( _offset < _data.length && isNotDisposed() )
+      for ( final T item : _data )
       {
-        final T item = _data[ _offset ];
-        _offset++;
+        if ( isDisposed() )
+        {
+          break;
+        }
         _subscriber.onNext( item );
       }
       if ( isNotDisposed() )
@@ -64,7 +60,7 @@ final class StaticPublisher<T>
     @Override
     public void dispose()
     {
-      _offset = _data.length + 1;
+      _done = true;
     }
 
     /**
@@ -73,7 +69,7 @@ final class StaticPublisher<T>
     @Override
     public boolean isDisposed()
     {
-      return _offset > _data.length;
+      return _done;
     }
   }
 }

@@ -1,25 +1,26 @@
-package streak.internal.producers;
+package streak.internal.sources;
 
-import java.util.Collection;
 import java.util.Objects;
+import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
 
-final class CollectionPublisher<T>
+final class GenerateStreamSource<T>
   extends AbstractStream<T>
 {
-  private final Collection<T> _data;
+  @Nonnull
+  private final Supplier<T> _supplier;
 
-  CollectionPublisher( @Nonnull final Collection<T> data )
+  GenerateStreamSource( @Nonnull final Supplier<T> supplier )
   {
-    _data = Objects.requireNonNull( data );
+    _supplier = Objects.requireNonNull( supplier );
   }
 
   @Override
   public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _supplier );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
@@ -28,29 +29,21 @@ final class CollectionPublisher<T>
     implements Flow.Subscription
   {
     private final Flow.Subscriber<? super T> _subscriber;
-    private final Collection<T> _data;
+    @Nonnull
+    private final Supplier<T> _supplier;
     private boolean _done;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Collection<T> data )
+    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final Supplier<T> supplier )
     {
       _subscriber = Objects.requireNonNull( subscriber );
-      _data = Objects.requireNonNull( data );
+      _supplier = supplier;
     }
 
     void pushData()
     {
-      for ( final T item : _data )
+      while ( isNotDisposed() )
       {
-        if ( isDisposed() )
-        {
-          break;
-        }
-        _subscriber.onNext( item );
-      }
-      if ( isNotDisposed() )
-      {
-        _subscriber.onComplete();
-        dispose();
+        _subscriber.onNext( _supplier.get() );
       }
     }
 
