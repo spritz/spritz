@@ -28,3 +28,7 @@
   - Use the term `signal` rather than `notification` or `event` or `message` when referring to invoking
     the `onError` or `onComplete` methods in downstream. It is unclear if there is a consistent term for
     passing the data element downstream.
+  - downstream and upstream seem reasonably useful descriptions defining which direction data is flowing.
+    However we don't have a good way to describe distinguish between each step or stage and the complete
+    stream definition nor the stream executable data (which is really a chain of subscriptions). `Stage`
+    seems like a useful term but the codebase has no consistent terminology at this point.
