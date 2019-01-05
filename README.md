@@ -33,6 +33,12 @@ Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-p
 
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
 
+**Sources**
+
+- [ ] `fromCallable(Callable)` - Like `fromSupplier(Supplier)` but will propagate error.
+- [ ] `fromRunnable(Runnable)` - Just emits completion or error.
+- [ ] `error(Throwable)` - alias for `fail(Throwable)`.
+
 **Elemental2 Sources**
 
 - [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
