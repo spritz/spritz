@@ -275,4 +275,16 @@ public interface FilteringOperators<T>
     return compose( s -> new FilterSuccessiveOperator<>( s, predicate ) );
   }
 
+  /**
+   * Emits the next item emitted by a stream, then periodically emits the latest item (if any)
+   * when the specified timeout elapses between them.
+   *
+   * @param timeout the minimum time between success items being emitted.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Flow.Stream<T> throttleLatest( final int timeout )
+  {
+    return compose( s -> new ThrottleLatestOperator<>( s, timeout ) );
+  }
 }
