@@ -11,7 +11,7 @@ final class BasicScheduler
   implements Scheduler, Disposable
 {
   private final long _schedulerStart = System.currentTimeMillis();
-  private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 100 );
+  private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1 );
 
   /**
    * {@inheritDoc}
@@ -49,7 +49,10 @@ final class BasicScheduler
                               final int initialDelay,
                               final int period )
   {
-    final ScheduledFuture<?> future = _executorService.schedule( task, now() + initialDelay, TimeUnit.MILLISECONDS );
+    final ScheduledFuture<?> future =
+      0 == period ?
+      _executorService.schedule( task, initialDelay, TimeUnit.MILLISECONDS ) :
+      _executorService.scheduleAtFixedRate( task, initialDelay, period, TimeUnit.MILLISECONDS );
     return new Disposable()
     {
       @Override
