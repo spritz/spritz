@@ -40,6 +40,15 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `fetch()` - Fetch/http controller that must make use of `AbortController`.
 - [ ] `webSocket()` - WebSocket source.
 
+**Peeking Operators**
+
+- [ ] `onSubscribe(Item)` - invoke method before subscription has been signalled.
+- [ ] `afterSubscribe(Item)` - invoke method after subscription has been signalled.
+- [ ] `afterNext(Item)` - invoke method after item has been emitted.
+- [ ] `afterError(Consumer<Throwable>)` - invoke method after error has been signalled.
+- [ ] `afterComplete()` - invoke method after complete has been signalled.
+- [ ] `afterTerminate(Item)` - invoke method after error or complete has been signalled.
+
 **Filtering Operators**
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
