@@ -2,7 +2,6 @@ package streak.internal.sources;
 
 import java.util.Objects;
 import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import streak.Flow;
 import streak.internal.AbstractStream;
