@@ -75,7 +75,6 @@ Other
 
 **Terminator Subscribers**
 
-- [ ] `toValue()` - Extract the first element from stream and return it. This only possible if no async.
 - [ ] `toList()` - Return all the values in stream as a list. This only possible if no async.
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 - [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).last(1).defaultIfEmpty(initialValue).toValue()` - Similar to scan except only final value is emitted.
