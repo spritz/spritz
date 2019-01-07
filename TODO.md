@@ -2,6 +2,8 @@
 
 * Ensure tests all verify that predicates can accept supertypes of T
 
+* Ensure tests verify that every stream source supports being disposed in `onNext(item)` invocation.
+
 * Every callable/supplier/predicate/runnable/function passed to an operator should be tested to ensure
   errors are caught and emitted as error signals.
 
