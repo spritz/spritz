@@ -44,8 +44,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 - [ ] `onSubscribe(Item)` - invoke method before subscription has been signalled.
 - [ ] `afterSubscribe(Item)` - invoke method after subscription has been signalled.
-- [ ] `onDispose(Item)` - invoke method before dispose called by downstream.
-- [ ] `afterDispose(Item)` - invoke method after dispose called by downstream.
 
 **Filtering Operators**
 

@@ -113,6 +113,34 @@ public interface PeekingOperators<T>
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
+   * parameter before the stream is disposed by a downstream stage.
+   *
+   * @param action the function called before the stream is disposed by a downstream stage.
+   * @return the new stream.
+   * @see #afterDispose(Runnable)
+   */
+  @Nonnull
+  default Flow.Stream<T> onDispose( @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( self(), null, null, null, null, null, null, action, null );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after the stream is disposed by a downstream stage.
+   *
+   * @param action the function called after the stream is disposed by a downstream stage.
+   * @return the new stream.
+   * @see #onDispose(Runnable)
+   */
+  @Nonnull
+  default Flow.Stream<T> afterDispose( @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( self(), null, null, null, null, null, null, null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
    * parameter before signalling complete or signalling error. If you need to know know
    * whether the stream failed or completed then use {@link #onError(Consumer)} and
    * {@link #onComplete(Runnable)}. In addition, the action is called if the stream is

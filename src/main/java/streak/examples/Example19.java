@@ -16,6 +16,10 @@ public class Example19
     System.out.println( "Second run" );
     System.out.println();
     peekAll( Streak.context().fail( new Error( "Bang!" ) ) ).subscribe( new LoggingSubscriber<>() );
+    System.out.println();
+    System.out.println( "Third run" );
+    System.out.println();
+    peekAll( Streak.context().range( 1, 5 ).takeUntil( e -> true ) ).subscribe( new LoggingSubscriber<>() );
   }
 
   @Nonnull
