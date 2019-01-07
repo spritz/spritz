@@ -3,7 +3,7 @@ package streak;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public abstract class StreamWithUpstream<T>
+abstract class StreamWithUpstream<T>
   implements Stream<T>
 {
   @Nonnull

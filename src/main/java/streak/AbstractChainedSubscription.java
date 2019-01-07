@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
 
-public abstract class AbstractChainedSubscription
+abstract class AbstractChainedSubscription
   implements Subscription
 {
   @Nullable

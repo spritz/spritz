@@ -3,7 +3,7 @@ package streak;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public abstract class SubscriptionWithDownstream<T>
+abstract class SubscriptionWithDownstream<T>
   extends AbstractChainedSubscription
   implements Subscriber<T>
 {
@@ -11,7 +11,7 @@ public abstract class SubscriptionWithDownstream<T>
   private final Subscriber<? super T> _downstreamSubscriber;
   private boolean _done;
 
-  public SubscriptionWithDownstream( @Nonnull final Subscriber<? super T> downstreamSubscriber )
+  SubscriptionWithDownstream( @Nonnull final Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -76,7 +76,7 @@ public abstract class SubscriptionWithDownstream<T>
    * @return the downstream subscriber.
    */
   @Nonnull
-  public final Subscriber<? super T> getDownstreamSubscriber()
+  final Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }
