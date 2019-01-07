@@ -79,8 +79,9 @@ final class RangeStreamSource
     {
       while ( _current <= _end && isNotDisposed() )
       {
-        _subscriber.onNext( _current );
+        final int value = _current;
         _current++;
+        _subscriber.onNext( value );
       }
       if ( isNotDisposed() )
       {
