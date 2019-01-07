@@ -48,6 +48,7 @@ final class ScanOperator<UpstreamT, DownstreamT>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onNext( @Nonnull final UpstreamT item )
     {
       _value = _accumulator.accumulate( item, _value );

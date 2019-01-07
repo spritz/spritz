@@ -67,6 +67,7 @@ final class MergeOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
       final InnerSubscription<T> subscription = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
@@ -89,6 +90,7 @@ final class MergeOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onError( @Nonnull final Throwable throwable )
     {
       _activeCount = -1;

@@ -45,6 +45,7 @@ final class ExhaustOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
       if ( null == _activeStream )
@@ -57,6 +58,7 @@ final class ExhaustOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onError( @Nonnull final Throwable throwable )
     {
       _activeStream = null;

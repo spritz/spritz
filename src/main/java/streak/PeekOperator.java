@@ -109,6 +109,7 @@ final class PeekOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onSubscribe( @Nonnull final Subscription subscription )
     {
       setUpstream( subscription );
@@ -132,6 +133,7 @@ final class PeekOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onError( @Nonnull final Throwable throwable )
     {
       if ( null != _onError )
@@ -148,6 +150,7 @@ final class PeekOperator<T>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onComplete()
     {
       if ( null != _onComplete )

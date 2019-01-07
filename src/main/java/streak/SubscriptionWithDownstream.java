@@ -19,6 +19,7 @@ abstract class SubscriptionWithDownstream<T>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onSubscribe( @Nonnull final Subscription subscription )
   {
     setUpstream( subscription );
@@ -28,6 +29,7 @@ abstract class SubscriptionWithDownstream<T>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onNext( @Nonnull final T item )
   {
     getDownstreamSubscriber().onNext( item );
@@ -36,6 +38,7 @@ abstract class SubscriptionWithDownstream<T>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onError( @Nonnull final Throwable throwable )
   {
     _done = true;
@@ -45,6 +48,7 @@ abstract class SubscriptionWithDownstream<T>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onComplete()
   {
     _done = true;

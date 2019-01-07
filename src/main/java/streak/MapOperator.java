@@ -41,6 +41,7 @@ final class MapOperator<UpstreamT, DownstreamT>
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onNext( @Nonnull final UpstreamT item )
     {
       getDownstreamSubscriber().onNext( _transform.apply( item ) );

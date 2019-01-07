@@ -18,6 +18,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onSubscribe( @Nonnull final Subscription subscription )
   {
     setUpstream( subscription );
@@ -27,6 +28,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onError( @Nonnull final Throwable throwable )
   {
     getDownstreamSubscriber().onError( throwable );
@@ -35,6 +37,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   /**
    * {@inheritDoc}
    */
+  @Override
   public void onComplete()
   {
     getDownstreamSubscriber().onComplete();
