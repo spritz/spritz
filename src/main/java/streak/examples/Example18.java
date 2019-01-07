@@ -10,7 +10,7 @@ public class Example18
   public static void main( String[] args )
   {
     final AtomicInteger counter = new AtomicInteger();
-    Streak.context()
+    Streak
       .generate( counter::incrementAndGet, 50 )
       .throttleLatest( 210 )
       .take( 12 )

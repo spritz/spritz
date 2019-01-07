@@ -7,7 +7,8 @@ public class Example14
 {
   public static void main( String[] args )
   {
-    Streak.context().fail( new IOException() )
+    Streak
+      .fail( new IOException() )
       .subscribe( new LoggingSubscriber<>() );
   }
 }

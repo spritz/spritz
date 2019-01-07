@@ -613,7 +613,7 @@ public interface Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     s.add( self() );
     Collections.addAll( s, streams );
-    return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+    return compose( p -> Streak.fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
   }
 
   /**
@@ -632,7 +632,7 @@ public interface Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     Collections.addAll( s, streams );
     s.add( self() );
-    return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+    return compose( p -> Streak.fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
   }
 
   /**
@@ -646,7 +646,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> startWith( @Nonnull final T value )
   {
-    return prepend( Streak.context().of( value ) );
+    return prepend( Streak.of( value ) );
   }
 
   /**
@@ -660,7 +660,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> endWith( @Nonnull final T value )
   {
-    return append( Streak.context().of( value ) );
+    return append( Streak.of( value ) );
   }
 
   /**

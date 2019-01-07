@@ -6,7 +6,8 @@ public class Example13
 {
   public static void main( String[] args )
   {
-    Streak.context().empty()
+    Streak
+      .empty()
       .defaultIfEmpty( 23 )
       .subscribe( new LoggingSubscriber<>() );
   }
