@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 public abstract class StreamWithUpstream<T>
-  extends AbstractStream<T>
+  implements Stream<T>
 {
   @Nonnull
   private final Stream<? extends T> _upstream;

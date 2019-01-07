@@ -46,7 +46,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( self(), action, null, null, null, null, null, null, null );
+    return new PeekOperator<>( this, action, null, null, null, null, null, null, null );
   }
 
   /**
@@ -59,7 +59,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( self(), null, action, null, null, null, null, null, null );
+    return new PeekOperator<>( this, null, action, null, null, null, null, null, null );
   }
 
   /**
@@ -73,7 +73,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( self(), null, null, action, null, null, null, null, null );
+    return new PeekOperator<>( this, null, null, action, null, null, null, null, null );
   }
 
   /**
@@ -87,7 +87,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( self(), null, null, null, action, null, null, null, null );
+    return new PeekOperator<>( this, null, null, null, action, null, null, null, null );
   }
 
   /**
@@ -101,7 +101,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, null, null, action, null, null, null );
+    return new PeekOperator<>( this, null, null, null, null, action, null, null, null );
   }
 
   /**
@@ -115,7 +115,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, null, null, null, action, null, null );
+    return new PeekOperator<>( this, null, null, null, null, null, action, null, null );
   }
 
   /**
@@ -129,7 +129,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onDispose( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, null, null, null, null, action, null );
+    return new PeekOperator<>( this, null, null, null, null, null, null, action, null );
   }
 
   /**
@@ -143,7 +143,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterDispose( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, null, null, null, null, null, action );
+    return new PeekOperator<>( this, null, null, null, null, null, null, null, action );
   }
 
   /**
@@ -160,7 +160,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, e -> action.run(), null, action, null, action, null );
+    return new PeekOperator<>( this, null, null, e -> action.run(), null, action, null, action, null );
   }
 
   /**
@@ -177,7 +177,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( self(), null, null, null, e -> action.run(), null, action, null, action );
+    return new PeekOperator<>( this, null, null, null, e -> action.run(), null, action, null, action );
   }
 
   /**
@@ -611,7 +611,7 @@ public interface Stream<T>
   default Stream<T> append( @Nonnull final Stream<T>... streams )
   {
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
-    s.add( self() );
+    s.add( this );
     Collections.addAll( s, streams );
     return compose( p -> Streak.fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
   }
@@ -631,7 +631,7 @@ public interface Stream<T>
   {
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     Collections.addAll( s, streams );
-    s.add( self() );
+    s.add( this );
     return compose( p -> Streak.fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
   }
 
@@ -697,7 +697,7 @@ public interface Stream<T>
 
   default void terminate( @Nonnull final Supplier<Subscriber<T>> terminateFunction )
   {
-    self().subscribe( new ValidatingSubscriber<>( terminateFunction.get() ) );
+    this.subscribe( new ValidatingSubscriber<>( terminateFunction.get() ) );
   }
 
   /**
@@ -712,14 +712,6 @@ public interface Stream<T>
   @Nonnull
   default <DownstreamT, S extends Stream<DownstreamT>> S compose( @Nonnull final Function<Stream<T>, S> function )
   {
-    return function.apply( new ValidatingStream<>( self() ) );
+    return function.apply( new ValidatingStream<>( this ) );
   }
-
-  /**
-   * Return the reference to the stream that the extension is extending.
-   *
-   * @return the underlying stream.
-   */
-  @Nonnull
-  Stream<T> self();
 }

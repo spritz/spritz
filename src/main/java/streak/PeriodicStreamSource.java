@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
 
 final class PeriodicStreamSource
-  extends AbstractStream<Integer>
+  implements Stream<Integer>
 {
   private final int _period;
 

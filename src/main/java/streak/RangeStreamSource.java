@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  * will receive range of monotonically increasing integer values on demand.
  */
 final class RangeStreamSource
-  extends AbstractStream<Integer>
+  implements Stream<Integer>
 {
   /**
    * The starting value of the range.

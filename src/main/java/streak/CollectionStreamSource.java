@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class CollectionStreamSource<T>
-  extends AbstractStream<T>
+  implements Stream<T>
 {
   private final Collection<T> _data;
 

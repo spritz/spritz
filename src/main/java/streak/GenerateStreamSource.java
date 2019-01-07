@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import javax.annotation.Nonnull;
 
 final class GenerateStreamSource<T>
-  extends AbstractStream<T>
+  implements Stream<T>
 {
   @Nonnull
   private final Callable<T> _callable;
