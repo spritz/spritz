@@ -3,28 +3,29 @@ package streak.internal.transforming;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.AbstractStream;
 
 final class SwitchOperator<T>
   extends AbstractStream<T>
 {
   @Nonnull
-  private final Flow.Stream<Flow.Stream<T>> _upstream;
+  private final Stream<Stream<T>> _upstream;
 
-  SwitchOperator( @Nonnull final Flow.Stream<Flow.Stream<T>> upstream )
+  SwitchOperator( @Nonnull final Stream<Stream<T>> upstream )
   {
     _upstream = Objects.requireNonNull( upstream );
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends TransformSubscription<Flow.Stream<T>, T>
+    extends TransformSubscription<Stream<T>, T>
     implements InnerSubscription.ContainerSubscription<T>
   {
     /**
@@ -38,7 +39,7 @@ final class SwitchOperator<T>
      */
     private boolean _upstreamCompleted;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber )
     {
       super( downstreamSubscriber );
       _activeStream = null;
@@ -47,7 +48,7 @@ final class SwitchOperator<T>
     /**
      * {@inheritDoc}
      */
-    public void onNext( @Nonnull final Flow.Stream<T> item )
+    public void onNext( @Nonnull final Stream<T> item )
     {
       if ( null != _activeStream )
       {

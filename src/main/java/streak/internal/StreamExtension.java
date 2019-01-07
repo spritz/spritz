@@ -2,7 +2,7 @@ package streak.internal;
 
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
 
 /**
  * Base interface used to define stream extensions.
@@ -21,7 +21,7 @@ public interface StreamExtension<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT, S extends Flow.Stream<DownstreamT>> S compose( @Nonnull final Function<Flow.Stream<T>, S> function )
+  default <DownstreamT, S extends Stream<DownstreamT>> S compose( @Nonnull final Function<Stream<T>, S> function )
   {
     return function.apply( new ValidatingStream<>( self() ) );
   }
@@ -32,5 +32,5 @@ public interface StreamExtension<T>
    * @return the underlying stream.
    */
   @Nonnull
-  Flow.Stream<T> self();
+  Stream<T> self();
 }

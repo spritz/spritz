@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
 
 /**
  * Container for methods that create a stream.
@@ -21,7 +21,7 @@ public interface StreamSources
    * @return the new stream.
    */
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> of( @Nonnull final T... values )
+  default <T> Stream<T> of( @Nonnull final T... values )
   {
     return new StaticStreamSource<>( values );
   }
@@ -33,7 +33,7 @@ public interface StreamSources
    * @return the new stream.
    */
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> empty()
+  default <T> Stream<T> empty()
   {
     return of();
   }
@@ -46,7 +46,7 @@ public interface StreamSources
    * @return the new stream.
    */
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> ofNullable( @Nullable final T value )
+  default <T> Stream<T> ofNullable( @Nullable final T value )
   {
     return null == value ? empty() : of( value );
   }
@@ -60,7 +60,7 @@ public interface StreamSources
    * @return the new stream.
    * @see #error(Throwable)
    */
-  default <T> Flow.Stream<T> fail( @Nonnull final Throwable error )
+  default <T> Stream<T> fail( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
   }
@@ -74,7 +74,7 @@ public interface StreamSources
    * @return the new stream.
    * @see #fail(Throwable)
    */
-  default <T> Flow.Stream<T> error( @Nonnull final Throwable error )
+  default <T> Stream<T> error( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
   }
@@ -86,7 +86,7 @@ public interface StreamSources
    * @param values the collection of values to emit.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> fromCollection( @Nonnull final Collection<T> values )
+  default <T> Stream<T> fromCollection( @Nonnull final Collection<T> values )
   {
     return new CollectionStreamSource<>( values );
   }
@@ -98,7 +98,7 @@ public interface StreamSources
    * @param stream the java.util.stream.Stream stream of values to emit.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> fromStream( @Nonnull final java.util.stream.Stream<T> stream )
+  default <T> Stream<T> fromStream( @Nonnull final java.util.stream.Stream<T> stream )
   {
     return fromCollection( stream.collect( Collectors.toList() ) );
   }
@@ -112,7 +112,7 @@ public interface StreamSources
    * @param callable the function that generates values to emit.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> fromCallable( @Nonnull final Callable<T> callable )
+  default <T> Stream<T> fromCallable( @Nonnull final Callable<T> callable )
   {
     return new GenerateStreamSource<>( callable );
   }
@@ -126,7 +126,7 @@ public interface StreamSources
    * @param supplier the function that generates values to emit.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> fromSupplier( @Nonnull final Supplier<T> supplier )
+  default <T> Stream<T> fromSupplier( @Nonnull final Supplier<T> supplier )
   {
     return new GenerateStreamSource<>( supplier::get );
   }
@@ -139,7 +139,7 @@ public interface StreamSources
    * @param runnable the runnable to execute.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> fromRunnable( @Nonnull final Runnable runnable )
+  default <T> Stream<T> fromRunnable( @Nonnull final Runnable runnable )
   {
     return new RunnableStreamSource<>( runnable );
   }
@@ -154,7 +154,7 @@ public interface StreamSources
    * @param period   the period with which elements are emitted.
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> generate( @Nonnull final Supplier<T> supplier, final int period )
+  default <T> Stream<T> generate( @Nonnull final Supplier<T> supplier, final int period )
   {
     return periodic( period ).map( e -> supplier.get() );
   }
@@ -165,7 +165,7 @@ public interface StreamSources
    * @param <T> the type of elements that the stream declared as containing (despite never containing any elements).
    * @return the new stream.
    */
-  default <T> Flow.Stream<T> never()
+  default <T> Stream<T> never()
   {
     return new NeverStreamSource<>();
   }
@@ -178,7 +178,7 @@ public interface StreamSources
    * @param count the number of items to emit
    * @return the new stream.
    */
-  default Flow.Stream<Integer> range( final int start, final int count )
+  default Stream<Integer> range( final int start, final int count )
   {
     return new RangeStreamSource( start, count );
   }
@@ -190,19 +190,19 @@ public interface StreamSources
    * @param period the period with which elements are emitted.
    * @return the new stream.
    */
-  default Flow.Stream<Integer> periodic( final int period )
+  default Stream<Integer> periodic( final int period )
   {
     return new PeriodicStreamSource( period );
   }
 
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> concat( @Nonnull final Flow.Stream<T>... upstreams )
+  default <T> Stream<T> concat( @Nonnull final Stream<T>... upstreams )
   {
     return of( upstreams ).concatMap( v -> v );
   }
 
   @SuppressWarnings( "unchecked" )
-  default <T> Flow.Stream<T> merge( @Nonnull final Flow.Stream<T>... upstreams )
+  default <T> Stream<T> merge( @Nonnull final Stream<T>... upstreams )
   {
     return of( upstreams ).mergeMap( v -> v );
   }

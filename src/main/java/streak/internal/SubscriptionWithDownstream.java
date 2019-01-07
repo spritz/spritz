@@ -2,17 +2,18 @@ package streak.internal;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 
 public abstract class SubscriptionWithDownstream<T>
   extends AbstractChainedSubscription
-  implements Flow.Subscriber<T>
+  implements Subscriber<T>
 {
   @Nonnull
-  private final Flow.Subscriber<? super T> _downstreamSubscriber;
+  private final Subscriber<? super T> _downstreamSubscriber;
   private boolean _done;
 
-  public SubscriptionWithDownstream( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber )
+  public SubscriptionWithDownstream( @Nonnull final Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -20,7 +21,7 @@ public abstract class SubscriptionWithDownstream<T>
   /**
    * {@inheritDoc}
    */
-  public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+  public void onSubscribe( @Nonnull final Subscription subscription )
   {
     setUpstream( subscription );
     _downstreamSubscriber.onSubscribe( this );
@@ -77,7 +78,7 @@ public abstract class SubscriptionWithDownstream<T>
    * @return the downstream subscriber.
    */
   @Nonnull
-  public final Flow.Subscriber<? super T> getDownstreamSubscriber()
+  public final Subscriber<? super T> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }

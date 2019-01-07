@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import streak.Flow;
 import streak.Streak;
+import streak.Stream;
 import streak.internal.StreamExtension;
 
 /**
@@ -31,7 +31,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> mapper )
+  default <DownstreamT> Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ) );
   }
@@ -44,7 +44,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> mapTo( final DownstreamT value )
+  default <DownstreamT> Stream<DownstreamT> mapTo( final DownstreamT value )
   {
     return map( v -> value );
   }
@@ -63,7 +63,7 @@ public interface TransformingOperators<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> flatMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  default <DownstreamT> Stream<DownstreamT> flatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return mergeMap( mapper, 1 );
   }
@@ -82,7 +82,7 @@ public interface TransformingOperators<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> concatMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  default <DownstreamT> Stream<DownstreamT> concatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return flatMap( mapper );
   }
@@ -106,7 +106,7 @@ public interface TransformingOperators<T>
    * @see #mergeMap(Function)
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper,
+  default <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                            final int maxConcurrency )
   {
     return compose( p -> new MapOperator<>( p, mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) ) );
@@ -124,7 +124,7 @@ public interface TransformingOperators<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  default <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return mergeMap( mapper, DEFAULT_MAX_CONCURRENCY );
   }
@@ -143,7 +143,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> switchMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  default <DownstreamT> Stream<DownstreamT> switchMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ).compose( SwitchOperator::new ) );
   }
@@ -162,7 +162,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> exhaustMap( @Nonnull final Function<T, Flow.Stream<DownstreamT>> mapper )
+  default <DownstreamT> Stream<DownstreamT> exhaustMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ).compose( ExhaustOperator::new ) );
   }
@@ -173,13 +173,13 @@ public interface TransformingOperators<T>
    *
    * @param streams the streams to append to this stream.
    * @return the new stream.
-   * @see #prepend(Flow.Stream[])
+   * @see #prepend(Stream[])
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
-  default Flow.Stream<T> append( @Nonnull final Flow.Stream<T>... streams )
+  default Stream<T> append( @Nonnull final Stream<T>... streams )
   {
-    final ArrayList<Flow.Stream<T>> s = new ArrayList<>( streams.length + 1 );
+    final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     s.add( self() );
     Collections.addAll( s, streams );
     return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
@@ -192,13 +192,13 @@ public interface TransformingOperators<T>
    *
    * @param streams the stream to prepend to this stream.
    * @return the new stream.
-   * @see #prepend(Flow.Stream[])
+   * @see #prepend(Stream[])
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
-  default Flow.Stream<T> prepend( @Nonnull final Flow.Stream<T>... streams )
+  default Stream<T> prepend( @Nonnull final Stream<T>... streams )
   {
-    final ArrayList<Flow.Stream<T>> s = new ArrayList<>( streams.length + 1 );
+    final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     Collections.addAll( s, streams );
     s.add( self() );
     return compose( p -> Streak.context().fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
@@ -209,11 +209,11 @@ public interface TransformingOperators<T>
    *
    * @param value the initial value to emit.
    * @return the new stream.
-   * @see #prepend(Flow.Stream[])
+   * @see #prepend(Stream[])
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
-  default Flow.Stream<T> startWith( @Nonnull final T value )
+  default Stream<T> startWith( @Nonnull final T value )
   {
     return prepend( Streak.context().of( value ) );
   }
@@ -223,11 +223,11 @@ public interface TransformingOperators<T>
    *
    * @param value the last value to emit.
    * @return the new stream.
-   * @see #append(Flow.Stream[])
+   * @see #append(Stream[])
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
-  default Flow.Stream<T> endWith( @Nonnull final T value )
+  default Stream<T> endWith( @Nonnull final T value )
   {
     return append( Streak.context().of( value ) );
   }
@@ -241,7 +241,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default <DownstreamT> Flow.Stream<DownstreamT> scan( @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
+  default <DownstreamT> Stream<DownstreamT> scan( @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
                                                        @Nonnull final DownstreamT initialValue )
   {
     return compose( p -> new ScanOperator<>( p, accumulatorFunction, initialValue ) );
@@ -254,7 +254,7 @@ public interface TransformingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
+  default Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
   {
     return compose( p -> new DefaultIfEmptyOperator<>( p, defaultValue ) );
   }

@@ -3,18 +3,19 @@ package streak.internal.transforming;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.AbstractStream;
 
 final class MapOperator<UpstreamT, DownstreamT>
   extends AbstractStream<DownstreamT>
 {
   @Nonnull
-  private final Flow.Stream<? extends UpstreamT> _upstream;
+  private final Stream<? extends UpstreamT> _upstream;
   @Nonnull
   private final Function<UpstreamT, DownstreamT> _transform;
 
-  MapOperator( @Nonnull final Flow.Stream<? extends UpstreamT> upstream,
+  MapOperator( @Nonnull final Stream<? extends UpstreamT> upstream,
                @Nonnull final Function<UpstreamT, DownstreamT> transform )
   {
     _upstream = Objects.requireNonNull( upstream );
@@ -22,7 +23,7 @@ final class MapOperator<UpstreamT, DownstreamT>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super DownstreamT> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber, _transform ) );
   }
@@ -33,7 +34,7 @@ final class MapOperator<UpstreamT, DownstreamT>
     @Nonnull
     private final Function<UpstreamT, DownstreamT> _transform;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber,
                         @Nonnull final Function<UpstreamT, DownstreamT> transform )
     {
       super( downstreamSubscriber );

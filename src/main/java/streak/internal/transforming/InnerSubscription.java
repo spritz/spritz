@@ -2,10 +2,12 @@ package streak.internal.transforming;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
+import streak.Subscription;
 
 final class InnerSubscription<T>
-  implements Flow.Subscription, Flow.Subscriber<T>
+  implements Subscription, Subscriber<T>
 {
   interface ContainerSubscription<T>
   {
@@ -17,14 +19,14 @@ final class InnerSubscription<T>
   @Nonnull
   private final ContainerSubscription<T> _container;
   @Nonnull
-  private final Flow.Stream<T> _upstream;
+  private final Stream<T> _upstream;
   @Nonnull
-  private final Flow.Subscriber<? super T> _downstream;
-  private Flow.Subscription _upstreamSubscription;
+  private final Subscriber<? super T> _downstream;
+  private Subscription _upstreamSubscription;
 
   InnerSubscription( @Nonnull final ContainerSubscription<T> container,
-                     @Nonnull final Flow.Subscriber<? super T> downstream,
-                     @Nonnull final Flow.Stream<T> upstream )
+                     @Nonnull final Subscriber<? super T> downstream,
+                     @Nonnull final Stream<T> upstream )
   {
     _container = Objects.requireNonNull( container );
     _downstream = Objects.requireNonNull( downstream );
@@ -53,7 +55,7 @@ final class InnerSubscription<T>
   }
 
   @Override
-  public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+  public void onSubscribe( @Nonnull final Subscription subscription )
   {
     assert null == _upstreamSubscription;
     _upstreamSubscription = subscription;

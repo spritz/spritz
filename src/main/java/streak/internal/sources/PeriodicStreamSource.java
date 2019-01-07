@@ -4,7 +4,8 @@ import arez.Disposable;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractStream;
 import streak.schedulers.Schedulers;
 
@@ -20,7 +21,7 @@ final class PeriodicStreamSource
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super Integer> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _period );
     subscriber.onSubscribe( subscription );
@@ -28,15 +29,15 @@ final class PeriodicStreamSource
   }
 
   private static final class WorkerSubscription
-    implements Flow.Subscription
+    implements Subscription
   {
-    private final Flow.Subscriber<? super Integer> _subscriber;
+    private final Subscriber<? super Integer> _subscriber;
     private final int _period;
     private int _counter;
     @Nullable
     private Disposable _task;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, final int period )
+    WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _period = period;

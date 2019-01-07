@@ -2,7 +2,8 @@ package streak.internal.transforming;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 import streak.internal.SubscriptionWithDownstream;
 
@@ -12,14 +13,14 @@ final class DefaultIfEmptyOperator<T>
   @Nonnull
   private final T _defaultValue;
 
-  DefaultIfEmptyOperator( @Nonnull final Flow.Stream<? extends T> upstream, @Nonnull final T defaultValue )
+  DefaultIfEmptyOperator( @Nonnull final Stream<? extends T> upstream, @Nonnull final T defaultValue )
   {
     super( upstream );
     _defaultValue = Objects.requireNonNull( defaultValue );
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _defaultValue ) );
   }
@@ -31,7 +32,7 @@ final class DefaultIfEmptyOperator<T>
     private final T _defaultValue;
     private boolean _elementEmitted;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T defaultValue )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final T defaultValue )
     {
       super( subscriber );
       _defaultValue = defaultValue;

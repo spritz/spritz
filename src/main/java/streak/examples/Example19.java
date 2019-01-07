@@ -1,8 +1,8 @@
 package streak.examples;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
 import streak.Streak;
+import streak.Stream;
 
 public class Example19
 {
@@ -23,7 +23,7 @@ public class Example19
   }
 
   @Nonnull
-  private static <T> Flow.Stream<T> peekAll( final Flow.Stream<T> stream )
+  private static <T> Stream<T> peekAll( @Nonnull final Stream<T> stream )
   {
     return stream
       .onNext( e -> System.out.println( "\uD83D\uDC41 onNext(" + e + ")" ) )

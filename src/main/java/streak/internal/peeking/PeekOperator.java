@@ -4,7 +4,9 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractChainedSubscription;
 import streak.internal.AbstractStream;
 
@@ -12,7 +14,7 @@ final class PeekOperator<T>
   extends AbstractStream<T>
 {
   @Nonnull
-  private final Flow.Stream<? extends T> _upstream;
+  private final Stream<? extends T> _upstream;
   @Nullable
   private final Consumer<? super T> _onNext;
   @Nullable
@@ -30,7 +32,7 @@ final class PeekOperator<T>
   @Nullable
   private final Runnable _afterDispose;
 
-  PeekOperator( @Nonnull final Flow.Stream<? extends T> upstream,
+  PeekOperator( @Nonnull final Stream<? extends T> upstream,
                 @Nullable final Consumer<? super T> onNext,
                 @Nullable final Consumer<? super T> afterNext,
                 @Nullable final Consumer<Throwable> onError,
@@ -52,7 +54,7 @@ final class PeekOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber,
                                                    _onNext,
@@ -67,10 +69,10 @@ final class PeekOperator<T>
 
   private static final class WorkerSubscription<T>
     extends AbstractChainedSubscription
-    implements Flow.Subscriber<T>
+    implements Subscriber<T>
   {
     @Nonnull
-    private final Flow.Subscriber<? super T> _downstreamSubscriber;
+    private final Subscriber<? super T> _downstreamSubscriber;
     @Nullable
     private final Consumer<? super T> _onNext;
     @Nullable
@@ -88,7 +90,7 @@ final class PeekOperator<T>
     @Nullable
     private final Runnable _afterDispose;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
                         @Nullable final Consumer<? super T> onNext,
                         @Nullable final Consumer<? super T> afterNext,
                         @Nullable final Consumer<Throwable> onError,
@@ -112,7 +114,7 @@ final class PeekOperator<T>
     /**
      * {@inheritDoc}
      */
-    public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+    public void onSubscribe( @Nonnull final Subscription subscription )
     {
       setUpstream( subscription );
       _downstreamSubscriber.onSubscribe( this );

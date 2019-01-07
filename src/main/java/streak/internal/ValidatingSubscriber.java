@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import static org.realityforge.braincheck.Guards.*;
 
 public final class ValidatingSubscriber<T>
-  implements Flow.Subscriber<T>
+  implements Subscriber<T>
 {
   private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
 
@@ -21,18 +22,18 @@ public final class ValidatingSubscriber<T>
   }
 
   @Nonnull
-  private final Flow.Subscriber<T> _target;
+  private final Subscriber<T> _target;
   @Nonnull
   private State _state;
 
-  public ValidatingSubscriber( @Nonnull final Flow.Subscriber<T> target )
+  public ValidatingSubscriber( @Nonnull final Subscriber<T> target )
   {
     _target = Objects.requireNonNull( target );
     _state = State.CREATED;
   }
 
   @Override
-  public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+  public void onSubscribe( @Nonnull final Subscription subscription )
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
@@ -196,16 +197,16 @@ public final class ValidatingSubscriber<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Flow.Subscription
+    implements Subscription
   {
     @Nonnull
     private final ValidatingSubscriber<T> _subscriber;
     @Nonnull
-    private final Flow.Subscription _subscription;
+    private final Subscription _subscription;
     private boolean _disposed;
 
     WorkerSubscription( @Nonnull final ValidatingSubscriber<T> subscriber,
-                        @Nonnull final Flow.Subscription subscription )
+                        @Nonnull final Subscription subscription )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _subscription = Objects.requireNonNull( subscription );

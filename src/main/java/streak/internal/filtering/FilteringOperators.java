@@ -3,7 +3,7 @@ package streak.internal.filtering;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
 import streak.internal.StreamExtension;
 
 /**
@@ -23,7 +23,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
+  default Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new PredicateFilterStream<>( p, predicate ) );
   }
@@ -34,7 +34,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> ignoreElements()
+  default Stream<T> ignoreElements()
   {
     return filter( e -> false );
   }
@@ -51,7 +51,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> distinct()
+  default Stream<T> distinct()
   {
     return compose( DistinctOperator::new );
   }
@@ -66,7 +66,7 @@ public interface FilteringOperators<T>
    * @see #limit(int)
    */
   @Nonnull
-  default Flow.Stream<T> take( final int maxSize )
+  default Stream<T> take( final int maxSize )
   {
     return limit( maxSize );
   }
@@ -81,7 +81,7 @@ public interface FilteringOperators<T>
    * @see #take(int)
    */
   @Nonnull
-  default Flow.Stream<T> limit( final int maxSize )
+  default Stream<T> limit( final int maxSize )
   {
     return compose( p -> new LimitOperator<>( p, maxSize ) );
   }
@@ -96,7 +96,7 @@ public interface FilteringOperators<T>
    * @see #limit(int)
    */
   @Nonnull
-  default Flow.Stream<T> first()
+  default Stream<T> first()
   {
     return take( 1 );
   }
@@ -109,7 +109,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> skip( final int count )
+  default Stream<T> skip( final int count )
   {
     return compose( p -> new SkipOperator<>( p, count ) );
   }
@@ -124,7 +124,7 @@ public interface FilteringOperators<T>
    * @see #last(int)
    */
   @Nonnull
-  default Flow.Stream<T> last()
+  default Stream<T> last()
   {
     return last( 1 );
   }
@@ -140,7 +140,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> last( final int maxElements )
+  default Stream<T> last( final int maxElements )
   {
     return compose( p -> new LastOperator<>( p, maxElements ) );
   }
@@ -157,7 +157,7 @@ public interface FilteringOperators<T>
    * @see #last(int)
    */
   @Nonnull
-  default Flow.Stream<T> takeLast( final int maxElements )
+  default Stream<T> takeLast( final int maxElements )
   {
     return last( maxElements );
   }
@@ -174,7 +174,7 @@ public interface FilteringOperators<T>
    * @see #dropUntil(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
+  default Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new DropWhileOperator<>( p, predicate ) );
   }
@@ -191,7 +191,7 @@ public interface FilteringOperators<T>
    * @see #dropWhile(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> dropUntil( @Nonnull final Predicate<? super T> predicate )
+  default Stream<T> dropUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return dropWhile( predicate.negate() );
   }
@@ -208,7 +208,7 @@ public interface FilteringOperators<T>
    * @see #takeUntil(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> takeWhile( @Nonnull final Predicate<? super T> predicate )
+  default Stream<T> takeWhile( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new TakeWhileOperator<>( p, predicate ) );
   }
@@ -225,7 +225,7 @@ public interface FilteringOperators<T>
    * @see #takeUntil(Predicate)
    */
   @Nonnull
-  default Flow.Stream<T> takeUntil( @Nonnull final Predicate<? super T> predicate )
+  default Stream<T> takeUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return takeWhile( predicate.negate() );
   }
@@ -241,7 +241,7 @@ public interface FilteringOperators<T>
    * @see #skipConsecutiveDuplicates()
    */
   @Nonnull
-  default Flow.Stream<T> dropConsecutiveDuplicates()
+  default Stream<T> dropConsecutiveDuplicates()
   {
     return filterSuccessive( ( prev, current ) -> !Objects.equals( prev, current ) );
   }
@@ -255,7 +255,7 @@ public interface FilteringOperators<T>
    * @see #dropConsecutiveDuplicates()
    */
   @Nonnull
-  default Flow.Stream<T> skipConsecutiveDuplicates()
+  default Stream<T> skipConsecutiveDuplicates()
   {
     return dropConsecutiveDuplicates();
   }
@@ -270,7 +270,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> filterSuccessive( @Nonnull final SuccessivePredicate<T> predicate )
+  default Stream<T> filterSuccessive( @Nonnull final SuccessivePredicate<T> predicate )
   {
     return compose( s -> new FilterSuccessiveOperator<>( s, predicate ) );
   }
@@ -283,7 +283,7 @@ public interface FilteringOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> throttleLatest( final int timeout )
+  default Stream<T> throttleLatest( final int timeout )
   {
     return compose( s -> new ThrottleLatestOperator<>( s, timeout ) );
   }

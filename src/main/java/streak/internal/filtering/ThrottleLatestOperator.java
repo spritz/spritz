@@ -3,7 +3,8 @@ package streak.internal.filtering;
 import arez.Disposable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 import streak.internal.SubscriptionWithDownstream;
 import streak.schedulers.Schedulers;
@@ -13,7 +14,7 @@ final class ThrottleLatestOperator<T>
 {
   private final int _throttleTime;
 
-  ThrottleLatestOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int throttleTime )
+  ThrottleLatestOperator( @Nonnull final Stream<? extends T> upstream, final int throttleTime )
   {
     super( upstream );
     _throttleTime = throttleTime;
@@ -21,7 +22,7 @@ final class ThrottleLatestOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _throttleTime ) );
   }
@@ -43,7 +44,7 @@ final class ThrottleLatestOperator<T>
     private Disposable _task;
     private boolean _pendingComplete;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, final int throttleTime )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int throttleTime )
     {
       super( subscriber );
       _throttleTime = throttleTime;

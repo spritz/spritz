@@ -1,18 +1,19 @@
 package streak.internal;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 
 final class ValidatingStream<T>
   extends StreamWithUpstream<T>
 {
-  ValidatingStream( @Nonnull final Flow.Stream<? extends T> upstream )
+  ValidatingStream( @Nonnull final Stream<? extends T> upstream )
   {
     super( upstream );
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new ValidatingSubscriber<>( subscriber ) );
   }

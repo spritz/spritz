@@ -1,7 +1,8 @@
 package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 import streak.internal.SubscriptionWithDownstream;
 import streak.schedulers.CircularBuffer;
@@ -11,7 +12,7 @@ final class LastOperator<T>
 {
   private final int _maxBufferSize;
 
-  LastOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int maxBufferSize )
+  LastOperator( @Nonnull final Stream<? extends T> upstream, final int maxBufferSize )
   {
     super( upstream );
     _maxBufferSize = maxBufferSize;
@@ -19,7 +20,7 @@ final class LastOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _maxBufferSize ) );
   }
@@ -30,7 +31,7 @@ final class LastOperator<T>
     @Nonnull
     private final CircularBuffer<T> _buffer;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, final int maxBufferSize )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int maxBufferSize )
     {
       super( subscriber );
       _buffer = new CircularBuffer<>( maxBufferSize );

@@ -2,17 +2,18 @@ package streak.internal.transforming;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractChainedSubscription;
 
 abstract class TransformSubscription<UpstreamT, DownstreamT>
   extends AbstractChainedSubscription
-  implements Flow.Subscriber<UpstreamT>
+  implements Subscriber<UpstreamT>
 {
   @Nonnull
-  private final Flow.Subscriber<? super DownstreamT> _downstreamSubscriber;
+  private final Subscriber<? super DownstreamT> _downstreamSubscriber;
 
-  TransformSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber )
+  TransformSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }
@@ -20,7 +21,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   /**
    * {@inheritDoc}
    */
-  public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+  public void onSubscribe( @Nonnull final Subscription subscription )
   {
     setUpstream( subscription );
     _downstreamSubscriber.onSubscribe( this );
@@ -69,7 +70,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    * @return the downstream subscriber.
    */
   @Nonnull
-  final Flow.Subscriber<? super DownstreamT> getDownstreamSubscriber()
+  final Subscriber<? super DownstreamT> getDownstreamSubscriber()
   {
     return _downstreamSubscriber;
   }

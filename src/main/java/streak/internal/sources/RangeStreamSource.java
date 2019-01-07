@@ -2,11 +2,12 @@ package streak.internal.sources;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractStream;
 
 /**
- * A synchronous implementation of the {@link Flow.Stream} that can
+ * A synchronous implementation of the {@link streak.Stream} that can
  * be subscribed to multiple times and each individual subscription
  * will receive range of monotonically increasing integer values on demand.
  */
@@ -40,7 +41,7 @@ final class RangeStreamSource
    * {@inheritDoc}
    */
   @Override
-  public void subscribe( @Nonnull Flow.Subscriber<? super Integer> subscriber )
+  public void subscribe( @Nonnull Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count );
     subscriber.onSubscribe( subscription );
@@ -48,9 +49,9 @@ final class RangeStreamSource
   }
 
   private static final class WorkerSubscription
-    implements Flow.Subscription
+    implements Subscription
   {
-    private final Flow.Subscriber<? super Integer> _subscriber;
+    private final Subscriber<? super Integer> _subscriber;
     /**
      * The end index (exclusive).
      */
@@ -68,7 +69,7 @@ final class RangeStreamSource
      * @param start      the first integer value emitted, _start of the range
      * @param end        the end of the range, exclusive
      */
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super Integer> subscriber, int start, int end )
+    WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, int start, int end )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _end = end;

@@ -3,7 +3,8 @@ package streak.internal.filtering;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 
 final class PredicateFilterStream<T>
@@ -12,7 +13,7 @@ final class PredicateFilterStream<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterStream( @Nonnull final Flow.Stream<? extends T> upstream,
+  PredicateFilterStream( @Nonnull final Stream<? extends T> upstream,
                          @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
@@ -20,7 +21,7 @@ final class PredicateFilterStream<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
   }
@@ -31,7 +32,7 @@ final class PredicateFilterStream<T>
     @Nonnull
     private final Predicate<? super T> _predicate;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
                         @Nonnull final Predicate<? super T> predicate )
     {
       super( subscriber );

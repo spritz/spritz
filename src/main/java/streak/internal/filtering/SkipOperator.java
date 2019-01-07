@@ -1,7 +1,8 @@
 package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 
 final class SkipOperator<T>
@@ -9,7 +10,7 @@ final class SkipOperator<T>
 {
   private final int _count;
 
-  SkipOperator( @Nonnull final Flow.Stream<? extends T> upstream, final int count )
+  SkipOperator( @Nonnull final Stream<? extends T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;
@@ -17,7 +18,7 @@ final class SkipOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _count ) );
   }
@@ -27,7 +28,7 @@ final class SkipOperator<T>
   {
     private int _remaining;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, final int remaining )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int remaining )
     {
       super( subscriber );
       _remaining = remaining;

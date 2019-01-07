@@ -3,7 +3,8 @@ package streak.internal.filtering;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.StreamWithUpstream;
 
 final class FilterSuccessiveOperator<T>
@@ -12,7 +13,7 @@ final class FilterSuccessiveOperator<T>
   @Nonnull
   private final SuccessivePredicate<T> _predicate;
 
-  FilterSuccessiveOperator( @Nonnull final Flow.Stream<? extends T> upstream,
+  FilterSuccessiveOperator( @Nonnull final Stream<? extends T> upstream,
                             @Nonnull final SuccessivePredicate<T> predicate )
   {
     super( upstream );
@@ -20,7 +21,7 @@ final class FilterSuccessiveOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
   }
@@ -33,7 +34,7 @@ final class FilterSuccessiveOperator<T>
     @Nullable
     private T _lastItem;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
                         @Nonnull final SuccessivePredicate<T> predicate )
     {
       super( subscriber );

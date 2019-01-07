@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.AbstractStream;
 import streak.schedulers.CircularBuffer;
 
@@ -12,10 +13,10 @@ final class MergeOperator<T>
   extends AbstractStream<T>
 {
   @Nonnull
-  private final Flow.Stream<Flow.Stream<T>> _upstream;
+  private final Stream<Stream<T>> _upstream;
   private final int _maxConcurrency;
 
-  MergeOperator( @Nonnull final Flow.Stream<Flow.Stream<T>> upstream,
+  MergeOperator( @Nonnull final Stream<Stream<T>> upstream,
                  final int maxConcurrency )
   {
     _upstream = Objects.requireNonNull( upstream );
@@ -24,13 +25,13 @@ final class MergeOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber, _maxConcurrency ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends TransformSubscription<Flow.Stream<T>, T>
+    extends TransformSubscription<Stream<T>, T>
     implements InnerSubscription.ContainerSubscription<T>
   {
     /**
@@ -58,7 +59,7 @@ final class MergeOperator<T>
      */
     private boolean _upstreamCompleted;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> downstreamSubscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
                         final int maxConcurrency )
     {
       super( downstreamSubscriber );
@@ -69,7 +70,7 @@ final class MergeOperator<T>
     /**
      * {@inheritDoc}
      */
-    public void onNext( @Nonnull final Flow.Stream<T> item )
+    public void onNext( @Nonnull final Stream<T> item )
     {
       final InnerSubscription<T> subscription = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
       if ( _activeCount < _maxConcurrency )

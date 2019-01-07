@@ -2,7 +2,7 @@ package streak.internal.peeking;
 
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
 import streak.internal.StreamExtension;
 
 /**
@@ -22,7 +22,7 @@ public interface PeekingOperators<T>
    * @see #onNext(Consumer)
    */
   @Nonnull
-  default Flow.Stream<T> peek( @Nonnull final Consumer<? super T> action )
+  default Stream<T> peek( @Nonnull final Consumer<? super T> action )
   {
     return onNext( action );
   }
@@ -37,7 +37,7 @@ public interface PeekingOperators<T>
    * @see #afterNext(Consumer)
    */
   @Nonnull
-  default Flow.Stream<T> onNext( @Nonnull final Consumer<? super T> action )
+  default Stream<T> onNext( @Nonnull final Consumer<? super T> action )
   {
     return new PeekOperator<>( self(), action, null, null, null, null, null, null, null );
   }
@@ -50,7 +50,7 @@ public interface PeekingOperators<T>
    * @return the new stream.
    */
   @Nonnull
-  default Flow.Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
+  default Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
   {
     return new PeekOperator<>( self(), null, action, null, null, null, null, null, null );
   }
@@ -64,7 +64,7 @@ public interface PeekingOperators<T>
    * @see #afterError(Consumer)
    */
   @Nonnull
-  default Flow.Stream<T> onError( @Nonnull final Consumer<Throwable> action )
+  default Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
     return new PeekOperator<>( self(), null, null, action, null, null, null, null, null );
   }
@@ -78,7 +78,7 @@ public interface PeekingOperators<T>
    * @see #onError(Consumer)
    */
   @Nonnull
-  default Flow.Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
+  default Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
   {
     return new PeekOperator<>( self(), null, null, null, action, null, null, null, null );
   }
@@ -92,7 +92,7 @@ public interface PeekingOperators<T>
    * @see #afterComplete(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> onComplete( @Nonnull final Runnable action )
+  default Stream<T> onComplete( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, null, null, action, null, null, null );
   }
@@ -106,7 +106,7 @@ public interface PeekingOperators<T>
    * @see #onComplete(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> afterComplete( @Nonnull final Runnable action )
+  default Stream<T> afterComplete( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, null, null, null, action, null, null );
   }
@@ -120,7 +120,7 @@ public interface PeekingOperators<T>
    * @see #afterDispose(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> onDispose( @Nonnull final Runnable action )
+  default Stream<T> onDispose( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, null, null, null, null, action, null );
   }
@@ -134,7 +134,7 @@ public interface PeekingOperators<T>
    * @see #onDispose(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> afterDispose( @Nonnull final Runnable action )
+  default Stream<T> afterDispose( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, null, null, null, null, null, action );
   }
@@ -151,7 +151,7 @@ public interface PeekingOperators<T>
    * @see #afterTerminate(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> onTerminate( @Nonnull final Runnable action )
+  default Stream<T> onTerminate( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, e -> action.run(), null, action, null, action, null );
   }
@@ -168,7 +168,7 @@ public interface PeekingOperators<T>
    * @see #onTerminate(Runnable)
    */
   @Nonnull
-  default Flow.Stream<T> afterTerminate( @Nonnull final Runnable action )
+  default Stream<T> afterTerminate( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( self(), null, null, null, e -> action.run(), null, action, null, action );
   }

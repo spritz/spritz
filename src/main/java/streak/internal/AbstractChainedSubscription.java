@@ -5,15 +5,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
-import streak.Flow;
+import streak.Subscription;
 
 public abstract class AbstractChainedSubscription
-  implements Flow.Subscription
+  implements Subscription
 {
   @Nullable
-  private Flow.Subscription _upstream;
+  private Subscription _upstream;
 
-  protected final void setUpstream( @Nonnull final Flow.Subscription upstream )
+  protected final void setUpstream( @Nonnull final Subscription upstream )
   {
     _upstream = Objects.requireNonNull( upstream );
   }
@@ -24,7 +24,7 @@ public abstract class AbstractChainedSubscription
    * @return the subscription used to interact with the upstream publisher.
    */
   @Nonnull
-  protected final Flow.Subscription getUpstream()
+  protected final Subscription getUpstream()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {

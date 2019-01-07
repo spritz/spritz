@@ -1,7 +1,8 @@
 package streak.internal.sources;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractStream;
 
 final class NeverStreamSource<T>
@@ -12,13 +13,13 @@ final class NeverStreamSource<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     subscriber.onSubscribe( new WorkerSubscription<T>() );
   }
 
   private static final class WorkerSubscription<T>
-    implements Flow.Subscription
+    implements Subscription
   {
     private boolean _done;
 

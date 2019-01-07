@@ -1,13 +1,13 @@
 package streak.internal.filtering;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
 import streak.internal.SubscriptionWithDownstream;
 
 abstract class AbstractFilterSubscription<T>
   extends SubscriptionWithDownstream<T>
 {
-  AbstractFilterSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  AbstractFilterSubscription( @Nonnull final Subscriber<? super T> subscriber )
   {
     super( subscriber );
   }

@@ -2,20 +2,21 @@ package streak.internal.transforming;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Stream;
+import streak.Subscriber;
 import streak.internal.AbstractStream;
 
 final class ScanOperator<UpstreamT, DownstreamT>
   extends AbstractStream<DownstreamT>
 {
   @Nonnull
-  private final Flow.Stream<? extends UpstreamT> _upstream;
+  private final Stream<? extends UpstreamT> _upstream;
   @Nonnull
   private final AccumulatorFunction<UpstreamT, DownstreamT> _accumulator;
   @Nonnull
   private final DownstreamT _initialValue;
 
-  ScanOperator( @Nonnull final Flow.Stream<? extends UpstreamT> upstream,
+  ScanOperator( @Nonnull final Stream<? extends UpstreamT> upstream,
                 @Nonnull final AccumulatorFunction<UpstreamT, DownstreamT> accumulator,
                 @Nonnull final DownstreamT initialValue )
   {
@@ -25,7 +26,7 @@ final class ScanOperator<UpstreamT, DownstreamT>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super DownstreamT> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber, _accumulator, _initialValue ) );
   }
@@ -38,7 +39,7 @@ final class ScanOperator<UpstreamT, DownstreamT>
     @Nonnull
     private DownstreamT _value;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super DownstreamT> downstreamSubscriber,
+    WorkerSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber,
                         @Nonnull final AccumulatorFunction<UpstreamT, DownstreamT> accumulator,
                         @Nonnull final DownstreamT initialValue )
     {

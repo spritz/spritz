@@ -2,7 +2,8 @@ package streak.internal.sources;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 import streak.internal.AbstractStream;
 
 final class StaticStreamSource<T>
@@ -17,7 +18,7 @@ final class StaticStreamSource<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Flow.Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
     subscriber.onSubscribe( subscription );
@@ -25,9 +26,9 @@ final class StaticStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Flow.Subscription
+    implements Subscription
   {
-    private final Flow.Subscriber<? super T> _subscriber;
+    private final Subscriber<? super T> _subscriber;
     private final T[] _data;
     /**
      * Index into data.
@@ -36,7 +37,7 @@ final class StaticStreamSource<T>
      */
     private int _offset;
 
-    WorkerSubscription( @Nonnull final Flow.Subscriber<? super T> subscriber, @Nonnull final T[] data )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final T[] data )
     {
       _subscriber = Objects.requireNonNull( subscriber );
       _data = data;

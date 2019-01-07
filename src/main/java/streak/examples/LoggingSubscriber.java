@@ -1,13 +1,14 @@
 package streak.examples;
 
 import javax.annotation.Nonnull;
-import streak.Flow;
+import streak.Subscriber;
+import streak.Subscription;
 
 final class LoggingSubscriber<T>
-  implements Flow.Subscriber<T>
+  implements Subscriber<T>
 {
   @Override
-  public void onSubscribe( @Nonnull final Flow.Subscription subscription )
+  public void onSubscribe( @Nonnull final Subscription subscription )
   {
     System.out.println( "onSubscribe(" + subscription + ")" );
   }
