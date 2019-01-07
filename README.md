@@ -40,6 +40,10 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `fetch()` - Fetch/http controller that must make use of `AbortController`.
 - [ ] `webSocket()` - WebSocket source.
 
+**Elemental2 Completions**
+
+- [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
+
 **Peeking Operators**
 
 - [ ] `onSubscribe(Item)` - invoke method before subscription has been signalled.
@@ -89,10 +93,6 @@ All the windowing functions take an input stream that they cut up into segments 
 Other
 
 - [ ] `groupBy(GroupByFunction)` - Create an inner stream based on group returned by function. Stream can be concurrent.
-
-**Terminator Subscribers**
-
-- [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 
 -----
 
