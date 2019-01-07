@@ -3,9 +3,6 @@ package streak;
 import java.util.Collection;
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractStream;
 
 final class CollectionStreamSource<T>
   extends AbstractStream<T>

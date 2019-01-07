@@ -2,9 +2,6 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractChainedSubscription;
 
 abstract class TransformSubscription<UpstreamT, DownstreamT>
   extends AbstractChainedSubscription

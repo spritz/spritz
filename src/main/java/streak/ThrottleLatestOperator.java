@@ -3,10 +3,6 @@ package streak;
 import arez.Disposable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Stream;
-import streak.Subscriber;
-import streak.StreamWithUpstream;
-import streak.SubscriptionWithDownstream;
 import streak.schedulers.Schedulers;
 
 final class ThrottleLatestOperator<T>

@@ -1,7 +1,6 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import streak.Stream;
 
 /**
  * A simple base class that can be used build streams.

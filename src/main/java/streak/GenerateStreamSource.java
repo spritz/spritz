@@ -3,9 +3,6 @@ package streak;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractStream;
 
 final class GenerateStreamSource<T>
   extends AbstractStream<T>

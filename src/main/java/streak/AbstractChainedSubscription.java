@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
-import streak.Subscription;
 
 public abstract class AbstractChainedSubscription
   implements Subscription

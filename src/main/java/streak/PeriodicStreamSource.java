@@ -4,9 +4,6 @@ import arez.Disposable;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractStream;
 import streak.schedulers.Schedulers;
 
 final class PeriodicStreamSource

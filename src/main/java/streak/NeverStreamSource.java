@@ -1,9 +1,6 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractStream;
 
 final class NeverStreamSource<T>
   extends AbstractStream<T>

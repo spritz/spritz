@@ -3,8 +3,6 @@ package streak;
 import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
 
 final class ForEachSubscriber<T>
   implements Subscriber<T>

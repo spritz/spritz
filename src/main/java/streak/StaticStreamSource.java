@@ -2,9 +2,6 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Subscriber;
-import streak.Subscription;
-import streak.AbstractStream;
 
 final class StaticStreamSource<T>
   extends AbstractStream<T>

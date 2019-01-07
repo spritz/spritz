@@ -1,10 +1,6 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import streak.Stream;
-import streak.Subscriber;
-import streak.StreamWithUpstream;
-import streak.SubscriptionWithDownstream;
 import streak.schedulers.CircularBuffer;
 
 final class LastOperator<T>

@@ -2,10 +2,6 @@ package streak;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import streak.Stream;
-import streak.Subscriber;
-import streak.StreamWithUpstream;
-import streak.SubscriptionWithDownstream;
 
 final class DefaultIfEmptyOperator<T>
   extends StreamWithUpstream<T>
