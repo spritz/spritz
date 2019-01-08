@@ -3,7 +3,7 @@ package streak;
 import javax.annotation.Nonnull;
 
 final class LimitOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   private final int _count;
 

@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class FilterSuccessiveOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   @Nonnull
   private final SuccessivePredicate<T> _predicate;

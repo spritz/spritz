@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
 
 final class ThrottleLatestOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   private final int _throttleTime;
 

@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import streak.schedulers.CircularBuffer;
 
 final class LastOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   private final int _maxBufferSize;
 

@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class DefaultIfEmptyOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   @Nonnull
   private final T _defaultValue;

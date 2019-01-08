@@ -4,7 +4,7 @@ import java.util.HashSet;
 import javax.annotation.Nonnull;
 
 final class DistinctOperator<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   DistinctOperator( @Nonnull final Stream<? extends T> upstream )
   {

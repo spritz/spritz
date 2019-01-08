@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 
 final class PredicateFilterStream<T>
-  extends StreamWithUpstream<T>
+  extends AbstractStream<T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
