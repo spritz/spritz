@@ -14,7 +14,8 @@ final class ValidatingSubscriber<T>
   enum State
   {
     CREATED,
-    SUBSCRIBED,
+    SUBSCRIBE_STARTED,
+    SUBSCRIBE_COMPLETED,
     ERRORED,
     COMPLETED
   }
@@ -43,8 +44,9 @@ final class ValidatingSubscriber<T>
     try
     {
       pushContext( this );
-      _state = State.SUBSCRIBED;
+      _state = State.SUBSCRIBE_STARTED;
       _target.onSubscribe( new WorkerSubscription<>( this, subscription ) );
+      _state = State.SUBSCRIBE_COMPLETED;
     }
     catch ( final Throwable throwable )
     {
@@ -66,7 +68,7 @@ final class ValidatingSubscriber<T>
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
-      invariant( () -> State.SUBSCRIBED == _state,
+      invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Streak-0005: Subscriber.onNext(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
       Objects.requireNonNull( item );
@@ -97,7 +99,7 @@ final class ValidatingSubscriber<T>
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
-      invariant( () -> State.SUBSCRIBED == _state,
+      invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Streak-0006: Subscriber.onError(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
       Objects.requireNonNull( throwable );
@@ -128,7 +130,7 @@ final class ValidatingSubscriber<T>
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
-      invariant( () -> State.SUBSCRIBED == _state,
+      invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Streak-0008: Subscriber.onComplete(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
     }
