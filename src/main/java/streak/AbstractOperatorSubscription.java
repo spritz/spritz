@@ -3,15 +3,26 @@ package streak;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-abstract class SubscriptionWithDownstream<T>
+/**
+ * Abstract implementation for subscription with both an upstream and downstream stream stage.
+ */
+abstract class AbstractOperatorSubscription<T>
   extends AbstractSubscription
   implements Subscriber<T>
 {
+  /**
+   * The subscriber for the downstream stream.
+   */
   @Nonnull
   private final Subscriber<? super T> _downstreamSubscriber;
   private boolean _done;
 
-  SubscriptionWithDownstream( @Nonnull final Subscriber<? super T> downstreamSubscriber )
+  /**
+   * Create the subscription with the downstream subscriber.
+   *
+   * @param downstreamSubscriber the downstream subscriber.
+   */
+  AbstractOperatorSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber )
   {
     _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
   }

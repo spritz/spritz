@@ -24,7 +24,7 @@ final class ThrottleLatestOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends SubscriptionWithDownstream<T>
+    extends AbstractOperatorSubscription<T>
     implements Runnable
   {
     private final int _throttleTime;

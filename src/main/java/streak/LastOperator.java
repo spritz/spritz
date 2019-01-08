@@ -22,7 +22,7 @@ final class LastOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends SubscriptionWithDownstream<T>
+    extends AbstractOperatorSubscription<T>
   {
     @Nonnull
     private final CircularBuffer<T> _buffer;

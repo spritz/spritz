@@ -3,7 +3,7 @@ package streak;
 import javax.annotation.Nonnull;
 
 abstract class AbstractFilterSubscription<T>
-  extends SubscriptionWithDownstream<T>
+  extends AbstractOperatorSubscription<T>
 {
   AbstractFilterSubscription( @Nonnull final Subscriber<? super T> subscriber )
   {
