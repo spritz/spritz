@@ -14,7 +14,7 @@ public class Example18
       .generate( counter::incrementAndGet, 50 )
       .throttleLatest( 210 )
       .take( 12 )
-      .onTerminate( Example18::terminateScheduler )
+      .afterTerminate( Example18::terminateScheduler )
       .subscribe( new LoggingSubscriber<>() );
   }
 
