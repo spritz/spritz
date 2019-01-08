@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 abstract class SubscriptionWithDownstream<T>
-  extends AbstractChainedSubscription
+  extends AbstractSubscription
   implements Subscriber<T>
 {
   @Nonnull

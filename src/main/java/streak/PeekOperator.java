@@ -63,7 +63,7 @@ final class PeekOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractChainedSubscription
+    extends AbstractSubscription
     implements Subscriber<T>
   {
     @Nonnull

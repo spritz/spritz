@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 abstract class TransformSubscription<UpstreamT, DownstreamT>
-  extends AbstractChainedSubscription
+  extends AbstractSubscription
   implements Subscriber<UpstreamT>
 {
   @Nonnull
