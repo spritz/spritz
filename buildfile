@@ -31,6 +31,8 @@ define 'streak' do
             :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
   )
 
+  cleanup_javadocs(project, 'streak')
+
   package(:jar)
   package(:sources)
   package(:javadoc)
