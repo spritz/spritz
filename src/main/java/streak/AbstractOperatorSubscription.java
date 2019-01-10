@@ -70,19 +70,10 @@ abstract class AbstractOperatorSubscription<T>
    * {@inheritDoc}
    */
   @Override
-  public void dispose()
+  public void cancel()
   {
     _done = true;
-    getUpstream().dispose();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isDisposed()
-  {
-    return _done;
+    getUpstream().cancel();
   }
 
   /**

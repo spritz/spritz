@@ -47,7 +47,7 @@ final class MergeOperator<T>
     private final HashSet<InnerSubscription<T>> _activeStreams = new HashSet<>();
     /**
      * The number of buffers that are currently subscribed to.
-     * This will be [0,maxConcurrency] when the subscription is not disposed and -1 when the subscription is disposed.
+     * This will be [0,maxConcurrency] when the subscription is not cancelled and -1 when the subscription is cancelled.
      */
     private int _activeCount;
     /**
@@ -98,7 +98,7 @@ final class MergeOperator<T>
       {
         _pendingUpstream.clear();
       }
-      _activeStreams.forEach( activeStream -> activeStream.dispose() );
+      _activeStreams.forEach( InnerSubscription::cancel );
       _activeStreams.clear();
       getDownstreamSubscriber().onError( throwable );
     }

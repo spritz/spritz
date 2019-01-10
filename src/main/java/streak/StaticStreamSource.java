@@ -43,16 +43,16 @@ final class StaticStreamSource<T>
 
     void pushData()
     {
-      while ( _offset < _data.length && isNotDisposed() )
+      while ( _offset < _data.length && isActive() )
       {
         final T item = _data[ _offset ];
         _offset++;
         _subscriber.onNext( item );
       }
-      if ( isNotDisposed() )
+      if ( isActive() )
       {
         _subscriber.onComplete();
-        dispose();
+        cancel();
       }
     }
 
@@ -60,18 +60,14 @@ final class StaticStreamSource<T>
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
       _offset = _data.length + 1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
+    private boolean isActive()
     {
-      return _offset > _data.length;
+      return _offset <= _data.length;
     }
   }
 }

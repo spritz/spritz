@@ -75,33 +75,29 @@ final class RangeStreamSource
 
     void pushData()
     {
-      while ( _current <= _end && isNotDisposed() )
+      while ( _current <= _end && isNotCancelled() )
       {
         final int value = _current;
         _current++;
         _subscriber.onNext( value );
       }
-      if ( isNotDisposed() )
+      if ( isNotCancelled() )
       {
         _subscriber.onComplete();
-        dispose();
+        cancel();
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
+    private boolean isNotCancelled()
     {
-      return -1 == _current;
+      return -1 != _current;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
       _current = -1;
     }

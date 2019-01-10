@@ -44,7 +44,7 @@ final class LimitOperator<T>
       }
       else
       {
-        getUpstream().dispose();
+        getUpstream().cancel();
         onComplete();
         return false;
       }

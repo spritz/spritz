@@ -44,28 +44,25 @@ final class RunnableStreamSource<T>
       }
       catch ( final Throwable error )
       {
-        _subscriber.onError( error );
+        if ( !_done )
+        {
+          _subscriber.onError( error );
+        }
         return;
       }
-      _subscriber.onComplete();
+      if ( !_done )
+      {
+        _subscriber.onComplete();
+      }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
       _done = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
-    {
-      return _done;
     }
   }
 }

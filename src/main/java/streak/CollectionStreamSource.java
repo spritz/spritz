@@ -39,35 +39,23 @@ final class CollectionStreamSource<T>
     {
       for ( final T item : _data )
       {
-        if ( isDisposed() )
+        if ( _done )
         {
-          break;
+          return;
         }
         _subscriber.onNext( item );
       }
-      if ( isNotDisposed() )
-      {
-        _subscriber.onComplete();
-        dispose();
-      }
+      _subscriber.onComplete();
+      cancel();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
       _done = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
-    {
-      return _done;
     }
   }
 }

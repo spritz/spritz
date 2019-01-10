@@ -121,7 +121,7 @@ public final class Streak
 
   /**
    * Creates an infinite stream that emits elements from the {@link Callable} parameter.
-   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
    * otherwise this source will result in an infinite loop.
    *
    * @param <T>      the type of elements contained in the stream.
@@ -135,7 +135,7 @@ public final class Streak
 
   /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter.
-   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
    * otherwise this source will result in an infinite loop.
    *
    * @param <T>      the type of elements contained in the stream.
@@ -162,7 +162,7 @@ public final class Streak
 
   /**
    * Creates an infinite stream that emits elements from the {@link Supplier} parameter at specified period.
-   * The user must be very careful to add a subsequent stream stage that disposes the stream
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
    * otherwise this source will result in an infinite loop.
    *
    * @param <T>      the type of elements contained in the stream.

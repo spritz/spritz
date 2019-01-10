@@ -9,6 +9,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
 {
   @Nonnull
   private final Subscriber<? super DownstreamT> _downstreamSubscriber;
+  private boolean _done;
 
   TransformSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber )
   {
@@ -31,6 +32,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   @Override
   public void onError( @Nonnull final Throwable throwable )
   {
+    _done = true;
     getDownstreamSubscriber().onError( throwable );
   }
 
@@ -40,6 +42,7 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
   @Override
   public void onComplete()
   {
+    _done = true;
     getDownstreamSubscriber().onComplete();
   }
 
@@ -47,20 +50,12 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    * {@inheritDoc}
    */
   @Override
-  public boolean isDisposed()
+  public void cancel()
   {
-    return getUpstream().isDisposed();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void dispose()
-  {
-    if ( isNotDisposed() )
+    if ( !_done )
     {
-      getUpstream().dispose();
+      _done = true;
+      getUpstream().cancel();
     }
   }
 

@@ -32,8 +32,8 @@ public class Example19
       .afterComplete( () -> System.out.println( "\uD83D\uDC41 afterComplete()" ) )
       .onError( e -> System.out.println( "\uD83D\uDC41 onError(" + e + ")" ) )
       .afterError( e -> System.out.println( "\uD83D\uDC41 afterError(" + e + ")" ) )
-      .onDispose( () -> System.out.println( "\uD83D\uDC41 onDispose()" ) )
-      .afterDispose( () -> System.out.println( "\uD83D\uDC41 afterDispose()" ) )
+      .onCancel( () -> System.out.println( "\uD83D\uDC41 onCancel()" ) )
+      .afterCancel( () -> System.out.println( "\uD83D\uDC41 afterCancel()" ) )
       .onTerminate( () -> System.out.println( "\uD83D\uDC41 onTerminate()" ) )
       .afterTerminate( () -> System.out.println( "\uD83D\uDC41 afterTerminate()" ) );
   }

@@ -23,9 +23,9 @@ final class PeekOperator<T>
   @Nullable
   private final Runnable _afterComplete;
   @Nullable
-  private final Runnable _onDispose;
+  private final Runnable _onCancel;
   @Nullable
-  private final Runnable _afterDispose;
+  private final Runnable _afterCancel;
 
   PeekOperator( @Nonnull final Stream<? extends T> upstream,
                 @Nullable final Consumer<? super T> onNext,
@@ -34,8 +34,8 @@ final class PeekOperator<T>
                 @Nullable final Consumer<Throwable> afterError,
                 @Nullable final Runnable onComplete,
                 @Nullable final Runnable afterComplete,
-                @Nullable final Runnable onDispose,
-                @Nullable final Runnable afterDispose )
+                @Nullable final Runnable onCancel,
+                @Nullable final Runnable afterCancel )
   {
     _upstream = Objects.requireNonNull( upstream );
     _onNext = onNext;
@@ -44,8 +44,8 @@ final class PeekOperator<T>
     _afterError = afterError;
     _onComplete = onComplete;
     _afterComplete = afterComplete;
-    _onDispose = onDispose;
-    _afterDispose = afterDispose;
+    _onCancel = onCancel;
+    _afterCancel = afterCancel;
   }
 
   @Override
@@ -58,8 +58,8 @@ final class PeekOperator<T>
                                                    _afterError,
                                                    _onComplete,
                                                    _afterComplete,
-                                                   _onDispose,
-                                                   _afterDispose ) );
+                                                   _onCancel,
+                                                   _afterCancel ) );
   }
 
   private static final class WorkerSubscription<T>
@@ -81,9 +81,10 @@ final class PeekOperator<T>
     @Nullable
     private final Runnable _afterComplete;
     @Nullable
-    private final Runnable _onDispose;
+    private final Runnable _onCancel;
     @Nullable
-    private final Runnable _afterDispose;
+    private final Runnable _afterCancel;
+    private boolean _done;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
                         @Nullable final Consumer<? super T> onNext,
@@ -92,8 +93,8 @@ final class PeekOperator<T>
                         @Nullable final Consumer<Throwable> afterError,
                         @Nullable final Runnable onComplete,
                         @Nullable final Runnable afterComplete,
-                        @Nullable final Runnable onDispose,
-                        @Nullable final Runnable afterDispose )
+                        @Nullable final Runnable onCancel,
+                        @Nullable final Runnable afterCancel )
     {
       _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
       _onNext = onNext;
@@ -102,8 +103,8 @@ final class PeekOperator<T>
       _afterError = afterError;
       _onComplete = onComplete;
       _afterComplete = afterComplete;
-      _onDispose = onDispose;
-      _afterDispose = afterDispose;
+      _onCancel = onCancel;
+      _afterCancel = afterCancel;
     }
 
     /**
@@ -136,6 +137,7 @@ final class PeekOperator<T>
     @Override
     public void onError( @Nonnull final Throwable throwable )
     {
+      _done = true;
       if ( null != _onError )
       {
         _onError.accept( throwable );
@@ -153,6 +155,7 @@ final class PeekOperator<T>
     @Override
     public void onComplete()
     {
+      _done = true;
       if ( null != _onComplete )
       {
         _onComplete.run();
@@ -168,27 +171,19 @@ final class PeekOperator<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean isDisposed()
+    public void cancel()
     {
-      return getUpstream().isDisposed();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void dispose()
-    {
-      if ( isNotDisposed() )
+      if ( !_done )
       {
-        if ( null != _onDispose )
+        _done = true;
+        if ( null != _onCancel )
         {
-          _onDispose.run();
+          _onCancel.run();
         }
-        getUpstream().dispose();
-        if ( null != _afterDispose )
+        getUpstream().cancel();
+        if ( null != _afterCancel )
         {
-          _afterDispose.run();
+          _afterCancel.run();
         }
       }
     }

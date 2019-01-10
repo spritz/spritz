@@ -120,28 +120,28 @@ public interface Stream<T>
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
-   * parameter before the stream is disposed by a downstream stage.
+   * parameter before the stream is canceled by a downstream stage.
    *
-   * @param action the function called before the stream is disposed by a downstream stage.
+   * @param action the function called before the stream is canceled by a downstream stage.
    * @return the new stream.
-   * @see #afterDispose(Runnable)
+   * @see #afterCancel(Runnable)
    */
   @Nonnull
-  default Stream<T> onDispose( @Nonnull final Runnable action )
+  default Stream<T> onCancel( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, action, null );
   }
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
-   * parameter after the stream is disposed by a downstream stage.
+   * parameter after the stream is canceled by a downstream stage.
    *
-   * @param action the function called after the stream is disposed by a downstream stage.
+   * @param action the function called after the stream is canceled by a downstream stage.
    * @return the new stream.
-   * @see #onDispose(Runnable)
+   * @see #onCancel(Runnable)
    */
   @Nonnull
-  default Stream<T> afterDispose( @Nonnull final Runnable action )
+  default Stream<T> afterCancel( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, null, action );
   }
@@ -151,9 +151,9 @@ public interface Stream<T>
    * parameter before signalling complete or signalling error. If you need to know know
    * whether the stream failed or completed then use {@link #onError(Consumer)} and
    * {@link #onComplete(Runnable)}. In addition, the action is called if the stream is
-   * disposed by a downstream stage.
+   * cancelled by a downstream stage.
    *
-   * @param action the function called before signalling complete or signalling error or being disposed by downstream stage.
+   * @param action the function called before signalling complete or signalling error or being cancelled by downstream stage.
    * @return the new stream.
    * @see #afterTerminate(Runnable)
    */
@@ -168,9 +168,9 @@ public interface Stream<T>
    * parameter after signalling complete or signalling error. If you need to know know
    * whether the stream failed or completed then use {@link #onError(Consumer)} and
    * {@link #onComplete(Runnable)}. In addition, the action is called if the stream is
-   * disposed by a downstream stage.
+   * cancelled by a downstream stage.
    *
-   * @param action the function called after signalling complete or signalling error or being disposed by downstream stage.
+   * @param action the function called after signalling complete or signalling error or being cancelled by downstream stage.
    * @return the new stream.
    * @see #onTerminate(Runnable)
    */
@@ -225,7 +225,7 @@ public interface Stream<T>
   /**
    * Truncate the stream, ensuring the stream is no longer than {@code maxSize} elements in length.
    * If {@code maxSize} is reached then the element will be passed downstream, the downstream will be
-   * completed and then the upstream will be disposed. This method is an alias for {@link #limit(int)}
+   * completed and then the upstream will be cancelled. This method is an alias for {@link #limit(int)}
    *
    * @param maxSize The maximum number of elements returned by the stream.
    * @return the new stream.
@@ -240,7 +240,7 @@ public interface Stream<T>
   /**
    * Truncate the stream, ensuring the stream is no longer than {@code maxSize} elements in length.
    * If {@code maxSize} is reached then the element will be passed downstream, the downstream will be
-   * completed and then the upstream will be disposed. This method is an alias for {@link #take(int)}
+   * completed and then the upstream will be cancelled. This method is an alias for {@link #take(int)}
    *
    * @param maxSize The maximum number of elements returned by the stream.
    * @return the new stream.
@@ -253,7 +253,7 @@ public interface Stream<T>
   }
 
   /**
-   * Pass the first element downstream, complete the downstream and dispose the upstream.
+   * Pass the first element downstream, complete the downstream and cancel the upstream.
    * This method is an alias for {@link #take(int)} or {@link #limit(int)} where <code>1</code> is
    * passed as the parameter.
    *
@@ -366,7 +366,7 @@ public interface Stream<T>
    * Return elements from this stream until an element fails to match the supplied {@code predicate}.
    * As long as the {@code predicate} returns true, elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns false, the stream will
-   * be completed and the upstream disposed. This is equivalent to {@link #takeUntil(Predicate)}
+   * be completed and the upstream canceled. This is equivalent to {@link #takeUntil(Predicate)}
    * if the predicate is negated.
    *
    * @param predicate The predicate.
@@ -383,7 +383,7 @@ public interface Stream<T>
    * Return elements from this stream until an element matches the supplied {@code predicate}.
    * As long as the {@code predicate} returns false, elements will be emitted from this stream. Once
    * the first element is encountered for which the {@code predicate} returns true, the stream will
-   * be completed and the upstream disposed. This is equivalent to {@link #takeWhile(Predicate)}
+   * be completed and the upstream canceled. This is equivalent to {@link #takeWhile(Predicate)}
    * if the predicate is negated.
    *
    * @param predicate The predicate.
@@ -566,7 +566,7 @@ public interface Stream<T>
    * and all elements emitted on the active stream are merged into this stream. If the
    * active stream completes then it is no longer the active stream but this stream does
    * not complete. If a new input element is received while there is an active stream is
-   * present then the active stream is disposed and the new input element is mapped to a
+   * present then the active stream is canceled and the new input element is mapped to a
    * new stream that is made active.
    *
    * @param <DownstreamT> the type of the elements that this stream emits.
@@ -585,7 +585,7 @@ public interface Stream<T>
    * and all elements emitted on the active stream are merged into this stream. If the
    * active stream completes then it is no longer the active stream but this stream does
    * not complete. If a new input element is received while there is an active stream is
-   * present then the active stream is disposed and the new input element is mapped to a
+   * present then the active stream is canceled and the new input element is mapped to a
    * new stream that is made active.
    *
    * @param <DownstreamT> the type of the elements that this stream emits.

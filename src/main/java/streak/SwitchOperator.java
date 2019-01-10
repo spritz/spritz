@@ -50,7 +50,7 @@ final class SwitchOperator<T>
     {
       if ( null != _activeStream )
       {
-        _activeStream.dispose();
+        _activeStream.cancel();
       }
       _activeStream = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
       _activeStream.pushData();

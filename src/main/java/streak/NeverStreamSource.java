@@ -18,8 +18,6 @@ final class NeverStreamSource<T>
   private static final class WorkerSubscription<T>
     implements Subscription
   {
-    private boolean _done;
-
     private WorkerSubscription()
     {
     }
@@ -28,18 +26,8 @@ final class NeverStreamSource<T>
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
-      _done = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
-    {
-      return _done;
     }
   }
 }

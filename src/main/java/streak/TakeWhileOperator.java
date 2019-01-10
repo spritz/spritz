@@ -47,7 +47,7 @@ final class TakeWhileOperator<T>
       }
       else
       {
-        getUpstream().dispose();
+        getUpstream().cancel();
         onComplete();
         return false;
       }

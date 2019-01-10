@@ -47,27 +47,19 @@ final class PeriodicStreamSource
 
     void pushItem()
     {
-      if ( isNotDisposed() )
-      {
-        final int value = _counter++;
-        _subscriber.onNext( value );
-      }
+      assert null != _task;
+      final int value = _counter++;
+      _subscriber.onNext( value );
     }
 
     @Override
-    public void dispose()
+    public void cancel()
     {
       if ( null != _task )
       {
         _task.cancel();
         _task = null;
       }
-    }
-
-    @Override
-    public boolean isDisposed()
-    {
-      return null == _task;
     }
   }
 }

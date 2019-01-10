@@ -20,14 +20,12 @@ final class FailStreamSource<T>
     final WorkerSubscription<T> subscription = new WorkerSubscription<>();
     subscriber.onSubscribe( subscription );
     subscriber.onError( _error );
-    subscription.dispose();
+    subscription.cancel();
   }
 
   private static final class WorkerSubscription<T>
     implements Subscription
   {
-    private boolean _done;
-
     private WorkerSubscription()
     {
     }
@@ -36,18 +34,8 @@ final class FailStreamSource<T>
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
-      _done = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
-    {
-      return _done;
     }
   }
 }

@@ -36,19 +36,13 @@ final class InnerSubscription<T>
   }
 
   @Override
-  public void dispose()
+  public void cancel()
   {
     if ( null != _upstreamSubscription )
     {
-      _upstreamSubscription.dispose();
+      _upstreamSubscription.cancel();
       _upstreamSubscription = null;
     }
-  }
-
-  @Override
-  public boolean isDisposed()
-  {
-    return null == _upstreamSubscription;
   }
 
   @Override

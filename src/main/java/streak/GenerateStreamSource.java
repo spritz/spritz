@@ -41,7 +41,7 @@ final class GenerateStreamSource<T>
     {
       try
       {
-        while ( isNotDisposed() )
+        while ( !_done )
         {
           _subscriber.onNext( _callable.call() );
         }
@@ -56,18 +56,9 @@ final class GenerateStreamSource<T>
      * {@inheritDoc}
      */
     @Override
-    public void dispose()
+    public void cancel()
     {
       _done = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isDisposed()
-    {
-      return _done;
     }
   }
 }
