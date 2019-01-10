@@ -1,9 +1,9 @@
 package streak;
 
-import arez.Disposable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
+import streak.schedulers.Task;
 
 final class ThrottleLatestOperator<T>
   extends AbstractStream<T>
@@ -37,7 +37,7 @@ final class ThrottleLatestOperator<T>
     @Nullable
     private T _nextItem;
     @Nullable
-    private Disposable _task;
+    private Task _task;
     private boolean _pendingComplete;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int throttleTime )
@@ -54,7 +54,7 @@ final class ThrottleLatestOperator<T>
       if ( null != _nextItem && now > _nextTime )
       {
         assert null != _task;
-        _task.dispose();
+        _task.cancel();
         // This may update nextTime
         runScheduledTask();
       }
@@ -128,7 +128,7 @@ final class ThrottleLatestOperator<T>
     {
       if ( null != _task )
       {
-        _task.dispose();
+        _task.cancel();
         assert null != _nextItem;
         _task = null;
         _nextItem = null;

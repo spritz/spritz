@@ -1,10 +1,10 @@
 package streak;
 
-import arez.Disposable;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
+import streak.schedulers.Task;
 
 final class PeriodicStreamSource
   implements Stream<Integer>
@@ -32,7 +32,7 @@ final class PeriodicStreamSource
     private final int _period;
     private int _counter;
     @Nullable
-    private Disposable _task;
+    private Task _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
     {
@@ -59,7 +59,7 @@ final class PeriodicStreamSource
     {
       if ( null != _task )
       {
-        _task.dispose();
+        _task.cancel();
         _task = null;
       }
     }
