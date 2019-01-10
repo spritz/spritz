@@ -115,6 +115,18 @@ Other
 - [ ] `repeat(RepeatCount)` - Replace `onComplete` with subscription to stream again a `RepeatCount` number of times.
 - [ ] `endWhen(ControlStream)` - Complete the stream when the `ControlStream` emits a value or completes.
 
+**Scheduler Control**
+
+The tasks can be scheduled on schedulers such as:
+* Primary (a.k.a `setTimeout(...)` on web)
+* Microtask (only available on the web) - via promise microtask
+* Idle `requestIdleCallback( mycallback )`
+* Animation `requestAnimationFrame( mycallback )`
+* Post render (i.e. `requestAnimationFrame( () -> setTimeout( mycallback, 0 ))`
+
+- [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
+- [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
+
 **Subjects**
 
 - [ ] `multicast(Subject)` - Add Subject as observer. Returns a "Connectible" processor that you need to call Connect on before it activates.
