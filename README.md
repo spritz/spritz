@@ -126,6 +126,7 @@ The tasks can be scheduled on schedulers such as:
 
 - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
 - [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
+- [ ] `observeOn(Scheduler)` - if signal or item emitted and current scheduler is not specified scheduler or if the specified scheduler has a non-zero queue then enqueue item/signal, schedule scheduler to run next tick if not scheduled.
 
 **Subjects**
 
