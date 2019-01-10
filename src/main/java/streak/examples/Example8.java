@@ -1,6 +1,5 @@
 package streak.examples;
 
-import arez.Disposable;
 import streak.Streak;
 import streak.schedulers.Schedulers;
 
@@ -18,6 +17,6 @@ public class Example8
 
   private static void terminateScheduler()
   {
-    new Thread( () -> Disposable.dispose( Schedulers.current() ) ).run();
+    new Thread( () -> Schedulers.current().shutdown() ).run();
   }
 }

@@ -1,6 +1,5 @@
 package streak.examples;
 
-import arez.Disposable;
 import java.util.concurrent.atomic.AtomicInteger;
 import streak.Streak;
 import streak.schedulers.Schedulers;
@@ -20,6 +19,6 @@ public class Example18
 
   private static void terminateScheduler()
   {
-    new Thread( () -> Disposable.dispose( Schedulers.current() ) ).run();
+    new Thread( () -> Schedulers.current().shutdown() ).run();
   }
 }

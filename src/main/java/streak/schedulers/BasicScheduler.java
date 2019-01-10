@@ -1,6 +1,5 @@
 package streak.schedulers;
 
-import arez.Disposable;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -8,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 
 final class BasicScheduler
-  implements Scheduler, Disposable
+  implements Scheduler
 {
   private final long _schedulerStart = System.currentTimeMillis();
   private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1 );
@@ -17,18 +16,9 @@ final class BasicScheduler
    * {@inheritDoc}
    */
   @Override
-  public void dispose()
+  public void shutdown()
   {
     _executorService.shutdown();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isDisposed()
-  {
-    return _executorService.isShutdown();
   }
 
   /**
