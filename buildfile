@@ -10,15 +10,12 @@ define 'streak' do
 
   project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
 
-  project.processorpath << :arez_processor
-
   pom.add_apache_v2_license
   pom.add_github_project('realityforge/streak')
   pom.add_developer('realityforge', 'Peter Donald')
 
   compile.with :javax_annotation,
                :braincheck,
-               :arez_core,
                :jsinterop_annotations,
                :jsinterop_base
 
