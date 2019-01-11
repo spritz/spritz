@@ -325,6 +325,19 @@ public interface Stream<T>
   }
 
   /**
+   * Emit an error if the stream completes and no items were emitted.
+   * The error is created by invoking errorFactory when the error will be emitted.
+   *
+   * @param errorFactory the factory responsible for creating error.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Stream<T> errorIfEmpty( @Nonnull final Supplier<Throwable> errorFactory )
+  {
+    return compose( p -> new ErrorIfEmptyOperator<>( p, errorFactory ) );
+  }
+
+  /**
    * Drop the first {@code count} elements of this stream. If the stream contains fewer
    * than {@code count} elements then the stream will effectively be an empty stream.
    *
