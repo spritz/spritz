@@ -341,10 +341,9 @@ public interface Stream<T>
 
   /**
    * Pass the first element downstream, complete the downstream and cancel the upstream.
-   * If no element is emitted before the upstream stage completes then emit the specified
-   * {@code defaultValue}.
+   * If the stream is empty then emit the defaultValue specified as a parameter.
    *
-   * @param defaultValue the default value if the stream is empty.
+   * @param defaultValue the default value emitted if the stream is empty.
    * @return the new stream.
    * @see #first()
    */
