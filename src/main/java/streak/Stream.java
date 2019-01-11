@@ -29,6 +29,20 @@ public interface Stream<T>
    * @see #onNext(Consumer)
    */
   @Nonnull
+  default Stream<T> tap( @Nonnull final Consumer<? super T> action )
+  {
+    return onNext( action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before each item is emitted. This method is an alias for {@link #onNext(Consumer)}.
+   *
+   * @param action the function before each item is emitted.
+   * @return the new stream.
+   * @see #onNext(Consumer)
+   */
+  @Nonnull
   default Stream<T> peek( @Nonnull final Consumer<? super T> action )
   {
     return onNext( action );
@@ -41,6 +55,7 @@ public interface Stream<T>
    * @param action the function before each item is emitted.
    * @return the new stream.
    * @see #peek(Consumer)
+   * @see #tap(Consumer)
    * @see #afterNext(Consumer)
    */
   @Nonnull

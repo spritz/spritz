@@ -46,7 +46,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 **Peeking Operators**
 
-- [ ] `tap(Item)` - alias for `onNext()`.
 - [ ] `onSubscribe(Item)` - invoke method before subscription has been signalled.
 - [ ] `afterSubscribe(Item)` - invoke method after subscription has been signalled.
 
