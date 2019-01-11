@@ -47,7 +47,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 **Filtering Operators**
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
-- [ ] `firstOrDefault(DefaultValue)` - Emits the first item emitted by the stream, or emits `DefaultValue` if the source completes without emitting an item.
 - [ ] `lastOrError()` - Emits the last item emitted by the stream, or signals a `NoSuchElementException` error if the source completes without emitting an item.
 - [ ] `lastOrDefault(DefaultValue)` - Emits the last item emitted by the stream, or emits `DefaultValue` if the source completes without emitting an item.
 - [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.

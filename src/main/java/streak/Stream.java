@@ -340,6 +340,21 @@ public interface Stream<T>
   }
 
   /**
+   * Pass the first element downstream, complete the downstream and cancel the upstream.
+   * If no element is emitted before the upstream stage completes then emit the specified
+   * {@code defaultValue}.
+   *
+   * @param defaultValue the default value if the stream is empty.
+   * @return the new stream.
+   * @see #first()
+   */
+  @Nonnull
+  default Stream<T> firstOrDefault( @Nonnull final T defaultValue )
+  {
+    return first().defaultIfEmpty( defaultValue );
+  }
+
+  /**
    * Emit an error if the stream completes and no items were emitted.
    * The error is created by invoking errorFactory when the error will be emitted.
    *

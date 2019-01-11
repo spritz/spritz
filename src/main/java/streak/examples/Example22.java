@@ -8,5 +8,7 @@ public class Example22
   {
     Streak.empty().firstOrError().subscribe( new LoggingSubscriber<>() );
     Streak.of( 1 ).firstOrError().subscribe( new LoggingSubscriber<>() );
+    Streak.empty().firstOrDefault( 22 ).subscribe( new LoggingSubscriber<>() );
+    Streak.of( 1 ).firstOrDefault( 22 ).subscribe( new LoggingSubscriber<>() );
   }
 }
