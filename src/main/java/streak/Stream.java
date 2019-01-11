@@ -2,6 +2,7 @@ package streak;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -322,6 +323,20 @@ public interface Stream<T>
   default Stream<T> first()
   {
     return take( 1 );
+  }
+
+  /**
+   * Pass the first element downstream, complete the downstream and cancel the upstream.
+   * If no element is emitted before the upstream stage completes then signal an error of
+   * type {@link NoSuchElementException}.
+   *
+   * @return the new stream.
+   * @see #first()
+   */
+  @Nonnull
+  default Stream<T> firstOrError()
+  {
+    return first().errorIfEmpty( NoSuchElementException::new );
   }
 
   /**
