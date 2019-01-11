@@ -47,7 +47,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 **Filtering Operators**
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
-- [ ] `ofType(Type)` - Filters items emitted by a reactive source by only emitting those of the specified type and changing type of stream to match that type.
 - [ ] `firstOrError()` - Emits the first item emitted by the stream, or signals a `NoSuchElementException` error if the source completes without emitting an item.
 - [ ] `firstOrDefault(DefaultValue)` - Emits the first item emitted by the stream, or emits `DefaultValue` if the source completes without emitting an item.
 - [ ] `lastOrError()` - Emits the last item emitted by the stream, or signals a `NoSuchElementException` error if the source completes without emitting an item.

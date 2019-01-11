@@ -238,6 +238,20 @@ public interface Stream<T>
   }
 
   /**
+   * Remove items in the stream that are not instances of the specified {@code type} and return a stream of the specified type.
+   *
+   * @param <DownstreamT> the type of item emitted downstream.
+   * @param type          the class of items to be emitted downstream.
+   * @return the new stream.
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  default <DownstreamT extends T> Stream<DownstreamT> ofType( @Nonnull final Class<DownstreamT> type )
+  {
+    return filter( type::isInstance ).map( i -> (DownstreamT) i );
+  }
+
+  /**
    * Drop all elements from this stream, only emitting completion or failed signal.
    *
    * @return the new stream.
