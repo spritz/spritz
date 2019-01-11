@@ -22,6 +22,34 @@ public interface Stream<T>
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
+   * parameter before signalling subscription.
+   *
+   * @param action the function called before signalling subscription.
+   * @return the new stream.
+   * @see #afterSubscribe(Consumer)
+   */
+  @Nonnull
+  default Stream<T> onSubscribe( @Nonnull final Consumer<Subscription> action )
+  {
+    return new PeekOperator<>( this, action, null, null, null, null, null, null, null, null, null );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after signalling subscription.
+   *
+   * @param action the function called after signalling subscription.
+   * @return the new stream.
+   * @see #onSubscribe(Consumer)
+   */
+  @Nonnull
+  default Stream<T> afterSubscribe( @Nonnull final Consumer<Subscription> action )
+  {
+    return new PeekOperator<>( this, null, action, null, null, null, null, null, null, null, null );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
    * parameter before each item is emitted. This method is an alias for {@link #onNext(Consumer)}.
    *
    * @param action the function before each item is emitted.
@@ -61,7 +89,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( this, action, null, null, null, null, null, null, null );
+    return new PeekOperator<>( this, null, null, action, null, null, null, null, null, null, null );
   }
 
   /**
@@ -74,7 +102,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( this, null, action, null, null, null, null, null, null );
+    return new PeekOperator<>( this, null, null, null, action, null, null, null, null, null, null );
   }
 
   /**
@@ -88,7 +116,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( this, null, null, action, null, null, null, null, null );
+    return new PeekOperator<>( this, null, null, null, null, action, null, null, null, null, null );
   }
 
   /**
@@ -102,7 +130,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( this, null, null, null, action, null, null, null, null );
+    return new PeekOperator<>( this, null, null, null, null, null, action, null, null, null, null );
   }
 
   /**
@@ -116,7 +144,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, action, null, null, null );
+    return new PeekOperator<>( this, null, null, null, null, null, null, action, null, null, null );
   }
 
   /**
@@ -130,7 +158,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, action, null, null );
+    return new PeekOperator<>( this, null, null, null, null, null, null, null, action, null, null );
   }
 
   /**
@@ -144,7 +172,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onCancel( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, action, null );
+    return new PeekOperator<>( this, null, null, null, null, null, null, null, null, action, null );
   }
 
   /**
@@ -158,7 +186,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterCancel( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, null, action );
+    return new PeekOperator<>( this, null, null, null, null, null, null, null, null, null, action );
   }
 
   /**
@@ -175,7 +203,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> onTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, e -> action.run(), null, action, null, action, null );
+    return new PeekOperator<>( this, null, null, null, null, e -> action.run(), null, action, null, action, null );
   }
 
   /**
@@ -192,7 +220,7 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> afterTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, e -> action.run(), null, action, null, action );
+    return new PeekOperator<>( this, null, null, null, null, null, e -> action.run(), null, action, null, action );
   }
 
   /**

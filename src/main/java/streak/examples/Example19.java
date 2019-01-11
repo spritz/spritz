@@ -26,6 +26,8 @@ public class Example19
   private static <T> Stream<T> peekAll( @Nonnull final Stream<T> stream )
   {
     return stream
+      .onSubscribe( e -> System.out.println( "\uD83D\uDC41 onSubscribe(" + e + ")" ) )
+      .afterSubscribe( e -> System.out.println( "\uD83D\uDC41 afterSubscribe(" + e + ")" ) )
       .onNext( e -> System.out.println( "\uD83D\uDC41 onNext(" + e + ")" ) )
       .afterNext( e -> System.out.println( "\uD83D\uDC41 afterNext(" + e + ")" ) )
       .onComplete( () -> System.out.println( "\uD83D\uDC41 onComplete()" ) )

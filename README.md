@@ -44,11 +44,6 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 
-**Peeking Operators**
-
-- [ ] `onSubscribe(Item)` - invoke method before subscription has been signalled.
-- [ ] `afterSubscribe(Item)` - invoke method after subscription has been signalled.
-
 **Filtering Operators**
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
