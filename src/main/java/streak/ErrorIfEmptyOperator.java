@@ -43,7 +43,10 @@ final class ErrorIfEmptyOperator<T>
       {
         super.onError( _errorFactory.get() );
       }
-      super.onComplete();
+      else
+      {
+        super.onComplete();
+      }
     }
 
     @Override
