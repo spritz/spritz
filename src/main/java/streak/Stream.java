@@ -327,8 +327,7 @@ public interface Stream<T>
 
   /**
    * Pass the first element downstream, complete the downstream and cancel the upstream.
-   * If no element is emitted before the upstream stage completes then signal an error of
-   * type {@link NoSuchElementException}.
+   * If the stream is empty then signal an error of type {@link NoSuchElementException}.
    *
    * @return the new stream.
    * @see #first()
@@ -392,6 +391,33 @@ public interface Stream<T>
   default Stream<T> last()
   {
     return last( 1 );
+  }
+
+  /**
+   * Drop all elements except for the last element.
+   * If the stream is empty then signal an error of type {@link NoSuchElementException}.
+   *
+   * @return the new stream.
+   * @see #last(int)
+   */
+  @Nonnull
+  default Stream<T> lastOrError()
+  {
+    return last().errorIfEmpty( NoSuchElementException::new );
+  }
+
+  /**
+   * Drop all elements except for the last element.
+   * If the stream is empty then emit the defaultValue specified as a parameter.
+   *
+   * @param defaultValue the default value emitted if the stream is empty.
+   * @return the new stream.
+   * @see #last(int)
+   */
+  @Nonnull
+  default Stream<T> lastOrDefault( @Nonnull final T defaultValue )
+  {
+    return last().defaultIfEmpty( defaultValue );
   }
 
   /**
