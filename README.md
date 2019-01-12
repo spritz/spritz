@@ -102,6 +102,7 @@ Other
 - [ ] `delaySubscriptionBy(DelayFunction) where DelayTime DelayFunction(Subscription)` - delay subscription of upstream by variable time returned by delay function.
 - [ ] `delaySubscription(DelayTime) == delaySubscriptionBy(_ -> DelayTime)` - delay subscription of upstream by DelayTime
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
+- [ ] `throttleLast(ThrottleTime)` == `sample(SampleTime)`
 
 **Control Flow**
 
