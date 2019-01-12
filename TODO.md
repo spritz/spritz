@@ -2,6 +2,12 @@
 
 * Ensure tests all verify that predicates can accept supertypes of T
 
+* Ensure that after every error, complete or cancel there are no timers left associated with stream.
+  Probably can do this for every by enqueuing streams which can be cancelled and then checking that
+  there are no uncancelled timer tasks on test complete.
+
+* Ensure that cancel after `onComplete` or `onError` is a noop.
+
 * Ensure tests verify that every stream source supports being disposed in `onNext(item)` invocation.
 
 * Every callable/supplier/predicate/runnable/function passed to an operator should be tested to ensure
