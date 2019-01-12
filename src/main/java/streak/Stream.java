@@ -225,11 +225,11 @@ public interface Stream<T>
   }
 
   /**
-   * Filter the elements emitted by this stream using the specified {@link Predicate}.
-   * Any elements that return {@code true} when passed to the {@link Predicate} will be
-   * emitted while all other elements will be dropped.
+   * Filter the items emitted by this stream using the specified {@link Predicate}.
+   * Any items that return {@code true} when passed to the {@link Predicate} will be
+   * emitted while all other items will be dropped.
    *
-   * @param predicate The predicate to apply to each element.
+   * @param predicate the predicate to apply to each item.
    * @return the new stream.
    */
   @Nonnull
@@ -253,7 +253,7 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements from this stream, only emitting completion or failed signal.
+   * Drop all items from this stream, only emitting the completion or failed signal.
    *
    * @return the new stream.
    */
@@ -264,13 +264,13 @@ public interface Stream<T>
   }
 
   /**
-   * Filter the elements if they have been previously emitted.
-   * To determine whether an element has been previous emitted the {@link Object#equals(Object)}
-   * and {@link Object#hashCode()} must be correctly implemented for elements type.
+   * Filter the items if they have been previously emitted.
+   * To determine whether an item has been previous emitted the {@link Object#equals(Object)}
+   * and {@link Object#hashCode()} must be correctly implemented for items type.
    *
-   * <p>WARNING: It should be noted that every distinct element is retained until the stream
+   * <p>WARNING: It should be noted that every distinct item is retained until the stream
    * completes. As a result this operator can cause significant amount of memory pressure if many
-   * distinct elements exist or the stream persists for a long time.</p>
+   * distinct items exist or the stream persists for a long time.</p>
    *
    * @return the new stream.
    */
@@ -281,11 +281,11 @@ public interface Stream<T>
   }
 
   /**
-   * Truncate the stream, ensuring the stream is no longer than {@code maxSize} elements in length.
-   * If {@code maxSize} is reached then the element will be passed downstream, the downstream will be
+   * Truncate the stream, ensuring the stream is no longer than {@code maxSize} items in length.
+   * If {@code maxSize} is reached then the item will be passed downstream, the downstream will be
    * completed and then the upstream will be cancelled. This method is an alias for {@link #limit(int)}
    *
-   * @param maxSize The maximum number of elements returned by the stream.
+   * @param maxSize The maximum number of items returned by the stream.
    * @return the new stream.
    * @see #limit(int)
    */
@@ -296,11 +296,11 @@ public interface Stream<T>
   }
 
   /**
-   * Truncate the stream, ensuring the stream is no longer than {@code maxSize} elements in length.
-   * If {@code maxSize} is reached then the element will be passed downstream, the downstream will be
+   * Truncate the stream, ensuring the stream is no longer than {@code maxSize} items in length.
+   * If {@code maxSize} is reached then the item will be passed downstream, the downstream will be
    * completed and then the upstream will be cancelled. This method is an alias for {@link #take(int)}
    *
-   * @param maxSize The maximum number of elements returned by the stream.
+   * @param maxSize The maximum number of items returned by the stream.
    * @return the new stream.
    * @see #take(int)
    */
@@ -311,7 +311,7 @@ public interface Stream<T>
   }
 
   /**
-   * Pass the first element downstream, complete the downstream and cancel the upstream.
+   * Pass the first item downstream, complete the downstream and cancel the upstream.
    * This method is an alias for {@link #take(int)} or {@link #limit(int)} where <code>1</code> is
    * passed as the parameter.
    *
@@ -326,7 +326,7 @@ public interface Stream<T>
   }
 
   /**
-   * Pass the first element downstream, complete the downstream and cancel the upstream.
+   * Pass the first item downstream, complete the downstream and cancel the upstream.
    * If the stream is empty then signal an error of type {@link NoSuchElementException}.
    *
    * @return the new stream.
@@ -339,7 +339,7 @@ public interface Stream<T>
   }
 
   /**
-   * Pass the first element downstream, complete the downstream and cancel the upstream.
+   * Pass the first item downstream, complete the downstream and cancel the upstream.
    * If the stream is empty then emit the defaultValue specified as a parameter.
    *
    * @param defaultValue the default value emitted if the stream is empty.
@@ -366,10 +366,10 @@ public interface Stream<T>
   }
 
   /**
-   * Drop the first {@code count} elements of this stream. If the stream contains fewer
-   * than {@code count} elements then the stream will effectively be an empty stream.
+   * Drop the first {@code count} items of this stream. If the stream contains fewer
+   * than {@code count} items then the stream will effectively be an empty stream.
    *
-   * @param count the number of elements to drop.
+   * @param count the number of items to drop.
    * @return the new stream.
    */
   @Nonnull
@@ -379,8 +379,8 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements except for the last element.
-   * Once the complete signal has been received the operator will emit the last element received
+   * Drop all items except for the last item.
+   * Once the complete signal has been received the operator will emit the last item received
    * if any prior to sending the complete signal. This is equivalent to invoking the {@link #last(int)}
    * method and passing the value <code>1</code> to the parameter <code>maxElements</code>.
    *
@@ -394,7 +394,7 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements except for the last element.
+   * Drop all items except for the last item.
    * If the stream is empty then signal an error of type {@link NoSuchElementException}.
    *
    * @return the new stream.
@@ -407,7 +407,7 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements except for the last element.
+   * Drop all items except for the last item.
    * If the stream is empty then emit the defaultValue specified as a parameter.
    *
    * @param defaultValue the default value emitted if the stream is empty.
@@ -421,11 +421,11 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements except for the last {@code maxElements} elements.
-   * This operator will buffer up to {@code maxElements} elements until it receives the complete
-   * signal and then it will send all the buffered elements and the complete signal. If less than
+   * Drop all items except for the last {@code maxElements} items.
+   * This operator will buffer up to {@code maxElements} items until it receives the complete
+   * signal and then it will send all the buffered items and the complete signal. If less than
    * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
-   * less than {@code maxElements} elements.
+   * less than {@code maxElements} items.
    *
    * @param maxElements the maximum number
    * @return the new stream.
@@ -437,11 +437,11 @@ public interface Stream<T>
   }
 
   /**
-   * Drop all elements except for the last {@code maxElements} elements.
-   * This operator will buffer up to {@code maxElements} elements until it receives the complete
-   * signal and then it will send all the buffered elements and the complete signal. If less than
+   * Drop all items except for the last {@code maxElements} items.
+   * This operator will buffer up to {@code maxElements} items until it receives the complete
+   * signal and then it will send all the buffered items and the complete signal. If less than
    * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
-   * less than {@code maxElements} elements. This method is an alias for the {@link #last(int)} method.
+   * less than {@code maxElements} items. This method is an alias for the {@link #last(int)} method.
    *
    * @param maxElements the maximum number
    * @return the new stream.
@@ -454,10 +454,10 @@ public interface Stream<T>
   }
 
   /**
-   * Drop elements from this stream until an element no longer matches the supplied {@code predicate}.
-   * As long as the {@code predicate} returns true, no elements will be emitted from this stream. Once
-   * the first element is encountered for which the {@code predicate} returns false, all subsequent
-   * elements will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
+   * Drop items from this stream until an item no longer matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns true, no items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns false, all subsequent
+   * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
    * to {@link #dropUntil(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
@@ -471,10 +471,10 @@ public interface Stream<T>
   }
 
   /**
-   * Drop elements from this stream until an element matches the supplied {@code predicate}.
-   * As long as the {@code predicate} returns false, no elements will be emitted from this stream. Once
-   * the first element is encountered for which the {@code predicate} returns true, all subsequent
-   * elements will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
+   * Drop items from this stream until an item matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns false, no items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns true, all subsequent
+   * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
    * to {@link #dropWhile(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
@@ -488,9 +488,9 @@ public interface Stream<T>
   }
 
   /**
-   * Return elements from this stream until an element fails to match the supplied {@code predicate}.
-   * As long as the {@code predicate} returns true, elements will be emitted from this stream. Once
-   * the first element is encountered for which the {@code predicate} returns false, the stream will
+   * Return items from this stream until an item fails to match the supplied {@code predicate}.
+   * As long as the {@code predicate} returns true, items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns false, the stream will
    * be completed and the upstream canceled. This is equivalent to {@link #takeUntil(Predicate)}
    * if the predicate is negated.
    *
@@ -505,9 +505,9 @@ public interface Stream<T>
   }
 
   /**
-   * Return elements from this stream until an element matches the supplied {@code predicate}.
-   * As long as the {@code predicate} returns false, elements will be emitted from this stream. Once
-   * the first element is encountered for which the {@code predicate} returns true, the stream will
+   * Return items from this stream until an item matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns false, items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns true, the stream will
    * be completed and the upstream canceled. This is equivalent to {@link #takeWhile(Predicate)}
    * if the predicate is negated.
    *
@@ -522,11 +522,11 @@ public interface Stream<T>
   }
 
   /**
-   * Drops elements from the stream if they are equal to the previous element emitted in the stream.
-   * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
+   * Drops items from the stream if they are equal to the previous item emitted in the stream.
+   * The items are tested for equality using the {@link Objects#equals(Object, Object)} method.
    * This method is an alias for {@link #skipConsecutiveDuplicates()}. It is equivalent to invoking
    * {@link #filterSuccessive(SuccessivePredicate)} passing a {@link SuccessivePredicate} filters
-   * out successive elements that are equal.
+   * out successive items that are equal.
    *
    * @return the new stream.
    * @see #skipConsecutiveDuplicates()
@@ -538,8 +538,8 @@ public interface Stream<T>
   }
 
   /**
-   * Drops elements from the stream if they are equal to the previous element emitted in the stream.
-   * The elements are tested for equality using the {@link Objects#equals(Object, Object)} method.
+   * Drops items from the stream if they are equal to the previous item emitted in the stream.
+   * The items are tested for equality using the {@link Objects#equals(Object, Object)} method.
    * This method is an alias for {@link #dropConsecutiveDuplicates()}.
    *
    * @return the new stream.
@@ -552,12 +552,12 @@ public interface Stream<T>
   }
 
   /**
-   * Filter consecutive elements emitted by this stream using the specified {@link SuccessivePredicate}.
-   * Any candidate elements that return {@code true} when passed to the {@link Predicate} will be
-   * emitted while all other elements will be dropped. The predicate passes the last emitted element
-   * as well as the candidate element.
+   * Filter consecutive items emitted by this stream using the specified {@link SuccessivePredicate}.
+   * Any candidate items that return {@code true} when passed to the {@link Predicate} will be
+   * emitted while all other items will be dropped. The predicate passes the last emitted item
+   * as well as the candidate item.
    *
-   * @param predicate the comparator to determine whether two successive elements are equal.
+   * @param predicate the comparator to determine whether two successive items are equal.
    * @return the new stream.
    */
   @Nonnull
@@ -580,10 +580,10 @@ public interface Stream<T>
   }
 
   /**
-   * Transform elements emitted by this stream using the {@code mapper} function.
+   * Transform items emitted by this stream using the {@code mapper} function.
    *
-   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
-   * @param mapper        the function to use to map the elements.
+   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
+   * @param mapper        the function to use to map the items.
    * @return the new stream.
    */
   @Nonnull
@@ -593,7 +593,7 @@ public interface Stream<T>
   }
 
   /**
-   * Transform elements emitted by this stream to a constant {@code value}.
+   * Transform items emitted by this stream to a constant {@code value}.
    *
    * @param <DownstreamT> the type of the constant value emitted.
    * @param value         the constant value to emit.
@@ -606,14 +606,14 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
+   * Map each input item to a stream and then concatenate the items emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
-   * elements emitted from all the streams returned by the mapper function. This method is equivalent to
+   * items emitted from all the streams returned by the mapper function. This method is equivalent to
    * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
    * method is also an alias for {@link #concatMap(Function)}.
    *
-   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
+   * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
    * @see #concatMap(Function)
    * @see #mergeMap(Function, int)
@@ -625,14 +625,14 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and then concatenate the elements emitted by the mapped stream
+   * Map each input item to a stream and then concatenate the items emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
-   * elements emitted from all the streams returned by the mapper function. This method is equivalent to
+   * items emitted from all the streams returned by the mapper function. This method is equivalent to
    * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
    * method is also an alias for {@link #flatMap(Function)}.
    *
-   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
+   * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
    * @see #flatMap(Function)
    * @see #mergeMap(Function, int)
@@ -644,19 +644,19 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and then flatten the elements emitted by that stream into
-   * this stream. The elements are merged concurrently up to the maximum concurrency specified by
-   * {@code maxConcurrency}. Thus elements from different inner streams may be interleaved with other
+   * Map each input item to a stream and then flatten the items emitted by that stream into
+   * this stream. The items are merged concurrently up to the maximum concurrency specified by
+   * {@code maxConcurrency}. Thus items from different inner streams may be interleaved with other
    * streams that are currently active or subscribed.
    *
-   * <p>If an input element is received when the merged stream has already subscribed to the maximum
+   * <p>If an input item is received when the merged stream has already subscribed to the maximum
    * number of inner streams as defined by the <code>maxConcurrency</code> parameter then the extra
-   * elements are placed on an unbounded buffer. This can lead to significant memory pressure and out
-   * of memory conditions if the upstream emits elements at a faster rate than the merge stream can
+   * items are placed on an unbounded buffer. This can lead to significant memory pressure and out
+   * of memory conditions if the upstream emits items at a faster rate than the merge stream can
    * complete the inner streams.</p>
    *
-   * @param <DownstreamT>  the type of the elements that the {@code mapper} function emits.
-   * @param mapper         the function to map the elements to the inner stream.
+   * @param <DownstreamT>  the type of the items that the {@code mapper} function emits.
+   * @param mapper         the function to map the items to the inner stream.
    * @param maxConcurrency the maximum number of inner stream that can be subscribed to at one time.
    * @return the new stream.
    * @see #mergeMap(Function)
@@ -669,13 +669,13 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and flatten the elements emitted by the inner stream into this stream.
+   * Map each input item to a stream and flatten the items emitted by the inner stream into this stream.
    * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MAX_CONCURRENCY}.
    * Invoking this method is equivalent to invoking {@link #mergeMap(Function, int)} and passing the
    * {@link #DEFAULT_MAX_CONCURRENCY} constant as the {@code maxConcurrency} parameter.
    *
-   * @param <DownstreamT> the type of the elements that the {@code mapper} function emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
+   * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
    * @see #mergeMap(Function, int)
    */
@@ -686,16 +686,16 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and emit the elements from the most recently
-   * mapped stream. The stream that the input element is mapped to is the active stream
-   * and all elements emitted on the active stream are merged into this stream. If the
+   * Map each input item to a stream and emit the items from the most recently
+   * mapped stream. The stream that the input item is mapped to is the active stream
+   * and all items emitted on the active stream are merged into this stream. If the
    * active stream completes then it is no longer the active stream but this stream does
-   * not complete. If a new input element is received while there is an active stream is
-   * present then the active stream is canceled and the new input element is mapped to a
+   * not complete. If a new input item is received while there is an active stream is
+   * present then the active stream is canceled and the new input item is mapped to a
    * new stream that is made active.
    *
-   * @param <DownstreamT> the type of the elements that this stream emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT> the type of the items that this stream emits.
+   * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
    */
   @Nonnull
@@ -705,16 +705,16 @@ public interface Stream<T>
   }
 
   /**
-   * Map each input element to a stream and emit the elements from the most recently
-   * mapped stream. The stream that the input element is mapped to is the active stream
-   * and all elements emitted on the active stream are merged into this stream. If the
+   * Map each input item to a stream and emit the items from the most recently
+   * mapped stream. The stream that the input item is mapped to is the active stream
+   * and all items emitted on the active stream are merged into this stream. If the
    * active stream completes then it is no longer the active stream but this stream does
-   * not complete. If a new input element is received while there is an active stream is
-   * present then the active stream is canceled and the new input element is mapped to a
+   * not complete. If a new input item is received while there is an active stream is
+   * present then the active stream is canceled and the new input item is mapped to a
    * new stream that is made active.
    *
-   * @param <DownstreamT> the type of the elements that this stream emits.
-   * @param mapper        the function to map the elements to the inner stream.
+   * @param <DownstreamT> the type of the items that this stream emits.
+   * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
    */
   @Nonnull
@@ -724,8 +724,8 @@ public interface Stream<T>
   }
 
   /**
-   * Emit all the elements from this stream and then when the complete signal is emitted then
-   * merge the elements from the specified streams one after another until all streams complete.
+   * Emit all the items from this stream and then when the complete signal is emitted then
+   * merge the items from the specified streams one after another until all streams complete.
    *
    * @param streams the streams to append to this stream.
    * @return the new stream.
@@ -742,9 +742,9 @@ public interface Stream<T>
   }
 
   /**
-   * Merge the elements from the specified streams before the elements from this stream sequentially.
-   * For each of the supplied streams, emit all elements from the stream until it completes an then move
-   * to the next stream. If no more streams have been supplied then emit the elements from this stream.
+   * Merge the items from the specified streams before the items from this stream sequentially.
+   * For each of the supplied streams, emit all items from the stream until it completes an then move
+   * to the next stream. If no more streams have been supplied then emit the items from this stream.
    *
    * @param streams the stream to prepend to this stream.
    * @return the new stream.
@@ -761,7 +761,7 @@ public interface Stream<T>
   }
 
   /**
-   * Emit the specified element before emitting elements from this stream.
+   * Emit the specified item before emitting items from this stream.
    *
    * @param value the initial value to emit.
    * @return the new stream.
@@ -775,7 +775,7 @@ public interface Stream<T>
   }
 
   /**
-   * Emit the specified element after emitting elements from this stream.
+   * Emit the specified item after emitting items from this stream.
    *
    * @param value the last value to emit.
    * @return the new stream.
@@ -789,9 +789,9 @@ public interface Stream<T>
   }
 
   /**
-   * Apply an accumulator function to each element in the stream emit the accumulated value.
+   * Apply an accumulator function to each item in the stream emit the accumulated value.
    *
-   * @param <DownstreamT>       the type of the elements that the {@code accumulatorFunction} function emits.
+   * @param <DownstreamT>       the type of the items that the {@code accumulatorFunction} function emits.
    * @param accumulatorFunction the function to use to accumulate the values.
    * @param initialValue        the initial value to begin accumulation from.
    * @return the new stream.
@@ -804,7 +804,7 @@ public interface Stream<T>
   }
 
   /**
-   * If upstream emits no elements and then completes then emit the {@code defaultValue} before completing this stream.
+   * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the default value to emit if upstream completes and is empty.
    * @return the new stream.
@@ -829,7 +829,7 @@ public interface Stream<T>
    * Compost this stream with another stream and return the new stream.
    * This method is used to compose chains of stream operations.
    *
-   * @param <DownstreamT> the type of element emitted by downstream stage.
+   * @param <DownstreamT> the type of the item emitted by downstream stage.
    * @param <S>           the type of the downstream stage.
    * @param function      the function used to compose stream operations.
    * @return the new stream.

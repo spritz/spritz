@@ -32,7 +32,7 @@ public final class Streak
   }
 
   /**
-   * Creates a stream that emits the parameters as elements.
+   * Creates a stream that emits the parameters as items.
    *
    * @param <T>    the type of elements contained in the stream.
    * @param values the values to emit.
