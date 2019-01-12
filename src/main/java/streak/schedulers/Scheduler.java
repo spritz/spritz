@@ -45,7 +45,7 @@ public interface Scheduler
   }
 
   /**
-   * Schedules the periodic execution of the given task with specified period, after a specified delay.
+   * Schedules the periodic execution of the given task with specified period.
    *
    * @param task   the task to execute.
    * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
