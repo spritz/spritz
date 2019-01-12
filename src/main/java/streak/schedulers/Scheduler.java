@@ -20,7 +20,7 @@ public interface Scheduler
   int now();
 
   /**
-   * Schedules the execution of the given task.
+   * Schedules the execution of the given task as soon as possible but still asynchronously.
    *
    * @param task the task to execute.
    * @return the {@link Task} instance that can be used to cancel execution of task.
