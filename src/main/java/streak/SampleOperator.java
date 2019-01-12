@@ -2,12 +2,12 @@ package streak;
 
 import javax.annotation.Nonnull;
 
-final class ThrottleLatestOperator<T>
+final class SampleOperator<T>
   extends AbstractStream<T>
 {
   private final int _samplePeriod;
 
-  ThrottleLatestOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod )
+  SampleOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod )
   {
     super( upstream );
     _samplePeriod = samplePeriod;

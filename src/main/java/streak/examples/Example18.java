@@ -11,7 +11,7 @@ public class Example18
     final AtomicInteger counter = new AtomicInteger();
     Streak
       .generate( counter::incrementAndGet, 50 )
-      .throttleLatest( 210 )
+      .sample( 210 )
       .take( 12 )
       .afterTerminate( Example18::terminateScheduler )
       .subscribe( new LoggingSubscriber<>() );

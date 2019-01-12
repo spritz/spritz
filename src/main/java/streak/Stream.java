@@ -567,16 +567,18 @@ public interface Stream<T>
   }
 
   /**
-   * Emits the next item emitted by a stream, then periodically emits the latest item (if any)
-   * when the specified timeout elapses between them.
+   * Emit the next item emitted by the stream and then the latest item emitted
+   * after each sampling period expires. If a sampling period expires without emitting
+   * an item then the operator is reset and will emit the next item emitted by the stream
+   * before returning to sampling operator.
    *
-   * @param timeout the minimum time between success items being emitted.
+   * @param samplePeriod the period at which the stream is sampled.
    * @return the new stream.
    */
   @Nonnull
-  default Stream<T> throttleLatest( final int timeout )
+  default Stream<T> sample( final int samplePeriod )
   {
-    return compose( s -> new ThrottleLatestOperator<>( s, timeout ) );
+    return compose( s -> new SampleOperator<>( s, samplePeriod ) );
   }
 
   /**
