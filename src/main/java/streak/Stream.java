@@ -580,6 +580,36 @@ public interface Stream<T>
   }
 
   /**
+   * Drops items emitted by a stream that are followed by newer items before
+   * the given timeout value expires. The timer resets on each emission.
+   * This is an alias for {@link #debounce(int)}.
+   *
+   * @param timeout the timeout.
+   * @return the new stream.
+   * @see #debounce(int)
+   */
+  @Nonnull
+  default Stream<T> throttleWithTimeout( final int timeout )
+  {
+    return compose( s -> new ThrottleWithTimeoutOperator<>( s, timeout ) );
+  }
+
+  /**
+   * Drops items emitted by a stream that are followed by newer items before
+   * the given timeout value expires. The timer resets on each emission.
+   * This is an alias for {@link #throttleWithTimeout(int)}.
+   *
+   * @param timeout the timeout.
+   * @return the new stream.
+   * @see #throttleWithTimeout(int)
+   */
+  @Nonnull
+  default Stream<T> debounce( final int timeout )
+  {
+    return throttleWithTimeout( timeout );
+  }
+
+  /**
    * Transform items emitted by this stream using the {@code mapper} function.
    *
    * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
