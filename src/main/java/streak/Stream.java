@@ -581,6 +581,36 @@ public interface Stream<T>
 
   /**
    * Drops items emitted by a stream that are followed by newer items before
+   * the timeout returned by the function expires. The timer resets on each emission.
+   * This is an alias for {@link #debounce(TimeoutForItemFn)}.
+   *
+   * @param timeoutForItemFn the function that returns the timeout.
+   * @return the new stream.
+   * @see #debounce(TimeoutForItemFn)
+   */
+  @Nonnull
+  default Stream<T> throttleWithTimeout( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  {
+    return compose( s -> new ThrottleWithTimeoutOperator<>( s, timeoutForItemFn ) );
+  }
+
+  /**
+   * Drops items emitted by a stream that are followed by newer items before
+   * the timeout returned by the function expires. The timer resets on each emission.
+   * This is an alias for {@link #throttleWithTimeout(TimeoutForItemFn)}.
+   *
+   * @param timeoutForItemFn the function that returns the timeout.
+   * @return the new stream.
+   * @see #throttleWithTimeout(TimeoutForItemFn)
+   */
+  @Nonnull
+  default Stream<T> debounce( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  {
+    return throttleWithTimeout( timeoutForItemFn );
+  }
+
+  /**
+   * Drops items emitted by a stream that are followed by newer items before
    * the given timeout value expires. The timer resets on each emission.
    * This is an alias for {@link #debounce(int)}.
    *
@@ -591,7 +621,8 @@ public interface Stream<T>
   @Nonnull
   default Stream<T> throttleWithTimeout( final int timeout )
   {
-    return compose( s -> new ThrottleWithTimeoutOperator<>( s, timeout ) );
+    assert timeout > 0;
+    return throttleWithTimeout( i -> timeout );
   }
 
   /**

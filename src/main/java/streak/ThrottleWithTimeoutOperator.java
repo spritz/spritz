@@ -8,36 +8,39 @@ import streak.schedulers.Task;
 final class ThrottleWithTimeoutOperator<T>
   extends AbstractStream<T>
 {
-  private final int _throttleTime;
+  @Nonnull
+  private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleWithTimeoutOperator( @Nonnull final Stream<? extends T> upstream, final int throttleTime )
+  ThrottleWithTimeoutOperator( @Nonnull final Stream<? extends T> upstream,
+                               @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( upstream );
-    _throttleTime = throttleTime;
-    assert throttleTime > 0;
+    _timeoutForItemFn = timeoutForItemFn;
   }
 
   @Override
   public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _throttleTime ) );
+    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _timeoutForItemFn ) );
   }
 
   private static final class WorkerSubscription<T>
     extends AbstractOperatorSubscription<T>
     implements Runnable
   {
-    private final int _throttleTime;
+    @Nonnull
+    private final TimeoutForItemFn<T> _timeoutForItemFn;
     @Nullable
     private T _nextItem;
     @Nullable
     private Task _task;
     private boolean _pendingComplete;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int throttleTime )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
+                        @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
     {
       super( subscriber );
-      _throttleTime = throttleTime;
+      _timeoutForItemFn = timeoutForItemFn;
     }
 
     @Override
@@ -49,7 +52,18 @@ final class ThrottleWithTimeoutOperator<T>
         _task.cancel();
       }
       _nextItem = item;
-      _task = Schedulers.current().schedule( this, now + _throttleTime );
+      final int timeout = _timeoutForItemFn.getTimeout( item );
+      assert timeout >= 0;
+      if ( 0 == timeout )
+      {
+        super.onNext( _nextItem );
+        _nextItem = null;
+        _task = null;
+      }
+      else
+      {
+        _task = Schedulers.current().schedule( this, now + timeout );
+      }
     }
 
     @Override
