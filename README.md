@@ -46,6 +46,10 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
 
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 
+**Sources**
+
+- [ ] `at(Time,Item)` == `periodic(Time).first().mapTo(Item)` - Create a Stream containing a single event at a specific time.
+
 **Filtering Operators**
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
