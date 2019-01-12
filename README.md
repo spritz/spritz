@@ -85,7 +85,6 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
 
 - [ ] `loop()` - Accumulate results using a feedback loop that emits one value and feeds back another to be used in the next iteration. It allows you to maintain and update a “state” (a.k.a. feedback, a.k.a. seed for the next iteration) while emitting a different value. In contrast, scan feeds back and produces the same value.
 
-- [ ] `sample(Period)` - In each period emit the last value emitted in period.
 - [ ] `sampleBy(ControlStream)` - When `ControlStream` emits then produce a sample.
 
 **HigherOrder Operators**
