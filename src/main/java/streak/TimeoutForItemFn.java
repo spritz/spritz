@@ -13,6 +13,7 @@ public interface TimeoutForItemFn<T>
 {
   /**
    * Return the timeout associated with this item.
+   * The value MUST NOT be negative but MAY BE zero which implies no timeout.
    *
    * @param item the item.
    * @return the timeout value.
