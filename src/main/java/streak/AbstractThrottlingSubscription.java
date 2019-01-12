@@ -22,9 +22,31 @@ abstract class AbstractThrottlingSubscription<T>
   }
 
   @Override
+  public final void onNext( @Nonnull final T item )
+  {
+    final int now = Schedulers.current().now();
+
+    /*
+     * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
+     * pending that we have expected to emitted and if so emit the item before performing normal
+     * onNext action.
+     */
+    if ( hasNextItem() && now > _nextTaskTime )
+    {
+      assert null != _task;
+      _task.cancel();
+      executeTask();
+    }
+
+    doOnNext( now, item );
+  }
+
+  protected abstract void doOnNext( final int now, @Nonnull final T item );
+
+  @Override
   public final void onError( @Nonnull final Throwable throwable )
   {
-    clearPendingTask();
+    cancelPendingTask();
     super.onError( throwable );
   }
 
@@ -43,7 +65,7 @@ abstract class AbstractThrottlingSubscription<T>
 
   private void doOnComplete()
   {
-    clearPendingTask();
+    cancelPendingTask();
     super.onComplete();
   }
 
@@ -66,13 +88,6 @@ abstract class AbstractThrottlingSubscription<T>
   final void setNextItem( @Nullable final T nextItem )
   {
     _nextItem = nextItem;
-  }
-
-  final void cancelAndRunTask()
-  {
-    assert null != _task;
-    _task.cancel();
-    executeTask();
   }
 
   private void executeTask()
@@ -114,7 +129,7 @@ abstract class AbstractThrottlingSubscription<T>
   /**
    * Cleanup pending task if any.
    */
-  final void clearPendingTask()
+  final void cancelPendingTask()
   {
     if ( null != _task )
     {

@@ -35,9 +35,9 @@ final class ThrottleWithTimeoutOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    protected void doOnNext( final int now, @Nonnull final T item )
     {
-      clearPendingTask();
+      cancelPendingTask();
       scheduleTaskForItem( item, _timeoutForItemFn.getTimeout( item ) );
     }
   }

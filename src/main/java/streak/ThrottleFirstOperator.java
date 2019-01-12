@@ -35,7 +35,7 @@ final class ThrottleFirstOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    protected final void doOnNext( final int now, @Nonnull final T item )
     {
       if ( !hasNextItem() )
       {
