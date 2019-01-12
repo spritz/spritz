@@ -815,6 +815,18 @@ public interface Stream<T>
     return compose( p -> new DefaultIfEmptyOperator<>( p, defaultValue ) );
   }
 
+  /**
+   * Signals error with a {@link TimeoutException} if an item is not emitted within the specified timeout period from the previous item.
+   *
+   * @param timeoutTime the timeout period after which the stream is terminated.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Stream<T> timeout( final int timeoutTime )
+  {
+    return compose( p -> new TimeoutOperator<>( p, timeoutTime ) );
+  }
+
   default void forEach( @Nonnull final Consumer<T> action )
   {
     terminate( () -> new ForEachSubscriber<>( action ) );
