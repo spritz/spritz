@@ -21,14 +21,14 @@ abstract class AbstractThrottlingSubscription<T>
   }
 
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public final void onError( @Nonnull final Throwable throwable )
   {
     clearPendingTask();
     super.onError( throwable );
   }
 
   @Override
-  public void onComplete()
+  public final void onComplete()
   {
     if ( null == _nextItem )
     {
@@ -47,7 +47,7 @@ abstract class AbstractThrottlingSubscription<T>
   }
 
   @Override
-  public void run()
+  public final void run()
   {
     executeTask();
   }
@@ -68,7 +68,7 @@ abstract class AbstractThrottlingSubscription<T>
     return _nextItem;
   }
 
-  void setNextItem( @Nullable final T nextItem )
+  final void setNextItem( @Nullable final T nextItem )
   {
     _nextItem = nextItem;
   }
