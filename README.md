@@ -115,6 +115,8 @@ Other
 - [ ] `repeat(RepeatCount)` - Replace `onComplete` with subscription to stream again a `RepeatCount` number of times.
 - [ ] `endWhen(ControlStream)` - Complete the stream when the `ControlStream` emits a value or completes.
 
+- [ ] `recoverWith(StreamFromErrorFn)` - Recover from a stream failure by calling a function to create a new Stream.
+
 **Scheduler Control**
 
 The tasks can be scheduled on schedulers such as:
