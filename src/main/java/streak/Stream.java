@@ -580,6 +580,32 @@ public interface Stream<T>
   }
 
   /**
+   * Emits the first item emitted by stream during sequential time window of specified duration.
+   * The timer resets on each emission.
+   *
+   * @param timeout the timeout window.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Stream<T> throttleFirst( final int timeout )
+  {
+    return throttleFirst( i -> timeout );
+  }
+
+  /**
+   * Emits the first item emitted by stream during sequential time window derived from item.
+   * The timer resets on each emission.
+   *
+   * @param timeoutForItemFn the function that returns the timeout.
+   * @return the new stream.
+   */
+  @Nonnull
+  default Stream<T> throttleFirst( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  {
+    return compose( s -> new ThrottleFirstOperator<>( s, timeoutForItemFn ) );
+  }
+
+  /**
    * Drops items emitted by a stream that are followed by newer items before
    * the timeout returned by the function expires. The timer resets on each emission.
    * This is an alias for {@link #debounce(TimeoutForItemFn)}.
