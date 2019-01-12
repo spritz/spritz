@@ -37,17 +37,24 @@ final class LimitOperator<T>
     @Override
     protected boolean shouldIncludeItem( @Nonnull final T item )
     {
-      if ( _remaining > 0 )
+      if ( _remaining > 1 )
       {
         _remaining--;
         return true;
       }
-      else
+      else if ( 1 == _remaining )
       {
-        getUpstream().cancel();
-        onComplete();
-        return false;
+        _remaining = 0;
+        getDownstreamSubscriber().onNext( item );
       }
+      doComplete();
+      return false;
+    }
+
+    private void doComplete()
+    {
+      getUpstream().cancel();
+      onComplete();
     }
   }
 }
