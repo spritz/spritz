@@ -13,7 +13,7 @@ public class Example26
       .peek( v -> System.out.println( "Ping @ " + v ) )
       .debounce( v -> v * 50 )
       .peek( v -> System.out.println( "Ding @ " + v ) )
-      .take( 2 )
+      .take( 3 )
       .afterTerminate( Example26::terminateScheduler )
       .subscribe( new LoggingSubscriber<>() );
   }
