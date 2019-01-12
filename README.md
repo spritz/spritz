@@ -75,8 +75,6 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
 - [ ] `firstEmitting(Stream...)` or `selectFirstEmitting(Stream...)` or `race(Stream...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
 - [ ] `withItems(Array[])` - Replace each event value with the array item at the respective index. Cancel or loop if reach end of array
 
-Rename `throttleFirst` to `throttle`
-
 **Accumulating Operators** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
 - [ ] `bufferByCount` - wait for Count items and then emit them as an array. onComplete send may remaining?

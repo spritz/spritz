@@ -10,7 +10,7 @@ public class Example27
     Streak
       .periodic( 100 )
       .peek( v -> System.out.println( "Ping @ " + v ) )
-      .throttleFirst( 150 )
+      .throttle( 150 )
       .peek( v -> System.out.println( "Ding @ " + v ) )
       .take( 5 )
       .afterTerminate( Example27::terminateScheduler )

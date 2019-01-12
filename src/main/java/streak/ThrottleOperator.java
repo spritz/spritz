@@ -2,14 +2,14 @@ package streak;
 
 import javax.annotation.Nonnull;
 
-final class ThrottleFirstOperator<T>
+final class ThrottleOperator<T>
   extends AbstractStream<T>
 {
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleFirstOperator( @Nonnull final Stream<? extends T> upstream,
-                         @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  ThrottleOperator( @Nonnull final Stream<? extends T> upstream,
+                    @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( upstream );
     _timeoutForItemFn = timeoutForItemFn;
