@@ -13,6 +13,7 @@ abstract class AbstractThrottlingSubscription<T>
   private T _nextItem;
   @Nullable
   private Task _task;
+  private int _nextTaskTime;
   private boolean _pendingComplete;
 
   AbstractThrottlingSubscription( @Nonnull final Subscriber<? super T> subscriber )
@@ -81,6 +82,7 @@ abstract class AbstractThrottlingSubscription<T>
     super.onNext( _nextItem );
     _nextItem = null;
     _task = null;
+    _nextTaskTime = 0;
     if ( _pendingComplete )
     {
       doOnComplete();
@@ -106,6 +108,7 @@ abstract class AbstractThrottlingSubscription<T>
   {
     assert delay > 0;
     _task = Schedulers.current().schedule( this, delay );
+    _nextTaskTime = Schedulers.current().now() + delay;
   }
 
   /**
@@ -118,6 +121,7 @@ abstract class AbstractThrottlingSubscription<T>
       _task.cancel();
       assert null != _nextItem;
       _task = null;
+      _nextTaskTime = 0;
       _nextItem = null;
     }
     else
