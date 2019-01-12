@@ -73,7 +73,6 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
       a.k.a. For each event in a sampler Stream, apply a function to combine its value with the most recent event value in another Stream. The resulting Stream will contain the same number of events as the sampler Stream.
 - [ ] `zip(Streams)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
 - [ ] `firstEmitting(Stream...)` or `selectFirstEmitting(Stream...)` or `race(Stream...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
-- [ ] `continueWith(Stream)` == `append(Stream)` - Replace the end of a Stream with another Stream.
 - [ ] `withItems(Array[])` - Replace each event value with the array item at the respective index. Cancel or loop if reach end of array
 
 Rename `throttleFirst` to `throttle`
