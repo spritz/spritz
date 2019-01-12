@@ -52,6 +52,10 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
 
 **Filtering Operators**
 
+- [ ] `skipRepeats()` == `dropConsecutiveDuplicates()`
+- [ ] `skipAfter()` == `takeUntil()`
+- [ ] `skipWhile()` == `dropUntil()`
+
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
 - [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.
 - [ ] `singleOrDefault(DefaultValue)` - Emits the only item emitted by the stream, or emits `DefaultValue` if the stream completes after emitting 0 or more than 1 items.
