@@ -15,7 +15,6 @@ abstract class AbstractOperatorSubscription<T>
    */
   @Nonnull
   private final Subscriber<? super T> _downstreamSubscriber;
-  private boolean _done;
 
   /**
    * Create the subscription with the downstream subscriber.
@@ -52,7 +51,6 @@ abstract class AbstractOperatorSubscription<T>
   @Override
   public void onError( @Nonnull final Throwable throwable )
   {
-    _done = true;
     getDownstreamSubscriber().onError( throwable );
   }
 
@@ -62,7 +60,6 @@ abstract class AbstractOperatorSubscription<T>
   @Override
   public void onComplete()
   {
-    _done = true;
     getDownstreamSubscriber().onComplete();
   }
 
@@ -72,7 +69,6 @@ abstract class AbstractOperatorSubscription<T>
   @Override
   public void cancel()
   {
-    _done = true;
     getUpstream().cancel();
   }
 
