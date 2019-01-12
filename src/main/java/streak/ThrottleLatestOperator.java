@@ -1,9 +1,7 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
-import streak.schedulers.Task;
 
 final class ThrottleLatestOperator<T>
   extends AbstractStream<T>
@@ -24,8 +22,7 @@ final class ThrottleLatestOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
-    implements Runnable
+    extends AbstractThrottlingSubscription<T>
   {
     private final int _throttleTime;
     /**
@@ -34,11 +31,6 @@ final class ThrottleLatestOperator<T>
      * any other value indicates the time at which item should be emitted.
      */
     private int _nextTime;
-    @Nullable
-    private T _nextItem;
-    @Nullable
-    private Task _task;
-    private boolean _pendingComplete;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int throttleTime )
     {
@@ -51,12 +43,10 @@ final class ThrottleLatestOperator<T>
     public void onNext( @Nonnull final T item )
     {
       final int now = Schedulers.current().now();
-      if ( null != _nextItem && now > _nextTime )
+      if ( hasNextItem() && now > _nextTime )
       {
-        assert null != _task;
-        _task.cancel();
-        // This may update nextTime
-        runScheduledTask();
+        _nextTime = now + _throttleTime;
+        cancelAndRunTask();
       }
 
       // _nextTime may have been updated above
@@ -67,75 +57,11 @@ final class ThrottleLatestOperator<T>
       }
       else
       {
-        _nextItem = item;
-        if ( null == _task )
+        setNextItem( item );
+        if ( !hasTask() )
         {
-          _task = Schedulers.current().schedule( this, _nextTime - now );
+          scheduleTask( _nextTime - now );
         }
-      }
-    }
-
-    @Override
-    public void onError( @Nonnull final Throwable throwable )
-    {
-      clearPendingTask();
-      super.onError( throwable );
-    }
-
-    @Override
-    public void onComplete()
-    {
-      if ( null == _nextItem )
-      {
-        doOnComplete();
-      }
-      else
-      {
-        _pendingComplete = true;
-      }
-    }
-
-    private void doOnComplete()
-    {
-      clearPendingTask();
-      super.onComplete();
-    }
-
-    @Override
-    public void run()
-    {
-      runScheduledTask();
-    }
-
-    private void runScheduledTask()
-    {
-      assert null != _nextItem;
-      assert null != _task;
-      super.onNext( _nextItem );
-      _nextItem = null;
-      _nextTime = _nextTime + _throttleTime;
-      _task = null;
-      if ( _pendingComplete )
-      {
-        doOnComplete();
-      }
-    }
-
-    /**
-     * Cleanup pending task if any.
-     */
-    private void clearPendingTask()
-    {
-      if ( null != _task )
-      {
-        _task.cancel();
-        assert null != _nextItem;
-        _task = null;
-        _nextItem = null;
-      }
-      else
-      {
-        assert null == _nextItem;
       }
     }
   }
