@@ -87,6 +87,21 @@ abstract class AbstractThrottlingSubscription<T>
     }
   }
 
+  final void scheduleTaskForItem( @Nonnull final T item, final int timeout )
+  {
+    assert timeout >= 0;
+    if ( 0 == timeout )
+    {
+      super.onNext( item );
+      setNextItem( null );
+    }
+    else
+    {
+      setNextItem( item );
+      scheduleTask( timeout );
+    }
+  }
+
   final void scheduleTask( final int delay )
   {
     assert delay > 0;

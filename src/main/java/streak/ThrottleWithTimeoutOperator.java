@@ -38,19 +38,7 @@ final class ThrottleWithTimeoutOperator<T>
     public void onNext( @Nonnull final T item )
     {
       clearPendingTask();
-
-      final int timeout = _timeoutForItemFn.getTimeout( item );
-      assert timeout >= 0;
-      if ( 0 == timeout )
-      {
-        super.onNext( item );
-        setNextItem( null );
-      }
-      else
-      {
-        setNextItem( item );
-        scheduleTask( timeout );
-      }
+      scheduleTaskForItem( item, _timeoutForItemFn.getTimeout( item ) );
     }
   }
 }
