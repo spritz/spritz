@@ -68,7 +68,7 @@ Figure out mechanism so that public API to subscribe always wraps in `Validating
 
 **Combination Operators** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [ ] `combineLatest(Streams)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
+- [ ] `combineLatest(Streams)` == `combine(Streams)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
 - [ ] `withLatestFrom(Stream,Streams)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
 - [ ] `zip(Streams)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
 - [ ] `firstEmitting(Stream...)` or `selectFirstEmitting(Stream...)` or `race(Stream...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
