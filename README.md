@@ -94,7 +94,6 @@ Other
 - [ ] `delaySubscription(DelayTime) == delaySubscriptionBy(_ -> DelayTime)` - delay subscription of upstream by DelayTime
 - [ ] `sort()` - buffer all items until onComplete then apply some sorting
 - [ ] `debounceBy(DebounceFunction) where DebounceTime DebounceFunction(Item)` - delay emit an item from stream if `DebounceTime` has passed without another value being emitted from upstream.
-- [ ] `debounce(DebounceTime) == debounceBy(_ -> DebounceTime)` - only emit an item from an Observable if a `DebounceTime` timespan has passed without it emitting another item.
 - [ ] `throttle(ThrottleTime)` - wait for `ThrottleTime` after an emit before being able to emit again. Contrast this with debounce which is "wait for silence of time X then emit" and this which is "emit then silence for X time". Can be implemented as filter.
 
 **Control Flow**
