@@ -13,7 +13,7 @@ public interface SuccessivePredicate<T>
    * Return true to emit candidateItem.
    *
    * @param lastEmittedItem the item that was emitted last. This may be null if no item has been emitted yet.
-   * @param candidateItem   the curremt item.
+   * @param candidateItem   the current item.
    * @return true to emit candidateItem, false to drop candidateItem.
    */
   boolean filter( @Nullable T lastEmittedItem, @Nonnull T candidateItem );
