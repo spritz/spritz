@@ -26,7 +26,7 @@ final class DefaultIfEmptyOperator<T>
   {
     @Nonnull
     private final T _defaultValue;
-    private boolean _elementEmitted;
+    private boolean _itemEmitted;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final T defaultValue )
     {
@@ -37,7 +37,7 @@ final class DefaultIfEmptyOperator<T>
     @Override
     public void onComplete()
     {
-      if ( !_elementEmitted )
+      if ( !_itemEmitted )
       {
         super.onNext( _defaultValue );
       }
@@ -47,7 +47,7 @@ final class DefaultIfEmptyOperator<T>
     @Override
     public void onNext( @Nonnull final T item )
     {
-      _elementEmitted = true;
+      _itemEmitted = true;
       super.onNext( item );
     }
   }

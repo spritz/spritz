@@ -52,7 +52,7 @@ final class MergeOperator<T>
     private int _activeCount;
     /**
      * Flag indicating that the upstream has completed. If the upstream has completed and there
-     * are no elements left in the buffer then the downstream is completed.
+     * are no items left in the buffer then the downstream is completed.
      */
     private boolean _upstreamCompleted;
 

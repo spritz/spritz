@@ -27,7 +27,7 @@ final class ErrorIfEmptyOperator<T>
   {
     @Nonnull
     private final Supplier<Throwable> _errorFactory;
-    private boolean _elementEmitted;
+    private boolean _itemEmitted;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
                         @Nonnull final Supplier<Throwable> errorFactory )
@@ -39,7 +39,7 @@ final class ErrorIfEmptyOperator<T>
     @Override
     public void onComplete()
     {
-      if ( !_elementEmitted )
+      if ( !_itemEmitted )
       {
         super.onError( _errorFactory.get() );
       }
@@ -52,7 +52,7 @@ final class ErrorIfEmptyOperator<T>
     @Override
     public void onNext( @Nonnull final T item )
     {
-      _elementEmitted = true;
+      _itemEmitted = true;
       super.onNext( item );
     }
   }

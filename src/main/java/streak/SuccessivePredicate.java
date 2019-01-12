@@ -4,17 +4,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Functional interface for determining whether element should be dropped based on last emitted element.
+ * Functional interface for determining whether an item should be dropped based on last emitted item.
  */
 @FunctionalInterface
 public interface SuccessivePredicate<T>
 {
   /**
-   * Return true to emit candidateElement.
+   * Return true to emit candidateItem.
    *
-   * @param lastEmittedElement the element that was emitted last. This may be null if no element has been emitted yet.
-   * @param candidateElement   the curremt element.
-   * @return true to emit candidateElement, false to drop candidateElement.
+   * @param lastEmittedItem the item that was emitted last. This may be null if no item has been emitted yet.
+   * @param candidateItem   the curremt item.
+   * @return true to emit candidateItem, false to drop candidateItem.
    */
-  boolean filter( @Nullable T lastEmittedElement, @Nonnull T candidateElement );
+  boolean filter( @Nullable T lastEmittedItem, @Nonnull T candidateItem );
 }
