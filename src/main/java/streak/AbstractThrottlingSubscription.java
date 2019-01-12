@@ -62,12 +62,6 @@ abstract class AbstractThrottlingSubscription<T>
     return null != _nextItem;
   }
 
-  @Nullable
-  final T getNextItem()
-  {
-    return _nextItem;
-  }
-
   final void setNextItem( @Nullable final T nextItem )
   {
     _nextItem = nextItem;
