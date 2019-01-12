@@ -90,7 +90,7 @@ abstract class AbstractThrottlingSubscription<T>
     _nextItem = nextItem;
   }
 
-  private void executeTask()
+  void executeTask()
   {
     assert null != _nextItem;
     assert null != _task;

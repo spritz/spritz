@@ -1,58 +1,57 @@
 package streak;
 
 import javax.annotation.Nonnull;
-import streak.schedulers.Schedulers;
 
 final class ThrottleLatestOperator<T>
   extends AbstractStream<T>
 {
-  private final int _throttleTime;
+  private final int _samplePeriod;
 
-  ThrottleLatestOperator( @Nonnull final Stream<? extends T> upstream, final int throttleTime )
+  ThrottleLatestOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod )
   {
     super( upstream );
-    _throttleTime = throttleTime;
-    assert throttleTime > 0;
+    _samplePeriod = samplePeriod;
+    assert samplePeriod > 0;
   }
 
   @Override
   public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _throttleTime ) );
+    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _samplePeriod ) );
   }
 
   private static final class WorkerSubscription<T>
     extends AbstractThrottlingSubscription<T>
   {
-    private final int _throttleTime;
+    private final int _samplePeriod;
     /**
-     * indicates the next time that the subscription will emit an item.
-     * 0 indicates no item scheduled to be emitted.
-     * any other value indicates the time at which item should be emitted.
+     * The next time that the subscription can emit an item.
+     * If no item is emitted before next sample time then the sampling starts again.
+     * 0 indicates sample period has not started while any other value indicates the
+     * time at which sample should be completed.
      */
-    private int _nextTime;
+    private int _nextSampleTime;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int throttleTime )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int samplePeriod )
     {
       super( subscriber );
-      _throttleTime = throttleTime;
-      _nextTime = -1;
+      _samplePeriod = samplePeriod;
+      _nextSampleTime = 0;
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    protected void doOnNext( final int now, @Nonnull final T item )
     {
-      final int now = Schedulers.current().now();
-      if ( hasNextItem() && now > _nextTime )
+      if ( now > _nextSampleTime )
       {
-        _nextTime = now + _throttleTime;
-        cancelAndRunTask();
-      }
-
-      // _nextTime may have been updated above
-      if ( now > _nextTime )
-      {
-        _nextTime = now + _throttleTime;
+        /*
+         * If we are beyond the sample period then that implies we went a whole sample
+         * period with out emitting any values from upstream and thus the sampling needs
+         * to start again.
+         */
+        assert !hasNextItem();
+        _nextSampleTime = now + _samplePeriod;
+        //TODO: Add ability to not emit first but instead schedule emit
         super.onNext( item );
       }
       else
@@ -60,9 +59,16 @@ final class ThrottleLatestOperator<T>
         setNextItem( item );
         if ( !hasTask() )
         {
-          scheduleTask( _nextTime - now );
+          scheduleTask( _nextSampleTime - now );
         }
       }
+    }
+
+    @Override
+    void executeTask()
+    {
+      _nextSampleTime = _nextSampleTime + _samplePeriod;
+      super.executeTask();
     }
   }
 }
