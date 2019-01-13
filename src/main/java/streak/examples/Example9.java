@@ -3,7 +3,6 @@ package streak.examples;
 import java.util.Arrays;
 import streak.Streak;
 
-@SuppressWarnings( "unchecked" )
 public class Example9
 {
   public static void main( String[] args )
