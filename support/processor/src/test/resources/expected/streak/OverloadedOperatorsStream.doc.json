@@ -1,0 +1,27 @@
+
+{
+    "class": "streak.OverloadedOperatorsStream",
+    "operators": [
+        {
+            "name": "operator(timeout)",
+            "javadoc-link": "streak/OverloadedOperatorsStream.html#operator-int-",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operator(timeoutControlStream)",
+            "javadoc-link": "streak/OverloadedOperatorsStream.html#operator-streak.OverloadedOperatorsStream-",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operator(timeoutFn)",
+            "javadoc-link": "streak/OverloadedOperatorsStream.html#operator-streak.OverloadedOperatorsStream.MyFunction-",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}
