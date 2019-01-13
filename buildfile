@@ -64,7 +64,7 @@ define 'processor', :base_dir => "#{WORKSPACE_DIR}/support/processor" do
                :javax_json
 
   test.using :testng
-  test.options[:properties] = { 'arez.fixture_dir' => _('src/test/resources') }
+  test.options[:properties] = { 'streak.fixture_dir' => _('src/test/resources') }
 
   test.with :compile_testing,
             :junit,
