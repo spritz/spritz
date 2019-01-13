@@ -14,3 +14,14 @@ artifacts:
   jsinterop_annotations: com.google.jsinterop:jsinterop-annotations:jar:1.0.2
 
   jsinterop_base: com.google.jsinterop:base:jar:1.0.0-RC1
+
+  autoservice: com.google.auto.service:auto-service:jar:1.0-rc3
+  autocommon: com.google.auto:auto-common:jar:0.10
+  javapoet: com.squareup:javapoet:jar:1.11.1
+  guava: com.google.guava:guava:jar:25.0-jre
+
+  #test deps
+  compile_testing: com.google.testing.compile:compile-testing:jar:0.15
+  truth: com.google.truth:truth:jar:0.39
+  junit: junit:junit:jar:4.12
+  hamcrest_core: org.hamcrest:hamcrest-core:jar:1.3
