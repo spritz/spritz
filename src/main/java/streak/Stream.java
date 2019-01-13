@@ -30,6 +30,7 @@ public interface Stream<T>
    * @see #afterSubscribe(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onSubscribe( @Nonnull final Consumer<Subscription> action )
   {
     return new PeekOperator<>( this, action, null, null, null, null, null, null, null, null, null );
@@ -44,6 +45,7 @@ public interface Stream<T>
    * @see #onSubscribe(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterSubscribe( @Nonnull final Consumer<Subscription> action )
   {
     return new PeekOperator<>( this, null, action, null, null, null, null, null, null, null, null );
@@ -58,6 +60,7 @@ public interface Stream<T>
    * @see #onNext(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> tap( @Nonnull final Consumer<? super T> action )
   {
     return onNext( action );
@@ -72,6 +75,7 @@ public interface Stream<T>
    * @see #onNext(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> peek( @Nonnull final Consumer<? super T> action )
   {
     return onNext( action );
@@ -88,6 +92,7 @@ public interface Stream<T>
    * @see #afterNext(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onNext( @Nonnull final Consumer<? super T> action )
   {
     return new PeekOperator<>( this, null, null, action, null, null, null, null, null, null, null );
@@ -101,6 +106,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
   {
     return new PeekOperator<>( this, null, null, null, action, null, null, null, null, null, null );
@@ -115,6 +121,7 @@ public interface Stream<T>
    * @see #afterError(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
     return new PeekOperator<>( this, null, null, null, null, action, null, null, null, null, null );
@@ -129,6 +136,7 @@ public interface Stream<T>
    * @see #onError(Consumer)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, action, null, null, null, null );
@@ -143,6 +151,7 @@ public interface Stream<T>
    * @see #afterComplete(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onComplete( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, action, null, null, null );
@@ -157,6 +166,7 @@ public interface Stream<T>
    * @see #onComplete(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterComplete( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, null, action, null, null );
@@ -171,6 +181,7 @@ public interface Stream<T>
    * @see #afterCancel(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onCancel( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, null, null, action, null );
@@ -185,6 +196,7 @@ public interface Stream<T>
    * @see #onCancel(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterCancel( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, null, null, null, null, action );
@@ -202,6 +214,7 @@ public interface Stream<T>
    * @see #afterTerminate(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> onTerminate( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, e -> action.run(), null, action, null, action, null );
@@ -219,6 +232,7 @@ public interface Stream<T>
    * @see #onTerminate(Runnable)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
   default Stream<T> afterTerminate( @Nonnull final Runnable action )
   {
     return new PeekOperator<>( this, null, null, null, null, null, e -> action.run(), null, action, null, action );
@@ -233,6 +247,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new PredicateFilterStream<>( p, predicate ) );
@@ -247,6 +262,7 @@ public interface Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.FILTERING } )
   default <DownstreamT extends T> Stream<DownstreamT> ofType( @Nonnull final Class<DownstreamT> type )
   {
     return filter( type::isInstance ).map( i -> (DownstreamT) i );
@@ -258,6 +274,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> ignoreElements()
   {
     return filter( e -> false );
@@ -275,6 +292,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> distinct()
   {
     return compose( DistinctOperator::new );
@@ -290,6 +308,7 @@ public interface Stream<T>
    * @see #limit(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> take( final int maxSize )
   {
     return limit( maxSize );
@@ -305,6 +324,7 @@ public interface Stream<T>
    * @see #take(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> limit( final int maxSize )
   {
     return compose( p -> new LimitOperator<>( p, maxSize ) );
@@ -320,6 +340,7 @@ public interface Stream<T>
    * @see #limit(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> first()
   {
     return take( 1 );
@@ -333,6 +354,7 @@ public interface Stream<T>
    * @see #first()
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> firstOrError()
   {
     return first().errorIfEmpty( NoSuchElementException::new );
@@ -347,6 +369,7 @@ public interface Stream<T>
    * @see #first()
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> firstOrDefault( @Nonnull final T defaultValue )
   {
     return first().defaultIfEmpty( defaultValue );
@@ -360,6 +383,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
   default Stream<T> errorIfEmpty( @Nonnull final Supplier<Throwable> errorFactory )
   {
     return compose( p -> new ErrorIfEmptyOperator<>( p, errorFactory ) );
@@ -373,6 +397,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> skip( final int count )
   {
     return compose( p -> new SkipOperator<>( p, count ) );
@@ -388,6 +413,7 @@ public interface Stream<T>
    * @see #last(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> last()
   {
     return last( 1 );
@@ -401,6 +427,7 @@ public interface Stream<T>
    * @see #last(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> lastOrError()
   {
     return last().errorIfEmpty( NoSuchElementException::new );
@@ -415,6 +442,7 @@ public interface Stream<T>
    * @see #last(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> lastOrDefault( @Nonnull final T defaultValue )
   {
     return last().defaultIfEmpty( defaultValue );
@@ -431,6 +459,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> last( final int maxElements )
   {
     return compose( p -> new LastOperator<>( p, maxElements ) );
@@ -448,6 +477,7 @@ public interface Stream<T>
    * @see #last(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> takeLast( final int maxElements )
   {
     return last( maxElements );
@@ -465,6 +495,7 @@ public interface Stream<T>
    * @see #dropUntil(Predicate)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new DropWhileOperator<>( p, predicate ) );
@@ -482,6 +513,7 @@ public interface Stream<T>
    * @see #dropWhile(Predicate)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> dropUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return dropWhile( predicate.negate() );
@@ -499,6 +531,7 @@ public interface Stream<T>
    * @see #takeUntil(Predicate)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> takeWhile( @Nonnull final Predicate<? super T> predicate )
   {
     return compose( p -> new TakeWhileOperator<>( p, predicate ) );
@@ -516,6 +549,7 @@ public interface Stream<T>
    * @see #takeUntil(Predicate)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
   default Stream<T> takeUntil( @Nonnull final Predicate<? super T> predicate )
   {
     return takeWhile( predicate.negate() );
@@ -532,6 +566,7 @@ public interface Stream<T>
    * @see #skipConsecutiveDuplicates()
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> dropConsecutiveDuplicates()
   {
     return filterSuccessive( ( prev, current ) -> !Objects.equals( prev, current ) );
@@ -546,6 +581,7 @@ public interface Stream<T>
    * @see #dropConsecutiveDuplicates()
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> skipConsecutiveDuplicates()
   {
     return dropConsecutiveDuplicates();
@@ -561,6 +597,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
   default Stream<T> filterSuccessive( @Nonnull final SuccessivePredicate<T> predicate )
   {
     return compose( s -> new FilterSuccessiveOperator<>( s, predicate ) );
@@ -576,6 +613,7 @@ public interface Stream<T>
    * @see #sample(int, boolean)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> sample( final int samplePeriod )
   {
     return sample( samplePeriod, true );
@@ -593,6 +631,7 @@ public interface Stream<T>
    * @see #sample(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> sample( final int samplePeriod, final boolean emitInitiatingItem )
   {
     return compose( s -> new SampleOperator<>( s, samplePeriod, emitInitiatingItem ) );
@@ -605,6 +644,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> throttle( final int timeout )
   {
     return throttle( i -> timeout );
@@ -618,6 +658,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> throttle( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     return compose( s -> new ThrottleOperator<>( s, timeoutForItemFn ) );
@@ -632,6 +673,7 @@ public interface Stream<T>
    * @see #debounce(int)
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> debounce( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     return compose( s -> new DebounceOperator<>( s, timeoutForItemFn ) );
@@ -645,6 +687,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
   default Stream<T> debounce( final int timeout )
   {
     assert timeout > 0;
@@ -659,6 +702,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.TRANSFORMATION )
   default <DownstreamT> Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ) );
@@ -672,6 +716,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.TRANSFORMATION )
   default <DownstreamT> Stream<DownstreamT> mapTo( final DownstreamT value )
   {
     return map( v -> value );
@@ -691,6 +736,7 @@ public interface Stream<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> flatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return mergeMap( mapper, 1 );
@@ -710,6 +756,7 @@ public interface Stream<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> concatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return flatMap( mapper );
@@ -734,6 +781,7 @@ public interface Stream<T>
    * @see #mergeMap(Function)
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                       final int maxConcurrency )
   {
@@ -752,6 +800,7 @@ public interface Stream<T>
    * @see #mergeMap(Function, int)
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return mergeMap( mapper, DEFAULT_MAX_CONCURRENCY );
@@ -771,6 +820,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> switchMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ).compose( SwitchOperator::new ) );
@@ -790,6 +840,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   default <DownstreamT> Stream<DownstreamT> exhaustMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
     return compose( p -> new MapOperator<>( p, mapper ).compose( ExhaustOperator::new ) );
@@ -805,6 +856,7 @@ public interface Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @DocCategory( DocCategory.Type.MERGING )
   default Stream<T> append( @Nonnull final Stream<T>... streams )
   {
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
@@ -824,6 +876,7 @@ public interface Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @DocCategory( DocCategory.Type.MERGING )
   default Stream<T> prepend( @Nonnull final Stream<T>... streams )
   {
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
@@ -841,6 +894,7 @@ public interface Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @DocCategory( DocCategory.Type.MERGING )
   default Stream<T> startWith( @Nonnull final T value )
   {
     return prepend( Streak.of( value ) );
@@ -855,6 +909,7 @@ public interface Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @DocCategory( DocCategory.Type.MERGING )
   default Stream<T> endWith( @Nonnull final T value )
   {
     return append( Streak.of( value ) );
@@ -869,6 +924,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.ACCUMULATING )
   default <DownstreamT> Stream<DownstreamT> scan( @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
                                                   @Nonnull final DownstreamT initialValue )
   {
@@ -882,6 +938,7 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
   default Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
   {
     return compose( p -> new DefaultIfEmptyOperator<>( p, defaultValue ) );
@@ -894,16 +951,19 @@ public interface Stream<T>
    * @return the new stream.
    */
   @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
   default Stream<T> timeout( final int timeoutTime )
   {
     return compose( p -> new TimeoutOperator<>( p, timeoutTime ) );
   }
 
+  @DocCategory( DocCategory.Type.UNKNOWN )
   default void forEach( @Nonnull final Consumer<T> action )
   {
     terminate( () -> new ForEachSubscriber<>( action ) );
   }
 
+  @DocCategory( DocCategory.Type.UNKNOWN )
   default void terminate( @Nonnull final Supplier<Subscriber<T>> terminateFunction )
   {
     this.subscribe( new ValidatingSubscriber<>( terminateFunction.get() ) );

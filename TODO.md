@@ -1,5 +1,8 @@
 ## TODO
 
+* Use the `@DocCategory` in annotation processor to generate the overview page associated with the
+  API docs.
+
 * Ensure tests all verify that predicates can accept supertypes of T
 
 * Ensure that after every error, complete or cancel there are no timers left associated with stream.
