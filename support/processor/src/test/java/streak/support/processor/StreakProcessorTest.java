@@ -12,7 +12,7 @@ public class StreakProcessorTest
   {
     return new Object[][]
       {
-        new Object[]{ "streak.MyStream" }
+        new Object[]{ "streak.BasicStream" }
       };
   }
 

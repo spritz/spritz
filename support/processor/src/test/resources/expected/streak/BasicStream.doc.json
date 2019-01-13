@@ -1,6 +1,6 @@
 
 {
-    "class": "streak.MyStream",
+    "class": "streak.BasicStream",
     "operators": [
         {
             "name": "someOperator()",

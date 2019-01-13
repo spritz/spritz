@@ -1,10 +1,10 @@
 package streak;
 
 @MetaDataSource
-public interface MyStream<T>
+public interface BasicStream<T>
 {
   @DocCategory( DocCategory.Type.PEEKING )
-  default MyStream<T> someOperator()
+  default BasicStream<T> someOperator()
   {
     return null;
   }
