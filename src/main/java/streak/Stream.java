@@ -18,7 +18,7 @@ public abstract class Stream<T>
    * This value is high enough that it is expected to be effectively infinite while not causing numeric
    * overflow in either JS or java compile targets.
    */
-  public static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
+  private static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
 
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
