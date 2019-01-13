@@ -1,0 +1,13 @@
+
+{
+    "class": "streak.NonOperatorMethodsStream",
+    "operators": [
+        {
+            "name": "operator(timeout)",
+            "javadoc-link": "streak/NonOperatorMethodsStream.html#operator-int-",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

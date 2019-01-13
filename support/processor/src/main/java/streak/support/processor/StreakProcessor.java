@@ -106,11 +106,10 @@ public final class StreakProcessor
     final ExecutableType methodType =
       (ExecutableType) processingEnv.getTypeUtils()
         .asMemberOf( (DeclaredType) metaData.getTypeElement().asType(), method );
-
-    final OperatorDescriptor operator = new OperatorDescriptor( method, methodType );
-    metaData.addOperator( operator );
     if ( null != annotation )
     {
+      final OperatorDescriptor operator = new OperatorDescriptor( method, methodType );
+      metaData.addOperator( operator );
       final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
       assert null != value;
       @SuppressWarnings( "unchecked" )
