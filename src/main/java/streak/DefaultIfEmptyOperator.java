@@ -16,7 +16,7 @@ final class DefaultIfEmptyOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( subscriber, _defaultValue ) );
   }

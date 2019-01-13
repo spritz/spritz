@@ -10,7 +10,7 @@ final class NeverStreamSource<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     subscriber.onSubscribe( new WorkerSubscription<T>() );
   }

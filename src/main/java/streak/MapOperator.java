@@ -20,7 +20,7 @@ final class MapOperator<UpstreamT, DownstreamT>
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber, _transform ) );
   }

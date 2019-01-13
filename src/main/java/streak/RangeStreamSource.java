@@ -38,7 +38,7 @@ final class RangeStreamSource
    * {@inheritDoc}
    */
   @Override
-  public void subscribe( @Nonnull Subscriber<? super Integer> subscriber )
+  protected void doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count );
     subscriber.onSubscribe( subscription );

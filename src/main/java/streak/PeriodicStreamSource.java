@@ -18,7 +18,7 @@ final class PeriodicStreamSource
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super Integer> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( subscriber, _period );
     subscriber.onSubscribe( subscription );

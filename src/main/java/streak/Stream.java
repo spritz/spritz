@@ -20,7 +20,12 @@ public abstract class Stream<T>
    */
   public static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
 
-  public abstract void subscribe( @Nonnull Subscriber<? super T> subscriber );
+  public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  {
+    doSubscribe( new ValidatingSubscriber<>( subscriber ) );
+  }
+
+  protected abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
@@ -965,7 +970,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final void terminate( @Nonnull final Supplier<Subscriber<T>> terminateFunction )
   {
-    this.subscribe( new ValidatingSubscriber<>( terminateFunction.get() ) );
+    subscribe( terminateFunction.get() );
   }
 
   /**
@@ -980,6 +985,6 @@ public abstract class Stream<T>
   @Nonnull
   public final <DownstreamT, S extends Stream<DownstreamT>> S compose( @Nonnull final Function<Stream<T>, S> function )
   {
-    return function.apply( new ValidatingStream<>( this ) );
+    return function.apply( this );
   }
 }

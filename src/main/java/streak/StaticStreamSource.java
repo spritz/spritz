@@ -15,7 +15,7 @@ final class StaticStreamSource<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
     subscriber.onSubscribe( subscription );

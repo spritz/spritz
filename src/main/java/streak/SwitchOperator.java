@@ -16,7 +16,7 @@ final class SwitchOperator<T>
   }
 
   @Override
-  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     _upstream.subscribe( new WorkerSubscription<>( subscriber ) );
   }
