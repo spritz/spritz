@@ -203,6 +203,7 @@ final class ValidatingSubscriber<T>
     private final ValidatingSubscriber<T> _subscriber;
     @Nonnull
     private final Subscription _subscription;
+    private boolean _cancelled;
 
     WorkerSubscription( @Nonnull final ValidatingSubscriber<T> subscriber,
                         @Nonnull final Subscription subscription )
@@ -225,19 +226,26 @@ final class ValidatingSubscriber<T>
         invariant( () -> subscriber == _subscriber,
                    () -> "Streak-0019: Invoking Subscription.cancel(...) in the context of subscriber '" + subscriber +
                          "' but expected to be in the context of subscriber '" + _subscriber + "'." );
+        invariant( () -> !_cancelled,
+                   () -> "Streak-0013: Invoking Subscription.cancel(...) for subscriber '" + subscriber +
+                         "' but the subscription is already cancelled." );
       }
-      try
+      if ( !_cancelled )
       {
-        _subscription.cancel();
-      }
-      catch ( final Throwable t )
-      {
-        if ( BrainCheckConfig.checkInvariants() )
+        try
         {
-          fail( () -> "Streak-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
-                      "Exception:\n" + ErrorUtil.throwableToString( t ) );
+          _cancelled = true;
+          _subscription.cancel();
         }
-        throw t;
+        catch ( final Throwable t )
+        {
+          if ( BrainCheckConfig.checkInvariants() )
+          {
+            fail( () -> "Streak-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
+                        "Exception:\n" + ErrorUtil.throwableToString( t ) );
+          }
+          throw t;
+        }
       }
     }
   }
