@@ -18,7 +18,7 @@ public abstract class Stream<T>
    * This value is high enough that it is expected to be effectively infinite while not causing numeric
    * overflow in either JS or java compile targets.
    */
-  public static final int DEFAULT_MAX_CONCURRENCY = 1024 * 1024;
+  public static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
 
   public abstract void subscribe( @Nonnull Subscriber<? super T> subscriber );
 
@@ -791,9 +791,9 @@ public abstract class Stream<T>
 
   /**
    * Map each input item to a stream and flatten the items emitted by the inner stream into this stream.
-   * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MAX_CONCURRENCY}.
+   * The number of streams that can be flattened concurrently is specified by {@link #DEFAULT_MERGE_CONCURRENCY}.
    * Invoking this method is equivalent to invoking {@link #mergeMap(Function, int)} and passing the
-   * {@link #DEFAULT_MAX_CONCURRENCY} constant as the {@code maxConcurrency} parameter.
+   * {@link #DEFAULT_MERGE_CONCURRENCY} constant as the {@code maxConcurrency} parameter.
    *
    * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
    * @param mapper        the function to map the items to the inner stream.
@@ -804,7 +804,7 @@ public abstract class Stream<T>
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   public final <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
-    return mergeMap( mapper, DEFAULT_MAX_CONCURRENCY );
+    return mergeMap( mapper, DEFAULT_MERGE_CONCURRENCY );
   }
 
   /**
