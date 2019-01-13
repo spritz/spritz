@@ -29,6 +29,7 @@ define 'streak' do
   doc.using(:javadoc,
             :windowtitle => 'Streak API Documentation',
             :linksource => true,
+            :overview => _('src/main/java/overview.html'),
             :timestamp => false,
             :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
   ).exclude(*Dir["#{_(:source, :main, :java, 'streak/examples')}/*.java"])
