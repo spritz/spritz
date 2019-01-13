@@ -1,0 +1,12 @@
+
+{
+    "class": "streak.MyStream",
+    "operators": [
+        {
+            "name": "someOperator()",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

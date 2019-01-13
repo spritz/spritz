@@ -42,7 +42,7 @@ define 'streak' do
   ipr.extra_modules << 'support/processor/processor.iml'
   iml.excluded_directories << project._('tmp')
 
-  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development')
+  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dstreak.output_fixture_data=false -Dstreak.fixture_dir=support/processor/src/test/resources')
 
   ipr.add_component_from_artifact(:idea_codestyle)
 end
@@ -63,6 +63,9 @@ define 'processor', :base_dir => "#{WORKSPACE_DIR}/support/processor" do
                :javax_annotation,
                :javax_json
 
+  test.using :testng
+  test.options[:properties] = { 'arez.fixture_dir' => _('src/test/resources') }
+
   test.with :compile_testing,
             :junit,
             :hamcrest_core,
@@ -71,6 +74,7 @@ define 'processor', :base_dir => "#{WORKSPACE_DIR}/support/processor" do
 
   package(:jar)
 
+  iml.test_source_directories << _('src/test/resources/input')
   project.no_ipr
 end
 

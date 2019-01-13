@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
@@ -14,10 +16,14 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.json.Json;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonWriter;
+import javax.json.stream.JsonGenerator;
+import javax.json.stream.JsonGeneratorFactory;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.AnnotationMirror;
+import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
@@ -39,7 +45,7 @@ public final class StreakProcessor
   public boolean process( final Set<? extends TypeElement> annotations, final RoundEnvironment env )
   {
     final TypeElement annotation =
-      processingEnv.getElementUtils().getTypeElement( "streak.MetaDataSource" );
+      processingEnv.getElementUtils().getTypeElement( Constants.META_DATA_SOURCE );
     final Set<? extends Element> elements = env.getElementsAnnotatedWith( annotation );
     processElements( elements );
     return true;
@@ -74,19 +80,78 @@ public final class StreakProcessor
   private void process( @Nonnull final TypeElement element )
     throws IOException
   {
-    final StreakMetaDataElement metaData = StreakMetaDataParser.parse( element );
+    final ClassDescriptor metaData = parseClassDescriptor( element );
     writeJsonData( metaData.getTypeElement(), writer -> emitMetaData( metaData, writer ) );
   }
 
-  private void emitMetaData( @Nonnull final StreakMetaDataElement metaData, @Nonnull final JsonWriter writer )
+  @Nonnull
+  private ClassDescriptor parseClassDescriptor( @Nonnull final TypeElement element )
   {
-    final JsonObjectBuilder object = Json.createObjectBuilder();
-    object.add( "class", metaData.getTypeElement().getQualifiedName().toString() );
-    writer.writeObject( object.build() );
+    final ClassDescriptor metaData = new ClassDescriptor( element );
+    for ( final Element member : element.getEnclosedElements() )
+    {
+      if ( member.getKind() == ElementKind.METHOD )
+      {
+        processMethod( metaData, (ExecutableElement) member );
+      }
+    }
+    return metaData;
+  }
+
+  private void processMethod( final ClassDescriptor metaData, final ExecutableElement method )
+  {
+    final AnnotationMirror annotation = ProcessorUtil.findAnnotationByType( method, Constants.DOC_CATEGORY );
+    final OperatorDescriptor operator = new OperatorDescriptor( method );
+    metaData.addOperator( operator );
+    if ( null != annotation )
+    {
+      final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
+      assert null != value;
+      @SuppressWarnings( "unchecked" )
+      final List<AnnotationValue> categories = (List<AnnotationValue>) value.getValue();
+      for ( final AnnotationValue category : categories )
+      {
+        operator.addCategory( category.getValue().toString() );
+      }
+    }
+  }
+
+  private void emitMetaData( @Nonnull final ClassDescriptor metaData, @Nonnull final JsonGenerator generator )
+  {
+    generator.writeStartObject();
+    generator.write( "class", metaData.getTypeElement().getQualifiedName().toString() );
+    writeOperators( metaData, generator );
+    generator.writeEnd();
+  }
+
+  private void writeOperators( @Nonnull final ClassDescriptor metaData, @Nonnull final JsonGenerator generator )
+  {
+    final List<OperatorDescriptor> operators = metaData.getOperators();
+    if ( !operators.isEmpty() )
+    {
+      generator.writeStartArray( "operators" );
+
+      for ( final OperatorDescriptor operator : operators )
+      {
+        writeOperator( operator, generator );
+      }
+
+      generator.writeEnd();
+    }
+  }
+
+  private void writeOperator( @Nonnull final OperatorDescriptor operator, @Nonnull final JsonGenerator generator )
+  {
+    generator.writeStartObject();
+    generator.write( "name", operator.getName() );
+    generator.writeStartArray( "categories" );
+    operator.getCategories().forEach( generator::write );
+    generator.writeEnd();
+    generator.writeEnd();
   }
 
   private void writeJsonData( @Nonnull final TypeElement element,
-                              @Nonnull final Consumer<JsonWriter> writeBlock )
+                              @Nonnull final Consumer<JsonGenerator> writeBlock )
     throws IOException
   {
     final FileObject resource =
@@ -96,8 +161,12 @@ public final class StreakProcessor
                          element.getEnclosingElement().getSimpleName(),
                          element.getSimpleName() + ".doc.json",
                          element );
-    final JsonWriter writer = Json.createWriter( resource.openWriter() );
-    writeBlock.accept( writer );
-    writer.close();
+    final HashMap<String, Object> config = new HashMap<>();
+    config.put( JsonGenerator.PRETTY_PRINTING, Boolean.TRUE );
+    final JsonGeneratorFactory factory = Json.createGeneratorFactory( config );
+    final JsonGenerator generator = factory.createGenerator( resource.openWriter() );
+    writeBlock.accept( generator );
+    generator.flush();
+    generator.close();
   }
 }
