@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Set;
+import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Processor;
@@ -88,16 +89,18 @@ public final class StreakProcessor
   private void processStreamSources( @Nonnull final TypeElement element )
     throws IOException
   {
-    writeJsonData( element );
+    writeJsonData( element, ".doc.json", writer -> writer.write( JsonValue.NULL ) );
   }
 
   private void processStreamOperators( @Nonnull final TypeElement element )
     throws IOException
   {
-    writeJsonData( element );
+    writeJsonData( element, ".doc.json", writer -> writer.write( JsonValue.NULL ) );
   }
 
-  private void writeJsonData( @Nonnull final TypeElement element )
+  private void writeJsonData( @Nonnull final TypeElement element,
+                              @Nonnull final String suffix,
+                              @Nonnull final Consumer<JsonWriter> writeBlock )
     throws IOException
   {
     final FileObject resource =
@@ -105,10 +108,10 @@ public final class StreakProcessor
         .getFiler()
         .createResource( StandardLocation.SOURCE_OUTPUT,
                          element.getEnclosingElement().getSimpleName(),
-                         element.getSimpleName() + ".doc.json",
+                         element.getSimpleName() + suffix,
                          element );
     final JsonWriter writer = Json.createWriter( resource.openWriter() );
-    writer.write( JsonValue.NULL );
+    writeBlock.accept( writer );
     writer.close();
   }
 }
