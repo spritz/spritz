@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "someOperator()",
+            "javadoc-link": "streak/BasicStream.html#someOperator--",
             "categories": [
                 "PEEKING"
             ]

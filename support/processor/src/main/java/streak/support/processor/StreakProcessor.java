@@ -25,6 +25,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.ExecutableType;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import static javax.tools.Diagnostic.Kind.*;
@@ -101,7 +103,11 @@ public final class StreakProcessor
   private void processMethod( final ClassDescriptor metaData, final ExecutableElement method )
   {
     final AnnotationMirror annotation = ProcessorUtil.findAnnotationByType( method, Constants.DOC_CATEGORY );
-    final OperatorDescriptor operator = new OperatorDescriptor( method );
+    final ExecutableType methodType =
+      (ExecutableType) processingEnv.getTypeUtils()
+        .asMemberOf( (DeclaredType) metaData.getTypeElement().asType(), method );
+
+    final OperatorDescriptor operator = new OperatorDescriptor( method, methodType );
     metaData.addOperator( operator );
     if ( null != annotation )
     {
@@ -144,6 +150,7 @@ public final class StreakProcessor
   {
     generator.writeStartObject();
     generator.write( "name", operator.getName() );
+    generator.write( "javadoc-link", operator.getJavadocLink() );
     generator.writeStartArray( "categories" );
     operator.getCategories().forEach( generator::write );
     generator.writeEnd();

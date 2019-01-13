@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "someOperator(someNumber,somePredicate)",
+            "javadoc-link": "streak/OperatorWithParametersStream.html#someOperator-int,java.util.function.Predicate-",
             "categories": [
                 "PEEKING"
             ]
