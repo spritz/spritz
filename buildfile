@@ -1,5 +1,6 @@
 require 'buildr/git_auto_version'
 require 'buildr/gpg'
+require 'buildr/top_level_generate_dir'
 
 desc 'streak: Reactive Stream Experiments'
 define 'streak' do
