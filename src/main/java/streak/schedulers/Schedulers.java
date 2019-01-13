@@ -16,4 +16,15 @@ public final class Schedulers
   {
     return c_scheduler;
   }
+
+  public static void reset()
+  {
+    c_scheduler = new BasicScheduler();
+  }
+
+  public static void shutdown()
+  {
+    c_scheduler.shutdown();
+    c_scheduler = new BasicScheduler();
+  }
 }

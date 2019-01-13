@@ -16,6 +16,6 @@ public class Example17
 
   private static void terminateScheduler()
   {
-    new Thread( () -> Schedulers.current().shutdown() ).run();
+    new Thread( Schedulers::shutdown ).run();
   }
 }
