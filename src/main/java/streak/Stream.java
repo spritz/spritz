@@ -567,18 +567,35 @@ public interface Stream<T>
   }
 
   /**
-   * Emit the next item emitted by the stream and then the latest item emitted
-   * after each sampling period expires. If a sampling period expires without emitting
-   * an item then the operator is reset and will emit the next item emitted by the stream
-   * before returning to sampling operator.
+   * Sample items from stream emitting the first item and the last item in each sample period.
+   * If a sampling period ever passes without emitting a value then the sampler is reset and
+   * and will start sampling again after the next item is emitted by the upstream stage.
    *
    * @param samplePeriod the period at which the stream is sampled.
    * @return the new stream.
+   * @see #sample(int, boolean)
    */
   @Nonnull
   default Stream<T> sample( final int samplePeriod )
   {
-    return compose( s -> new SampleOperator<>( s, samplePeriod ) );
+    return sample( samplePeriod, true );
+  }
+
+  /**
+   * Sample items from stream emitting the last item in each sample period. The first item
+   * is emitted if {@code emitInitiatingItem} is <code>true</code>. If a sampling period ever
+   * passes without emitting a value then the sampler is reset and and will start sampling
+   * again after the next item is emitted by the upstream stage.
+   *
+   * @param samplePeriod       the period at which the stream is sampled.
+   * @param emitInitiatingItem true to emit the first item that initiates sampling.
+   * @return the new stream.
+   * @see #sample(int)
+   */
+  @Nonnull
+  default Stream<T> sample( final int samplePeriod, final boolean emitInitiatingItem )
+  {
+    return compose( s -> new SampleOperator<>( s, samplePeriod, emitInitiatingItem ) );
   }
 
   /**

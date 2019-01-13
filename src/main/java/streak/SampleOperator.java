@@ -6,24 +6,27 @@ final class SampleOperator<T>
   extends AbstractStream<T>
 {
   private final int _samplePeriod;
+  private final boolean _emitFirst;
 
-  SampleOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod )
+  SampleOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod, final boolean emitFirst )
   {
     super( upstream );
     _samplePeriod = samplePeriod;
+    _emitFirst = emitFirst;
     assert samplePeriod > 0;
   }
 
   @Override
   public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _samplePeriod ) );
+    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _samplePeriod, _emitFirst ) );
   }
 
   private static final class WorkerSubscription<T>
     extends AbstractThrottlingSubscription<T>
   {
     private final int _samplePeriod;
+    private final boolean _emitFirst;
     /**
      * The next time that the subscription can emit an item.
      * If no item is emitted before next sample time then the sampling starts again.
@@ -32,10 +35,13 @@ final class SampleOperator<T>
      */
     private int _nextSampleTime;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int samplePeriod )
+    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
+                        final int samplePeriod,
+                        final boolean emitFirst )
     {
       super( subscriber );
       _samplePeriod = samplePeriod;
+      _emitFirst = emitFirst;
       _nextSampleTime = 0;
     }
 
@@ -51,16 +57,18 @@ final class SampleOperator<T>
          */
         assert !hasNextItem();
         _nextSampleTime = now + _samplePeriod;
-        //TODO: Add ability to not emit first but instead schedule emit
-        super.onNext( item );
-      }
-      else
-      {
-        setNextItem( item );
-        if ( !hasTask() )
+        if ( _emitFirst )
         {
-          scheduleTask( _nextSampleTime - now );
+          // Emit here and return immediately so don't schedule emit.
+          super.onNext( item );
+          return;
         }
+      }
+
+      setNextItem( item );
+      if ( !hasTask() )
+      {
+        scheduleTask( _nextSampleTime - now );
       }
     }
 
