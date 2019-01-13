@@ -1,0 +1,34 @@
+
+{
+    "class": "streak.MultipleOperatorsStream",
+    "operators": [
+        {
+            "name": "operatorA()",
+            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorA--",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorP()",
+            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorP--",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorQ()",
+            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorQ--",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorZ()",
+            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorZ--",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}
