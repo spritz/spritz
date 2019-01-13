@@ -13,7 +13,8 @@ public class StreakProcessorTest
     return new Object[][]
       {
         new Object[]{ "streak.BasicStream" },
-        new Object[]{ "streak.MultipleCategoriesStream" }
+        new Object[]{ "streak.MultipleCategoriesStream" },
+        new Object[]{ "streak.OperatorWithParametersStream" }
       };
   }
 
