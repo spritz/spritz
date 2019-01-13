@@ -163,6 +163,12 @@ occur and will be unsubscribed from after that.
 
 * Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
 
+### Documentation
+
+Steal some documentation terminology for timeline notation from https://mostcore.readthedocs.io/en/latest/notation.html#timeline-notation
+
+Steal some general documentation concepts from https://mostcore.readthedocs.io/en/latest/concepts.html 
+
 ### Rethink
 
 A stream is a series of steps. Some sequences of steps are push based. i.e. The agent that pushes value executes
@@ -215,3 +221,5 @@ language extracts it - ala angular
 
 `Yolk` is an interesting framework. Essentially it is react-like in that it uses jsx and vdom/reconcilliation
 but it differs as both props and event handlers are streams and streams are passed as jsx.
+
+Once done to a TodoMVC implementation such as https://github.com/briancavalier/mostcore-todomvc
