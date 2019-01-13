@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.json.stream.JsonGenerator;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
@@ -37,5 +38,19 @@ final class ClassDescriptor
       .stream()
       .sorted( Comparator.comparing( OperatorDescriptor::getName ) )
       .collect( Collectors.toList() );
+  }
+
+  void write( @Nonnull final JsonGenerator generator )
+  {
+    generator.writeStartObject();
+    generator.write( "class", getTypeElement().getQualifiedName().toString() );
+    final List<OperatorDescriptor> operators = getOperators();
+    if ( !operators.isEmpty() )
+    {
+      generator.writeStartArray( "operators" );
+      operators.forEach( operator -> operator.write( generator ) );
+      generator.writeEnd();
+    }
+    generator.writeEnd();
   }
 }

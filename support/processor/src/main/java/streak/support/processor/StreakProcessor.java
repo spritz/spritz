@@ -83,7 +83,7 @@ public final class StreakProcessor
     throws IOException
   {
     final ClassDescriptor metaData = parseClassDescriptor( element );
-    writeJsonData( metaData.getTypeElement(), writer -> emitMetaData( metaData, writer ) );
+    writeJsonData( metaData.getTypeElement(), metaData::write );
   }
 
   @Nonnull
@@ -119,41 +119,6 @@ public final class StreakProcessor
         operator.addCategory( category.getValue().toString() );
       }
     }
-  }
-
-  private void emitMetaData( @Nonnull final ClassDescriptor metaData, @Nonnull final JsonGenerator generator )
-  {
-    generator.writeStartObject();
-    generator.write( "class", metaData.getTypeElement().getQualifiedName().toString() );
-    writeOperators( metaData, generator );
-    generator.writeEnd();
-  }
-
-  private void writeOperators( @Nonnull final ClassDescriptor metaData, @Nonnull final JsonGenerator generator )
-  {
-    final List<OperatorDescriptor> operators = metaData.getOperators();
-    if ( !operators.isEmpty() )
-    {
-      generator.writeStartArray( "operators" );
-
-      for ( final OperatorDescriptor operator : operators )
-      {
-        writeOperator( operator, generator );
-      }
-
-      generator.writeEnd();
-    }
-  }
-
-  private void writeOperator( @Nonnull final OperatorDescriptor operator, @Nonnull final JsonGenerator generator )
-  {
-    generator.writeStartObject();
-    generator.write( "name", operator.getName() );
-    generator.write( "javadoc-link", operator.getJavadocLink() );
-    generator.writeStartArray( "categories" );
-    operator.getCategories().forEach( generator::write );
-    generator.writeEnd();
-    generator.writeEnd();
   }
 
   private void writeJsonData( @Nonnull final TypeElement element,

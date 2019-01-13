@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.json.stream.JsonGenerator;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ExecutableType;
@@ -79,5 +80,16 @@ final class OperatorDescriptor
              } )
              .collect( Collectors.joining( "," ) ) +
            "-";
+  }
+
+  void write( @Nonnull final JsonGenerator generator )
+  {
+    generator.writeStartObject();
+    generator.write( "name", getName() );
+    generator.write( "javadoc-link", getJavadocLink() );
+    generator.writeStartArray( "categories" );
+    getCategories().forEach( generator::write );
+    generator.writeEnd();
+    generator.writeEnd();
   }
 }
