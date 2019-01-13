@@ -855,7 +855,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #prepend(Stream[])
    */
-  @SuppressWarnings( "unchecked" )
+  @SafeVarargs
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> append( @Nonnull final Stream<T>... streams )
@@ -875,7 +875,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #prepend(Stream[])
    */
-  @SuppressWarnings( "unchecked" )
+  @SafeVarargs
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> prepend( @Nonnull final Stream<T>... streams )
@@ -893,7 +893,6 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #prepend(Stream[])
    */
-  @SuppressWarnings( "unchecked" )
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> startWith( @Nonnull final T value )
@@ -908,7 +907,6 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #append(Stream[])
    */
-  @SuppressWarnings( "unchecked" )
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> endWith( @Nonnull final T value )
