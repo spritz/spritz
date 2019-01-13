@@ -14,22 +14,9 @@ public final class Streak
   {
   }
 
-  public static boolean areNamesEnabled()
+  public static boolean shouldValidateSubscriptions()
   {
-    //TODO: Convert this into compile-time constraint.
-    return true;
-  }
-
-  public static boolean shouldCheckInvariants()
-  {
-    //TODO: Convert this into compile-time constraint.
-    return true;
-  }
-
-  public static boolean shouldCheckApiInvariants()
-  {
-    //TODO: Convert this into compile-time constraint.
-    return true;
+    return StreakConfig.shouldValidateSubscriptions();
   }
 
   /**

@@ -22,7 +22,7 @@ public abstract class Stream<T>
 
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    doSubscribe( new ValidatingSubscriber<>( subscriber ) );
+    doSubscribe( Streak.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );
   }
 
   protected abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );

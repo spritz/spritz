@@ -1,0 +1,9 @@
+<module>
+  <inherits name='streak.Streak'/>
+  <inherits name='org.realityforge.braincheck.BrainCheckDev'/>
+
+  <source path='ignored'/>
+
+  <set-property name='streak.environment' value='development'/>
+  <set-property name='streak.validate_subscriptions' value='true'/>
+</module>
