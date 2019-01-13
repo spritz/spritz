@@ -1,0 +1,13 @@
+
+{
+    "class": "streak.MultipleCategoriesStream",
+    "operators": [
+        {
+            "name": "anOperator()",
+            "categories": [
+                "TRANSFORMATION",
+                "PEEKING"
+            ]
+        }
+    ]
+}
