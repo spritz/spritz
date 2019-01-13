@@ -46,12 +46,12 @@ final class FilterSuccessiveOperator<T>
     {
       if ( _predicate.filter( _lastItem, item ) )
       {
-        return false;
+        _lastItem = item;
+        return true;
       }
       else
       {
-        _lastItem = item;
-        return true;
+        return false;
       }
     }
   }
