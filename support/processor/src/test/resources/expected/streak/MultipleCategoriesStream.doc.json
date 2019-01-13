@@ -5,8 +5,8 @@
         {
             "name": "anOperator()",
             "categories": [
-                "TRANSFORMATION",
-                "PEEKING"
+                "PEEKING",
+                "TRANSFORMATION"
             ]
         }
     ]
