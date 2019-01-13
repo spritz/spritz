@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 
+@MetaDataSource
 public interface Stream<T>
 {
   /**
