@@ -161,8 +161,6 @@ occur and will be unsubscribed from after that.
 
 * Consider creating a `StreamingProperties`/`StreamingValues` in Arez component model for values emitted via event stream.
 
-* Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
-
 ### Documentation
 
 Steal some documentation terminology for timeline notation from https://mostcore.readthedocs.io/en/latest/notation.html#timeline-notation
