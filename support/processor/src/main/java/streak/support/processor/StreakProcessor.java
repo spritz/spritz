@@ -14,7 +14,7 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.json.Json;
-import javax.json.JsonValue;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -74,32 +74,18 @@ public final class StreakProcessor
   private void process( @Nonnull final TypeElement element )
     throws IOException
   {
-    final String typeName = element.getQualifiedName().toString();
-    final boolean isStreak = "streak.Streak".equals( typeName );
-    if ( isStreak )
-    {
-      processStreamSources( element );
-    }
-    else
-    {
-      processStreamOperators( element );
-    }
+    final StreakMetaDataElement metaData = StreakMetaDataParser.parse( element );
+    writeJsonData( metaData.getTypeElement(), writer -> emitMetaData( metaData, writer ) );
   }
 
-  private void processStreamSources( @Nonnull final TypeElement element )
-    throws IOException
+  private void emitMetaData( @Nonnull final StreakMetaDataElement metaData, @Nonnull final JsonWriter writer )
   {
-    writeJsonData( element, ".doc.json", writer -> writer.write( JsonValue.NULL ) );
-  }
-
-  private void processStreamOperators( @Nonnull final TypeElement element )
-    throws IOException
-  {
-    writeJsonData( element, ".doc.json", writer -> writer.write( JsonValue.NULL ) );
+    final JsonObjectBuilder object = Json.createObjectBuilder();
+    object.add( "class", metaData.getTypeElement().getQualifiedName().toString() );
+    writer.writeObject( object.build() );
   }
 
   private void writeJsonData( @Nonnull final TypeElement element,
-                              @Nonnull final String suffix,
                               @Nonnull final Consumer<JsonWriter> writeBlock )
     throws IOException
   {
@@ -108,7 +94,7 @@ public final class StreakProcessor
         .getFiler()
         .createResource( StandardLocation.SOURCE_OUTPUT,
                          element.getEnclosingElement().getSimpleName(),
-                         element.getSimpleName() + suffix,
+                         element.getSimpleName() + ".doc.json",
                          element );
     final JsonWriter writer = Json.createWriter( resource.openWriter() );
     writeBlock.accept( writer );
