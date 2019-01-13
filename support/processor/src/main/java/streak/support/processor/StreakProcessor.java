@@ -1,6 +1,7 @@
 package streak.support.processor;
 
 import com.google.auto.service.AutoService;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collection;
@@ -11,9 +12,14 @@ import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
+import javax.json.Json;
+import javax.json.JsonValue;
+import javax.json.JsonWriter;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.tools.FileObject;
+import javax.tools.StandardLocation;
 import static javax.tools.Diagnostic.Kind.*;
 
 /**
@@ -65,6 +71,7 @@ public final class StreakProcessor
   }
 
   private void process( @Nonnull final TypeElement element )
+    throws IOException
   {
     final String typeName = element.getQualifiedName().toString();
     final boolean isStreak = "streak.Streak".equals( typeName );
@@ -79,10 +86,29 @@ public final class StreakProcessor
   }
 
   private void processStreamSources( @Nonnull final TypeElement element )
+    throws IOException
   {
+    writeJsonData( element );
   }
 
   private void processStreamOperators( @Nonnull final TypeElement element )
+    throws IOException
   {
+    writeJsonData( element );
+  }
+
+  private void writeJsonData( @Nonnull final TypeElement element )
+    throws IOException
+  {
+    final FileObject resource =
+      processingEnv
+        .getFiler()
+        .createResource( StandardLocation.SOURCE_OUTPUT,
+                         element.getEnclosingElement().getSimpleName(),
+                         element.getSimpleName() + ".doc.json",
+                         element );
+    final JsonWriter writer = Json.createWriter( resource.openWriter() );
+    writer.write( JsonValue.NULL );
+    writer.close();
   }
 }

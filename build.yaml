@@ -15,6 +15,8 @@ artifacts:
 
   jsinterop_base: com.google.jsinterop:base:jar:1.0.0-RC1
 
+  javax_json: org.glassfish:javax.json:jar:1.1
+
   autoservice: com.google.auto.service:auto-service:jar:1.0-rc3
   autocommon: com.google.auto:auto-common:jar:0.10
   javapoet: com.squareup:javapoet:jar:1.11.1

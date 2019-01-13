@@ -60,7 +60,8 @@ define 'processor', :base_dir => "#{WORKSPACE_DIR}/support/processor" do
                :autocommon,
                :javapoet,
                :guava,
-               :javax_annotation
+               :javax_annotation,
+               :javax_json
 
   test.with :compile_testing,
             :junit,
