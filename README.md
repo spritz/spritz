@@ -163,6 +163,10 @@ occur and will be unsubscribed from after that.
 
 * Consider renaming `Stream.subscribe(...)` to `Stream.observe(...)`
 
+* Make `Stream` into abstract class
+  - `void subscribe( @Nonnull Subscriber<? super T> subscriber )` should be final that delegates to `doSubscribe(subscriber)`
+    which is the method overidden by subclasses. That way can have the subscribe method add validation layer if enabled.
+
 ### Documentation
 
 Steal some documentation terminology for timeline notation from https://mostcore.readthedocs.io/en/latest/notation.html#timeline-notation
