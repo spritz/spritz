@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class SwitchOperator<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   @Nonnull
   private final Stream<Stream<T>> _upstream;

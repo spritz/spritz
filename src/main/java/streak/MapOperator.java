@@ -5,7 +5,7 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 final class MapOperator<UpstreamT, DownstreamT>
-  implements Stream<DownstreamT>
+  extends Stream<DownstreamT>
 {
   @Nonnull
   private final Stream<? extends UpstreamT> _upstream;

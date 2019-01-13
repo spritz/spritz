@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class ScanOperator<UpstreamT, DownstreamT>
-  implements Stream<DownstreamT>
+  extends Stream<DownstreamT>
 {
   @Nonnull
   private final Stream<? extends UpstreamT> _upstream;

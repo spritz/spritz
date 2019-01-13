@@ -3,7 +3,7 @@ package streak;
 import javax.annotation.Nonnull;
 
 final class NeverStreamSource<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   NeverStreamSource()
   {

@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
  * Abstract stream implementation for common scenario where there is an upstream stage.
  */
 abstract class AbstractStream<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   /**
    * The upstream stream stage.

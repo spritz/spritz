@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class PeekOperator<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   @Nonnull
   private final Stream<? extends T> _upstream;

@@ -7,7 +7,7 @@ import streak.schedulers.Schedulers;
 import streak.schedulers.Task;
 
 final class PeriodicStreamSource
-  implements Stream<Integer>
+  extends Stream<Integer>
 {
   private final int _period;
 

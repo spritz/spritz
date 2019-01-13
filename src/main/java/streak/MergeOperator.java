@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import streak.schedulers.CircularBuffer;
 
 final class MergeOperator<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   @Nonnull
   private final Stream<Stream<T>> _upstream;

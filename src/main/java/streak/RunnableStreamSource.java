@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class RunnableStreamSource<T>
-  implements Stream<T>
+  extends Stream<T>
 {
   @Nonnull
   private final Runnable _runnable;
