@@ -27,6 +27,7 @@ public final class Streak
    * @return the new stream.
    */
   @SafeVarargs
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> of( @Nonnull final T... values )
   {
     return new StaticStreamSource<>( values );
@@ -38,6 +39,7 @@ public final class Streak
    * @param <T> the type of items that the stream declared as containing (despite never containing any items).
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> empty()
   {
     return of();
@@ -50,6 +52,7 @@ public final class Streak
    * @param value the value to emit if non null.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> ofNullable( @Nullable final T value )
   {
     return null == value ? empty() : of( value );
@@ -64,6 +67,7 @@ public final class Streak
    * @return the new stream.
    * @see #error(Throwable)
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fail( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
@@ -78,6 +82,7 @@ public final class Streak
    * @return the new stream.
    * @see #fail(Throwable)
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> error( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
@@ -90,6 +95,7 @@ public final class Streak
    * @param values the collection of values to emit.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromCollection( @Nonnull final Collection<T> values )
   {
     return new CollectionStreamSource<>( values );
@@ -102,6 +108,7 @@ public final class Streak
    * @param stream the java.util.stream.Stream stream of values to emit.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromStream( @Nonnull final java.util.stream.Stream<T> stream )
   {
     return fromCollection( stream.collect( Collectors.toList() ) );
@@ -116,6 +123,7 @@ public final class Streak
    * @param callable the function that generates values to emit.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromCallable( @Nonnull final Callable<T> callable )
   {
     return new GenerateStreamSource<>( callable );
@@ -130,6 +138,7 @@ public final class Streak
    * @param supplier the function that generates values to emit.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromSupplier( @Nonnull final Supplier<T> supplier )
   {
     return new GenerateStreamSource<>( supplier::get );
@@ -143,6 +152,7 @@ public final class Streak
    * @param runnable the runnable to execute.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromRunnable( @Nonnull final Runnable runnable )
   {
     return new RunnableStreamSource<>( runnable );
@@ -158,6 +168,7 @@ public final class Streak
    * @param period   the period with which items are emitted.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> generate( @Nonnull final Supplier<T> supplier, final int period )
   {
     return periodic( period ).map( e -> supplier.get() );
@@ -169,6 +180,7 @@ public final class Streak
    * @param <T> the type of items that the stream declared as containing (despite never containing any items).
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> never()
   {
     return new NeverStreamSource<>();
@@ -182,6 +194,7 @@ public final class Streak
    * @param count the number of items to emit
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static Stream<Integer> range( final int start, final int count )
   {
     return new RangeStreamSource( start, count );
@@ -194,17 +207,20 @@ public final class Streak
    * @param period the period with which items are emitted.
    * @return the new stream.
    */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static Stream<Integer> periodic( final int period )
   {
     return new PeriodicStreamSource( period );
   }
 
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   @SafeVarargs
   public static <T> Stream<T> concat( @Nonnull final Stream<T>... upstreams )
   {
     return of( upstreams ).concatMap( v -> v );
   }
 
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
   @SafeVarargs
   public static <T> Stream<T> merge( @Nonnull final Stream<T>... upstreams )
   {
