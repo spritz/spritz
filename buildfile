@@ -35,6 +35,7 @@ define 'streak' do
   ).exclude(*Dir["#{_(:source, :main, :java, 'streak/examples')}/*.java"])
 
   cleanup_javadocs(project, 'streak')
+  #gwt_enhance(project)
 
   package(:jar)
   package(:sources)
