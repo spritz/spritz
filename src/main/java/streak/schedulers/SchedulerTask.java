@@ -8,7 +8,7 @@ public interface SchedulerTask
   /**
    * Cancel the task.
    * The task will not be triggered if it has not already been executed.
-   * If the task has already been cancelled then this is effectively a no-op.
+   * This task should be cancelled at most once.
    */
   void cancel();
 }
