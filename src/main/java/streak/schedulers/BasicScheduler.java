@@ -50,12 +50,6 @@ final class BasicScheduler
       {
         future.cancel( true );
       }
-
-      @Override
-      public boolean isCancelled()
-      {
-        return future.isCancelled();
-      }
     };
   }
 }

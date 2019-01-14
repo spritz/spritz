@@ -11,11 +11,4 @@ public interface SchedulerTask
    * If the task has already been cancelled then this is effectively a no-op.
    */
   void cancel();
-
-  /**
-   * Return true if cancel() has been called on task.
-   *
-   * @return true if cancel() has been called on task.
-   */
-  boolean isCancelled();
 }
