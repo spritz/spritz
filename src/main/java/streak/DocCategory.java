@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
      */
     PEEKING,
     /**
-     * Removing items from a stream based on some criteria.
+     * Operators that remove items from a stream based on some criteria.
      */
     FILTERING,
     /**
@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
      */
     SLICING,
     /**
-     * Change the form of items and signals passing through the stream.
+     * Operators that change the form of items and signals passing through the stream.
      */
     TRANSFORMATION,
     /**
