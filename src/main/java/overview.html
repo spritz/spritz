@@ -10,5 +10,19 @@
   for filtering, transforming and merging event streams. The construction methods and operators available are
   as follows:
 </p>
+<ul>
+  <li><a href="#construction">Construction</a>: Methods to construct an event stream.</li>
+  <li><a href="#filtering">Filtering</a>: Operators that remove items from a stream based on some criteria.</li>
+  <li><a href="#transformation">Transformation</a>: Operators that change the form of items and signals passing through the stream.</li>
+</ul>
+
+<h3><a name="construction">Construction</a></h3>
+
+<ul>
+  <li>{@link streak.Streak#of(java.lang.Object[])}: Creates a stream that emits the parameters as items.</li>
+  <li>{@link streak.Streak#empty()}: Creates a stream that emits no items and immediately emits a completion signal.</li>
+</ul>
+<h3><a name="filtering">Filtering</a></h3>
+<h3><a name="transformation">Transformation</a></h3>
 
 </body>
