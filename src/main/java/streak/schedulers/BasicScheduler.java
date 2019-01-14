@@ -43,13 +43,6 @@ final class BasicScheduler
       0 == period ?
       _executorService.schedule( task, initialDelay, TimeUnit.MILLISECONDS ) :
       _executorService.scheduleAtFixedRate( task, initialDelay, period, TimeUnit.MILLISECONDS );
-    return new SchedulerTask()
-    {
-      @Override
-      public void cancel()
-      {
-        future.cancel( true );
-      }
-    };
+    return () -> future.cancel( true );
   }
 }
