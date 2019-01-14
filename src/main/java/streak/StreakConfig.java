@@ -1,5 +1,7 @@
 package streak;
 
+import streak.internal.annotations.GwtIncompatible;
+
 /**
  * Location of all compile time configuration settings for framework.
  */

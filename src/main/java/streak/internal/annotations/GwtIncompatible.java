@@ -1,4 +1,4 @@
-package streak;
+package streak.internal.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
 @Retention( RetentionPolicy.CLASS )
 @Target( { ElementType.TYPE, ElementType.METHOD } )
 @Documented
-@interface GwtIncompatible
+public @interface GwtIncompatible
 {
 }
