@@ -127,6 +127,8 @@ The tasks can be executed on different virtual processing units (VPUs) such as:
 * Animation `requestAnimationFrame( mycallback )`
 * Post render (i.e. `requestAnimationFrame( () -> setTimeout( mycallback, 0 ))`. Actually use `afterFrame` approach. See Arez TODO.
 
+Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can be prioritized or not. Activation can drain queue or tun till deadline.
+
 There is also a separate scheduler that is responsible doing periodic scheduling or delayed scheduling of tasks. It is also responsible for allocating tasks to VPUs and suspending/resuming VPUs based on activations. 
 
 - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
