@@ -35,15 +35,15 @@ final class BasicScheduler
    */
   @Nonnull
   @Override
-  public Task schedule( @Nonnull final Runnable task,
-                        final int initialDelay,
-                        final int period )
+  public SchedulerTask schedule( @Nonnull final Runnable task,
+                                 final int initialDelay,
+                                 final int period )
   {
     final ScheduledFuture<?> future =
       0 == period ?
       _executorService.schedule( task, initialDelay, TimeUnit.MILLISECONDS ) :
       _executorService.scheduleAtFixedRate( task, initialDelay, period, TimeUnit.MILLISECONDS );
-    return new Task()
+    return new SchedulerTask()
     {
       @Override
       public void cancel()

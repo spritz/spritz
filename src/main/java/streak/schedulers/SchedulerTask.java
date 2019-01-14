@@ -3,7 +3,7 @@ package streak.schedulers;
 /**
  * Interface to allow cancelling a queued task.
  */
-public interface Task
+public interface SchedulerTask
 {
   /**
    * Cancel the task.

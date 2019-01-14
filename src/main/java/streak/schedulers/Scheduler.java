@@ -23,10 +23,10 @@ public interface Scheduler
    * Schedules the execution of the given task as soon as possible but still asynchronously.
    *
    * @param task the task to execute.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default Task schedule( @Nonnull final Runnable task )
+  default SchedulerTask schedule( @Nonnull final Runnable task )
   {
     return schedule( task, 0 );
   }
@@ -36,10 +36,10 @@ public interface Scheduler
    *
    * @param task  the task to execute.
    * @param delay the delay before the task should execute.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default Task schedule( @Nonnull final Runnable task, final int delay )
+  default SchedulerTask schedule( @Nonnull final Runnable task, final int delay )
   {
     return schedule( task, delay, 0 );
   }
@@ -49,11 +49,11 @@ public interface Scheduler
    *
    * @param task   the task to execute.
    * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default Task scheduleAtFixedRate( @Nonnull final Runnable task,
-                                    final int period )
+  default SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task,
+                                             final int period )
   {
     return schedule( task, 0, period );
   }
@@ -64,10 +64,10 @@ public interface Scheduler
    * @param task         the task to execute.
    * @param initialDelay the initial delay before the task should execute.
    * @param period       the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  Task schedule( @Nonnull Runnable task, int initialDelay, int period );
+  SchedulerTask schedule( @Nonnull Runnable task, int initialDelay, int period );
 
   /**
    * Initiate an orderly shutdown of the scheduler.

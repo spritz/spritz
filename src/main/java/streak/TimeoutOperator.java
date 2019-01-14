@@ -1,8 +1,8 @@
 package streak;
 
 import javax.annotation.Nonnull;
+import streak.schedulers.SchedulerTask;
 import streak.schedulers.Schedulers;
-import streak.schedulers.Task;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T>
@@ -29,7 +29,7 @@ final class TimeoutOperator<T>
     private final int _timeoutTime;
     private int _lastTime;
     @Nonnull
-    private Task _task;
+    private SchedulerTask _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int timeoutTime )
     {
@@ -74,7 +74,7 @@ final class TimeoutOperator<T>
     }
 
     @Nonnull
-    private Task scheduleTimeout()
+    private SchedulerTask scheduleTimeout()
     {
       return Schedulers.current().schedule( this, _lastTime + _timeoutTime );
     }

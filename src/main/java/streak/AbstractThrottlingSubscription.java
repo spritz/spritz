@@ -3,7 +3,7 @@ package streak;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
-import streak.schedulers.Task;
+import streak.schedulers.SchedulerTask;
 
 abstract class AbstractThrottlingSubscription<T>
   extends AbstractOperatorSubscription<T>
@@ -12,7 +12,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Nullable
   private T _nextItem;
   @Nullable
-  private Task _task;
+  private SchedulerTask _task;
   private int _nextTaskTime;
   private boolean _pendingComplete;
 

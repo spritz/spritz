@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import streak.schedulers.Schedulers;
-import streak.schedulers.Task;
+import streak.schedulers.SchedulerTask;
 
 final class PeriodicStreamSource
   extends Stream<Integer>
@@ -32,7 +32,7 @@ final class PeriodicStreamSource
     private final int _period;
     private int _counter;
     @Nullable
-    private Task _task;
+    private SchedulerTask _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
     {
