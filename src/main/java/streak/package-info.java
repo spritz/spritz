@@ -1,4 +1,4 @@
 /**
- * This package contains the rxs experiments.
+ * The core elements of the Streak library.
  */
 package streak;
