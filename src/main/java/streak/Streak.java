@@ -20,7 +20,7 @@ public final class Streak
   }
 
   /**
-   * Creates a stream that emits the parameters as items.
+   * Creates a stream that emits the parameters as items and then emits the completion signal.
    *
    * @param <T>    the type of items contained in the stream.
    * @param values the values to emit.
@@ -33,7 +33,7 @@ public final class Streak
   }
 
   /**
-   * Creates a stream that emits no items to the stream and immediately emits a completion signal.
+   * Creates a stream that emits no items and immediately emits a completion signal.
    *
    * @param <T> the type of items that the stream declared as containing (despite never containing any items).
    * @return the new stream.
