@@ -4,7 +4,7 @@
     "operators": [
         {
             "name": "operator(timeout)",
-            "javadoc-link": "streak/NonOperatorMethodsStream.html#operator-int-",
+            "link": "streak.NonOperatorMethodsStream#operator(int)",
             "categories": [
                 "PEEKING"
             ]

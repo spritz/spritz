@@ -60,10 +60,10 @@ final class OperatorDescriptor
   String getJavadocLink()
   {
     final TypeElement typeName = (TypeElement) getMethod().getEnclosingElement();
-    return typeName.getQualifiedName().toString().replaceAll( "\\.", "/" ) +
-           ".html#" +
+    return typeName.getQualifiedName().toString() +
+           "#" +
            getMethod().getSimpleName().toString() +
-           "-" +
+           "(" +
            _methodType
              .getParameterTypes()
              .stream()
@@ -79,14 +79,14 @@ final class OperatorDescriptor
                }
              } )
              .collect( Collectors.joining( "," ) ) +
-           "-";
+           ")";
   }
 
   void write( @Nonnull final JsonGenerator generator )
   {
     generator.writeStartObject();
     generator.write( "name", getName() );
-    generator.write( "javadoc-link", getJavadocLink() );
+    generator.write( "link", getJavadocLink() );
     generator.writeStartArray( "categories" );
     getCategories().forEach( generator::write );
     generator.writeEnd();

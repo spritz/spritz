@@ -4,7 +4,7 @@
     "operators": [
         {
             "name": "anOperator()",
-            "javadoc-link": "streak/MultipleCategoriesStream.html#anOperator--",
+            "link": "streak.MultipleCategoriesStream#anOperator()",
             "categories": [
                 "PEEKING",
                 "TRANSFORMATION"

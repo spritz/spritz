@@ -4,28 +4,28 @@
     "operators": [
         {
             "name": "operatorA()",
-            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorA--",
+            "link": "streak.MultipleOperatorsStream#operatorA()",
             "categories": [
                 "PEEKING"
             ]
         },
         {
             "name": "operatorP()",
-            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorP--",
+            "link": "streak.MultipleOperatorsStream#operatorP()",
             "categories": [
                 "PEEKING"
             ]
         },
         {
             "name": "operatorQ()",
-            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorQ--",
+            "link": "streak.MultipleOperatorsStream#operatorQ()",
             "categories": [
                 "PEEKING"
             ]
         },
         {
             "name": "operatorZ()",
-            "javadoc-link": "streak/MultipleOperatorsStream.html#operatorZ--",
+            "link": "streak.MultipleOperatorsStream#operatorZ()",
             "categories": [
                 "PEEKING"
             ]
