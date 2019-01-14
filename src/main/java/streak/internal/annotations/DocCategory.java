@@ -1,4 +1,4 @@
-package streak;
+package streak.internal.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -8,44 +8,67 @@ import javax.annotation.Nonnull;
  * Category where operator resides in documentation.
  */
 @Target( ElementType.METHOD )
-@interface DocCategory
+public @interface DocCategory
 {
   enum Type
   {
     /**
+     * Methods to construct a stream.
+     */
+    CONSTRUCTION( false ),
+    /**
      * Observing items and signals as they pass through the stream.
      */
-    PEEKING,
+    PEEKING( true ),
     /**
-     * Removing items from a stream based on some criteria.
+     * Operators that remove items from a stream based on some criteria.
      */
-    FILTERING,
+    FILTERING( true ),
     /**
      * Rate limiting operators.
      * Operators are typically {@link #FILTERING} operators except that the intent is to reduce the rate of items emitted.
      */
-    RATE_LIMITING,
+    RATE_LIMITING( true ),
     /**
      * Cutting the stream into sequential segments.
      * Operators are typically {@link #FILTERING} operators except that the intent is include or exclude sequences of items within the stream.
      */
-    SLICING,
+    SLICING( true ),
     /**
-     * Change the form of items and signals passing through the stream.
+     * Operators that change the form of items and signals passing through the stream.
      */
-    TRANSFORMATION,
+    TRANSFORMATION( true ),
     /**
      * Combining multiple streams into a single stream.
      */
-    MERGING,
+    MERGING( true ),
     /**
      * Accumulate items and signals and emit events based on accumulation process.
      */
-    ACCUMULATING,
+    ACCUMULATING( true ),
     /**
      * Unknown how we should categorize this operator at this stage.
      */
-    UNKNOWN
+    UNKNOWN( true );
+    /**
+     * True if the category describes operators.
+     */
+    private final boolean _operator;
+
+    Type( final boolean operator )
+    {
+      _operator = operator;
+    }
+
+    /**
+     * Return true if the category describes operators.
+     *
+     * @return true if the category describes operators.
+     */
+    public boolean isOperator()
+    {
+      return _operator;
+    }
   }
 
   /**

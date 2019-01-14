@@ -1,5 +1,8 @@
 package streak;
 
+import streak.internal.annotations.DocCategory;
+import streak.internal.annotations.MetaDataSource;
+
 @MetaDataSource
 public interface MultipleOperatorsStream<T>
 {

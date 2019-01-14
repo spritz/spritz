@@ -9,6 +9,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
+import streak.internal.annotations.DocCategory;
+import streak.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public abstract class Stream<T>

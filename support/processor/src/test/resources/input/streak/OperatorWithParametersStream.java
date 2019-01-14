@@ -2,6 +2,8 @@ package streak;
 
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import streak.internal.annotations.DocCategory;
+import streak.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public interface OperatorWithParametersStream<T>

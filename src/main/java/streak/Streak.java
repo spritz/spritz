@@ -6,6 +6,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import streak.internal.annotations.DocCategory;
+import streak.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public final class Streak

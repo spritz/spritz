@@ -74,6 +74,13 @@ define 'processor', :base_dir => "#{WORKSPACE_DIR}/support/processor" do
             Java.tools_jar,
             :truth
 
+  test.compile.enhance(['copy-annotations'])
+  task 'copy-annotations' do
+    target_dir = _('src/test/resources/input/streak/internal/annotations')
+    FileUtils.mkdir_p target_dir
+    FileUtils.cp Dir["#{WORKSPACE_DIR}/src/main/java/streak/internal/annotations/*.java"], target_dir
+  end
+
   package(:jar)
 
   iml.test_source_directories << _('src/test/resources/input')

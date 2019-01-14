@@ -1,6 +1,8 @@
 package streak;
 
 import javax.annotation.Nonnull;
+import streak.internal.annotations.DocCategory;
+import streak.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public interface OverloadedOperatorsStream<T>

@@ -45,8 +45,8 @@ abstract class AbstractStreakProcessorTest
     // The annotations have been copied into test directory as they are not part of the API
     // but they are part of our mechanism for validating the project. We MUST keep these
     // aligned else bad things will happen.
-    assertSuccessfulCompile( Arrays.asList( fixture( "input/streak/DocCategory.java" ),
-                                            fixture( "input/streak/MetaDataSource.java" ),
+    assertSuccessfulCompile( Arrays.asList( fixture( "input/streak/internal/annotations/DocCategory.java" ),
+                                            fixture( "input/streak/internal/annotations/MetaDataSource.java" ),
                                             fixture( input.toString() ) ),
                              expectedOutputs );
   }
