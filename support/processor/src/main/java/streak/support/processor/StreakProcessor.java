@@ -2,8 +2,10 @@ package streak.support.processor;
 
 import com.google.auto.service.AutoService;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -135,9 +137,11 @@ public final class StreakProcessor
     final HashMap<String, Object> config = new HashMap<>();
     config.put( JsonGenerator.PRETTY_PRINTING, Boolean.TRUE );
     final JsonGeneratorFactory factory = Json.createGeneratorFactory( config );
-    final JsonGenerator generator = factory.createGenerator( resource.openWriter() );
+    final OutputStream outputStream = resource.openOutputStream();
+    final JsonGenerator generator = factory.createGenerator( outputStream );
     writeBlock.accept( generator );
     generator.flush();
+    outputStream.write( '\n' );
     generator.close();
   }
 }
