@@ -29,10 +29,12 @@ define 'streak' do
   doc.using(:javadoc,
             :windowtitle => 'Streak API Documentation',
             :linksource => true,
-            :overview => _('src/main/java/overview.html'),
+            :overview => _('generated/javadocs/overview.html'),
             :timestamp => false,
             :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
   ).exclude(*Dir["#{_(:source, :main, :java, 'streak/examples')}/*.java"])
+
+  generate_overview(project)
 
   cleanup_javadocs(project, 'streak')
   #gwt_enhance(project)
