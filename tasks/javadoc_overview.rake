@@ -27,7 +27,7 @@ def generate_overview(project)
       HTML
       operators.each do |operator|
         operators_content += <<-HTML
-  <li>{@link #{operator["link"]} #{operator["name"]}}: </li>
+  <li>{@link #{operator["link"]} #{operator["name"]}}: #{operator["description"]}</li>
         HTML
       end
       operators_content += <<-HTML
