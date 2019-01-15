@@ -3,6 +3,7 @@ package streak.support.processor;
 import com.squareup.javapoet.ArrayTypeName;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeVariableName;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -79,6 +80,18 @@ final class OperatorDescriptor
     if ( paramType instanceof ParameterizedTypeName )
     {
       return ( (ParameterizedTypeName) paramType ).rawType;
+    }
+    else if ( paramType instanceof TypeVariableName )
+    {
+      final List<TypeName> bounds = ( (TypeVariableName) paramType ).bounds;
+      if ( bounds.isEmpty() )
+      {
+        return TypeName.OBJECT;
+      }
+      else
+      {
+        return toRawType( bounds.get( 0 ) );
+      }
     }
     else if ( paramType instanceof ArrayTypeName )
     {

@@ -1,0 +1,13 @@
+
+{
+    "class": "streak.OperatorWithTypeParameterStream",
+    "operators": [
+        {
+            "name": "of(value)",
+            "link": "streak.OperatorWithTypeParameterStream#of(java.lang.Object)",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

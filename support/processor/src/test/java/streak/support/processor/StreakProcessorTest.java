@@ -18,6 +18,7 @@ public class StreakProcessorTest
         new Object[]{ "streak.NonOperatorMethodsStream" },
         new Object[]{ "streak.OperatorWithArrayParameterStream" },
         new Object[]{ "streak.OperatorWithParametersStream" },
+        new Object[]{ "streak.OperatorWithTypeParameterStream" },
         new Object[]{ "streak.OverloadedOperatorsStream" }
       };
   }
