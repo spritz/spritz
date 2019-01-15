@@ -9,13 +9,13 @@ and project support, please visit the [GitHub project](https://github.com/realit
 
 # Contributing
 
-Arez was released as open source so others could benefit from the project. We are thankful for any
+Streak was released as open source so others could benefit from the project. We are thankful for any
 contributions from the community. A [Code of Conduct](CODE_OF_CONDUCT.md) has been put in place and
 a [Contributing](CONTRIBUTING.md) document is under development.
 
 # License
 
-Arez is licensed under [Apache License, Version 2.0](LICENSE).
+Streak is licensed under [Apache License, Version 2.0](LICENSE).
 
 # Credit
 
