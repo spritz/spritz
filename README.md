@@ -25,7 +25,7 @@ Streak is licensed under [Apache License, Version 2.0](LICENSE).
   browser via [rxjava-gwt](https://github.com/intendia-oss/rxjava-gwt). I found that [RxJs](https://rxjs-dev.firebaseapp.com/api)
   seemed better suited for the browser context and the toolkit tended to gravitate more to the [RxJs](https://rxjs-dev.firebaseapp.com/api)
   way of doing things. Neither toolkit was easy to optimize to reduce code size and thus Streak was born.
-  Streak continues to steal, recombine and mashup the best ideas from the various reactive event streaming
+  Streak continues to steal, recombine, remix and mashup the best ideas from the various reactive event streaming
   libraries.
 
 * Other frameworks that influenced or are influencing the development of Streak include;
