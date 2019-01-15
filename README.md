@@ -29,6 +29,18 @@ execution data is created when subscriptions occur.
 
 ## To Implement
 
+* Update annotation processor to emit all the categories and metadata about the categories.
+  This includes:
+    - name
+    - description (First line of javadocs)
+    - is category for construction methods
+    - sorting in category (alphabetic, source order)
+  Use this metadata to enhance `overview.html`
+
+* Store source sequence for operators. Store explicit order for operators if specified.
+
+* Deploy website on build
+
 Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
 
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
