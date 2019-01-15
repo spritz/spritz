@@ -129,7 +129,7 @@ The tasks can be executed on different virtual processing units (VPUs) such as:
 
 Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can be prioritized or not. Activation can drain queue or tun till deadline.
 
-There is also a separate scheduler that is responsible doing periodic scheduling or delayed scheduling of tasks. It is also responsible for allocating tasks to VPUs and suspending/resuming VPUs based on activations. 
+There is also a separate scheduler that is responsible doing periodic scheduling or delayed scheduling of tasks. It is also responsible for allocating tasks to VPUs and suspending/resuming VPUs based on activations.
 
 - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
 - [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
@@ -169,7 +169,7 @@ occur and will be unsubscribed from after that.
 
 Steal some documentation terminology for timeline notation from https://mostcore.readthedocs.io/en/latest/notation.html#timeline-notation
 
-Steal some general documentation concepts from https://mostcore.readthedocs.io/en/latest/concepts.html 
+Steal some general documentation concepts from https://mostcore.readthedocs.io/en/latest/concepts.html
 
 ### Rethink
 
