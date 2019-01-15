@@ -225,3 +225,8 @@ language extracts it - ala angular
 but it differs as both props and event handlers are streams and streams are passed as jsx.
 
 Once done to a TodoMVC implementation such as https://github.com/briancavalier/mostcore-todomvc
+
+Reimplement rxsnake using streak to compare code size
+- https://github.com/ibaca/rxsnake-gwt/blob/master/src/main/java/rxsnake/client/RxSnake.java
+- http://ignacio.bacamt.com/rxsnake-gwt/
+- Description of how it works is at http://philipnilsson.github.io/badness/
