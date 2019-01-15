@@ -58,7 +58,7 @@ final class OperatorDescriptor
   }
 
   @Nonnull
-  String getJavadocLink()
+  private String getJavadocLink()
   {
     final TypeElement typeName = (TypeElement) getMethod().getEnclosingElement();
     return typeName.getQualifiedName().toString() +
