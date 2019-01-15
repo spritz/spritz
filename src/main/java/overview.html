@@ -1,10 +1,75 @@
 <body>
 <p>
-  Streak is a reactive stream library in the <a href="http://reactivex.io/">ReactiveX</a> tradition
-  where applications are created by composing event streams. Streak shines when used to coordinate
-  multiple independent event streams. The library aims to simplify asynchronous programming and
+  ⚡ Streak ⚡ is a browser based reactive event stream library in the tradition of the
+  <a href="http://reactivex.io/">ReactiveX</a> philosophy. Applications are created by composing
+  event streams and Streak shines when used to coordinate multiple independent event streams. The
+  library aims to simplify asynchronous programming and
   minimize the hazards of side effects and mutable shared state.
 </p>
+
+<p>
+  The developer experience is a primary concern in Streak without sacrificing end-user experience. This
+  means that extensive invariant checking occurs in development mode but is optimized away in production
+  builds of the library. Streak is under heavy development, and sometimes the documentation does not keep
+  up to date. The goal of the library is to be easy to use, and this includes clear and concise documentation.
+  If something is unclear please <a href="https://github.com/realityforge/streak/issues">report it as a bug</a>
+  because it <em>is</em> a bug. If a new user has a hard time, then we need to fix the problem.
+</p>
+
+<p>
+  Streak was developed to be used within the browser. It is designed to be transpiled down to reasonably
+  efficient javascript with a small code size. Often the library chose a smaller code size over a better
+  runtime speed under the assumption that the browser speed is more likely to be negatively impacted by
+  increased code size due to download time, js parse time and js compile time than it would be due to a
+  slight runtime performance degradation although the {@link streak.Stream#compose(Function)} escape hatch has
+  been added so that users can write their own operators when performance is critical.
+</p>
+
+<h3>Concepts</h3>
+
+<h4>Events</h4>
+
+<p>
+  An event is an action or occurrence recognized by software that occurs at a particular instant in
+  time. An event can be thought of as a pair containing a <code>value</code> element describing the event
+  data and a <code>time</code> element that indicates the time at which the event is emitted. Both the value
+  and time elements are just as important.
+</p>
+
+<p>
+  An example of an event may be a network message. Another example is a user interaction such as a keypress
+  or a mouse button click. An event could also be triggered by passing of time in a timer such that an event
+  is generated every <code>N</code> milliseconds.
+</p>
+
+<h4>Streams</h4>
+
+<p>
+  A {@link streak.Stream stream} is a time-ordered sequence of events. For example, a stream of click
+  events from a UI control or a stream of messages over a WebSocket. Operators filter, transform and combine
+  input streams. An operator never modifies the input stream but instead creates a new stream.
+</p>
+
+<p>
+  A listener or a {@link streak.Subscriber subscriber} in Streak parlance receives the events and reacts to events
+  as they occur. The events are received in the order in which they are emitted and at the time they are emitted.
+</p>
+
+<p>
+  A stream can also send other signals to the subscriber indicating that the stream has
+  completed or that the stream has failed. If the subscriber receives these signals then they will not
+  receive any more events from the stream and must handle that appropriately. Thus streams may be infinite,
+  finite, or may fail.
+</p>
+
+<!--
+A stream does not define an execution and in most cases could subscribe to the same stream multiple
+times to get multiple executions. `"Subjects"` are the mechanism where a stream can control if new
+execution data is created when subscriptions occur.
+-->
+
+<h3>Event Sources and Stream Operators</h3>
+
 <p>
   The library includes construction methods to create event sources combined with a powerful set of operators
   for filtering, transforming and merging event streams. The construction methods and operators available are
