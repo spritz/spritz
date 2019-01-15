@@ -1,0 +1,13 @@
+
+{
+    "class": "streak.OperatorWithArrayParameterStream",
+    "operators": [
+        {
+            "name": "someOperator(somePredicate)",
+            "link": "streak.OperatorWithArrayParameterStream#someOperator(streak.OperatorWithArrayParameterStream[])",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 package streak.support.processor;
 
+import com.squareup.javapoet.ArrayTypeName;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import java.util.HashSet;
@@ -67,19 +68,26 @@ final class OperatorDescriptor
            _methodType
              .getParameterTypes()
              .stream()
-             .map( p -> {
-               final TypeName paramType = TypeName.get( p );
-               if ( paramType instanceof ParameterizedTypeName )
-               {
-                 return ( (ParameterizedTypeName) paramType ).rawType.toString();
-               }
-               else
-               {
-                 return paramType.toString();
-               }
-             } )
+             .map( p -> toRawType( TypeName.get( p ) ).toString() )
              .collect( Collectors.joining( "," ) ) +
            ")";
+  }
+
+  @Nonnull
+  private TypeName toRawType( @Nonnull final TypeName paramType )
+  {
+    if ( paramType instanceof ParameterizedTypeName )
+    {
+      return ( (ParameterizedTypeName) paramType ).rawType;
+    }
+    else if ( paramType instanceof ArrayTypeName )
+    {
+      return ArrayTypeName.of( toRawType( ( (ArrayTypeName) paramType ).componentType ) );
+    }
+    else
+    {
+      return paramType;
+    }
   }
 
   void write( @Nonnull final JsonGenerator generator )
