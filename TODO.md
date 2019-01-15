@@ -49,4 +49,4 @@
 
 * Scheduler should use a linked list to contain tasks or some other similar mechanism as there is likely
   to be many tasks that are cancelled in flight and need to have resources releases to avoid being unnecessary
-  memory pressure. 
+  memory pressure.
