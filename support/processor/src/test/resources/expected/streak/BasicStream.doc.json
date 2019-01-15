@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "someOperator()",
+            "description": "",
             "link": "streak.BasicStream#someOperator()",
             "categories": [
                 "PEEKING"

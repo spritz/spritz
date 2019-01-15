@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "operator(timeout)",
+            "description": "",
             "link": "streak.NonOperatorMethodsStream#operator(int)",
             "categories": [
                 "PEEKING"

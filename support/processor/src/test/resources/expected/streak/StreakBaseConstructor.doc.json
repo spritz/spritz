@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "StreakBaseConstructor.concat(upstreams)",
+            "description": "",
             "link": "streak.StreakBaseConstructor#concat(streak.StreakBaseConstructor.Stream[])",
             "categories": [
                 "CONSTRUCTION"
@@ -11,6 +12,7 @@
         },
         {
             "name": "StreakBaseConstructor.empty()",
+            "description": "",
             "link": "streak.StreakBaseConstructor#empty()",
             "categories": [
                 "CONSTRUCTION"
@@ -18,6 +20,7 @@
         },
         {
             "name": "StreakBaseConstructor.of(values)",
+            "description": "",
             "link": "streak.StreakBaseConstructor#of(java.lang.Object[])",
             "categories": [
                 "CONSTRUCTION"

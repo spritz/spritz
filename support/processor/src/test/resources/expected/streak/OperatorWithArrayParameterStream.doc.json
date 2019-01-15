@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "someOperator(somePredicate)",
+            "description": "",
             "link": "streak.OperatorWithArrayParameterStream#someOperator(streak.OperatorWithArrayParameterStream[])",
             "categories": [
                 "PEEKING"

@@ -21,12 +21,17 @@ final class OperatorDescriptor
   private final ExecutableElement _method;
   @Nonnull
   private final ExecutableType _methodType;
+  @Nonnull
+  private final String _description;
   private final Set<String> _categories = new HashSet<>();
 
-  OperatorDescriptor( @Nonnull final ExecutableElement method, @Nonnull final ExecutableType methodType )
+  OperatorDescriptor( @Nonnull final ExecutableElement method,
+                      @Nonnull final ExecutableType methodType,
+                      @Nonnull final String description )
   {
     _method = Objects.requireNonNull( method );
     _methodType = Objects.requireNonNull( methodType );
+    _description = Objects.requireNonNull( description );
   }
 
   @Nonnull
@@ -109,6 +114,8 @@ final class OperatorDescriptor
   {
     generator.writeStartObject();
     generator.write( "name", getName() );
+    final String description = _description;
+    generator.write( "description", description );
     generator.write( "link", getJavadocLink() );
     generator.writeStartArray( "categories" );
     getCategories().forEach( generator::write );

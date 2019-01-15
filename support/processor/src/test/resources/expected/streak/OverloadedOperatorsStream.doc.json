@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "operator(timeout)",
+            "description": "",
             "link": "streak.OverloadedOperatorsStream#operator(int)",
             "categories": [
                 "PEEKING"
@@ -11,6 +12,7 @@
         },
         {
             "name": "operator(timeoutControlStream)",
+            "description": "",
             "link": "streak.OverloadedOperatorsStream#operator(streak.OverloadedOperatorsStream)",
             "categories": [
                 "PEEKING"
@@ -18,6 +20,7 @@
         },
         {
             "name": "operator(timeoutFn)",
+            "description": "",
             "link": "streak.OverloadedOperatorsStream#operator(streak.OverloadedOperatorsStream.MyFunction)",
             "categories": [
                 "PEEKING"

@@ -13,6 +13,7 @@ public class StreakProcessorTest
     return new Object[][]
       {
         new Object[]{ "streak.BasicStream" },
+        new Object[]{ "streak.ConstructorWithComments" },
         new Object[]{ "streak.MultipleCategoriesStream" },
         new Object[]{ "streak.MultipleOperatorsStream" },
         new Object[]{ "streak.NonOperatorMethodsStream" },
@@ -29,5 +30,12 @@ public class StreakProcessorTest
     throws Exception
   {
     assertSuccessfulCompile( classname );
+  }
+
+  @Test
+  public void XXX()
+    throws Exception
+  {
+    assertSuccessfulCompile( "streak.ConstructorWithComments" );
   }
 }

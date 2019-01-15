@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.Writer;
+import java.text.BreakIterator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -110,7 +110,26 @@ public final class StreakProcessor
         .asMemberOf( (DeclaredType) metaData.getTypeElement().asType(), method );
     if ( null != annotation )
     {
-      final OperatorDescriptor operator = new OperatorDescriptor( method, methodType );
+      final String docComment = processingEnv.getElementUtils().getDocComment( method );
+      final String description;
+      if ( null != docComment )
+      {
+        final BreakIterator boundary = BreakIterator.getSentenceInstance();
+        boundary.setText( docComment );
+        final int start = boundary.first();
+        final int end = boundary.next();
+        final String firstLine =
+          ( BreakIterator.DONE == end ? docComment.substring( start ) : docComment.substring( start, end ) ).trim();
+        description =
+          firstLine.charAt( firstLine.length() - 1 ) == '.' ?
+          firstLine.substring( 0, firstLine.length() - 1 ) :
+          firstLine;
+      }
+      else
+      {
+        description = "";
+      }
+      final OperatorDescriptor operator = new OperatorDescriptor( method, methodType, description );
       metaData.addOperator( operator );
       final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
       assert null != value;

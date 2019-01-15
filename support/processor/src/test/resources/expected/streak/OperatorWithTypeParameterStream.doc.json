@@ -4,6 +4,7 @@
     "operators": [
         {
             "name": "of(value)",
+            "description": "",
             "link": "streak.OperatorWithTypeParameterStream#of(java.lang.Object)",
             "categories": [
                 "PEEKING"
