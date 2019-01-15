@@ -3,17 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/realityforge-experiments/streak.png?branch=master)](http://travis-ci.org/realityforge-experiments/streak)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.streak/streak.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.streak%22%20a%3A%22streak%22)
 
-Streak contains some experiments with reactive streaming code or reactive streams. It is best
-used when coordinating events.
-
-A stream is a sequence of events over time. For example a stream of click events from a UI control
-or a stream of messages over a WebSocket. A listener reacts to events emitted by a stream and these
-events may be values, errors and completion notification. Operators filter, transform and combine
-input streams. An operator never modifies the input stream but instead creates a new stream.
-
-A stream does not define an execution and in most cases could subscribe to the same stream multiple
-times to get multiple executions. `"Subjects"` are the mechanism where a stream can control if new
-execution data is created when subscriptions occur.
+Streak is a reactive reactive event streaming library best used when coordinating events.
 
 ## Links
 
