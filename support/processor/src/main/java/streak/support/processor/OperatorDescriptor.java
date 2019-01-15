@@ -32,7 +32,9 @@ final class OperatorDescriptor
   @Nonnull
   String getName()
   {
-    return getMethod().getSimpleName().toString() +
+    final String prefix =
+      _categories.contains( "CONSTRUCTION" ) ? getMethod().getEnclosingElement().getSimpleName().toString() + "." : "";
+    return prefix + getMethod().getSimpleName().toString() +
            "(" +
            getMethod()
              .getParameters()
