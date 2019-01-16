@@ -65,20 +65,24 @@ public final class StreakProcessor
       }
       catch ( final Throwable e )
       {
-        final StringWriter sw = new StringWriter();
-        e.printStackTrace( new PrintWriter( sw ) );
-        sw.flush();
-
-        final String message =
-          "Unexpected error will running the " + getClass().getName() + " processor. This has " +
-          "resulted in a failure to process the code and has left the compiler in an invalid " +
-          "state. Please report the failure to the developers so that it can be fixed.\n" +
-          " Report the error at: https://github.com/realityforge/streak/issues\n" +
-          "\n\n" +
-          sw.toString();
-        processingEnv.getMessager().printMessage( ERROR, message, element );
+        processingEnv.getMessager().printMessage( ERROR, generateFatalErrorMessage( e ), element );
       }
     }
+  }
+
+  @Nonnull
+  private String generateFatalErrorMessage( @Nonnull final Throwable e )
+  {
+    final StringWriter sw = new StringWriter();
+    e.printStackTrace( new PrintWriter( sw ) );
+    sw.flush();
+
+    return "Unexpected error running the " + getClass().getName() + " processor. This has " +
+           "resulted in a failure to process the code and has left the compiler in an invalid " +
+           "state. Please report the failure to the developers so that it can be fixed.\n" +
+           " Report the error at: https://github.com/realityforge/streak/issues\n" +
+           "\n\n" +
+           sw.toString();
   }
 
   private void process( @Nonnull final TypeElement element )
