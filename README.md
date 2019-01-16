@@ -3,9 +3,9 @@
 [![Build Status](https://secure.travis-ci.org/realityforge-experiments/streak.png?branch=master)](http://travis-ci.org/realityforge-experiments/streak)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.streak/streak.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.streak%22%20a%3A%22streak%22)
 
-Streak is a reactive reactive event streaming library best used when coordinating events. For more information
-about Streak, please see the [Website](https://realityforge.github.io/streak). For the source code
-and project support, please visit the [GitHub project](https://github.com/realityforge/streak).
+Streak is a browser based, reactive event streaming library that is best used when coordinating events.
+For more information about Streak, please see the [Website](https://realityforge.github.io/streak). For
+the source code and project support, please visit the [GitHub project](https://github.com/realityforge/streak).
 
 # Contributing
 
