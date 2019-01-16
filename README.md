@@ -29,7 +29,7 @@ Streak is licensed under [Apache License, Version 2.0](LICENSE).
   libraries.
 
 * Other frameworks that influenced or are influencing the development of Streak include;
-  - [ReactiveX Scheduler](http://reactivex.io)
+  - [ReactiveX](http://reactivex.io)
   - [Most](https://mostcore.readthedocs.io/en/latest/concepts.html)
   - [Bacon](http://baconjs.github.io/api2.html)
   - [Reactor](https://projectreactor.io/)
