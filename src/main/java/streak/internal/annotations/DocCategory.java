@@ -61,6 +61,16 @@ public @interface DocCategory
     }
 
     /**
+     * Return true if the category event sources.
+     *
+     * @return true if the category describes event sources.
+     */
+    public boolean isSource()
+    {
+      return !isSource();
+    }
+
+    /**
      * Return true if the category describes operators.
      *
      * @return true if the category describes operators.
