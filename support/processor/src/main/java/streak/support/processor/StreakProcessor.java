@@ -115,24 +115,7 @@ public final class StreakProcessor
     if ( null != annotation )
     {
       final String docComment = processingEnv.getElementUtils().getDocComment( method );
-      final String description;
-      if ( null != docComment )
-      {
-        final BreakIterator boundary = BreakIterator.getSentenceInstance();
-        boundary.setText( docComment );
-        final int start = boundary.first();
-        final int end = boundary.next();
-        final String firstLine =
-          ( BreakIterator.DONE == end ? docComment.substring( start ) : docComment.substring( start, end ) ).trim();
-        description =
-          firstLine.charAt( firstLine.length() - 1 ) == '.' ?
-          firstLine.substring( 0, firstLine.length() - 1 ) :
-          firstLine;
-      }
-      else
-      {
-        description = "";
-      }
+      final String description = null != docComment ? extractFirstSentence( docComment ) : "";
       final OperatorDescriptor operator = new OperatorDescriptor( method, methodType, description );
       metaData.addOperator( operator );
       final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
@@ -144,6 +127,23 @@ public final class StreakProcessor
         operator.addCategory( category.getValue().toString() );
       }
     }
+  }
+
+  @Nonnull
+  private String extractFirstSentence( @Nonnull final String text )
+  {
+    final String description;
+    final BreakIterator boundary = BreakIterator.getSentenceInstance();
+    boundary.setText( text );
+    final int start = boundary.first();
+    final int end = boundary.next();
+    final String firstLine =
+      ( BreakIterator.DONE == end ? text.substring( start ) : text.substring( start, end ) ).trim();
+    description =
+      firstLine.charAt( firstLine.length() - 1 ) == '.' ?
+      firstLine.substring( 0, firstLine.length() - 1 ) :
+      firstLine;
+    return description;
   }
 
   private void writeJsonData( @Nonnull final TypeElement element,
