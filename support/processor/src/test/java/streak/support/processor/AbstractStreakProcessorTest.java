@@ -47,6 +47,7 @@ abstract class AbstractStreakProcessorTest
     // aligned else bad things will happen.
     assertSuccessfulCompile( Arrays.asList( fixture( "input/streak/internal/annotations/DocCategory.java" ),
                                             fixture( "input/streak/internal/annotations/MetaDataSource.java" ),
+                                            fixture( "input/streak/internal/annotations/SourceCategory.java" ),
                                             fixture( input.toString() ) ),
                              expectedOutputs );
   }

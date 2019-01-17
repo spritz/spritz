@@ -1,0 +1,60 @@
+
+{
+    "class": "streak.internal.annotations.DocCategory",
+    "categories": [
+        {
+            "id": 0,
+            "name": "CONSTRUCTION",
+            "description": "Methods to construct a stream",
+            "type": "operator"
+        },
+        {
+            "id": 1,
+            "name": "PEEKING",
+            "description": "Observing items and signals as they pass through the stream",
+            "type": "operator"
+        },
+        {
+            "id": 2,
+            "name": "FILTERING",
+            "description": "Operators that remove items from a stream based on some criteria",
+            "type": "operator"
+        },
+        {
+            "id": 3,
+            "name": "RATE_LIMITING",
+            "description": "Rate limiting operators",
+            "type": "operator"
+        },
+        {
+            "id": 4,
+            "name": "SLICING",
+            "description": "Cutting the stream into sequential segments",
+            "type": "operator"
+        },
+        {
+            "id": 5,
+            "name": "TRANSFORMATION",
+            "description": "Operators that change the form of items and signals passing through the stream",
+            "type": "operator"
+        },
+        {
+            "id": 6,
+            "name": "MERGING",
+            "description": "Combining multiple streams into a single stream",
+            "type": "operator"
+        },
+        {
+            "id": 7,
+            "name": "ACCUMULATING",
+            "description": "Accumulate items and signals and emit events based on accumulation process",
+            "type": "operator"
+        },
+        {
+            "id": 8,
+            "name": "UNKNOWN",
+            "description": "Unknown how we should categorize this operator at this stage",
+            "type": "operator"
+        }
+    ]
+}

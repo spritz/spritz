@@ -1,7 +1,6 @@
 package streak.support.processor;
 
 import com.google.auto.service.AutoService;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -10,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Processor;
@@ -26,7 +24,9 @@ import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.ExecutableType;
 import javax.tools.FileObject;
@@ -59,7 +59,68 @@ public final class StreakProcessor
       processingEnv.getElementUtils().getTypeElement( Constants.META_DATA_SOURCE );
     final Set<? extends Element> elements = env.getElementsAnnotatedWith( annotation );
     processElements( elements );
+    if ( env.processingOver() )
+    {
+      processDocCategoryIfPresent();
+    }
     return true;
+  }
+
+  private void processDocCategoryIfPresent()
+  {
+    // If we are compiling the DocCategory annotation then lets extract metadata from it
+    final TypeElement docCategory = processingEnv.getElementUtils().getTypeElement( Constants.DOC_CATEGORY );
+    if ( null != docCategory )
+    {
+      try
+      {
+        final TypeElement typeTypeElement = (TypeElement)
+          docCategory.getEnclosedElements()
+            .stream()
+            .filter( e -> "Type".equals( e.getSimpleName().toString() ) )
+            .findFirst().orElse( null );
+        assert null != typeTypeElement;
+        writeJsonData( docCategory, g -> emitCategoryEnums( g, docCategory, typeTypeElement ) );
+      }
+      catch ( final Throwable e )
+      {
+        processingEnv.getMessager().printMessage( ERROR, generateFatalErrorMessage( e ), docCategory );
+      }
+    }
+  }
+
+  private void emitCategoryEnums( @Nonnull final JsonGenerator generator,
+                                  @Nonnull final TypeElement typeElement,
+                                  @Nonnull final TypeElement typeTypeElement )
+    throws Throwable
+  {
+    generator.writeStartObject();
+    generator.write( "class", typeElement.getQualifiedName().toString() );
+    generator.writeStartArray( "categories" );
+    int index = 0;
+    for ( final Element enclosedElement : typeTypeElement.getEnclosedElements() )
+    {
+      if ( enclosedElement instanceof VariableElement )
+      {
+        final VariableElement variableElement = (VariableElement) enclosedElement;
+        if ( variableElement.getModifiers().contains( Modifier.STATIC ) )
+        {
+          final String name = variableElement.getSimpleName().toString();
+
+          generator.writeStartObject();
+          generator.write( "id", index );
+          generator.write( "name", name );
+          generator.write( "description", getDescription( variableElement ) );
+          final boolean isSourceCategory =
+            null != ProcessorUtil.findAnnotationByType( variableElement, Constants.SOURCE_CATEGORY );
+          generator.write( "type", isSourceCategory ? "source" : "operator" );
+          generator.writeEnd();
+          index++;
+        }
+      }
+    }
+    generator.writeEnd();
+    generator.writeEnd();
   }
 
   private void processElements( @Nonnull final Collection<? extends Element> elements )
