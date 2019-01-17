@@ -3,9 +3,9 @@
     "class": "streak.MultipleOperatorsStream",
     "operators": [
         {
-            "name": "operatorA()",
+            "name": "operatorZ()",
             "description": "",
-            "link": "streak.MultipleOperatorsStream#operatorA()",
+            "link": "streak.MultipleOperatorsStream#operatorZ()",
             "categories": [
                 "PEEKING"
             ]
@@ -19,17 +19,17 @@
             ]
         },
         {
-            "name": "operatorQ()",
+            "name": "operatorA()",
             "description": "",
-            "link": "streak.MultipleOperatorsStream#operatorQ()",
+            "link": "streak.MultipleOperatorsStream#operatorA()",
             "categories": [
                 "PEEKING"
             ]
         },
         {
-            "name": "operatorZ()",
+            "name": "operatorQ()",
             "description": "",
-            "link": "streak.MultipleOperatorsStream#operatorZ()",
+            "link": "streak.MultipleOperatorsStream#operatorQ()",
             "categories": [
                 "PEEKING"
             ]

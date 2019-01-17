@@ -1,20 +1,16 @@
 package streak.support.processor;
 
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.json.stream.JsonGenerator;
-import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
 final class ClassDescriptor
 {
   @Nonnull
   private final TypeElement _typeElement;
-  private final Map<ExecutableElement, OperatorDescriptor> _operators = new HashMap<>();
+  private final ArrayList<OperatorDescriptor> _operators = new ArrayList<>();
 
   ClassDescriptor( @Nonnull final TypeElement typeElement )
   {
@@ -29,15 +25,12 @@ final class ClassDescriptor
 
   void addOperator( @Nonnull final OperatorDescriptor operator )
   {
-    _operators.put( operator.getMethod(), operator );
+    _operators.add( operator );
   }
 
   public List<OperatorDescriptor> getOperators()
   {
-    return _operators.values()
-      .stream()
-      .sorted( Comparator.comparing( OperatorDescriptor::getName ) )
-      .collect( Collectors.toList() );
+    return _operators;
   }
 
   void write( @Nonnull final JsonGenerator generator )

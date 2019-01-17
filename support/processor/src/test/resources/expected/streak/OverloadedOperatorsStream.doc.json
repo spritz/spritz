@@ -3,17 +3,17 @@
     "class": "streak.OverloadedOperatorsStream",
     "operators": [
         {
-            "name": "operator(timeout)",
+            "name": "operator(timeoutControlStream)",
             "description": "",
-            "link": "streak.OverloadedOperatorsStream#operator(int)",
+            "link": "streak.OverloadedOperatorsStream#operator(streak.OverloadedOperatorsStream)",
             "categories": [
                 "PEEKING"
             ]
         },
         {
-            "name": "operator(timeoutControlStream)",
+            "name": "operator(timeout)",
             "description": "",
-            "link": "streak.OverloadedOperatorsStream#operator(streak.OverloadedOperatorsStream)",
+            "link": "streak.OverloadedOperatorsStream#operator(int)",
             "categories": [
                 "PEEKING"
             ]
