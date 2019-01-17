@@ -17,7 +17,6 @@ class Buildr::Doc::Javadoc
     end
     [:sourcepath, :classpath].each do |option|
       Array(options[option]).flatten.tap do |paths|
-        puts "#{option} => #{paths.inspect}"
         paths = project.compile.sources if :sourcepath == option && options[option].nil?
         cmd_args << "-#{option}" << paths.flatten.map(&:to_s).join(File::PATH_SEPARATOR) unless paths.empty?
       end
