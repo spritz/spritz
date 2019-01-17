@@ -6,7 +6,7 @@
             "id": 0,
             "name": "CONSTRUCTION",
             "description": "Methods to construct a stream",
-            "type": "operator"
+            "type": "source"
         },
         {
             "id": 1,
