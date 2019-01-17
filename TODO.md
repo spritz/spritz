@@ -4,9 +4,6 @@ This document is essentially a list of shorthand notes describing work yet to co
 Unfortunately it is not complete enough for other people to pick work off the list and
 complete as there is too much un-said.
 
-* Use the `@DocCategory` in annotation processor to generate the overview page associated with the
-  API docs.
-
 * Ensure tests all verify that predicates can accept supertypes of T
 
 * Ensure that after every error, complete or cancel there are no timers left associated with stream.
@@ -72,16 +69,6 @@ Below are the old TODO notes:
 * [Callbag Operators](https://github.com/callbag/callbag/wiki)
 
 ## To Implement
-
-* Update annotation processor to emit all the categories and metadata about the categories.
-  This includes:
-    - name
-    - description (First line of javadocs)
-    - is category for construction methods
-    - sorting in category (alphabetic, source order)
-  Use this metadata to enhance `overview.html`
-
-* Store source sequence for operators. Store explicit order for operators if specified.
 
 Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
 
