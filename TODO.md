@@ -81,11 +81,11 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `fetch()` - Fetch/http controller that must make use of `AbortController`.
 - [ ] `webSocket()` - WebSocket source.
 
-**Elemental2 Completions**
+**Elemental2 Sinks**
 
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 
-**Arez Completions**
+**Arez Sinks**
 
 - [ ] `toComputableValue()` - Create an `arez.ComputableValue` instance from stream. It is unclear whether it should re-subscribe or dispose on error or completion signals. Otherwise it just provides the computable value.
 
