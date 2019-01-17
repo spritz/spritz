@@ -85,6 +85,10 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 
 - [ ] `toPromise()` - Extract the first element from stream and return it or just return null on completion, error on error.
 
+**Arez Completions**
+
+- [ ] `toComputableValue()` - Create an `arez.ComputableValue` instance from stream. It is unclear whether it should re-subscribe or dispose on error or completion signals. Otherwise it just provides the computable value.
+
 **Sources**
 
 - [ ] `at(Time,Item)` == `periodic(Time).first().mapTo(Item)` - Create a Stream containing a single event at a specific time.
