@@ -42,6 +42,13 @@ import static javax.tools.Diagnostic.Kind.*;
 public final class StreakProcessor
   extends AbstractProcessor
 {
+  @FunctionalInterface
+  interface Action<T>
+  {
+    void accept( T t )
+      throws Throwable;
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -86,7 +93,7 @@ public final class StreakProcessor
   }
 
   private void process( @Nonnull final TypeElement element )
-    throws IOException
+    throws Throwable
   {
     final ClassDescriptor metaData = parseClassDescriptor( element );
     writeJsonData( metaData.getTypeElement(), metaData::write );
@@ -146,9 +153,8 @@ public final class StreakProcessor
     return description;
   }
 
-  private void writeJsonData( @Nonnull final TypeElement element,
-                              @Nonnull final Consumer<JsonGenerator> writeBlock )
-    throws IOException
+  private void writeJsonData( @Nonnull final TypeElement element, @Nonnull final Action<JsonGenerator> writeBlock )
+    throws Throwable
   {
     final FileObject resource =
       processingEnv
