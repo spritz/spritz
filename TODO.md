@@ -74,8 +74,6 @@ Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-p
 
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
 
-Figure out mechanism so that public API to subscribe always wraps in `ValidatingSubscriber`.
-
 **Elemental2 Sources**
 
 - [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
