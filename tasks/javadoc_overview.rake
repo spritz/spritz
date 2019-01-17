@@ -39,11 +39,12 @@ def generate_overview(project)
 
     HTML
 
-    operators_by_category.each_pair do |category_name, operators|
+    categories.each do |category|
+      operators = operators_by_category[category['name']]
       operators_content += <<-HTML
-<h3><a name="#{category_name.downcase}">#{titleize(category_name)}</a></h3>
+<h3><a name="#{category['name'].downcase}">#{titleize(category['name'])}</a></h3>
 
-<p>#{categories_by_name[category_name]['description']}</p>
+<p>#{categories_by_name[category['name']]['description']}</p>
 
 <ul>
       HTML
