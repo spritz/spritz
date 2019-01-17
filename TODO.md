@@ -157,8 +157,6 @@ Other
 - [ ] `retry(RetryCount)` - The retry operator is an `onError` operator that simply resubscribes on error and starts again and it will do it `RetryCount` times or infinite times if not specified. If ceases to retry then pass onError signal down.
 - [ ] `retryWhen(RetryCount, RetryWhenFunction)` - Like retry but a function indicates when should start retry.
 - [ ] `repeat(RepeatCount)` - Replace `onComplete` with subscription to stream again a `RepeatCount` number of times.
-- [ ] `endWhen(ControlStream)` - Complete the stream when the `ControlStream` emits a value or completes.
-
 - [ ] `recoverWith(StreamFromErrorFn)` - Recover from a stream failure by calling a function to create a new Stream.
 
 **Scheduler Control**
