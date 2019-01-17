@@ -83,8 +83,6 @@ Below are the old TODO notes:
 
 * Store source sequence for operators. Store explicit order for operators if specified.
 
-* Deploy website on build
-
 Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
 
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
