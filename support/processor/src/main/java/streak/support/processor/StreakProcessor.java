@@ -121,8 +121,7 @@ public final class StreakProcessor
         .asMemberOf( (DeclaredType) metaData.getTypeElement().asType(), method );
     if ( null != annotation )
     {
-      final String docComment = processingEnv.getElementUtils().getDocComment( method );
-      final String description = null != docComment ? extractFirstSentence( docComment ) : "";
+      final String description = getDescription( method );
       final OperatorDescriptor operator = new OperatorDescriptor( method, methodType, description );
       metaData.addOperator( operator );
       final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
@@ -134,6 +133,12 @@ public final class StreakProcessor
         operator.addCategory( category.getValue().toString() );
       }
     }
+  }
+
+  private String getDescription( final Element method )
+  {
+    final String docComment = processingEnv.getElementUtils().getDocComment( method );
+    return null != docComment ? extractFirstSentence( docComment ) : "";
   }
 
   @Nonnull
