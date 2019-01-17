@@ -5,6 +5,8 @@ def generate_overview(project)
 
     operators_by_name = {}
     operators_by_category = {}
+    categories = []
+    categories_by_name = {}
 
     Dir["#{WORKSPACE_DIR}/generated/processors/main/java/**/*.doc.json"].each do |file|
       data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
@@ -15,13 +17,33 @@ def generate_overview(project)
           (operators_by_category[category] ||= []) << operator
         end
       end if data['operators']
+
+      categories = data['categories'] if data['categories']
+    end
+    categories.each do |category|
+      categories_by_name[category['name']] = category
     end
 
     operators_content = ''
 
+    operators_content += <<-HTML
+<ul>
+    HTML
+    categories.each do |category|
+    operators_content += <<-HTML
+  <li><a href="##{category['name'].downcase}">#{titleize(category['name'])}</a>: #{category['description']}</li>
+    HTML
+    end
+    operators_content += <<-HTML
+</ul>
+
+    HTML
+
     operators_by_category.each_pair do |category_name, operators|
       operators_content += <<-HTML
 <h3><a name="#{category_name.downcase}">#{titleize(category_name)}</a></h3>
+
+<p>#{categories_by_name[category_name]['description']}</p>
 
 <ul>
       HTML
