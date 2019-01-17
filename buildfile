@@ -31,8 +31,10 @@ define 'streak' do
             :linksource => true,
             :overview => _('generated/javadocs/overview.html'),
             :timestamp => false,
+            :exclude => 'streak.internal:streak.examples',
+            :subpackages => 'streak',
             :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
-  ).exclude(*Dir["#{_(:source, :main, :java, 'streak/examples')}/*.java"]).exclude(*Dir["#{_(:source, :main, :java, 'streak/internal')}/**/*.java"])
+  ).exclude(*Dir["#{_(:source, :main, :java, 'streak/examples')}/*.java"]).sourcepath << project.compile.sources
 
   generate_overview(project)
 
