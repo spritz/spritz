@@ -1,0 +1,38 @@
+
+{
+    "class": "spritz.MultipleOperatorsStream",
+    "operators": [
+        {
+            "name": "operatorZ()",
+            "description": "",
+            "link": "spritz.MultipleOperatorsStream#operatorZ()",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorP()",
+            "description": "",
+            "link": "spritz.MultipleOperatorsStream#operatorP()",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorA()",
+            "description": "",
+            "link": "spritz.MultipleOperatorsStream#operatorA()",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operatorQ()",
+            "description": "",
+            "link": "spritz.MultipleOperatorsStream#operatorQ()",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

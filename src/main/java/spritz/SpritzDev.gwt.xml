@@ -1,0 +1,9 @@
+<module>
+  <inherits name='spritz.Spritz'/>
+  <inherits name='org.realityforge.braincheck.BrainCheckDev'/>
+
+  <source path='ignored'/>
+
+  <set-property name='spritz.environment' value='development'/>
+  <set-property name='spritz.validate_subscriptions' value='true'/>
+</module>

@@ -1,0 +1,17 @@
+<module>
+  <inherits name='org.realityforge.braincheck.BrainCheck'/>
+
+  <source path='' includes='*.java'/>
+  <source path='schedulers' includes='*.java'/>
+
+  <!--
+    These properties are all defined in spritz.SpritzConfig
+    See that class for a better understanding of what these properties do.
+  -->
+
+  <define-property name='spritz.environment' values='development,production'/>
+  <set-property name='spritz.environment' value='production'/>
+
+  <define-property name='spritz.validate_subscriptions' values='true,false'/>
+  <set-property name='spritz.validate_subscriptions' value='false'/>
+</module>

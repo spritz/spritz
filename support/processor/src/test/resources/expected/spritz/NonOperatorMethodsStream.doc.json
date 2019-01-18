@@ -1,0 +1,14 @@
+
+{
+    "class": "spritz.NonOperatorMethodsStream",
+    "operators": [
+        {
+            "name": "operator(timeout)",
+            "description": "",
+            "link": "spritz.NonOperatorMethodsStream#operator(int)",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

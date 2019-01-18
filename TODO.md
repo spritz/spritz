@@ -106,8 +106,8 @@ Add test infrastructure based on https://www.infoq.com/articles/reactor-by-examp
 - [ ] `reduce((accumulator, item) => {...function...}, initialValue) == scan((accumulator, item) => {...function...}, initialValue).lastOrDefault(initialValue)` - Similar to scan except only final value is emitted.
 
 - [ ] `FilterByControlStreams(OnControlStream, OffControlStream)` - allow elements to pass after `OnControlStream` emits an element but before `OffControlStream` emits an element. Complete if both streams complete. Error if either completes.
-- [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Streak.empty())` - take until `ControlStream` emits an element or completes.
-- [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Streak.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
+- [ ] `TakeUntil(ControlStream)` a.k.a. `FilterByControlStreams(ControlStream.mapTo(true).startWith(true).take(2), Spritz.empty())` - take until `ControlStream` emits an element or completes.
+- [ ] `SkipUntil(ControlStream)` a.k.a. `FilterByControlStreams(Spritz.empty(),ControlStream.first())` - skip until `ControlStream` emits an element or completes.
 
 **Combination Operators** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
@@ -267,7 +267,7 @@ but it differs as both props and event handlers are streams and streams are pass
 
 Once done to a TodoMVC implementation such as https://github.com/briancavalier/mostcore-todomvc
 
-Reimplement rxsnake using streak to compare code size
+Reimplement rxsnake using spritz to compare code size
 - https://github.com/ibaca/rxsnake-gwt/blob/master/src/main/java/rxsnake/client/RxSnake.java
 - http://ignacio.bacamt.com/rxsnake-gwt/
 - Description of how it works is at http://philipnilsson.github.io/badness/

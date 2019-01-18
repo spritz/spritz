@@ -1,0 +1,15 @@
+
+{
+    "class": "spritz.MultipleCategoriesStream",
+    "operators": [
+        {
+            "name": "anOperator()",
+            "description": "",
+            "link": "spritz.MultipleCategoriesStream#anOperator()",
+            "categories": [
+                "PEEKING",
+                "TRANSFORMATION"
+            ]
+        }
+    ]
+}

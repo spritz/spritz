@@ -1,0 +1,14 @@
+
+{
+    "class": "spritz.OperatorWithArrayParameterStream",
+    "operators": [
+        {
+            "name": "someOperator(somePredicate)",
+            "description": "",
+            "link": "spritz.OperatorWithArrayParameterStream#someOperator(spritz.OperatorWithArrayParameterStream[])",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

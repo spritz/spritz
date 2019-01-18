@@ -1,0 +1,14 @@
+
+{
+    "class": "spritz.OperatorWithTypeParameterStream",
+    "operators": [
+        {
+            "name": "of(value)",
+            "description": "",
+            "link": "spritz.OperatorWithTypeParameterStream#of(java.lang.Object)",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 
 {
-    "class": "streak.internal.annotations.DocCategory",
+    "class": "spritz.internal.annotations.DocCategory",
     "categories": [
         {
             "id": 0,

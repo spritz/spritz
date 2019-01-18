@@ -11,7 +11,7 @@ end
 def cleanup_staging_repository(include_all_artifacts = false)
   require 'net/https'
 
-  staging_location = "https://stocksoftware.jfrog.io/stocksoftware/staging/org/realityforge#{include_all_artifacts ? '' : '/streak'}"
+  staging_location = "https://stocksoftware.jfrog.io/stocksoftware/staging/org/realityforge#{include_all_artifacts ? '' : '/spritz'}"
   uri = URI(staging_location)
   res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
     req = Net::HTTP::Delete.new(uri)

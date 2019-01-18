@@ -1,0 +1,30 @@
+
+{
+    "class": "spritz.OverloadedOperatorsStream",
+    "operators": [
+        {
+            "name": "operator(timeoutControlStream)",
+            "description": "",
+            "link": "spritz.OverloadedOperatorsStream#operator(spritz.OverloadedOperatorsStream)",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operator(timeout)",
+            "description": "",
+            "link": "spritz.OverloadedOperatorsStream#operator(int)",
+            "categories": [
+                "PEEKING"
+            ]
+        },
+        {
+            "name": "operator(timeoutFn)",
+            "description": "",
+            "link": "spritz.OverloadedOperatorsStream#operator(spritz.OverloadedOperatorsStream.MyFunction)",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

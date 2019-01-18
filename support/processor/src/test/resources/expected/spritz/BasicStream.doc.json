@@ -1,0 +1,14 @@
+
+{
+    "class": "spritz.BasicStream",
+    "operators": [
+        {
+            "name": "someOperator()",
+            "description": "",
+            "link": "spritz.BasicStream#someOperator()",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+
+{
+    "class": "spritz.OperatorWithParametersStream",
+    "operators": [
+        {
+            "name": "someOperator(someNumber,somePredicate)",
+            "description": "",
+            "link": "spritz.OperatorWithParametersStream#someOperator(int,java.util.function.Predicate)",
+            "categories": [
+                "PEEKING"
+            ]
+        }
+    ]
+}

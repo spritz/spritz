@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/util')
 
-SITE_DIR = "#{WORKSPACE_DIR}/target/streak/doc"
+SITE_DIR = "#{WORKSPACE_DIR}/target/spritz/doc"
 
 desc 'Publish the website'
 task 'site:publish' => 'doc' do
