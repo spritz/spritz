@@ -4,7 +4,7 @@ SITE_DIR = "#{WORKSPACE_DIR}/target/streak/doc"
 
 desc 'Publish the website'
 task 'site:publish' => 'doc' do
-  origin_url = 'https://github.com/realityforge-experiments/streak.git'
+  origin_url = 'https://github.com/spritz/spritz.github.io.git'
 
   travis_build_number = ENV['TRAVIS_BUILD_NUMBER']
   if travis_build_number
