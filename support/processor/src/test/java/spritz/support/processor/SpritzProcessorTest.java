@@ -31,11 +31,4 @@ public class SpritzProcessorTest
   {
     assertSuccessfulCompile( classname );
   }
-
-  @Test
-  public void XXX()
-    throws Exception
-  {
-    assertSuccessfulCompile( "spritz.ConstructorWithComments" );
-  }
 }
