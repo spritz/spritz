@@ -14,7 +14,7 @@ task 'site:publish' => 'doc' do
   local_dir = "#{WORKSPACE_DIR}/target/remote_site"
   rm_rf local_dir
 
-  sh "git clone -b gh-pages --depth 1 #{origin_url} #{local_dir}"
+  sh "git clone -b master --depth 1 #{origin_url} #{local_dir}"
 
   # This is the list of directories controlled by other processes that should be left alone
   excludes = %w()
@@ -29,7 +29,7 @@ task 'site:publish' => 'doc' do
     sh 'git add . -f'
     puts `git commit -m "#{message}"`
     if 0 == $?.exitstatus
-      sh 'git push origin gh-pages'
+      sh 'git push origin master'
     end
   end
 end
