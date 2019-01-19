@@ -19,7 +19,7 @@ import javax.tools.JavaFileObject;
 import static com.google.common.truth.Truth.*;
 import static org.testng.Assert.*;
 
-abstract class AbstractStreakProcessorTest
+abstract class AbstractSpritzProcessorTest
 {
   void assertSuccessfulCompile( @Nonnull final String classname )
     throws Exception

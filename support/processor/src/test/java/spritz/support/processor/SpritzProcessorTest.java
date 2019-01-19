@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SpritzProcessorTest
-  extends AbstractStreakProcessorTest
+  extends AbstractSpritzProcessorTest
 {
   @DataProvider( name = "successfulCompiles" )
   public Object[][] successfulCompiles()
