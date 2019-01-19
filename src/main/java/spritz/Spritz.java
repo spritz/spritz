@@ -21,6 +21,11 @@ public final class Spritz
     return SpritzConfig.shouldValidateSubscriptions();
   }
 
+  public static boolean purgeTasksWhenRunawayDetected()
+  {
+    return false;
+  }
+
   /**
    * Creates a stream that emits the parameters as items and then emits the completion signal.
    *
