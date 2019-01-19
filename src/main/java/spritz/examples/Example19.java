@@ -1,7 +1,6 @@
 package spritz.examples;
 
 import javax.annotation.Nonnull;
-import spritz.Spritz;
 import spritz.Stream;
 
 public class Example19
@@ -11,15 +10,15 @@ public class Example19
     System.out.println();
     System.out.println( "First run" );
     System.out.println();
-    peekAll( Spritz.range( 1, 4 ) ).subscribe( new LoggingSubscriber<>() );
+    peekAll( Stream.range( 1, 4 ) ).subscribe( new LoggingSubscriber<>() );
     System.out.println();
     System.out.println( "Second run" );
     System.out.println();
-    peekAll( Spritz.fail( new Error( "Bang!" ) ) ).subscribe( new LoggingSubscriber<>() );
+    peekAll( Stream.fail( new Error( "Bang!" ) ) ).subscribe( new LoggingSubscriber<>() );
     System.out.println();
     System.out.println( "Third run" );
     System.out.println();
-    peekAll( Spritz.range( 1, 5 ).takeUntil( e -> true ) ).subscribe( new LoggingSubscriber<>() );
+    peekAll( Stream.range( 1, 5 ).takeUntil( e -> true ) ).subscribe( new LoggingSubscriber<>() );
   }
 
   @Nonnull

@@ -1,13 +1,13 @@
 package spritz.examples;
 
 import java.io.IOException;
-import spritz.Spritz;
+import spritz.Stream;
 
 public class Example14
 {
   public static void main( String[] args )
   {
-    Spritz
+    Stream
       .fail( new IOException() )
       .subscribe( new LoggingSubscriber<>() );
   }

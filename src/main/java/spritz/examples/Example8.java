@@ -1,13 +1,13 @@
 package spritz.examples;
 
-import spritz.Spritz;
+import spritz.Stream;
 import spritz.schedulers.Schedulers;
 
 public class Example8
 {
   public static void main( String[] args )
   {
-    Spritz
+    Stream
       .periodic( 100 )
       .takeUntil( v -> v > 20 )
       .last( 5 )

@@ -3,8 +3,8 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.schedulers.Schedulers;
 import spritz.schedulers.SchedulerTask;
+import spritz.schedulers.Schedulers;
 
 final class PeriodicStreamSource
   extends Stream<Integer>

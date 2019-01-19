@@ -1,13 +1,13 @@
 package spritz.examples;
 
-import spritz.Spritz;
+import spritz.Stream;
 import spritz.schedulers.Schedulers;
 
 public class Example27
 {
   public static void main( String[] args )
   {
-    Spritz
+    Stream
       .periodic( 100 )
       .peek( v -> System.out.println( "Ping @ " + v ) )
       .throttle( 150 )

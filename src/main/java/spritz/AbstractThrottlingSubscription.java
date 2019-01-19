@@ -2,8 +2,8 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.schedulers.Schedulers;
 import spritz.schedulers.SchedulerTask;
+import spritz.schedulers.Schedulers;
 
 abstract class AbstractThrottlingSubscription<T>
   extends AbstractOperatorSubscription<T>

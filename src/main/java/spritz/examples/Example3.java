@@ -1,12 +1,12 @@
 package spritz.examples;
 
-import spritz.Spritz;
+import spritz.Stream;
 
 public class Example3
 {
   public static void main( String[] args )
   {
-    Spritz
+    Stream
       .range( 42, 20 )
       .dropUntil( v -> v == 55 )
       .map( v -> "*" + v + "*" )
