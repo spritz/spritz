@@ -1,0 +1,30 @@
+
+{
+    "class": "spritz.BasicSources",
+    "operators": [
+        {
+            "name": "BasicSources.of(values)",
+            "description": "",
+            "link": "spritz.BasicSources#of(java.lang.Object[])",
+            "categories": [
+                "CONSTRUCTION"
+            ]
+        },
+        {
+            "name": "BasicSources.empty()",
+            "description": "",
+            "link": "spritz.BasicSources#empty()",
+            "categories": [
+                "CONSTRUCTION"
+            ]
+        },
+        {
+            "name": "BasicSources.concat(upstreams)",
+            "description": "",
+            "link": "spritz.BasicSources#concat(spritz.BasicSources.Stream[])",
+            "categories": [
+                "CONSTRUCTION"
+            ]
+        }
+    ]
+}

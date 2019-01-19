@@ -5,9 +5,9 @@ import spritz.internal.annotations.DocCategory;
 import spritz.internal.annotations.MetaDataSource;
 
 @MetaDataSource
-public final class StreakBaseConstructor
+public final class BasicSources
 {
-  private StreakBaseConstructor()
+  private BasicSources()
   {
   }
 

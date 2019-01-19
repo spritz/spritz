@@ -12,6 +12,7 @@ public class SpritzProcessorTest
   {
     return new Object[][]
       {
+        new Object[]{ "spritz.BasicSources" },
         new Object[]{ "spritz.BasicStream" },
         new Object[]{ "spritz.ConstructorWithComments" },
         new Object[]{ "spritz.MultipleCategoriesStream" },
@@ -20,8 +21,7 @@ public class SpritzProcessorTest
         new Object[]{ "spritz.OperatorWithArrayParameterStream" },
         new Object[]{ "spritz.OperatorWithParametersStream" },
         new Object[]{ "spritz.OperatorWithTypeParameterStream" },
-        new Object[]{ "spritz.OverloadedOperatorsStream" },
-        new Object[]{ "spritz.StreakBaseConstructor" }
+        new Object[]{ "spritz.OverloadedOperatorsStream" }
       };
   }
 
