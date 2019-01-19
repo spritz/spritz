@@ -70,8 +70,6 @@ Below are the old TODO notes:
 
 ## To Implement
 
-Continue the build out based on https://egghead.io/courses/build-your-own-rxjs-pipeable-operators
-
 Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
 
 **Elemental2 Sources**
