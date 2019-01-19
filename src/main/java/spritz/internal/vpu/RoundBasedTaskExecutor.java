@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import spritz.Streak;
+import spritz.Spritz;
 import static org.realityforge.braincheck.Guards.*;
 
 /**
@@ -142,7 +142,7 @@ final class RoundBasedTaskExecutor
       _taskQueue.getOrderedTasks().map( Task::toString ).collect( Collectors.toList() ) :
       null;
 
-    if ( Streak.purgeTasksWhenRunawayDetected() )
+    if ( Spritz.purgeTasksWhenRunawayDetected() )
     {
       _taskQueue.clear();
     }

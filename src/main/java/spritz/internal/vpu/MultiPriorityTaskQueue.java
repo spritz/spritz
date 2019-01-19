@@ -107,9 +107,9 @@ final class MultiPriorityTaskQueue
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> Arrays.stream( _buffers ).noneMatch( b -> b.contains( task ) ),
-                 () -> "Streak-0099: Attempting to queue task " + task + " when task is already queued." );
+                 () -> "Spritz-0099: Attempting to queue task " + task + " when task is already queued." );
       invariant( () -> priority >= 0 && priority < _buffers.length,
-                 () -> "Streak-0215: Attempting to queue task " + task + "' but passed an invalid priority " + priority + "." );
+                 () -> "Spritz-0215: Attempting to queue task " + task + "' but passed an invalid priority " + priority + "." );
     }
     Objects.requireNonNull( task ).markAsQueued();
     _buffers[ priority ].add( Objects.requireNonNull( task ) );
