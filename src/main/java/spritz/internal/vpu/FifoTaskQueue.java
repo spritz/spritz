@@ -54,7 +54,7 @@ final class FifoTaskQueue
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> !_buffer.contains( task ),
-                 () -> "Arez-0098: Attempting to queue task " + task + " when task is already queued." );
+                 () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );
     }
     Objects.requireNonNull( task ).markAsQueued();
     _buffer.add( Objects.requireNonNull( task ) );
