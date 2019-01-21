@@ -258,25 +258,9 @@ also be scheduled at some point in the future. (i.e. schedule at next requestIdl
 Alternative design: Only the "source" publisher can perform flow control. That is optionally accessible
 from subscription via something like `@Nullable Subscription.getFlowControl()`
 
-### React4j Integration
+### Sample Applications
 
-Interesting idea - enhance react4j so that can convert handlers into stream sources. Also bind props to output
-streams. This is based on vue integration that uses similar thing inside template language ala
-https://egghead.io/courses/build-async-vue-js-apps-with-rxjs - In react4j the approach is probably to create a
-wrapper component? stream pipes in new props each time?
+Once done build a few sample apps.
 
-Another react4j integration is to add a "<Stream/>" component that takes a stream as a prop and has a render prop
-that has output of stream as parameter - https://github.com/johnlindquist/react-streams/
-
-Another possibility is to create field for subscription and let contain subscribe and dispose - template
-language extracts it - ala angular
-
-`Yolk` is an interesting framework. Essentially it is react-like in that it uses jsx and vdom/reconcilliation
-but it differs as both props and event handlers are streams and streams are passed as jsx.
-
-Once done to a TodoMVC implementation such as https://github.com/briancavalier/mostcore-todomvc
-
-Reimplement rxsnake using spritz to compare code size
-- https://github.com/ibaca/rxsnake-gwt/blob/master/src/main/java/rxsnake/client/RxSnake.java
-- http://ignacio.bacamt.com/rxsnake-gwt/
-- Description of how it works is at http://philipnilsson.github.io/badness/
+* [TodoMVC](https://github.com/briancavalier/mostcore-todomvc)
+* [rxsnake](https://github.com/ibaca/rxsnake-gwt) (Implementation described on [blog](http://philipnilsson.github.io/badness/))
