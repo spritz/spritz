@@ -4,6 +4,42 @@ This document is essentially a list of shorthand notes describing work yet to co
 Unfortunately it is not complete enough for other people to pick work off the list and
 complete as there is too much un-said.
 
+### High Priority Tasks
+
+* Reorganize project into several sub-modules similar to Arez/React4j.
+  - Move `streak` to `streak/core` 
+  - Move `support/processor` to `streak/support/processor` 
+  - Add `streak/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
+    Ensure that they are included in javadocs. 
+  - Add `streak/arez` with Arez dependencies and Arez specific sources and sinks.
+    Ensure that they are included in javadocs.
+
+* Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
+  - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
+  - [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
+  - [ ] `observeOn(Scheduler)` - if signal or item emitted and current scheduler is not specified scheduler or if the specified scheduler has a non-zero queue then enqueue item/signal, schedule scheduler to run next tick if not scheduled.
+
+* Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
+
+* Enhance `Scheduler` so that it can queue tasks to different VPUs when timeouts occur. This will also
+  suspending and/or resuming VPUs based on activations from tasks.
+
+* Build different VPUs in Elemental2 module such as:
+  - Primary (a.k.a `setTimeout(mycallback,0)` on web)
+  - Microtask - via promise microtask
+  - Idle `requestIdleCallback( mycallback )`
+  - Animation `requestAnimationFrame( mycallback )`
+  - AfterFrame (i.e. `requestAnimationFrame( () -> setTimeout( mycallback, 0 ))`. See Arez TODO.
+
+  Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can
+  be prioritized or not. Activation can drain queue or tun till deadline.
+
+* Add annotation and enhance processor so that schedulers are included in the documentation. 
+
+* Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article. 
+
+### Other Tasks
+
 * Ensure tests all verify that predicates can accept supertypes of T
 
 * Ensure that after every error, complete or cancel there are no timers left associated with stream.
@@ -65,12 +101,9 @@ Below are the old TODO notes:
 * [ReactiveX Operators](http://reactivex.io/documentation/operators.html)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [RxJs](https://rxjs-dev.firebaseapp.com/api)
-* [Reactor Overview](https://www.infoq.com/articles/reactor-by-example)
 * [Callbag Operators](https://github.com/callbag/callbag/wiki)
 
 ## To Implement
-
-Add test infrastructure based on https://www.infoq.com/articles/reactor-by-example
 
 **Elemental2 Sources**
 
@@ -157,23 +190,6 @@ Other
 - [ ] `retryWithExponentialBackoff(RetryCount)` - A call to `retryWhen` with some simple parameters .
 - [ ] `repeat(RepeatCount)` - Replace `onComplete` with subscription to stream again a `RepeatCount` number of times.
 - [ ] `recoverWith(StreamFromErrorFn)` - Recover from a stream failure by calling a function to create a new Stream.
-
-**Scheduler Control**
-
-The tasks can be executed on different virtual processing units (VPUs) such as:
-* Primary (a.k.a `setTimeout(mycallback,0)` on web)
-* Microtask - via promise microtask
-* Idle `requestIdleCallback( mycallback )`
-* Animation `requestAnimationFrame( mycallback )`
-* Post render (i.e. `requestAnimationFrame( () -> setTimeout( mycallback, 0 ))`. Actually use `afterFrame` approach. See Arez TODO.
-
-Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can be prioritized or not. Activation can drain queue or tun till deadline.
-
-There is also a separate scheduler that is responsible doing periodic scheduling or delayed scheduling of tasks. It is also responsible for allocating tasks to VPUs and suspending/resuming VPUs based on activations.
-
-- [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
-- [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
-- [ ] `observeOn(Scheduler)` - if signal or item emitted and current scheduler is not specified scheduler or if the specified scheduler has a non-zero queue then enqueue item/signal, schedule scheduler to run next tick if not scheduled.
 
 **Subjects**
 
