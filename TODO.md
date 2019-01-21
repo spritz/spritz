@@ -11,8 +11,6 @@ complete as there is too much un-said.
   - Move `support/processor` to `streak/support/processor` 
   - Add `streak/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
     Ensure that they are included in javadocs. 
-  - Add `streak/arez` with Arez dependencies and Arez specific sources and sinks.
-    Ensure that they are included in javadocs.
 
 * Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
   - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
@@ -216,10 +214,6 @@ after they are complete where-as replay will always replay signals.
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
 occur and will be unsubscribed from after that.
-
-## TODO
-
-* Consider creating a `StreamingProperties`/`StreamingValues` in Arez component model for values emitted via event stream.
 
 ### Documentation
 
