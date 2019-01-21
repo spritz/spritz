@@ -92,13 +92,7 @@ Below are the old TODO notes:
 
 ## Links
 
-* [Microprofile Reactive Streams](https://github.com/eclipse/microprofile-reactive-streams) - good source of naming that is java-esque.
-* [Most](https://mostcore.readthedocs.io/en/latest/concepts.html)
-* [Bacon](http://baconjs.github.io/api2.html)
 * [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
-* [ReactiveX Operators](http://reactivex.io/documentation/operators.html)
-* [RxJava](https://github.com/ReactiveX/RxJava)
-* [RxJs](https://rxjs-dev.firebaseapp.com/api)
 * [Callbag Operators](https://github.com/callbag/callbag/wiki)
 
 ## To Implement
