@@ -21,8 +21,9 @@ class Buildr::Doc::Javadoc
         cmd_args << "-#{option}" << paths.flatten.map(&:to_s).join(File::PATH_SEPARATOR) unless paths.empty?
       end
     end
-    # This next line is commented out so javadoc tool uses args to determine includions/exclusions
-    #cmd_args += sources.flatten.uniq
+    if (options[:sourcepath].nil? || 0 == options[:sourcepath].length) && options[:subpackages].nil?
+      cmd_args += sources.flatten.uniq
+    end
     unless Buildr.application.options.dryrun
       info "Generating Javadoc for #{project.name}"
       trace (['javadoc'] + cmd_args).join(' ')

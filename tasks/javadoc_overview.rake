@@ -1,6 +1,6 @@
 def generate_overview(project)
   project.doc.enhance(['generate-overview'])
-  project.task 'generate-overview' => [project.compile.target] do
+  project.task 'generate-overview' => [project('core').compile.target] do
     require 'json'
 
     operators_by_name = {}
@@ -8,7 +8,7 @@ def generate_overview(project)
     categories = []
     categories_by_name = {}
 
-    Dir["#{WORKSPACE_DIR}/generated/processors/main/java/**/*.doc.json"].each do |file|
+    Dir["#{WORKSPACE_DIR}/core/generated/processors/main/java/**/*.doc.json"].each do |file|
       data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
       data['operators'].each do |operator|
         operator = operator.merge('class' => data['class'])
@@ -59,10 +59,10 @@ def generate_overview(project)
       HTML
     end
 
-    file_content = IO.read("#{WORKSPACE_DIR}/src/main/java/overview.html", :encoding => 'UTF-8')
+    file_content = IO.read("#{WORKSPACE_DIR}/core/src/main/java/overview.html", :encoding => 'UTF-8')
     file_content.gsub!(/@@OPERATORS@@/, operators_content)
 
-    target_dir = project._('generated/javadocs')
+    target_dir = "#{WORKSPACE_DIR}/generated/javadocs"
     FileUtils.mkdir_p target_dir
     IO.write("#{target_dir}/overview.html", file_content, :encoding => 'UTF-8')
   end

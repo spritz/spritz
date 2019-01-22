@@ -7,4 +7,5 @@
 /target
 /tmp
 /generated
+/*/generated
 /support/processor/src/test/resources/input/spritz/internal

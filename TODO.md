@@ -7,8 +7,6 @@ complete as there is too much un-said.
 ### High Priority Tasks
 
 * Reorganize project into several sub-modules similar to Arez/React4j.
-  - Move `streak` to `streak/core` 
-  - Move `support/processor` to `streak/support/processor` 
   - Add `streak/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
     Ensure that they are included in javadocs. 
 
