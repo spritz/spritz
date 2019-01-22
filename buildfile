@@ -71,21 +71,19 @@ define 'spritz' do
     iml.test_source_directories << _('src/test/resources/input')
   end
 
-  if true
-    doc.from(projects(%w(core))).
-      using(:javadoc,
-            :windowtitle => 'Spritz API Documentation',
-            :linksource => true,
-            :overview => _('core/generated/javadocs/overview.html'),
-            :timestamp => false,
-            :exclude => 'spritz.internal',
-            :subpackages => 'spritz',
-            :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
-      ).sourcepath << project('core').compile.sources
+  doc.from(projects(%w(core))).
+    using(:javadoc,
+          :windowtitle => 'Spritz API Documentation',
+          :linksource => true,
+          :overview => _('core/generated/javadocs/overview.html'),
+          :timestamp => false,
+          :exclude => 'spritz.internal',
+          :subpackages => 'spritz',
+          :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
+    ).sourcepath << project('core').compile.sources
 
-    generate_overview(project)
-    cleanup_javadocs(project, 'spritz')
-  end
+  generate_overview(project)
+  cleanup_javadocs(project, 'spritz')
   #gwt_enhance(project)
 
   ipr.extra_modules << 'support/processor/processor.iml'
