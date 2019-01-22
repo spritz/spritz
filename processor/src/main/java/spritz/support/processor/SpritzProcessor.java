@@ -34,7 +34,7 @@ import javax.tools.StandardLocation;
 import static javax.tools.Diagnostic.Kind.*;
 
 /**
- * Annotation processor that analyzes Streak source and generates documentation and test infrastructure.
+ * Annotation processor that analyzes Spritz source and generates documentation and test infrastructure.
  */
 @AutoService( Processor.class )
 @SupportedAnnotationTypes( Constants.META_DATA_SOURCE )
