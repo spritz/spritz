@@ -7,7 +7,7 @@ complete as there is too much un-said.
 ### High Priority Tasks
 
 * Reorganize project into several sub-modules similar to Arez/React4j.
-  - Add `streak/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
+  - Add `spritz/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
     Ensure that they are included in javadocs. 
 
 * Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
