@@ -16,7 +16,6 @@ import static org.realityforge.braincheck.Guards.*;
  * will stop running tasks and optionally emptying the task queue.
  */
 final class RoundBasedTaskExecutor
-  implements TaskExecutor
 {
   /**
    * The task queue.
@@ -67,8 +66,7 @@ final class RoundBasedTaskExecutor
   /**
    * Run tasks until complete or runaway tasks detected.
    */
-  @Override
-  public void executeTasks()
+  void executeTasks()
   {
     while ( true )
     {
