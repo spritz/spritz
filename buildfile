@@ -93,5 +93,3 @@ define 'spritz' do
 
   ipr.add_component_from_artifact(:idea_codestyle)
 end
-
-
