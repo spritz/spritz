@@ -15,7 +15,7 @@ import static org.realityforge.braincheck.Guards.*;
  * one or more tasks being scheduled. The executor may have a round budget and if it exceeds the round budget
  * will stop running tasks and optionally emptying the task queue.
  */
-final class RoundBasedTaskExecutor
+public final class RoundBasedTaskExecutor
 {
   /**
    * The task queue.
@@ -36,7 +36,7 @@ final class RoundBasedTaskExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  RoundBasedTaskExecutor( @Nonnull final TaskQueue taskQueue, final int maxRounds )
+  public RoundBasedTaskExecutor( @Nonnull final TaskQueue taskQueue, final int maxRounds )
   {
     assert maxRounds > 0;
     _taskQueue = Objects.requireNonNull( taskQueue );
@@ -66,7 +66,7 @@ final class RoundBasedTaskExecutor
   /**
    * Run tasks until complete or runaway tasks detected.
    */
-  void executeTasks()
+  public void executeTasks()
   {
     while ( true )
     {

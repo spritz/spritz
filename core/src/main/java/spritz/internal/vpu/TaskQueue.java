@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 /**
  * Interface representing a queue of "pending" or "scheduled" tasks.
  */
-interface TaskQueue
+public interface TaskQueue
 {
   /**
    * Return the number of tasks inside the queue.

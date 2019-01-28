@@ -13,7 +13,7 @@ import static org.realityforge.braincheck.Guards.*;
 /**
  * A very simple first-in first out task queue.
  */
-final class FifoTaskQueue
+public final class FifoTaskQueue
   implements TaskQueue
 {
   /**
@@ -22,7 +22,7 @@ final class FifoTaskQueue
   @Nonnull
   private final CircularBuffer<Task> _buffer;
 
-  FifoTaskQueue( final int initialCapacity )
+  public FifoTaskQueue( final int initialCapacity )
   {
     _buffer = new CircularBuffer<>( initialCapacity );
   }
