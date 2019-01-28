@@ -8,7 +8,7 @@ complete as there is too much un-said.
 
 * Reorganize project into several sub-modules similar to Arez/React4j.
   - Add `spritz/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
-    Ensure that they are included in javadocs. 
+    Ensure that they are included in javadocs.
 
 * Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
   - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
@@ -30,9 +30,9 @@ complete as there is too much un-said.
   Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can
   be prioritized or not. Activation can drain queue or tun till deadline.
 
-* Add annotation and enhance processor so that schedulers are included in the documentation. 
+* Add annotation and enhance processor so that schedulers are included in the documentation.
 
-* Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article. 
+* Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
 ### Other Tasks
 
