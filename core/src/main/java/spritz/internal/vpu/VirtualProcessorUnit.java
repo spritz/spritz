@@ -23,6 +23,7 @@ public final class VirtualProcessorUnit
   public VirtualProcessorUnit( @Nonnull final TaskExecutor executor )
   {
     _executor = Objects.requireNonNull( executor );
+    _executor.init( this::activate );
   }
 
   /**
@@ -49,17 +50,19 @@ public final class VirtualProcessorUnit
   }
 
   /**
-   * Activate the processor.
-   * This method MUST only be called if there is no current processor unit activated.
-   * The activation will set the {@link #current()} VirtualProcessorUnit for the duration
-   * of the activation and invoke an
+   * Activate the unit.
+   * This involves setting current unit, invoking the activation function and clearing the current unit.
+   * It is an error to invoke this method if there is already a current unit.
+   *
+   * @param activationFn the activation function.
+   * @see ExecutorContext#activate(ExecutorContext.ActivationFn)
    */
-  protected void activate()
+  private void activate( @Nonnull final ExecutorContext.ActivationFn activationFn )
   {
     VirtualProcessorUnitHolder.activate( this );
     try
     {
-      _executor.executeTasks();
+      activationFn.invoke();
     }
     finally
     {
