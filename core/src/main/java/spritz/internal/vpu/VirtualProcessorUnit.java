@@ -39,6 +39,17 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Queue the specified task for execution and enable the VirtualProcessorUnit for activation if necessary.
+   * The task must not be already queued.
+   *
+   * @param task the task.
+   */
+  public void queueTask( @Nonnull final Task task )
+  {
+    _executor.queueTask( task );
+  }
+
+  /**
    * Return the associated task executor.
    *
    * @return the associated task executor.
