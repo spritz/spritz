@@ -1,7 +1,10 @@
 package spritz.internal.vpu;
 
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.realityforge.braincheck.BrainCheckConfig;
+import static org.realityforge.braincheck.Guards.*;
 
 /**
  * A utility class that contains reference to singleton VPU that is currently active.
@@ -43,10 +46,35 @@ final class VirtualProcessorUnitHolder
    * Set the current VirtualProcessorUnit.
    * The {@link VirtualProcessorUnit} should call this during an activation.
    *
-   * @param current the current VirtualProcessorUnit.
+   * @param processorUnit the VirtualProcessorUnit.
    */
-  static void setCurrent( @Nullable final VirtualProcessorUnit current )
+  static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
   {
-    c_current = current;
+    Objects.requireNonNull( processorUnit );
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> null != c_current,
+                 () -> "Spritz-0015: Attempting set current VirtualProcessorUnit to " + processorUnit +
+                       " but there is an existing  VirtualProcessorUnit activated (" + c_current + ")" );
+    }
+    c_current = processorUnit;
+  }
+
+  /**
+   * Clear the current VirtualProcessorUnit.
+   * The {@link VirtualProcessorUnit} should call this after an activation is completed.
+   *
+   * @param processorUnit the VirtualProcessorUnit.
+   */
+  static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
+  {
+    Objects.requireNonNull( processorUnit );
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> processorUnit == c_current,
+                 () -> "Spritz-0017: Attempting to clear current VirtualProcessorUnit from " + processorUnit +
+                       " but the current VirtualProcessorUnit (" + processorUnit + ") activated does not match." );
+    }
+    c_current = null;
   }
 }

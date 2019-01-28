@@ -6,22 +6,23 @@ import javax.annotation.Nonnull;
 /**
  * Processing unit responsible for executing tasks.
  */
-public abstract class VirtualProcessorUnit
+public final class VirtualProcessorUnit
 {
   /**
-   * The tasks ready to be executed by the VPU.
+   * The executor responsible for selecting and invoking tasks.
+   * This executor is expected to share a reference to the {@link TaskQueue}.
    */
   @Nonnull
-  private final TaskQueue _taskQueue;
+  private final TaskExecutor _executor;
 
   /**
    * Create the processor unit.
    *
-   * @param taskQueue the associated task queue.
+   * @param executor the associated task executor.
    */
-  protected VirtualProcessorUnit( @Nonnull final TaskQueue taskQueue )
+  public VirtualProcessorUnit( @Nonnull final TaskExecutor executor )
   {
-    _taskQueue = Objects.requireNonNull( taskQueue );
+    _executor = Objects.requireNonNull( executor );
   }
 
   /**
@@ -37,13 +38,32 @@ public abstract class VirtualProcessorUnit
   }
 
   /**
-   * Return the associated task queue.
+   * Return the associated task executor.
    *
-   * @return the associated task queue.
+   * @return the associated task executor.
    */
   @Nonnull
-  protected final TaskQueue getTaskQueue()
+  protected final TaskExecutor getExecutor()
   {
-    return _taskQueue;
+    return _executor;
+  }
+
+  /**
+   * Activate the processor.
+   * This method MUST only be called if there is no current processor unit activated.
+   * The activation will set the {@link #current()} VirtualProcessorUnit for the duration
+   * of the activation and invoke an
+   */
+  protected void activate()
+  {
+    VirtualProcessorUnitHolder.activate( this );
+    try
+    {
+      _executor.executeTasks();
+    }
+    finally
+    {
+      VirtualProcessorUnitHolder.deactivate( this );
+    }
   }
 }
