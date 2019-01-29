@@ -49,6 +49,12 @@ public final class VirtualProcessorUnit
     _executor.queueTask( task );
   }
 
+  @Nonnull
+  public Task createTask( @Nonnull final Task.Action work, final int flags )
+  {
+    return new Task( work, flags );
+  }
+
   /**
    * Return the associated task executor.
    *

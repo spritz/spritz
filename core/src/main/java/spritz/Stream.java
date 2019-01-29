@@ -15,6 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.internal.annotations.DocCategory;
 import spritz.internal.annotations.MetaDataSource;
+import spritz.internal.vpu.VirtualProcessorUnit;
 
 @MetaDataSource
 public abstract class Stream<T>
@@ -1167,6 +1168,19 @@ public abstract class Stream<T>
                                                        @Nonnull final DownstreamT initialValue )
   {
     return compose( p -> new ScanOperator<>( p, accumulatorFunction, initialValue ) );
+  }
+
+  /**
+   * Invoke the {@link Subscriber#onSubscribe(Subscription)} on upstream on the specified {@link VirtualProcessorUnit}.
+   *
+   * @param virtualProcessorUnit the VPU on which to invoke onSubscribe.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SCHEDULING )
+  public final Stream<T> subscribeOn( @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  {
+    return compose( p -> new SubscribeOnOperator<>( p, virtualProcessorUnit ) );
   }
 
   /**

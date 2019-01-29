@@ -191,35 +191,35 @@ public final class Task
     return Flags.STATE_QUEUED == Flags.getState( _flags );
   }
 
-  static final class Flags
+  public static final class Flags
   {
     /**
      * Highest priority.
      * This priority should be used when the task will dispose or release other reactive elements
      * (and thus remove elements from being scheduled). Only one of the PRIORITY_* flags should be applied to a task.
      */
-    static final int PRIORITY_HIGHEST = 0b001 << 15;
+    public static final int PRIORITY_HIGHEST = 0b001 << 15;
     /**
      * High priority.
      * To reduce the chance that downstream elements will react multiple times within a single
      * reaction round, this priority should be used when the task may trigger many
      * downstream tasks. Only one of the PRIORITY_* flags should be applied to a task.
      */
-    static final int PRIORITY_HIGH = 0b010 << 15;
+    public static final int PRIORITY_HIGH = 0b010 << 15;
     /**
      * Normal priority if no other priority otherwise specified. Only one of
      * the PRIORITY_* flags should be applied to a task.
      */
-    static final int PRIORITY_NORMAL = 0b011 << 15;
+    public static final int PRIORITY_NORMAL = 0b011 << 15;
     /**
      * Low priority. Typically used to schedule tasks that reflect state onto non-reactive
      * application components.  Only one of the PRIORITY_* flags should be applied to a task.
      */
-    static final int PRIORITY_LOW = 0b100 << 15;
+    public static final int PRIORITY_LOW = 0b100 << 15;
     /**
      * Lowest priority. Only one of the PRIORITY_* flags should be applied to a task.
      */
-    static final int PRIORITY_LOWEST = 0b101 << 15;
+    public static final int PRIORITY_LOWEST = 0b101 << 15;
     /**
      * Mask used to extract priority bits.
      */
@@ -238,11 +238,11 @@ public final class Task
      * the spy events. If wrapping is disabled it is expected that the caller is responsible for integrating
      * with the spy subsystem and catching exceptions if any.
      */
-    static final int NO_WRAP_TASK = 1 << 20;
+    public static final int NO_WRAP_TASK = 1 << 20;
     /**
      * The flag that specifies that the task should be disposed after it has completed execution.
      */
-    static final int DISPOSE_ON_COMPLETE = 1 << 19;
+    public static final int DISPOSE_ON_COMPLETE = 1 << 19;
     /**
      * Mask containing flags that can be applied to a task.
      */
