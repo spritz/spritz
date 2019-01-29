@@ -48,6 +48,10 @@ public @interface DocCategory
      */
     ACCUMULATING,
     /**
+     * Operators that change the {@link spritz.internal.vpu.VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
+     */
+    SCHEDULING,
+    /**
      * Unknown how we should categorize this operator at this stage.
      */
     UNKNOWN
