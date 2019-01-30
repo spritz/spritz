@@ -33,7 +33,7 @@ final class PredicateFilterStream<T>
                         @Nonnull final Predicate<? super T> predicate )
     {
       super( subscriber );
-      _predicate = Objects.requireNonNull( predicate );
+      _predicate = predicate;
     }
 
     /**
