@@ -34,9 +34,7 @@ public class FakeTaskExecutor
   @Nonnull
   private Thread newThread( @Nonnull final Runnable r )
   {
-    final Thread thread = new Thread( r, _name );
-    thread.setDaemon( true );
-    return thread;
+    return new Thread( r, _name );
   }
 
   private ExecutorContext _context;
