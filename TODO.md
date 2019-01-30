@@ -15,9 +15,6 @@ complete as there is too much un-said.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
-* Enhance `Scheduler` so that it can queue tasks to different VPUs when timeouts occur. This will also
-  suspending and/or resuming VPUs based on activations from tasks.
-
 * Build different VPUs in Elemental2 module such as:
   - Primary (a.k.a `setTimeout(mycallback,0)` on web)
   - Microtask - via promise microtask
