@@ -1184,6 +1184,21 @@ public abstract class Stream<T>
   }
 
   /**
+   * Emit signals and item on the specified {@link VirtualProcessorUnit}.
+   * In practical terms this means that all of the {@link Subscription} methods for
+   * the downstream are invoked on the specified {@link VirtualProcessorUnit}.
+   *
+   * @param virtualProcessorUnit the VPU on which to invoke signals and emit items.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SCHEDULING )
+  public final Stream<T> observeOn( @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  {
+    return compose( p -> new ObserveOnOperator<>( p, virtualProcessorUnit ) );
+  }
+
+  /**
    * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the public final value to emit if upstream completes and is empty.
