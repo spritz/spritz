@@ -30,10 +30,10 @@ abstract class TransformSubscription<UpstreamT, DownstreamT>
    * {@inheritDoc}
    */
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
     _done = true;
-    getDownstreamSubscriber().onError( throwable );
+    getDownstreamSubscriber().onError( error );
   }
 
   /**

@@ -44,10 +44,10 @@ abstract class AbstractThrottlingSubscription<T>
   protected abstract void doOnNext( final int now, @Nonnull final T item );
 
   @Override
-  public final void onError( @Nonnull final Throwable throwable )
+  public final void onError( @Nonnull final Throwable error )
   {
     cancelPendingTask();
-    super.onError( throwable );
+    super.onError( error );
   }
 
   @Override

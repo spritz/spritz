@@ -91,7 +91,7 @@ final class MergeOperator<T>
      * {@inheritDoc}
      */
     @Override
-    public void onError( @Nonnull final Throwable throwable )
+    public void onError( @Nonnull final Throwable error )
     {
       _activeCount = -1;
       if ( null != _pendingUpstream )
@@ -100,7 +100,7 @@ final class MergeOperator<T>
       }
       _activeStreams.forEach( InnerSubscription::cancel );
       _activeStreams.clear();
-      getDownstreamSubscriber().onError( throwable );
+      getDownstreamSubscriber().onError( error );
     }
 
     /**

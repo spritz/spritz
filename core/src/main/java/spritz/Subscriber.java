@@ -8,7 +8,7 @@ public interface Subscriber<T>
 
   void onNext( @Nonnull T item );
 
-  void onError( @Nonnull Throwable throwable );
+  void onError( @Nonnull Throwable error );
 
   void onComplete();
 }

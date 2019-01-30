@@ -60,10 +60,10 @@ final class SwitchOperator<T>
      * {@inheritDoc}
      */
     @Override
-    public void onError( @Nonnull final Throwable throwable )
+    public void onError( @Nonnull final Throwable error )
     {
       _activeStream = null;
-      getDownstreamSubscriber().onError( throwable );
+      getDownstreamSubscriber().onError( error );
     }
 
     /**

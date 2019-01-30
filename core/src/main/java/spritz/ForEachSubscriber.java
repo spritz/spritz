@@ -27,7 +27,7 @@ final class ForEachSubscriber<T>
   }
 
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
   }
 

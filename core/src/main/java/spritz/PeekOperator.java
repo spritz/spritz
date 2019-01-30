@@ -161,17 +161,17 @@ final class PeekOperator<T>
      * {@inheritDoc}
      */
     @Override
-    public void onError( @Nonnull final Throwable throwable )
+    public void onError( @Nonnull final Throwable error )
     {
       _done = true;
       if ( null != _onError )
       {
-        _onError.accept( throwable );
+        _onError.accept( error );
       }
-      _downstreamSubscriber.onError( throwable );
+      _downstreamSubscriber.onError( error );
       if ( null != _afterError )
       {
-        _afterError.accept( throwable );
+        _afterError.accept( error );
       }
     }
 

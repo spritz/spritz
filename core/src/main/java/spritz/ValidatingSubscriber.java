@@ -95,20 +95,20 @@ final class ValidatingSubscriber<T>
   }
 
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0006: Subscriber.onError(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
-      Objects.requireNonNull( throwable );
+      Objects.requireNonNull( error );
     }
     try
     {
       pushContext( this );
       _state = State.ERRORED;
-      _target.onError( throwable );
+      _target.onError( error );
     }
     catch ( final Throwable t )
     {

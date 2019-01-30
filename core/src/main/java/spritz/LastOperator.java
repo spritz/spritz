@@ -55,10 +55,10 @@ final class LastOperator<T>
     }
 
     @Override
-    public void onError( @Nonnull final Throwable throwable )
+    public void onError( @Nonnull final Throwable error )
     {
       _buffer.clear();
-      super.onError( throwable );
+      super.onError( error );
     }
   }
 }

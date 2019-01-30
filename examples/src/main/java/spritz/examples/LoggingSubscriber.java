@@ -20,9 +20,9 @@ final class LoggingSubscriber<T>
   }
 
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
-    System.out.println( "onError(" + throwable + ")" );
+    System.out.println( "onError(" + error + ")" );
   }
 
   @Override

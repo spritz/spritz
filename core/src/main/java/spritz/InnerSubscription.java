@@ -59,10 +59,10 @@ final class InnerSubscription<T>
   }
 
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
     _upstreamSubscription = null;
-    _container.onError( throwable );
+    _container.onError( error );
   }
 
   @Override

@@ -49,9 +49,9 @@ abstract class AbstractOperatorSubscription<T>
    * {@inheritDoc}
    */
   @Override
-  public void onError( @Nonnull final Throwable throwable )
+  public void onError( @Nonnull final Throwable error )
   {
-    getDownstreamSubscriber().onError( throwable );
+    getDownstreamSubscriber().onError( error );
   }
 
   /**
