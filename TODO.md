@@ -10,9 +10,6 @@ complete as there is too much un-said.
   - Add `spritz/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
     Ensure that they are included in javadocs.
 
-* Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
-  - [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
-
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
 * Build different VPUs in Elemental2 module such as:
