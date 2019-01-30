@@ -46,7 +46,7 @@ public class FakeTaskExecutor
   }
 
   @Override
-  public void queueTask( @Nonnull final Task task )
+  public synchronized void queueTask( @Nonnull final Task task )
   {
     if ( !_taskQueue.hasTasks() )
     {
@@ -55,7 +55,7 @@ public class FakeTaskExecutor
     _taskQueue.queueTask( task );
   }
 
-  private void activate()
+  private synchronized void activate()
   {
     _context.activate( _executor::executeTasks );
   }
