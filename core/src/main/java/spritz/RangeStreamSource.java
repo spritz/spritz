@@ -40,7 +40,7 @@ final class RangeStreamSource
   @Override
   protected void doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )
   {
-    final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count );
+    final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count - 1 );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
