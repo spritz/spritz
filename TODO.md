@@ -11,9 +11,7 @@ complete as there is too much un-said.
     Ensure that they are included in javadocs.
 
 * Add some operators that queue tasks on `VirtualProcessorUnit`. These tasks include:
-  - [ ] `subscribeOn(Scheduler)` - perform subscribe on different scheduler
   - [ ] `cancelOn(Scheduler)` - perform cancel on different scheduler
-  - [ ] `observeOn(Scheduler)` - if signal or item emitted and current scheduler is not specified scheduler or if the specified scheduler has a non-zero queue then enqueue item/signal, schedule scheduler to run next tick if not scheduled.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
