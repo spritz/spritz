@@ -17,6 +17,8 @@ public class FakeTaskExecutor
 {
   public static VirtualProcessorUnit VPU1 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU1" ) );
   public static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU2" ) );
+  public static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU3" ) );
+  public static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU4" ) );
   private final TaskQueue _taskQueue = new FifoTaskQueue( 100 );
   private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( _taskQueue, 100 );
   private final ScheduledExecutorService _executorService =
