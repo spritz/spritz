@@ -1,6 +1,7 @@
 package spritz.internal.vpu;
 
 import javax.annotation.Nonnull;
+import spritz.VirtualProcessorUnit;
 
 /**
  * Interface via which the {@link VirtualProcessorUnit} executes tasks.

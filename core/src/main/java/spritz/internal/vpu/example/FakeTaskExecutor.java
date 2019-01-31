@@ -10,7 +10,7 @@ import spritz.internal.vpu.RoundBasedTaskExecutor;
 import spritz.internal.vpu.Task;
 import spritz.internal.vpu.TaskExecutor;
 import spritz.internal.vpu.TaskQueue;
-import spritz.internal.vpu.VirtualProcessorUnit;
+import spritz.VirtualProcessorUnit;
 
 public class FakeTaskExecutor
   implements TaskExecutor

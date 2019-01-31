@@ -15,7 +15,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.internal.annotations.DocCategory;
 import spritz.internal.annotations.MetaDataSource;
-import spritz.internal.vpu.VirtualProcessorUnit;
 
 @MetaDataSource
 public abstract class Stream<T>

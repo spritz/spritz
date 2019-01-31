@@ -1,4 +1,4 @@
-package spritz.internal.vpu;
+package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;

@@ -1,7 +1,11 @@
-package spritz.internal.vpu;
+package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import spritz.internal.vpu.ExecutorContext;
+import spritz.internal.vpu.Task;
+import spritz.internal.vpu.TaskExecutor;
+import spritz.internal.vpu.TaskQueue;
 
 /**
  * Processing unit responsible for executing tasks.
