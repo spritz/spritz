@@ -34,6 +34,23 @@ define 'spritz' do
     test.using :testng
   end
 
+  desc 'Elemental2 Event Streaming Library Integration'
+  define 'elemental2' do
+    project.enable_annotation_processor = true
+
+    compile.with project('core').package(:jar),
+                 project('core').compile.dependencies,
+                 :elemental2_core,
+                 :elemental2_dom,
+                 :elemental2_promise
+
+    package(:jar)
+    package(:sources)
+    package(:javadoc)
+
+    test.using :testng
+  end
+
   desc 'Spritz Examples'
   define 'examples' do
     compile.with project('core').package(:jar),
