@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import spritz.VirtualProcessorUnit;
 import spritz.internal.vpu.FifoTaskQueue;
 import spritz.internal.vpu.RoundBasedTaskExecutor;
-import spritz.internal.vpu.Task;
+import spritz.Task;
 import spritz.internal.vpu.TaskQueue;
 
 public class FakeExecutor

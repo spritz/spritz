@@ -2,7 +2,6 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import spritz.internal.vpu.Task;
 
 final class SubscribeOnOperator<T>
   extends AbstractStream<T>

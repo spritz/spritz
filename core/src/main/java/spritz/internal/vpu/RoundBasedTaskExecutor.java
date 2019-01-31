@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.Spritz;
+import spritz.Task;
 import static org.realityforge.braincheck.Guards.*;
 
 /**

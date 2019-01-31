@@ -1,4 +1,4 @@
-package spritz.internal.vpu;
+package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
@@ -28,7 +28,7 @@ public final class Task
    */
   private int _state;
 
-  public Task( @Nonnull final Runnable work )
+  Task( @Nonnull final Runnable work )
   {
     _work = Objects.requireNonNull( work );
     _state = STATE_IDLE;
@@ -37,7 +37,7 @@ public final class Task
   /**
    * Execute the work associated with the task.
    */
-  void executeTask()
+  public void executeTask()
   {
     // It is possible that the task was executed outside the executor and
     // may no longer need to be executed. This particularly true when executing tasks
@@ -68,7 +68,7 @@ public final class Task
    * Mark task as being queued, first verifying that it is not already queued.
    * This is used so that task will not be able to be queued again until it has run.
    */
-  void markAsQueued()
+  public void markAsQueued()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
@@ -81,7 +81,7 @@ public final class Task
   /**
    * Clear the queued flag, first verifying that the task is queued.
    */
-  void markAsIdle()
+  public void markAsIdle()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {

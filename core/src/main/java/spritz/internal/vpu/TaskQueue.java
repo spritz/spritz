@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import spritz.Task;
 
 /**
  * Interface representing a queue of "pending" or "scheduled" tasks.

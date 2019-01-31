@@ -3,7 +3,6 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.internal.vpu.Task;
 import spritz.schedulers.CircularBuffer;
 
 final class ObserveOnOperator<T>
