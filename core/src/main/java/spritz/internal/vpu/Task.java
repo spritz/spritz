@@ -39,27 +39,6 @@ public final class Task
   }
 
   /**
-   * Re-schedule this task if it is idle and trigger the scheduler if it is not active.
-   */
-  public void schedule()
-  {
-    if ( isIdle() )
-    {
-      queueTask();
-    }
-  }
-
-  int getFlags()
-  {
-    return _flags;
-  }
-
-  void queueTask()
-  {
-    //getContext().getTaskQueue().queueTask( this );
-  }
-
-  /**
    * Return the priority of the task.
    * This is only meaningful when TaskQueue observes priority.
    *
@@ -76,7 +55,7 @@ public final class Task
    * @return the task.
    */
   @Nonnull
-  Action getWork()
+  private Action getWork()
   {
     return _work;
   }
@@ -134,12 +113,12 @@ public final class Task
     }
   }
 
-  public boolean isDisposed()
+  private boolean isDisposed()
   {
     return Flags.STATE_DISPOSED == Flags.getState( _flags );
   }
 
-  public boolean isNotDisposed()
+  private boolean isNotDisposed()
   {
     return !isDisposed();
   }
@@ -176,7 +155,7 @@ public final class Task
    *
    * @return true if task is idle.
    */
-  boolean isIdle()
+  private boolean isIdle()
   {
     return Flags.STATE_IDLE == Flags.getState( _flags );
   }
@@ -186,7 +165,7 @@ public final class Task
    *
    * @return true if task is already scheduled.
    */
-  boolean isQueued()
+  private boolean isQueued()
   {
     return Flags.STATE_QUEUED == Flags.getState( _flags );
   }
