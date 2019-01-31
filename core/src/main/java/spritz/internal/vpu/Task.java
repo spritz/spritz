@@ -32,7 +32,7 @@ public final class Task
    */
   private int _flags;
 
-  Task( @Nonnull final Action work, final int flags )
+  public Task( @Nonnull final Action work, final int flags )
   {
     _work = Objects.requireNonNull( work );
     _flags = flags | Flags.STATE_IDLE | Flags.priority( flags );
