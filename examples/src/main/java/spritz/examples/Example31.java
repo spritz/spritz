@@ -2,7 +2,7 @@ package spritz.examples;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import spritz.Stream;
-import spritz.internal.vpu.example.FakeTaskExecutor;
+import spritz.internal.vpu.example.FakeExecutor;
 
 public class Example31
 {
@@ -13,16 +13,16 @@ public class Example31
     Stream
       .range( 42, 1 )
       .onSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Thread.currentThread().getName() ) )
-      .observeOn( FakeTaskExecutor.VPU2 )
+      .observeOn( FakeExecutor.VPU2 )
       .peek( v -> System.out.println( "Peek1 on Thread: " + Thread.currentThread().getName() ) )
       .onComplete( () -> System.out.println( "onComplete1 on Thread: " + Thread.currentThread().getName() ) )
-      .subscribeOn( FakeTaskExecutor.VPU1 )
-      .observeOn( FakeTaskExecutor.VPU3 )
+      .subscribeOn( FakeExecutor.VPU1 )
+      .observeOn( FakeExecutor.VPU3 )
       .onSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Thread.currentThread().getName() ) )
       .peek( v -> System.out.println( "Peek2 on Thread: " + Thread.currentThread().getName() ) )
       .onComplete( () -> System.out.println( "onComplete2 on Thread: " + Thread.currentThread().getName() ) )
-      .subscribeOn( FakeTaskExecutor.VPU2 )
-      .observeOn( FakeTaskExecutor.VPU4 )
+      .subscribeOn( FakeExecutor.VPU2 )
+      .observeOn( FakeExecutor.VPU4 )
       .peek( v -> System.out.println( "Peek3 on Thread: " + Thread.currentThread().getName() ) )
       .onComplete( () -> System.out.println( "onComplete3 on Thread: " + Thread.currentThread().getName() ) )
       .onTerminate( () -> complete.set( true ) )

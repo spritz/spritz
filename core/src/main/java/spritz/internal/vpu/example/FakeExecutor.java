@@ -4,21 +4,19 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
-import spritz.internal.vpu.ExecutorContext;
+import spritz.VirtualProcessorUnit;
 import spritz.internal.vpu.FifoTaskQueue;
 import spritz.internal.vpu.RoundBasedTaskExecutor;
 import spritz.internal.vpu.Task;
-import spritz.internal.vpu.TaskExecutor;
 import spritz.internal.vpu.TaskQueue;
-import spritz.VirtualProcessorUnit;
 
-public class FakeTaskExecutor
-  implements TaskExecutor
+public class FakeExecutor
+  implements VirtualProcessorUnit.Executor
 {
-  public static VirtualProcessorUnit VPU1 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU1" ) );
-  public static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU2" ) );
-  public static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU3" ) );
-  public static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeTaskExecutor( "VPU4" ) );
+  public static VirtualProcessorUnit VPU1 = new VirtualProcessorUnit( new FakeExecutor( "VPU1" ) );
+  public static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeExecutor( "VPU2" ) );
+  public static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeExecutor( "VPU3" ) );
+  public static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeExecutor( "VPU4" ) );
   private final TaskQueue _taskQueue = new FifoTaskQueue( 100 );
   private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( _taskQueue, 100 );
   private final ScheduledExecutorService _executorService =
@@ -26,7 +24,7 @@ public class FakeTaskExecutor
   @Nonnull
   private final String _name;
 
-  private FakeTaskExecutor( @Nonnull final String name )
+  private FakeExecutor( @Nonnull final String name )
   {
     _name = name;
   }
@@ -37,10 +35,10 @@ public class FakeTaskExecutor
     return new Thread( r, _name );
   }
 
-  private ExecutorContext _context;
+  private VirtualProcessorUnit.Context _context;
 
   @Override
-  public void init( @Nonnull final ExecutorContext context )
+  public void init( @Nonnull final VirtualProcessorUnit.Context context )
   {
     _context = context;
   }

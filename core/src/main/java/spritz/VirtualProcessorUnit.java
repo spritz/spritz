@@ -2,10 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import spritz.internal.vpu.ExecutorContext;
 import spritz.internal.vpu.Task;
-import spritz.internal.vpu.TaskExecutor;
-import spritz.internal.vpu.TaskQueue;
 
 /**
  * Processing unit responsible for executing tasks.
@@ -14,17 +11,16 @@ public final class VirtualProcessorUnit
 {
   /**
    * The executor responsible for selecting and invoking tasks.
-   * This executor is expected to share a reference to the {@link TaskQueue}.
    */
   @Nonnull
-  private final TaskExecutor _executor;
+  private final Executor _executor;
 
   /**
    * Create the processor unit.
    *
    * @param executor the associated task executor.
    */
-  public VirtualProcessorUnit( @Nonnull final TaskExecutor executor )
+  public VirtualProcessorUnit( @Nonnull final Executor executor )
   {
     _executor = Objects.requireNonNull( executor );
     _executor.init( this::activate );
@@ -65,7 +61,7 @@ public final class VirtualProcessorUnit
    * @return the associated task executor.
    */
   @Nonnull
-  protected final TaskExecutor getExecutor()
+  protected final Executor getExecutor()
   {
     return _executor;
   }
@@ -76,9 +72,9 @@ public final class VirtualProcessorUnit
    * It is an error to invoke this method if there is already a current unit.
    *
    * @param activationFn the activation function.
-   * @see ExecutorContext#activate(ExecutorContext.ActivationFn)
+   * @see Context#activate(ActivationFn)
    */
-  private void activate( @Nonnull final ExecutorContext.ActivationFn activationFn )
+  private void activate( @Nonnull final ActivationFn activationFn )
   {
     VirtualProcessorUnitHolder.activate( this );
     try
@@ -89,5 +85,57 @@ public final class VirtualProcessorUnit
     {
       VirtualProcessorUnitHolder.deactivate( this );
     }
+  }
+
+  /**
+   * Interface via which the {@link VirtualProcessorUnit} executes tasks.
+   * The executor is responsible for activating the underlying {@link VirtualProcessorUnit} when required.
+   * Each time the {@link VirtualProcessorUnit} is activated it will use callback to talk to executor
+   * and the executor is responsible for selecting and executing tasks until it decides to return control
+   * to the {@link VirtualProcessorUnit}.
+   */
+  public interface Executor
+  {
+    /**
+     * Initialize the executor passing in the context associated with the underlying {@link VirtualProcessorUnit}.
+     *
+     * @param context the context represent the associated {@link VirtualProcessorUnit}.
+     */
+    void init( @Nonnull Context context );
+
+    /**
+     * Queue task for execution and enable the executor for activation if necessary.
+     * The task must not be already queued.
+     *
+     * @param task the task.
+     */
+    void queueTask( @Nonnull Task task );
+  }
+
+  @FunctionalInterface
+  public interface ActivationFn
+  {
+    /**
+     * Callback method invoked by {@link Context#activate(ActivationFn)} to process tasks.
+     */
+    void invoke();
+  }
+
+  /**
+   * Interface representing {@link VirtualProcessorUnit} passed to {@link Executor} during initialization.
+   * This interface is designed to allow the {@link Executor} to activate the {@link VirtualProcessorUnit}
+   * when it needs to execute tasks.
+   */
+  public interface Context
+  {
+    /**
+     * Activate the associated {@link VirtualProcessorUnit}.
+     * This method MUST only be called if there is no {@link VirtualProcessorUnit} unit currently activated.
+     * The activation will set the {@link VirtualProcessorUnit#current()} for the duration
+     * of the activation and invoke {@link ActivationFn#invoke()} passed into the method.
+     *
+     * @param activationFn the function passed to process tasks.
+     */
+    void activate( @Nonnull ActivationFn activationFn );
   }
 }
