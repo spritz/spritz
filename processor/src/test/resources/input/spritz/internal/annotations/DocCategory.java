@@ -3,6 +3,7 @@ package spritz.internal.annotations;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 import javax.annotation.Nonnull;
+import spritz.VirtualProcessorUnit;
 
 /**
  * Category where operator resides in documentation.
@@ -48,7 +49,7 @@ public @interface DocCategory
      */
     ACCUMULATING,
     /**
-     * Operators that change the {@link spritz.internal.vpu.VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
+     * Operators that change the {@link VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
      */
     SCHEDULING,
     /**
