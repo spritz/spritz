@@ -8,4 +8,4 @@
 /tmp
 /generated
 /*/generated
-/support/processor/src/test/resources/input/spritz/internal
+/processor/src/test/resources/input/spritz/internal
