@@ -6,8 +6,7 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
-* Reorganize project into several sub-modules similar to Arez/React4j.
-  - Add `spritz/elemental2` with Elemental2 dependencies and Elemental2 specific sources and sinks.
+* Add `Elemental2` specific sources and sinks.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
