@@ -30,9 +30,9 @@ def generate_overview(project)
 <ul>
     HTML
     categories.each do |category|
-    operators_content += <<-HTML
+      operators_content += <<-HTML
   <li><a href="##{category['name'].downcase}">#{titleize(category['name'])}</a>: #{category['description']}</li>
-    HTML
+      HTML
     end
     operators_content += <<-HTML
 </ul>
