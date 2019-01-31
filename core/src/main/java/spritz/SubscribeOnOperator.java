@@ -21,8 +21,7 @@ final class SubscribeOnOperator<T>
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final Task task =
-      _virtualProcessorUnit.createTask( () -> getUpstream().subscribe( new PassThroughSubscription<>( subscriber ) ),
-                                        0 );
-    _virtualProcessorUnit.queueTask( task );
+      _virtualProcessorUnit.task( () -> getUpstream().subscribe( new PassThroughSubscription<>( subscriber ) ) );
+    _virtualProcessorUnit.queue( task );
   }
 }

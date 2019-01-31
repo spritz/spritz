@@ -46,7 +46,7 @@ final class ObserveOnOperator<T>
     {
       super( subscriber );
       _virtualProcessorUnit = virtualProcessorUnit;
-      _task = _virtualProcessorUnit.createTask( this::observe, 0 );
+      _task = _virtualProcessorUnit.task( this::observe );
     }
 
     /**
@@ -95,7 +95,7 @@ final class ObserveOnOperator<T>
 
     private void scheduleObserve()
     {
-      _virtualProcessorUnit.queueTask( _task );
+      _virtualProcessorUnit.queue( _task );
     }
 
     /**

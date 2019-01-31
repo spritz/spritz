@@ -44,26 +44,15 @@ public final class VirtualProcessorUnit
    *
    * @param task the task.
    */
-  public void queueTask( @Nonnull final Task task )
+  public void queue( @Nonnull final Task task )
   {
     _executor.queueTask( task );
   }
 
   @Nonnull
-  public Task createTask( @Nonnull final Task.Action work, final int flags )
+  public Task task( @Nonnull final Runnable work )
   {
-    return new Task( work, flags );
-  }
-
-  /**
-   * Return the associated task executor.
-   *
-   * @return the associated task executor.
-   */
-  @Nonnull
-  protected final Executor getExecutor()
-  {
-    return _executor;
+    return new Task( work );
   }
 
   /**
