@@ -23,7 +23,9 @@ public interface ExecutorContext
    * Activate the associated {@link VirtualProcessorUnit}.
    * This method MUST only be called if there is no {@link VirtualProcessorUnit} unit currently activated.
    * The activation will set the {@link VirtualProcessorUnit#current()} for the duration
-   * of the activation and invoke {@link ActivationFn#invoke()} passed into the method..
+   * of the activation and invoke {@link ActivationFn#invoke()} passed into the method.
+   *
+   * @param activationFn the function passed to process tasks.
    */
   void activate( @Nonnull ActivationFn activationFn );
 }
