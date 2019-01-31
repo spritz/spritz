@@ -88,16 +88,16 @@ define 'spritz' do
     iml.test_source_directories << _('src/test/resources/input')
   end
 
-  doc.from(projects(%w(core))).
+  doc.from(projects(%w(core elemental2))).
     using(:javadoc,
           :windowtitle => 'Spritz API Documentation',
           :linksource => true,
-          :overview => _('core/generated/javadocs/overview.html'),
+          :overview => _('generated/javadocs/overview.html'),
           :timestamp => false,
           :exclude => 'spritz.internal',
           :subpackages => 'spritz',
           :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
-    ).sourcepath << project('core').compile.sources
+    ).sourcepath << project('core').compile.sources << project('elemental2').compile.sources
 
   generate_overview(project)
   cleanup_javadocs(project, 'spritz')

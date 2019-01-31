@@ -1,24 +1,27 @@
 def generate_overview(project)
+  projects = %w(core elemental2)
   project.doc.enhance(['generate-overview'])
-  project.task 'generate-overview' => [project('core').compile.target] do
+  desc 'Generate overview.html page'
+  project.task 'generate-overview' => projects.collect {|project_name| project(project_name).compile.target} do
     require 'json'
 
     operators_by_name = {}
     operators_by_category = {}
     categories = []
     categories_by_name = {}
+    projects.each do |project_name|
+      Dir["#{WORKSPACE_DIR}/#{project_name}/generated/processors/main/java/**/*.doc.json"].each do |file|
+        data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
+        data['operators'].each do |operator|
+          operator = operator.merge('class' => data['class'])
+          operators_by_name[operator['name']] = operator
+          operator['categories'].each do |category|
+            (operators_by_category[category] ||= []) << operator
+          end
+        end if data['operators']
 
-    Dir["#{WORKSPACE_DIR}/core/generated/processors/main/java/**/*.doc.json"].each do |file|
-      data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
-      data['operators'].each do |operator|
-        operator = operator.merge('class' => data['class'])
-        operators_by_name[operator['name']] = operator
-        operator['categories'].each do |category|
-          (operators_by_category[category] ||= []) << operator
-        end
-      end if data['operators']
-
-      categories = data['categories'] if data['categories']
+        categories = data['categories'] if data['categories']
+      end
     end
     categories.each do |category|
       categories_by_name[category['name']] = category
