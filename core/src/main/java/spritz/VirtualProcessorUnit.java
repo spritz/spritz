@@ -45,7 +45,7 @@ public final class VirtualProcessorUnit
    */
   public void queue( @Nonnull final Task task )
   {
-    _executor.queueTask( task );
+    _executor.queue( task );
   }
 
   @Nonnull
@@ -97,7 +97,7 @@ public final class VirtualProcessorUnit
      *
      * @param task the task.
      */
-    void queueTask( @Nonnull Task task );
+    void queue( @Nonnull Task task );
   }
 
   @FunctionalInterface

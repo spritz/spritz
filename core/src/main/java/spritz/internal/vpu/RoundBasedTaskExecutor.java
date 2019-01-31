@@ -45,26 +45,6 @@ public final class RoundBasedTaskExecutor
   }
 
   /**
-   * Return the maximum number of rounds before runaway task is detected.
-   *
-   * @return the maximum number of rounds.
-   */
-  int getMaxRounds()
-  {
-    return _maxRounds;
-  }
-
-  /**
-   * Return true if tasks are currently executing, false otherwise.
-   *
-   * @return true if tasks are currently executing, false otherwise.
-   */
-  boolean areTasksExecuting()
-  {
-    return 0 != _currentRound;
-  }
-
-  /**
    * Run tasks until complete or runaway tasks detected.
    */
   public void executeTasks()
@@ -90,7 +70,7 @@ public final class RoundBasedTaskExecutor
    *
    * @return true if a task was ran, false otherwise.
    */
-  boolean runNextTask()
+  private boolean runNextTask()
   {
     // If we have reached the last task in this round then
     // determine if we need any more rounds and if we do ensure
@@ -125,7 +105,7 @@ public final class RoundBasedTaskExecutor
      */
     _remainingTasksInCurrentRound--;
 
-    final Task task = _taskQueue.dequeueTask();
+    final Task task = _taskQueue.dequeue();
     assert null != task;
     task.executeTask();
     return true;
@@ -136,32 +116,26 @@ public final class RoundBasedTaskExecutor
    * Depending on configuration will optionally purge the pending
    * tasks and optionally fail an invariant check.
    */
-  void onRunawayTasksDetected()
+  private void onRunawayTasksDetected()
   {
     final List<String> taskNames =
       BrainCheckConfig.checkInvariants() && BrainCheckConfig.verboseErrorMessages() ?
-      _taskQueue.getOrderedTasks().map( Task::toString ).collect( Collectors.toList() ) :
+      _taskQueue.stream().map( Task::toString ).collect( Collectors.toList() ) :
       null;
 
     if ( Spritz.purgeTasksWhenRunawayDetected() )
     {
-      _taskQueue.clear();
+      Task task;
+      while ( null != ( task = _taskQueue.dequeue() ) )
+      {
+        task.markAsIdle();
+      }
     }
 
     if ( BrainCheckConfig.checkInvariants() )
     {
-      fail( () -> "Arez-0101: Runaway task(s) detected. Tasks still running after " + _maxRounds +
+      fail( () -> "Spritz-0101: Runaway task(s) detected. Tasks still running after " + _maxRounds +
                   " rounds. Current tasks include: " + taskNames );
     }
-  }
-
-  int getCurrentRound()
-  {
-    return _currentRound;
-  }
-
-  int getRemainingTasksInCurrentRound()
-  {
-    return _remainingTasksInCurrentRound;
   }
 }

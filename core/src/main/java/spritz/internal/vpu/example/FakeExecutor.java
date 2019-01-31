@@ -4,10 +4,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
-import spritz.VirtualProcessorUnit;
-import spritz.internal.vpu.FifoTaskQueue;
-import spritz.internal.vpu.RoundBasedTaskExecutor;
 import spritz.Task;
+import spritz.VirtualProcessorUnit;
+import spritz.internal.vpu.RoundBasedTaskExecutor;
 import spritz.internal.vpu.TaskQueue;
 
 public class FakeExecutor
@@ -17,7 +16,7 @@ public class FakeExecutor
   public static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeExecutor( "VPU2" ) );
   public static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeExecutor( "VPU3" ) );
   public static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeExecutor( "VPU4" ) );
-  private final TaskQueue _taskQueue = new FifoTaskQueue( 100 );
+  private final TaskQueue _taskQueue = new TaskQueue( 100 );
   private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( _taskQueue, 100 );
   private final ScheduledExecutorService _executorService =
     new ScheduledThreadPoolExecutor( 1, this::newThread );
@@ -44,13 +43,13 @@ public class FakeExecutor
   }
 
   @Override
-  public synchronized void queueTask( @Nonnull final Task task )
+  public synchronized void queue( @Nonnull final Task task )
   {
-    if ( !_taskQueue.hasTasks() )
+    if ( _taskQueue.isEmpty() )
     {
       _executorService.schedule( this::activate, 0, TimeUnit.MILLISECONDS );
     }
-    _taskQueue.queueTask( task );
+    _taskQueue.queue( task );
   }
 
   private synchronized void activate()

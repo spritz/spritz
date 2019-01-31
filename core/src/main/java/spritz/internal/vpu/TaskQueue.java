@@ -1,61 +1,67 @@
 package spritz.internal.vpu;
 
-import java.util.Collection;
+import java.util.Objects;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.Task;
+import spritz.schedulers.CircularBuffer;
+import static org.realityforge.braincheck.Guards.*;
 
 /**
- * Interface representing a queue of "pending" or "scheduled" tasks.
+ * A very simple first-in first out task queue.
  */
-public interface TaskQueue
+public final class TaskQueue
 {
   /**
-   * Return the number of tasks inside the queue.
-   *
-   * @return the number of tasks inside the queue.
+   * A buffer per priority containing tasks that have been scheduled but are not executing.
    */
-  int getQueueSize();
+  @Nonnull
+  private final CircularBuffer<Task> _buffer;
+
+  public TaskQueue( final int initialCapacity )
+  {
+    _buffer = new CircularBuffer<>( initialCapacity );
+  }
+
+  int getQueueSize()
+  {
+    return _buffer.size();
+  }
+
+  public boolean isEmpty()
+  {
+    return _buffer.isEmpty();
+  }
 
   /**
-   * Return true if queue has any tasks in it.
-   *
-   * @return true if queue has any tasks in it.
-   */
-  boolean hasTasks();
-
-  /**
-   * Remove and return the next task in queue.
-   * This may return null if there is no tasks in the quue.
-   *
-   * @return the next task in queue.
-   */
-  @Nullable
-  Task dequeueTask();
-
-  /**
-   * Clear all tasks from queue and return any tasks removed.
-   *
-   * @return tasks removed from the queue.
-   */
-  Collection<Task> clear();
-
-  /**
-   * Add a task to the TaskQueue.
-   * The task must not be already queued.
+   * Add the specified task to the queue.
+   * The task must not already be in the queue.
    *
    * @param task the task.
    */
-  void queueTask( @Nonnull Task task );
+  public void queue( @Nonnull final Task task )
+  {
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> !_buffer.contains( task ),
+                 () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );
+    }
+    Objects.requireNonNull( task );
+    task.markAsQueued();
+    _buffer.add( task );
+  }
 
-  /**
-   * Return a stream containing tasks ordered as they would be executed.
-   * This method may be very slow and should not be invoked during production compiles.
-   * It is only expected to be called from invariant checking code.
-   *
-   * @return a stream containing tasks ordered as they would be executed.
-   */
+  @Nullable
+  Task dequeue()
+  {
+    return _buffer.pop();
+  }
+
   @Nonnull
-  Stream<Task> getOrderedTasks();
+  Stream<Task> stream()
+  {
+    return _buffer.stream();
+  }
 }
