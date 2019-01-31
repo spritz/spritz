@@ -119,12 +119,10 @@ final class ObserveOnOperator<T>
       if ( null != _error )
       {
         super.onError( _error );
-        _task.dispose();
       }
       else if ( _complete )
       {
         super.onComplete();
-        _task.dispose();
       }
     }
   }

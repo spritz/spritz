@@ -22,7 +22,7 @@ final class SubscribeOnOperator<T>
   {
     final Task task =
       _virtualProcessorUnit.createTask( () -> getUpstream().subscribe( new PassThroughSubscription<>( subscriber ) ),
-                                        Task.Flags.DISPOSE_ON_COMPLETE );
+                                        0 );
     _virtualProcessorUnit.queueTask( task );
   }
 }

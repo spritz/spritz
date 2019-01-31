@@ -50,17 +50,6 @@ public final class Task
   }
 
   /**
-   * Return the task.
-   *
-   * @return the task.
-   */
-  @Nonnull
-  private Action getWork()
-  {
-    return _work;
-  }
-
-  /**
    * Execute the work associated with the task.
    */
   void executeTask()
@@ -81,12 +70,6 @@ public final class Task
         // It is expected that the task catches errors and handles internally. Thus no need to catch errors here.
         _work.call();
       }
-
-      // If this task has been marked as a task to dispose on completion then do so
-      if ( 0 != ( _flags & Flags.DISPOSE_ON_COMPLETE ) )
-      {
-        dispose();
-      }
     }
   }
 
@@ -97,30 +80,12 @@ public final class Task
   {
     try
     {
-      getWork().call();
+      _work.call();
     }
     catch ( final Throwable t )
     {
       // Should we handle it with a per-task handler or a global error handler?
     }
-  }
-
-  public void dispose()
-  {
-    if ( isNotDisposed() )
-    {
-      _flags = Flags.setState( _flags, Flags.STATE_DISPOSED );
-    }
-  }
-
-  private boolean isDisposed()
-  {
-    return Flags.STATE_DISPOSED == Flags.getState( _flags );
-  }
-
-  private boolean isNotDisposed()
-  {
-    return !isDisposed();
   }
 
   /**
@@ -219,14 +184,9 @@ public final class Task
      */
     public static final int NO_WRAP_TASK = 1 << 20;
     /**
-     * The flag that specifies that the task should be disposed after it has completed execution.
-     */
-    public static final int DISPOSE_ON_COMPLETE = 1 << 19;
-    /**
      * Mask containing flags that can be applied to a task.
      */
-    static final int TASK_FLAGS_MASK =
-      DISPOSE_ON_COMPLETE | NO_WRAP_TASK;
+    static final int TASK_FLAGS_MASK = NO_WRAP_TASK;
     /**
      * State when the task has not been scheduled.
      */
@@ -236,29 +196,9 @@ public final class Task
      */
     static final int STATE_QUEUED = 1;
     /**
-     * State when the task has been disposed and should no longer be scheduled.
-     */
-    static final int STATE_DISPOSED = 2;
-    /**
-     * Invalid state that should never be set.
-     */
-    static final int STATE_INVALID = 3;
-    /**
      * Mask used to extract state bits.
      */
-    private static final int STATE_MASK = STATE_IDLE | STATE_QUEUED | STATE_DISPOSED;
-
-    /**
-     * Return true if flags contains valid priority.
-     *
-     * @param flags the flags.
-     * @return true if flags contains priority.
-     */
-    static boolean isStateValid( final int flags )
-    {
-      assert BrainCheckConfig.checkInvariants() || BrainCheckConfig.checkApiInvariants();
-      return STATE_INVALID != ( STATE_MASK & flags );
-    }
+    private static final int STATE_MASK = STATE_IDLE | STATE_QUEUED;
 
     static int setState( final int flags, final int state )
     {
