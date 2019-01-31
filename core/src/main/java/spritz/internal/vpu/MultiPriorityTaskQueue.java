@@ -102,7 +102,7 @@ final class MultiPriorityTaskQueue
    * @param priority the task priority.
    * @param task     the task.
    */
-  void queueTask( final int priority, @Nonnull final Task task )
+  private void queueTask( final int priority, @Nonnull final Task task )
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
