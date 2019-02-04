@@ -108,8 +108,10 @@ define 'spritz' do
                               :name => short_name,
                               :gwt_module => gwt_module,
                               :start_javascript_debugger => false,
+                              :open_in_browser => false,
                               :vm_parameters => "-Xmx3G -Djava.io.tmpdir=#{_("tmp/gwt/#{short_name}")}",
-                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', short_name)}/")
+                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', short_name)}/",
+                              :launch_page => "http://127.0.0.1:8888/#{gwt_module}/")
   end
 
   ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources')
