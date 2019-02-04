@@ -1,7 +1,7 @@
 package spritz;
 
 import javax.annotation.Nonnull;
-import spritz.schedulers.CircularBuffer;
+import spritz.internal.util.CircularBuffer;
 
 final class LastOperator<T>
   extends AbstractStream<T>

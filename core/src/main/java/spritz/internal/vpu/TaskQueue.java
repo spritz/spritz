@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.Task;
-import spritz.schedulers.CircularBuffer;
+import spritz.internal.util.CircularBuffer;
 import static org.realityforge.braincheck.Guards.*;
 
 /**

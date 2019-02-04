@@ -1,4 +1,4 @@
-package spritz.schedulers;
+package spritz.internal.util;
 
 import java.util.Objects;
 import java.util.stream.Stream;

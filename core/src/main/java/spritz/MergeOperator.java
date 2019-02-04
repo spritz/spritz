@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.schedulers.CircularBuffer;
+import spritz.internal.util.CircularBuffer;
 
 final class MergeOperator<T>
   extends Stream<T>
