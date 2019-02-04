@@ -76,6 +76,9 @@ complete as there is too much un-said.
   to be many tasks that are cancelled in flight and need to have resources releases to avoid being unnecessary
   memory pressure.
 
+* Figure out how to implement `Stream.ofType(...)` in GWT/J2CL. It may just be that we have to attempt to
+  cast and then catch failure but this may not work if we strip cast checks?
+
 Below are the old TODO notes:
 
 ---

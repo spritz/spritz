@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.internal.annotations.DocCategory;
+import spritz.internal.annotations.GwtIncompatible;
 import spritz.internal.annotations.MetaDataSource;
 
 @MetaDataSource
@@ -502,6 +503,7 @@ public abstract class Stream<T>
    */
   @SuppressWarnings( "unchecked" )
   @Nonnull
+  @GwtIncompatible
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.FILTERING } )
   public final <DownstreamT extends T> Stream<DownstreamT> ofType( @Nonnull final Class<DownstreamT> type )
   {
