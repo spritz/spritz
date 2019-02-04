@@ -74,9 +74,9 @@ CONTENT
   project.package(:jar).tap do |j|
     extra_deps.each do |dep|
       j.enhance([dep])
-      j.include("#{dep}/arez")
+      j.include("#{dep}/spritz")
     end
-    j.include(project._(:generated, 'processors/main/java/arez')) if project.enable_annotation_processor?
+    j.include(project._(:generated, 'processors/main/java/spritz')) if project.enable_annotation_processor?
     assets.each do |path|
       j.include("#{path}/*")
     end
