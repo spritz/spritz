@@ -1,5 +1,5 @@
 def generate_overview(project)
-  projects = %w(core elemental2)
+  projects = %w(core)
   project.doc.enhance(['generate-overview'])
   desc 'Generate overview.html page'
   project.task 'generate-overview' => projects.collect {|project_name| project(project_name).compile.target} do

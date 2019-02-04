@@ -27,21 +27,7 @@ define 'spritz' do
                  :jsinterop_annotations,
                  :jsinterop_base,
                  project('processor').package(:jar),
-                 project('processor').compile.dependencies
-
-    package(:jar)
-    package(:sources)
-    package(:javadoc)
-
-    test.using :testng
-  end
-
-  desc 'Elemental2 Event Streaming Library Integration'
-  define 'elemental2' do
-    project.enable_annotation_processor = true
-
-    compile.with project('core').package(:jar),
-                 project('core').compile.dependencies,
+                 project('processor').compile.dependencies,
                  :elemental2_core,
                  :elemental2_dom,
                  :elemental2_promise
@@ -98,7 +84,7 @@ define 'spritz' do
     iml.test_source_directories << _('src/test/resources/input')
   end
 
-  doc.from(projects(%w(core elemental2))).
+  doc.from(projects(%w(core))).
     using(:javadoc,
           :windowtitle => 'Spritz API Documentation',
           :linksource => true,
@@ -107,7 +93,7 @@ define 'spritz' do
           :exclude => 'spritz.internal',
           :subpackages => 'spritz',
           :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
-    ).sourcepath << project('core').compile.sources << project('elemental2').compile.sources
+    ).sourcepath << project('core').compile.sources
 
   generate_overview(project)
   cleanup_javadocs(project, 'spritz')
