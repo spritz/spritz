@@ -16,9 +16,6 @@ task 'site:publish' => 'doc' do
 
   sh "git clone -b master --depth 1 #{origin_url} #{local_dir}"
 
-  # This is the list of directories controlled by other processes that should be left alone
-  excludes = %w()
-
   in_dir(local_dir) do
     message = "Publishing docs#{travis_build_number.nil? ? '' : " - Travis build: #{travis_build_number}"}"
 
