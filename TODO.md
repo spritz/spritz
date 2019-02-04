@@ -6,6 +6,11 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
+* Move `spritz.scheduler.Schedulers` to `spritz.SchedulerHolder` package and convert to package access.
+  Expose the functionality via `spritz.Spritz.scheduler()`.
+
+* Introduce the `spritz.SpritzTestUtil` class that clears/resets scheduler and compile time settings as appropriate.
+
 * Add `Elemental2` specific sources and sinks.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
