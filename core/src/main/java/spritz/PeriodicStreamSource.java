@@ -4,7 +4,6 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.schedulers.SchedulerTask;
-import spritz.schedulers.Schedulers;
 
 final class PeriodicStreamSource
   extends Stream<Integer>
@@ -42,7 +41,7 @@ final class PeriodicStreamSource
 
     void startTimer()
     {
-      _task = Schedulers.current().scheduleAtFixedRate( this::pushItem, _period );
+      _task = Spritz.scheduler().scheduleAtFixedRate( this::pushItem, _period );
     }
 
     void pushItem()

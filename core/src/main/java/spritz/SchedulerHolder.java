@@ -1,4 +1,4 @@
-package spritz.schedulers;
+package spritz;
 
 import elemental2.dom.DomGlobal;
 import java.util.concurrent.ScheduledExecutorService;
@@ -7,28 +7,25 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import spritz.internal.annotations.GwtIncompatible;
+import spritz.schedulers.Scheduler;
+import spritz.schedulers.SchedulerTask;
 
-public final class Schedulers
+final class SchedulerHolder
 {
   @Nonnull
   private static Scheduler c_scheduler = new SchedulerImpl();
 
-  private Schedulers()
+  private SchedulerHolder()
   {
   }
 
   @Nonnull
-  public static Scheduler current()
+  static Scheduler scheduler()
   {
     return c_scheduler;
   }
 
-  public static void reset()
-  {
-    c_scheduler = new SchedulerImpl();
-  }
-
-  public static void shutdown()
+  static void shutdown()
   {
     c_scheduler.shutdown();
     c_scheduler = new SchedulerImpl();

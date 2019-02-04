@@ -2,8 +2,8 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import spritz.schedulers.Scheduler;
 import spritz.schedulers.SchedulerTask;
-import spritz.schedulers.Schedulers;
 
 abstract class AbstractThrottlingSubscription<T>
   extends AbstractOperatorSubscription<T>
@@ -24,7 +24,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Override
   public final void onNext( @Nonnull final T item )
   {
-    final int now = Schedulers.current().now();
+    final int now = Spritz.scheduler().now();
 
     /*
      * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
@@ -122,8 +122,9 @@ abstract class AbstractThrottlingSubscription<T>
   final void scheduleTask( final int delay )
   {
     assert delay > 0;
-    _task = Schedulers.current().schedule( this, delay );
-    _nextTaskTime = Schedulers.current().now() + delay;
+    final Scheduler scheduler = Spritz.scheduler();
+    _task = scheduler.schedule( this, delay );
+    _nextTaskTime = scheduler.now() + delay;
   }
 
   /**

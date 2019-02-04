@@ -1,8 +1,8 @@
 package spritz.examples;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import spritz.Spritz;
 import spritz.Stream;
-import spritz.schedulers.Schedulers;
 
 public class Example18
 {
@@ -19,6 +19,6 @@ public class Example18
 
   private static void terminateScheduler()
   {
-    new Thread( Schedulers::shutdown ).run();
+    new Thread( Spritz::shutdown ).run();
   }
 }

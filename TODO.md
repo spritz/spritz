@@ -6,8 +6,7 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
-* Move `spritz.scheduler.Schedulers` to `spritz.SchedulerHolder` package and convert to package access.
-  Expose the functionality via `spritz.Spritz.scheduler()`.
+* Remove `spritz.Spritz.shutdown()` and `spritz.Scheduler.shutdown()` in favour of some better approach.
 
 * Introduce the `spritz.SpritzTestUtil` class that clears/resets scheduler and compile time settings as appropriate.
 

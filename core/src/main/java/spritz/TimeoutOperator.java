@@ -2,7 +2,6 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import spritz.schedulers.SchedulerTask;
-import spritz.schedulers.Schedulers;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T>
@@ -70,13 +69,13 @@ final class TimeoutOperator<T>
 
     private void recordLastTime()
     {
-      _lastTime = Schedulers.current().now();
+      _lastTime = Spritz.scheduler().now();
     }
 
     @Nonnull
     private SchedulerTask scheduleTimeout()
     {
-      return Schedulers.current().schedule( this, _lastTime + _timeoutTime );
+      return Spritz.scheduler().schedule( this, _lastTime + _timeoutTime );
     }
   }
 }

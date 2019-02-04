@@ -1,7 +1,7 @@
 package spritz.examples;
 
+import spritz.Spritz;
 import spritz.Stream;
-import spritz.schedulers.Schedulers;
 
 public class Example6
 {
@@ -16,6 +16,6 @@ public class Example6
 
   private static void terminateScheduler()
   {
-    new Thread( Schedulers::shutdown ).run();
+    new Thread( Spritz::shutdown ).run();
   }
 }
