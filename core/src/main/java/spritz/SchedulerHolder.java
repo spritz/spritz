@@ -7,8 +7,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import spritz.internal.annotations.GwtIncompatible;
-import spritz.schedulers.Scheduler;
-import spritz.schedulers.SchedulerTask;
 
 final class SchedulerHolder
 {
@@ -50,7 +48,7 @@ final class SchedulerHolder
     @Nonnull
     @Override
     @GwtIncompatible
-    public SchedulerTask schedule( @Nonnull final Runnable task, final int delay )
+    public Task schedule( @Nonnull final Runnable task, final int delay )
     {
       final ScheduledFuture<?> future = _executorService.schedule( task, delay, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -60,7 +58,7 @@ final class SchedulerHolder
     @Nonnull
     @Override
     @GwtIncompatible
-    public SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    public Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final ScheduledFuture<?> future = _executorService.scheduleAtFixedRate( task, 0, period, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -99,7 +97,7 @@ final class SchedulerHolder
      */
     @Nonnull
     @Override
-    public SchedulerTask schedule( @Nonnull final Runnable task, final int delay )
+    public Task schedule( @Nonnull final Runnable task, final int delay )
     {
       final double timeoutId = DomGlobal.setTimeout( v -> task.run(), delay );
       return () -> DomGlobal.clearTimeout( timeoutId );
@@ -107,7 +105,7 @@ final class SchedulerHolder
 
     @Nonnull
     @Override
-    public SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    public Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final double timeoutId = DomGlobal.setInterval( v -> task.run(), period );
       return () -> DomGlobal.clearInterval( timeoutId );

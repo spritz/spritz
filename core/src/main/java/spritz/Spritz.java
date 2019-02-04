@@ -2,7 +2,6 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import spritz.internal.annotations.MetaDataSource;
-import spritz.schedulers.Scheduler;
 
 @MetaDataSource
 public final class Spritz

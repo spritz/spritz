@@ -1,7 +1,6 @@
 package spritz;
 
 import javax.annotation.Nonnull;
-import spritz.schedulers.SchedulerTask;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T>
@@ -28,7 +27,7 @@ final class TimeoutOperator<T>
     private final int _timeoutTime;
     private int _lastTime;
     @Nonnull
-    private SchedulerTask _task;
+    private Scheduler.Task _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int timeoutTime )
     {
@@ -73,7 +72,7 @@ final class TimeoutOperator<T>
     }
 
     @Nonnull
-    private SchedulerTask scheduleTimeout()
+    private Scheduler.Task scheduleTimeout()
     {
       return Spritz.scheduler().schedule( this, _lastTime + _timeoutTime );
     }

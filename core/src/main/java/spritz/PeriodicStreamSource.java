@@ -3,7 +3,6 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.schedulers.SchedulerTask;
 
 final class PeriodicStreamSource
   extends Stream<Integer>
@@ -31,7 +30,7 @@ final class PeriodicStreamSource
     private final int _period;
     private int _counter;
     @Nullable
-    private SchedulerTask _task;
+    private Scheduler.Task _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
     {

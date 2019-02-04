@@ -1,4 +1,4 @@
-package spritz.schedulers;
+package spritz;
 
 import javax.annotation.Nonnull;
 
@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
  *
  * <p>The scheduler has an internal clock that represents time as a monotonically increasing
  * <code>int</code> value. The value may or may not have a direct relationship to wall-clock
- * time and the unit of the value is defined by the implementation..</p>
+ * time and the unit of the value is defined by the implementation.</p>
  */
 public interface Scheduler
 {
@@ -24,20 +24,20 @@ public interface Scheduler
    *
    * @param task  the task to execute.
    * @param delay the delay before the task should execute.
-   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
+   * @return the {@link Task} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  SchedulerTask schedule( @Nonnull final Runnable task, final int delay );
+  Task schedule( @Nonnull final Runnable task, final int delay );
 
   /**
    * Schedules the periodic execution of the given task with specified period.
    *
    * @param task   the task to execute.
    * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
-   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
+   * @return the {@link Task} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
+  Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
 
   /**
    * Initiate an orderly shutdown of the scheduler.
@@ -48,4 +48,17 @@ public interface Scheduler
    * and will only be visible internally to the framework.</p>
    */
   void shutdown();
+
+  /**
+   * Interface to allow cancelling a queued task.
+   */
+  interface Task
+  {
+    /**
+     * Cancel the task.
+     * The task will not be triggered if it has not already been executed.
+     * This task should be cancelled at most once.
+     */
+    void cancel();
+  }
 }

@@ -2,8 +2,6 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.schedulers.Scheduler;
-import spritz.schedulers.SchedulerTask;
 
 abstract class AbstractThrottlingSubscription<T>
   extends AbstractOperatorSubscription<T>
@@ -12,7 +10,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Nullable
   private T _nextItem;
   @Nullable
-  private SchedulerTask _task;
+  private Scheduler.Task _task;
   private int _nextTaskTime;
   private boolean _pendingComplete;
 
