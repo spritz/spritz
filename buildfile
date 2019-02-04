@@ -3,7 +3,7 @@ require 'buildr/gpg'
 require 'buildr/single_intermediate_layout'
 require 'buildr/top_level_generate_dir'
 
-GWT_EXAMPLES=%w()
+GWT_EXAMPLES = %w()
 
 desc 'Spritz: A browser based, reactive event streaming library that is best used when coordinating events'
 define 'spritz' do
