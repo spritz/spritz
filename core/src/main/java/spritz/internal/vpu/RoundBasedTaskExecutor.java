@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.Spritz;
 import spritz.Task;
+import spritz.internal.util.CircularBuffer;
 import static org.realityforge.braincheck.Guards.*;
 
 /**
@@ -19,10 +20,10 @@ import static org.realityforge.braincheck.Guards.*;
 public final class RoundBasedTaskExecutor
 {
   /**
-   * The task queue.
+   * A queue containing tasks that have been scheduled but are not yet executing.
    */
   @Nonnull
-  private final TaskQueue _taskQueue;
+  private final CircularBuffer<Task> _taskQueue;
   /**
    * The maximum number of iterations that can be triggered in sequence without triggering an error. Set this
    * to 0 to disable check, otherwise trigger
@@ -37,11 +38,28 @@ public final class RoundBasedTaskExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  public RoundBasedTaskExecutor( @Nonnull final TaskQueue taskQueue, final int maxRounds )
+  public RoundBasedTaskExecutor( final int maxRounds )
   {
     assert maxRounds > 0;
-    _taskQueue = Objects.requireNonNull( taskQueue );
+    _taskQueue = new CircularBuffer<>( 100 );
     _maxRounds = maxRounds;
+  }
+
+  public int getTaskQueueSize()
+  {
+    return _taskQueue.size();
+  }
+
+  public void queue( @Nonnull final Task task )
+  {
+    if ( BrainCheckConfig.checkInvariants() )
+    {
+      invariant( () -> !_taskQueue.contains( task ),
+                 () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );
+    }
+    Objects.requireNonNull( task );
+    task.markAsQueued();
+    _taskQueue.add( task );
   }
 
   /**
@@ -76,7 +94,7 @@ public final class RoundBasedTaskExecutor
     // determine if we need any more rounds and if we do ensure
     if ( 0 == _remainingTasksInCurrentRound )
     {
-      final int pendingTasksCount = _taskQueue.getQueueSize();
+      final int pendingTasksCount = _taskQueue.size();
       if ( 0 == pendingTasksCount )
       {
         _currentRound = 0;
@@ -105,7 +123,7 @@ public final class RoundBasedTaskExecutor
      */
     _remainingTasksInCurrentRound--;
 
-    final Task task = _taskQueue.dequeue();
+    final Task task = _taskQueue.pop();
     assert null != task;
     task.executeTask();
     return true;
@@ -126,7 +144,7 @@ public final class RoundBasedTaskExecutor
     if ( Spritz.purgeTasksWhenRunawayDetected() )
     {
       Task task;
-      while ( null != ( task = _taskQueue.dequeue() ) )
+      while ( null != ( task = _taskQueue.pop() ) )
       {
         task.markAsIdle();
       }

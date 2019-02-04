@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 import spritz.Task;
 import spritz.VirtualProcessorUnit;
 import spritz.internal.vpu.RoundBasedTaskExecutor;
-import spritz.internal.vpu.TaskQueue;
 
 public class FakeExecutor
   implements VirtualProcessorUnit.Executor
@@ -16,8 +15,7 @@ public class FakeExecutor
   static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeExecutor( "VPU2" ) );
   static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeExecutor( "VPU3" ) );
   static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeExecutor( "VPU4" ) );
-  private final TaskQueue _taskQueue = new TaskQueue( 100 );
-  private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( _taskQueue, 100 );
+  private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( 100 );
   private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1, this::newThread );
   @Nonnull
   private final String _name;
@@ -44,11 +42,11 @@ public class FakeExecutor
   @Override
   public synchronized void queue( @Nonnull final Task task )
   {
-    if ( _taskQueue.isEmpty() )
+    if ( 0 == _executor.getTaskQueueSize() )
     {
       _executorService.schedule( this::activate, 0, TimeUnit.MILLISECONDS );
     }
-    _taskQueue.queue( task );
+    _executor.queue( task );
   }
 
   private synchronized void activate()
