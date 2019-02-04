@@ -28,6 +28,8 @@ complete as there is too much un-said.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
+* Figure out a way of making `Task.markAsIdle()` and `Task.markAsQueued()` not public and possibly removing `Task` altogether.
+
 ### Other Tasks
 
 * Change documentation categories and icons? to align with https://reactive.how/rxjs/
