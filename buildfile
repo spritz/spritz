@@ -31,6 +31,7 @@ define 'spritz' do
                  :elemental2_core,
                  :elemental2_dom,
                  :elemental2_promise
+    gwt_enhance(project)
 
     package(:jar)
     package(:sources)
