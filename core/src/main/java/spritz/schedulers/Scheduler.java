@@ -20,18 +20,6 @@ public interface Scheduler
   int now();
 
   /**
-   * Schedules the execution of the given task as soon as possible but still asynchronously.
-   *
-   * @param task the task to execute.
-   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
-   */
-  @Nonnull
-  default SchedulerTask schedule( @Nonnull final Runnable task )
-  {
-    return schedule( task, 0 );
-  }
-
-  /**
    * Schedules the execution of the given task after a specified delay.
    *
    * @param task  the task to execute.
@@ -39,10 +27,7 @@ public interface Scheduler
    * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default SchedulerTask schedule( @Nonnull final Runnable task, final int delay )
-  {
-    return schedule( task, delay, 0 );
-  }
+  SchedulerTask schedule( @Nonnull final Runnable task, final int delay );
 
   /**
    * Schedules the periodic execution of the given task with specified period.
@@ -52,22 +37,7 @@ public interface Scheduler
    * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
    */
   @Nonnull
-  default SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task,
-                                             final int period )
-  {
-    return schedule( task, 0, period );
-  }
-
-  /**
-   * Schedules the periodic execution of the given task with specified period, after a specified delay.
-   *
-   * @param task         the task to execute.
-   * @param initialDelay the initial delay before the task should execute.
-   * @param period       the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
-   * @return the {@link SchedulerTask} instance that can be used to cancel execution of task.
-   */
-  @Nonnull
-  SchedulerTask schedule( @Nonnull Runnable task, int initialDelay, int period );
+  SchedulerTask scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
 
   /**
    * Initiate an orderly shutdown of the scheduler.

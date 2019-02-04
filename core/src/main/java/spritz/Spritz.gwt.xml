@@ -1,5 +1,6 @@
 <module>
   <inherits name='org.realityforge.braincheck.BrainCheck'/>
+  <inherits name='elemental2.dom.Dom'/>
 
   <source path='' includes='*.java'/>
   <source path='schedulers' includes='*.java'/>
