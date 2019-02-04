@@ -1,4 +1,4 @@
-package spritz.internal.vpu.example;
+package spritz.examples;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -12,14 +12,13 @@ import spritz.internal.vpu.TaskQueue;
 public class FakeExecutor
   implements VirtualProcessorUnit.Executor
 {
-  public static VirtualProcessorUnit VPU1 = new VirtualProcessorUnit( new FakeExecutor( "VPU1" ) );
-  public static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeExecutor( "VPU2" ) );
-  public static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeExecutor( "VPU3" ) );
-  public static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeExecutor( "VPU4" ) );
+  static VirtualProcessorUnit VPU1 = new VirtualProcessorUnit( new FakeExecutor( "VPU1" ) );
+  static VirtualProcessorUnit VPU2 = new VirtualProcessorUnit( new FakeExecutor( "VPU2" ) );
+  static VirtualProcessorUnit VPU3 = new VirtualProcessorUnit( new FakeExecutor( "VPU3" ) );
+  static VirtualProcessorUnit VPU4 = new VirtualProcessorUnit( new FakeExecutor( "VPU4" ) );
   private final TaskQueue _taskQueue = new TaskQueue( 100 );
   private final RoundBasedTaskExecutor _executor = new RoundBasedTaskExecutor( _taskQueue, 100 );
-  private final ScheduledExecutorService _executorService =
-    new ScheduledThreadPoolExecutor( 1, this::newThread );
+  private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1, this::newThread );
   @Nonnull
   private final String _name;
 

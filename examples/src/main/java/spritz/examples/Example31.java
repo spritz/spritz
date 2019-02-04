@@ -2,7 +2,6 @@ package spritz.examples;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import spritz.Stream;
-import spritz.internal.vpu.example.FakeExecutor;
 
 public class Example31
 {
