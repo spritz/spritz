@@ -97,7 +97,6 @@ define 'spritz' do
 
   generate_overview(project)
   cleanup_javadocs(project, 'spritz')
-  #gwt_enhance(project)
 
   ipr.extra_modules << 'support/processor/processor.iml'
   iml.excluded_directories << project._('tmp')
