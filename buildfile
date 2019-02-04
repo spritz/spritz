@@ -3,6 +3,8 @@ require 'buildr/gpg'
 require 'buildr/single_intermediate_layout'
 require 'buildr/top_level_generate_dir'
 
+GWT_EXAMPLES=%w()
+
 desc 'Spritz: A browser based, reactive event streaming library that is best used when coordinating events'
 define 'spritz' do
   project.group = 'org.realityforge.spritz'
@@ -55,6 +57,14 @@ define 'spritz' do
   define 'examples' do
     compile.with project('core').package(:jar),
                  project('core').compile.dependencies
+
+    gwt_modules = {}
+    GWT_EXAMPLES.each do |gwt_module|
+      gwt_modules[gwt_module] = false
+    end
+    iml.add_gwt_facet(gwt_modules,
+                      :settings => { :compilerMaxHeapSize => '1024' },
+                      :gwt_dev_artifact => :gwt_dev)
   end
 
   desc 'Spritz Support Annotation processor'
@@ -105,6 +115,17 @@ define 'spritz' do
 
   ipr.extra_modules << 'support/processor/processor.iml'
   iml.excluded_directories << project._('tmp')
+
+  GWT_EXAMPLES.each do |gwt_module|
+    short_name = gwt_module.gsub(/.*\./, '')
+    ipr.add_gwt_configuration(project,
+                              :iml_name => 'example',
+                              :name => short_name,
+                              :gwt_module => gwt_module,
+                              :start_javascript_debugger => false,
+                              :vm_parameters => "-Xmx3G -Djava.io.tmpdir=#{_("tmp/gwt/#{short_name}")}",
+                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', short_name)}/")
+  end
 
   ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources')
 
