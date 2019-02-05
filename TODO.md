@@ -8,8 +8,6 @@ complete as there is too much un-said.
 
 * Remove `spritz.Spritz.shutdown()` and `spritz.Scheduler.shutdown()` in favour of some better approach.
 
-* Introduce the `spritz.SpritzTestUtil` class that clears/resets scheduler and compile time settings as appropriate.
-
 * Add `Elemental2` specific sources and sinks.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.

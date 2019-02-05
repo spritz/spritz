@@ -12,12 +12,14 @@ public abstract class AbstractSpritzTest
   protected void beforeTest()
   {
     BrainCheckTestUtil.resetConfig( false );
+    SpritzTestUtil.resetConfig( false );
   }
 
   @AfterMethod
   protected void afterTest()
   {
     BrainCheckTestUtil.resetConfig( true );
+    SpritzTestUtil.resetConfig( true );
   }
 
   final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable, @Nonnull final String message )

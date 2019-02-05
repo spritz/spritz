@@ -115,7 +115,7 @@ define 'spritz' do
                               :launch_page => "http://127.0.0.1:8888/#{gwt_module}/")
   end
 
-  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources')
+  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources')
 
   ipr.add_component_from_artifact(:idea_codestyle)
 end
