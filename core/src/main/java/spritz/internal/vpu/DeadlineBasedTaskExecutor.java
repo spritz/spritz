@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 /**
  * This executor runs tasks until a deadline has been reached.
  */
-final class DeadlineBasedTaskExecutor
+abstract class DeadlineBasedTaskExecutor
   extends AbstractExecutor
 {
   @FunctionalInterface
@@ -32,13 +32,13 @@ final class DeadlineBasedTaskExecutor
   void runTasks( @Nullable final DeadlineFunction function )
   {
     int queueSize;
-    while ( 0 != ( queueSize = getTaskQueueSize() ) && !shouldYield( function, 1 ) )
+    while ( 0 != ( queueSize = getQueueSize() ) && !shouldYield( function, 1 ) )
     {
       executeNextTask();
     }
     if ( 0 != queueSize )
     {
-      //TODO: Reschedule?
+      scheduleForActivation();
     }
   }
 }

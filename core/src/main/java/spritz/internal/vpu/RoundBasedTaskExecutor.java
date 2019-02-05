@@ -2,6 +2,7 @@ package spritz.internal.vpu;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.Spritz;
 import spritz.Task;
@@ -17,6 +18,7 @@ import static org.realityforge.braincheck.Guards.*;
 public final class RoundBasedTaskExecutor
   extends AbstractExecutor
 {
+  private static final int DEFAULT_MAX_ROUNDS = 100;
   /**
    * The maximum number of iterations that can be triggered in sequence without triggering an error. Set this
    * to 0 to disable check, otherwise trigger
@@ -31,7 +33,12 @@ public final class RoundBasedTaskExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  public RoundBasedTaskExecutor( final int maxRounds )
+  public RoundBasedTaskExecutor()
+  {
+    this( DEFAULT_MAX_ROUNDS );
+  }
+
+  private RoundBasedTaskExecutor( final int maxRounds )
   {
     assert maxRounds > 0;
     _maxRounds = maxRounds;
@@ -40,7 +47,7 @@ public final class RoundBasedTaskExecutor
   /**
    * Run tasks until complete or runaway tasks detected.
    */
-  public void executeTasks()
+  private void executeTasks()
   {
     while ( true )
     {
@@ -128,5 +135,36 @@ public final class RoundBasedTaskExecutor
       fail( () -> "Spritz-0101: Runaway task(s) detected. Tasks still running after " + _maxRounds +
                   " rounds. Current tasks include: " + taskNames );
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final synchronized void queue( @Nonnull final Task task )
+  {
+    if ( 0 == getQueueSize() )
+    {
+      scheduleForActivation();
+    }
+    super.queue( task );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected final void scheduleForActivation()
+  {
+    Spritz.scheduler().schedule( this::activate, 0 );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected final synchronized void activate()
+  {
+    context().activate( this::executeTasks );
   }
 }
