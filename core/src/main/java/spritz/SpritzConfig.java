@@ -9,6 +9,7 @@ final class SpritzConfig
 {
   private static final ConfigProvider PROVIDER = new ConfigProvider();
   private static final boolean PRODUCTION_MODE = PROVIDER.isProductionMode();
+  private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
   private static boolean VALIDATE_SUBSCRIPTIONS = PROVIDER.shouldValidateSubscriptions();
 
   private SpritzConfig()
@@ -18,6 +19,11 @@ final class SpritzConfig
   static boolean isProductionMode()
   {
     return PRODUCTION_MODE;
+  }
+
+  static boolean purgeTasksWhenRunawayDetected()
+  {
+    return PURGE_ON_RUNAWAY;
   }
 
   static boolean shouldValidateSubscriptions()
@@ -37,6 +43,13 @@ final class SpritzConfig
 
     @GwtIncompatible
     @Override
+    boolean purgeTasksWhenRunawayDetected()
+    {
+      return "true".equals( System.getProperty( "spritz.purge_tasks_when_runaway_detected", "true" ) );
+    }
+
+    @GwtIncompatible
+    @Override
     boolean shouldValidateSubscriptions()
     {
       return "true".equals( System.getProperty( "spritz.validate_subscriptions",
@@ -50,6 +63,11 @@ final class SpritzConfig
     boolean isProductionMode()
     {
       return "production" == System.getProperty( "spritz.environment" );
+    }
+
+    boolean purgeTasksWhenRunawayDetected()
+    {
+      return "true" == System.getProperty( "spritz.purge_tasks_when_runaway_detected" );
     }
 
     boolean shouldValidateSubscriptions()

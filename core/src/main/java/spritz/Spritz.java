@@ -17,7 +17,7 @@ public final class Spritz
 
   public static boolean purgeTasksWhenRunawayDetected()
   {
-    return false;
+    return SpritzConfig.purgeTasksWhenRunawayDetected();
   }
 
   /**

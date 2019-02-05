@@ -13,6 +13,9 @@
   <define-property name='spritz.environment' values='development,production'/>
   <set-property name='spritz.environment' value='production'/>
 
+  <define-property name='spritz.purge_tasks_when_runaway_detected' values='true,false'/>
+  <set-property name='spritz.purge_tasks_when_runaway_detected' value='true'/>
+
   <define-property name='spritz.validate_subscriptions' values='true,false'/>
   <set-property name='spritz.validate_subscriptions' value='false'/>
 </module>
