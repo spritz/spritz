@@ -23,7 +23,7 @@ final class SchedulerHolder
     return c_scheduler;
   }
 
-  static void shutdown()
+  static void reset()
   {
     c_scheduler.shutdown();
     c_scheduler = new SchedulerImpl();

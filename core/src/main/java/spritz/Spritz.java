@@ -36,6 +36,6 @@ public final class Spritz
    */
   public static void shutdown()
   {
-    SchedulerHolder.shutdown();
+    SchedulerHolder.reset();
   }
 }
