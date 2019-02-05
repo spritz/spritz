@@ -6,8 +6,6 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
-* Remove `spritz.Spritz.shutdown()` and `spritz.Scheduler.shutdown()` in favour of some better approach.
-
 * Add `Elemental2` specific sources and sinks.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.

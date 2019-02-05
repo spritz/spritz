@@ -30,12 +30,4 @@ public final class Spritz
   {
     return SchedulerHolder.scheduler();
   }
-
-  /**
-   * Shutdown the spritz scheduler and cancel any inactive tasks.
-   */
-  public static void shutdown()
-  {
-    SchedulerHolder.reset();
-  }
 }

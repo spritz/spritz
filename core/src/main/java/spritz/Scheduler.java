@@ -40,16 +40,6 @@ public interface Scheduler
   Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
 
   /**
-   * Initiate an orderly shutdown of the scheduler.
-   * No new tasks will be accepted but previously submitted tasks may be completed
-   * depending on the policy of the underlying scheduler.
-   *
-   * <p>Note: It is expected that this will be eliminated from the public interface exposed to user code
-   * and will only be visible internally to the framework.</p>
-   */
-  void shutdown();
-
-  /**
    * Interface to allow cancelling a queued task.
    */
   interface Task

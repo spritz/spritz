@@ -11,7 +11,7 @@ import spritz.internal.annotations.GwtIncompatible;
 final class SchedulerHolder
 {
   @Nonnull
-  private static Scheduler c_scheduler = new SchedulerImpl();
+  private static AbstractScheduler c_scheduler = new SchedulerImpl();
 
   private SchedulerHolder()
   {
@@ -35,12 +35,8 @@ final class SchedulerHolder
     @GwtIncompatible
     private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1 );
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     @GwtIncompatible
-    public void shutdown()
+    void shutdown()
     {
       _executorService.shutdown();
     }
@@ -75,11 +71,7 @@ final class SchedulerHolder
       return _schedulerStart;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void shutdown()
+    void shutdown()
     {
     }
 

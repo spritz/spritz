@@ -21,13 +21,8 @@ public class Example29
         }
         s.complete();
       } );
-    source.take( 2 ).afterTerminate( Example29::terminateScheduler ).subscribe( new LoggingSubscriber<>() );
+    source.take( 2 ).subscribe( new LoggingSubscriber<>() );
     System.out.println( "Second Materialization of Source" );
-    source.afterTerminate( Example29::terminateScheduler ).subscribe( new LoggingSubscriber<>() );
-  }
-
-  private static void terminateScheduler()
-  {
-    new Thread( Spritz::shutdown ).run();
+    ExampleUtil.run( source );
   }
 }
