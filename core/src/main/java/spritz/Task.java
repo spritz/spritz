@@ -37,7 +37,7 @@ public final class Task
   /**
    * Execute the work associated with the task.
    */
-  public void executeTask()
+  void executeTask()
   {
     // It is possible that the task was executed outside the executor and
     // may no longer need to be executed. This particularly true when executing tasks
@@ -68,7 +68,7 @@ public final class Task
    * Mark task as being queued, first verifying that it is not already queued.
    * This is used so that task will not be able to be queued again until it has run.
    */
-  public void markAsQueued()
+  void markAsQueued()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
@@ -81,7 +81,7 @@ public final class Task
   /**
    * Clear the queued flag, first verifying that the task is queued.
    */
-  public void markAsIdle()
+  void markAsIdle()
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
