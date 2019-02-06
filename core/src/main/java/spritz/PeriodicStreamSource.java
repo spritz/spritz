@@ -40,7 +40,7 @@ final class PeriodicStreamSource
 
     void startTimer()
     {
-      _task = Spritz.scheduler().scheduleAtFixedRate( this::pushItem, _period );
+      _task = Scheduler.instance().scheduleAtFixedRate( this::pushItem, _period );
     }
 
     void pushItem()

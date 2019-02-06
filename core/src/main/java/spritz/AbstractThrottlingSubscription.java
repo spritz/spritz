@@ -22,7 +22,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Override
   public final void onNext( @Nonnull final T item )
   {
-    final int now = Spritz.scheduler().now();
+    final int now = Scheduler.instance().now();
 
     /*
      * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
@@ -120,7 +120,7 @@ abstract class AbstractThrottlingSubscription<T>
   final void scheduleTask( final int delay )
   {
     assert delay > 0;
-    final Scheduler scheduler = Spritz.scheduler();
+    final Scheduler scheduler = Scheduler.instance();
     _task = scheduler.schedule( this, delay );
     _nextTaskTime = scheduler.now() + delay;
   }

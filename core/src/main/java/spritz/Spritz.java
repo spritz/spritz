@@ -1,6 +1,5 @@
 package spritz;
 
-import javax.annotation.Nonnull;
 import spritz.internal.annotations.MetaDataSource;
 
 @MetaDataSource
@@ -18,16 +17,5 @@ public final class Spritz
   public static boolean purgeTasksWhenRunawayDetected()
   {
     return SpritzConfig.purgeTasksWhenRunawayDetected();
-  }
-
-  /**
-   * Return the spritz scheduler.
-   *
-   * @return the spritz scheduler.
-   */
-  @Nonnull
-  public static Scheduler scheduler()
-  {
-    return SchedulerHolder.scheduler();
   }
 }

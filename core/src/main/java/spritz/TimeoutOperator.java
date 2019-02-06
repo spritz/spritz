@@ -68,13 +68,13 @@ final class TimeoutOperator<T>
 
     private void recordLastTime()
     {
-      _lastTime = Spritz.scheduler().now();
+      _lastTime = Scheduler.instance().now();
     }
 
     @Nonnull
     private Scheduler.Task scheduleTimeout()
     {
-      return Spritz.scheduler().schedule( this, _lastTime + _timeoutTime );
+      return Scheduler.instance().schedule( this, _lastTime + _timeoutTime );
     }
   }
 }

@@ -12,6 +12,6 @@ final class MacroTaskExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    Spritz.scheduler().schedule( () -> context().activate( this::executeTasks ), 0 );
+    Scheduler.instance().schedule( () -> context().activate( this::executeTasks ), 0 );
   }
 }

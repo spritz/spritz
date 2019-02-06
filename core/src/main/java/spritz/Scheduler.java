@@ -13,6 +13,17 @@ import javax.annotation.Nonnull;
 public interface Scheduler
 {
   /**
+   * Return the spritz scheduler.
+   *
+   * @return the spritz scheduler.
+   */
+  @Nonnull
+  static Scheduler instance()
+  {
+    return SchedulerHolder.scheduler();
+  }
+
+  /**
    * Return a value representing the "current time" of the scheduler.
    *
    * @return the "current time" of the scheduler.
