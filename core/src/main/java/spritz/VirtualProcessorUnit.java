@@ -34,7 +34,7 @@ public final class VirtualProcessorUnit
   @Nonnull
   public static VirtualProcessorUnit current()
   {
-    return VirtualProcessorUnitHolder.current();
+    return VirtualProcessorUnitCurrentHolder.current();
   }
 
   /**
@@ -64,14 +64,14 @@ public final class VirtualProcessorUnit
    */
   private synchronized void activate( @Nonnull final ActivationFn activationFn )
   {
-    VirtualProcessorUnitHolder.activate( this );
+    VirtualProcessorUnitCurrentHolder.activate( this );
     try
     {
       activationFn.invoke();
     }
     finally
     {
-      VirtualProcessorUnitHolder.deactivate( this );
+      VirtualProcessorUnitCurrentHolder.deactivate( this );
     }
   }
 

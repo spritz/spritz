@@ -11,12 +11,12 @@ import static org.realityforge.braincheck.Guards.*;
  * This is extracted to a separate class to eliminate the <clinit> from {@link VirtualProcessorUnit} and thus
  * make it much easier for GWT to optimize out code based on build time compilation parameters.
  */
-final class VirtualProcessorUnitHolder
+final class VirtualProcessorUnitCurrentHolder
 {
   @Nullable
   private static VirtualProcessorUnit c_current = null;
 
-  private VirtualProcessorUnitHolder()
+  private VirtualProcessorUnitCurrentHolder()
   {
   }
 
