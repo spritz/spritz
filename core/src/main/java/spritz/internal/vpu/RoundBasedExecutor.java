@@ -15,7 +15,7 @@ import static org.realityforge.braincheck.Guards.*;
  * one or more tasks being scheduled. The executor may have a round budget and if it exceeds the round budget
  * will stop running tasks and optionally emptying the task queue.
  */
-public final class RoundBasedExecutor
+public abstract class RoundBasedExecutor
   extends AbstractExecutor
 {
   private static final int DEFAULT_MAX_ROUNDS = 100;
@@ -47,7 +47,7 @@ public final class RoundBasedExecutor
   /**
    * Run tasks until complete or runaway tasks detected.
    */
-  private void executeTasks()
+  void executeTasks()
   {
     while ( true )
     {
@@ -148,14 +148,5 @@ public final class RoundBasedExecutor
       scheduleForActivation();
     }
     super.queue( task );
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  protected final void scheduleForActivation()
-  {
-    Spritz.scheduler().schedule( () -> context().activate( this::executeTasks ), 0 );
   }
 }
