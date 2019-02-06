@@ -27,7 +27,7 @@ complete as there is too much un-said.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
-* Figure out a way of making `Task.markAsIdle()` and `Task.markAsQueued()` not public and possibly removing `Task` altogether.
+* Consider removing `Task` from the public API.
 
 ### Other Tasks
 
