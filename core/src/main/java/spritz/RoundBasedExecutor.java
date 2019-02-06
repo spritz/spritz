@@ -1,11 +1,9 @@
-package spritz.internal.vpu;
+package spritz;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import spritz.Spritz;
-import spritz.Task;
 import static org.realityforge.braincheck.Guards.*;
 
 /**
@@ -15,7 +13,7 @@ import static org.realityforge.braincheck.Guards.*;
  * one or more tasks being scheduled. The executor may have a round budget and if it exceeds the round budget
  * will stop running tasks and optionally emptying the task queue.
  */
-public abstract class RoundBasedExecutor
+abstract class RoundBasedExecutor
   extends AbstractExecutor
 {
   private static final int DEFAULT_MAX_ROUNDS = 100;
@@ -33,7 +31,7 @@ public abstract class RoundBasedExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  public RoundBasedExecutor()
+  RoundBasedExecutor()
   {
     this( DEFAULT_MAX_ROUNDS );
   }

@@ -1,11 +1,11 @@
-package spritz.internal.vpu;
+package spritz;
 
 import elemental2.promise.Promise;
 
 /**
  * Run tasks in next MicroTask.
  */
-public final class MicroTaskExecutor
+final class MicroTaskExecutor
   extends RoundBasedExecutor
 {
   /**

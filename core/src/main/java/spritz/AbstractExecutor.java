@@ -1,4 +1,4 @@
-package spritz.internal.vpu;
+package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
@@ -12,7 +12,7 @@ import static org.realityforge.braincheck.Guards.*;
 /**
  * Base executor which other executors can extend.
  */
-public abstract class AbstractExecutor
+abstract class AbstractExecutor
   implements VirtualProcessorUnit.Executor
 {
   /**

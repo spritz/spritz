@@ -1,4 +1,4 @@
-package spritz.internal.vpu;
+package spritz;
 
 import javax.annotation.Nullable;
 
@@ -9,7 +9,7 @@ abstract class DeadlineBasedExecutor
   extends AbstractExecutor
 {
   @FunctionalInterface
-  public interface DeadlineFunction
+  interface DeadlineFunction
   {
     int getTimeRemaining();
   }

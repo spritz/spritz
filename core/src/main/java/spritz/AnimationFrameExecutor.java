@@ -1,11 +1,11 @@
-package spritz.internal.vpu;
+package spritz;
 
 import elemental2.dom.DomGlobal;
 
 /**
  * Run tasks in next AnimationFrame.
  */
-public final class AnimationFrameExecutor
+final class AnimationFrameExecutor
   extends RoundBasedExecutor
 {
   /**

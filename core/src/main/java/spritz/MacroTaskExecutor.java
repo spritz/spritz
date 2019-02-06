@@ -1,11 +1,9 @@
-package spritz.internal.vpu;
-
-import spritz.Spritz;
+package spritz;
 
 /**
  * Run tasks in next MacroTask.
  */
-public final class MacroTaskExecutor
+final class MacroTaskExecutor
   extends RoundBasedExecutor
 {
   /**
