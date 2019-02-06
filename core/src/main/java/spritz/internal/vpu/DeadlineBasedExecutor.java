@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 /**
  * This executor runs tasks until a deadline has been reached.
  */
-abstract class DeadlineBasedTaskExecutor
+abstract class DeadlineBasedExecutor
   extends AbstractExecutor
 {
   @FunctionalInterface

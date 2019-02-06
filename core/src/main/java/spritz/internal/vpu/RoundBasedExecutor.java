@@ -15,7 +15,7 @@ import static org.realityforge.braincheck.Guards.*;
  * one or more tasks being scheduled. The executor may have a round budget and if it exceeds the round budget
  * will stop running tasks and optionally emptying the task queue.
  */
-public final class RoundBasedTaskExecutor
+public final class RoundBasedExecutor
   extends AbstractExecutor
 {
   private static final int DEFAULT_MAX_ROUNDS = 100;
@@ -33,12 +33,12 @@ public final class RoundBasedTaskExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  public RoundBasedTaskExecutor()
+  public RoundBasedExecutor()
   {
     this( DEFAULT_MAX_ROUNDS );
   }
 
-  private RoundBasedTaskExecutor( final int maxRounds )
+  private RoundBasedExecutor( final int maxRounds )
   {
     assert maxRounds > 0;
     _maxRounds = maxRounds;
