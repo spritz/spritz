@@ -82,7 +82,7 @@ public final class VirtualProcessorUnit
    * and the executor is responsible for selecting and executing tasks until it decides to return control
    * to the {@link VirtualProcessorUnit}.
    */
-  public interface Executor
+  interface Executor
   {
     /**
      * Initialize the executor passing in the context associated with the underlying {@link VirtualProcessorUnit}.
@@ -101,7 +101,7 @@ public final class VirtualProcessorUnit
   }
 
   @FunctionalInterface
-  public interface ActivationFn
+  interface ActivationFn
   {
     /**
      * Callback method invoked by {@link Context#activate(ActivationFn)} to process tasks.
@@ -114,7 +114,7 @@ public final class VirtualProcessorUnit
    * This interface is designed to allow the {@link Executor} to activate the {@link VirtualProcessorUnit}
    * when it needs to execute tasks.
    */
-  public interface Context
+  interface Context
   {
     /**
      * Activate the associated {@link VirtualProcessorUnit}.
