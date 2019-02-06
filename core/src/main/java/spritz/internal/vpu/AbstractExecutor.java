@@ -75,11 +75,6 @@ public abstract class AbstractExecutor
   }
 
   /**
-   * Perform the activation and execute tasks as required.
-   */
-  protected abstract void activate();
-
-  /**
    * Mark executor as ready for activation.
    * This typically means scheduling Executor to call activate on the correct VPU.
    */

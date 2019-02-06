@@ -38,6 +38,7 @@ abstract class DeadlineBasedTaskExecutor
     }
     if ( 0 != queueSize )
     {
+      //TODO: Or maybe repeat by default and just skip cancelling?
       scheduleForActivation();
     }
   }

@@ -156,15 +156,6 @@ public final class RoundBasedTaskExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    Spritz.scheduler().schedule( this::activate, 0 );
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  protected final synchronized void activate()
-  {
-    context().activate( this::executeTasks );
+    Spritz.scheduler().schedule( () -> context().activate( this::executeTasks ), 0 );
   }
 }
