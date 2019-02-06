@@ -20,6 +20,9 @@ complete as there is too much un-said.
   Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can
   be prioritized or not. Activation can drain queue or tun till deadline.
 
+* Tasks executed by the scheduler should have their own VPU. The VPU will allow the addition of tasks but
+  disallow scheduling when the VPU is not active.
+
 * Add annotation and enhance processor so that VPUs are included in the documentation.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
