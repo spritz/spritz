@@ -62,7 +62,7 @@ public final class VirtualProcessorUnit
    * @param activationFn the activation function.
    * @see Context#activate(ActivationFn)
    */
-  private void activate( @Nonnull final ActivationFn activationFn )
+  private synchronized void activate( @Nonnull final ActivationFn activationFn )
   {
     VirtualProcessorUnitHolder.activate( this );
     try
