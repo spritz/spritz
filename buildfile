@@ -70,7 +70,6 @@ define 'spritz' do
     test.with :compile_testing,
               :junit,
               :hamcrest_core,
-              Java.tools_jar,
               :truth
 
     test.compile.enhance(['copy-annotations'])
