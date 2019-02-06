@@ -38,6 +38,45 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Return the VirtualProcessorUnit that executes "macro" tasks.
+   * This is the default VPU in the browser and indicates tasks that are scheduled via a
+   * call to <code>setTimeout(callback,0)</code>.
+   *
+   * @return the macro VirtualProcessorUnit.
+   */
+  @Nonnull
+  public static VirtualProcessorUnit macroTask()
+  {
+    return VirtualProcessorUnitsHolder.macroTask();
+  }
+
+  /**
+   * Return the VirtualProcessorUnit that executes "micro" tasks.
+   * The "micro" tasks are those that the browser executes after the current "macro" or "micro" task.
+   * This VPU schedules an activation via a call to {@code new Promise().then( v -> callback() )}.
+   *
+   * @return the macro VirtualProcessorUnit.
+   */
+  @Nonnull
+  public static VirtualProcessorUnit microTask()
+  {
+    return VirtualProcessorUnitsHolder.microTask();
+  }
+
+  /**
+   * Return the VirtualProcessorUnit that executes "animationFrame" tasks.
+   * The "animationFrame" tasks are invoked prior to the next frames render.
+   * This VPU schedules an activation via a call to <code>requestAnimationFrame( callback )</code>.
+   *
+   * @return the macro VirtualProcessorUnit.
+   */
+  @Nonnull
+  public static VirtualProcessorUnit animationFrame()
+  {
+    return VirtualProcessorUnitsHolder.animationFrame();
+  }
+
+  /**
    * Queue the specified task for execution and enable the VirtualProcessorUnit for activation if necessary.
    * The task must not be already queued.
    *

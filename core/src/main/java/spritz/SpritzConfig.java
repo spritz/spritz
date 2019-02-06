@@ -21,6 +21,11 @@ final class SpritzConfig
     return PRODUCTION_MODE;
   }
 
+  static boolean isJvm()
+  {
+    return true;
+  }
+
   static boolean purgeTasksWhenRunawayDetected()
   {
     return PURGE_ON_RUNAWAY;
