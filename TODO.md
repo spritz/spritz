@@ -29,6 +29,8 @@ complete as there is too much un-said.
 
 * Consider removing `Task` from the public API.
 
+* Consider replacing `Subscription` and `Scheduler.Task` with `Cancelable` interface.
+
 ### Other Tasks
 
 * Change documentation categories and icons? to align with https://reactive.how/rxjs/
