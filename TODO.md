@@ -8,6 +8,8 @@ complete as there is too much un-said.
 
 * Add `Elemental2` specific sources and sinks.
 
+* Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
+
 * Add optional name to VPU when naming is enabled so it is easy to perform debugging.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
