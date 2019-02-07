@@ -31,6 +31,12 @@ final class VirtualProcessorUnitsHolder
     return AnimationFrameVPU.VPU;
   }
 
+  @Nonnull
+  static VirtualProcessorUnit afterFrame()
+  {
+    return AfterFrameVPU.VPU;
+  }
+
   private static final class MacroTaskVPU
   {
     private MacroTaskVPU()
@@ -61,5 +67,16 @@ final class VirtualProcessorUnitsHolder
     @Nonnull
     private static final VirtualProcessorUnit VPU =
       new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AnimationFrameExecutor() );
+  }
+
+  private static final class AfterFrameVPU
+  {
+    private AfterFrameVPU()
+    {
+    }
+
+    @Nonnull
+    private static final VirtualProcessorUnit VPU =
+      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AfterFrameExecutor() );
   }
 }

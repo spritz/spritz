@@ -77,6 +77,19 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Return the VirtualProcessorUnit that executes tasks after the next browser render.
+   * The "afterFrame" tasks are invoked after the next frames render by responding to a message on a
+   * MessageChannel that is sent in {@code requestAnimationFrame()}.
+   *
+   * @return the macro VirtualProcessorUnit.
+   */
+  @Nonnull
+  public static VirtualProcessorUnit afterFrame()
+  {
+    return VirtualProcessorUnitsHolder.afterFrame();
+  }
+
+  /**
    * Queue the specified task for execution and enable the VirtualProcessorUnit for activation if necessary.
    * The task must not be already queued.
    *
