@@ -8,6 +8,8 @@ import javax.annotation.Nullable;
 abstract class DeadlineBasedExecutor
   extends AbstractExecutor
 {
+  private static final int MIN_TASK_TIME = 1;
+
   @FunctionalInterface
   interface DeadlineFunction
   {
@@ -18,21 +20,20 @@ abstract class DeadlineBasedExecutor
    * Returns true if the executor should yield and return control to invoker.
    *
    * @param function    the function that specifies deadline, if any.
-   * @param minTaskTime the minimum task time in milliseconds.
    * @return true to yield to caller, false to continue executing tasks.
    */
-  private boolean shouldYield( @Nullable final DeadlineFunction function, final int minTaskTime )
+  private boolean shouldYield( @Nullable final DeadlineFunction function )
   {
-    return null != function && function.getTimeRemaining() <= minTaskTime;
+    return null != function && function.getTimeRemaining() <= MIN_TASK_TIME;
   }
 
   /**
    * Run tasks until deadline exceeded or all tasks completed.
    */
-  void runTasks( @Nullable final DeadlineFunction function )
+  void executeTasks( @Nullable final DeadlineFunction function )
   {
     int queueSize;
-    while ( 0 != ( queueSize = getQueueSize() ) && !shouldYield( function, 1 ) )
+    while ( 0 != ( queueSize = getQueueSize() ) && !shouldYield( function ) )
     {
       executeNextTask();
     }
