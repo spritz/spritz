@@ -14,10 +14,6 @@ final class AnimationFrameExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    int[] frame = new int[ 1 ];
-    frame[ 0 ] = DomGlobal.requestAnimationFrame( v -> {
-      context().activate( this::executeTasks );
-      DomGlobal.cancelAnimationFrame( frame[ 0 ] );
-    } );
+    DomGlobal.requestAnimationFrame( v -> context().activate( this::executeTasks ) );
   }
 }
