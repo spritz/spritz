@@ -29,6 +29,8 @@ complete as there is too much un-said.
 
 * https://github.com/spanicker/main-thread-scheduling
 
+* https://github.com/facebook/react/blob/master/packages/scheduler/src/Scheduler.js
+
 * Enhance scheduler so that it can schedule based on user priority/deadline as well as delay and/or period.
   These priorities indicate when the task will be executed. By default the task may be scheduled via as an
   idle task but as it approaches the deadline then it is moved to macroTask. The priorities out of react's
