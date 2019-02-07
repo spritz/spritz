@@ -14,9 +14,6 @@ complete as there is too much un-said.
 
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
-* Build different VPUs in Elemental2 module such as:
-  - Idle `requestIdleCallback( mycallback )`
-
 * Tasks executed by the scheduler should have their own VPU. The VPU will allow the addition of tasks but
   disallow scheduling when the VPU is not active.
 

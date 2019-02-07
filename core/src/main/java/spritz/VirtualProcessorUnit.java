@@ -90,6 +90,23 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Return the VirtualProcessorUnit that executes tasks when the browser is idle.
+   * The browser activates the onIdle VirtualProcessorUnit when idle and will pass the
+   * duration for which the VPU may run. The VPU will execute tasks as long as there is tasks
+   * queued and the deadline has not been reached after which the VPU will return control to the
+   * browser. Unlike other VPUs, when the onIdle VirtualProcessorUnit completes the activation, there
+   * may still be tasks in the queue and if there is the VPU will re-schedule itself for another activation.
+   * This VPU schedules an activation via a call to <code>requestIdleCallback( callback )</code>.
+   *
+   * @return the macro VirtualProcessorUnit.
+   */
+  @Nonnull
+  public static VirtualProcessorUnit onIdle()
+  {
+    return VirtualProcessorUnitsHolder.onIdle();
+  }
+
+  /**
    * Queue the specified task for execution and enable the VirtualProcessorUnit for activation if necessary.
    * The task must not be already queued.
    *

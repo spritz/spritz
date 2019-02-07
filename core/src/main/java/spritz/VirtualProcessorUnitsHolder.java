@@ -37,6 +37,12 @@ final class VirtualProcessorUnitsHolder
     return AfterFrameVPU.VPU;
   }
 
+  @Nonnull
+  static VirtualProcessorUnit onIdle()
+  {
+    return OnIdleVPU.VPU;
+  }
+
   private static final class MacroTaskVPU
   {
     private MacroTaskVPU()
@@ -78,5 +84,16 @@ final class VirtualProcessorUnitsHolder
     @Nonnull
     private static final VirtualProcessorUnit VPU =
       new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AfterFrameExecutor() );
+  }
+
+  private static final class OnIdleVPU
+  {
+    private OnIdleVPU()
+    {
+    }
+
+    @Nonnull
+    private static final VirtualProcessorUnit VPU =
+      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new OnIdleExecutor() );
   }
 }
