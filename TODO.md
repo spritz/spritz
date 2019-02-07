@@ -11,14 +11,7 @@ complete as there is too much un-said.
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
 * Build different VPUs in Elemental2 module such as:
-  - Primary (a.k.a `setTimeout(mycallback,0)` on web)
-  - Microtask - via promise microtask
   - Idle `requestIdleCallback( mycallback )`
-  - Animation `requestAnimationFrame( mycallback )`
-  - AfterFrame (i.e. `requestAnimationFrame( () -> setTimeout( mycallback, 0 ))`. See Arez TODO.
-
-  Each VPU has a task queue and a strategy for selecting items off queue each activation. i.e. TaskQueue can
-  be prioritized or not. Activation can drain queue or tun till deadline.
 
 * Tasks executed by the scheduler should have their own VPU. The VPU will allow the addition of tasks but
   disallow scheduling when the VPU is not active.
