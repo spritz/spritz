@@ -1232,6 +1232,35 @@ public abstract class Stream<T>
   }
 
   /**
+   * When an upstream emits an error then re-subscribe to upstream rather than emitting an error to downstream.
+   * This recovery process will occur up to {@code maxErrorCount} times.
+   *
+   * @param maxErrorCount the maximum number of times to try and re-susbcribe to upstream.
+   * @return the new stream.
+   * @see #repeat()
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> repeat( final int maxErrorCount )
+  {
+    final int[] state = new int[]{ maxErrorCount };
+    return onErrorResumeWith( e -> ( --state[ 0 ] ) >= 0 ? this : null );
+  }
+
+  /**
+   * When an upstream emits an error then re-subscribe to upstream rather than emitting an error to downstream.
+   *
+   * @return the new stream.
+   * @see #repeat(int)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> repeat()
+  {
+    return repeat( Integer.MAX_VALUE );
+  }
+
+  /**
    * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the public final value to emit if upstream completes and is empty.
