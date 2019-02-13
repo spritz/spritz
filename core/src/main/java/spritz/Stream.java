@@ -1200,6 +1200,38 @@ public abstract class Stream<T>
   }
 
   /**
+   * When an upstream emits an error then replace upstream with the stream returned by the supplied function rather
+   * than emitting an error to downstream. If the function throws an exception or returns null then the original
+   * error will be emitted downstream. This is an alias for {@link #recoverWith(Function)}.
+   *
+   * @param streamFromErrorFn the function invoked when upstream emits an error.
+   * @return the new stream.
+   * @see #recoverWith(Function)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> onErrorResumeWith( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+  {
+    return compose( p -> new OnErrorResumeWithOperator<>( p, streamFromErrorFn ) );
+  }
+
+  /**
+   * When an upstream emits an error then replace upstream with the stream returned by the supplied function rather
+   * than emitting an error to downstream. If the function throws an exception or returns null then the original
+   * error will be emitted downstream. This is an alias for {@link #onErrorResumeWith(Function)}.
+   *
+   * @param streamFromErrorFn the function invoked when upstream emits an error.
+   * @return the new stream.
+   * @see #onErrorResumeWith(Function)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> recoverWith( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+  {
+    return compose( p -> new OnErrorResumeWithOperator<>( p, streamFromErrorFn ) );
+  }
+
+  /**
    * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the public final value to emit if upstream completes and is empty.

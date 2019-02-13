@@ -52,6 +52,10 @@ public @interface DocCategory
      */
     SCHEDULING,
     /**
+     * Operators that respond to errors.
+     */
+    ERROR_HANDLING,
+    /**
      * Unknown how we should categorize this operator at this stage.
      */
     UNKNOWN
