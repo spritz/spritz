@@ -200,6 +200,8 @@ Other
 
 **Control Flow**
 
+NOTE: All of these repeats are only valid on completable streams. Can we validate this?
+
 - [ ] `onErrorResumeWith((error) -> downstream)` - If `onError` then call callback and subscribe to downstream subscriber.
 - [ ] `retry(RetryCount)` - The retry operator is an `onError` operator that simply resubscribes on error and starts again and it will do it `RetryCount` times or infinite times if not specified. If ceases to retry then pass onError signal down.
 - [ ] `retryWhen(RetryCount, RetryWhenFunction)` - Like retry but a function indicates when should start retry.
