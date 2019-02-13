@@ -68,30 +68,13 @@ public abstract class Stream<T>
 
   /**
    * Creates a stream that emits no items and immediately emits an error signal.
-   * This is an alias for {@link #error(Throwable)}.
    *
    * @param <T>   the type of items that the stream declared as containing (despite never containing any items).
    * @param error the error to emit.
    * @return the new stream.
-   * @see #error(Throwable)
    */
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fail( @Nonnull final Throwable error )
-  {
-    return new FailStreamSource<>( error );
-  }
-
-  /**
-   * Creates a stream that emits no items and immediately emits an error signal.
-   * This is an alias for {@link #fail(Throwable)}.
-   *
-   * @param <T>   the type of items that the stream declared as containing (despite never containing any items).
-   * @param error the error to emit.
-   * @return the new stream.
-   * @see #fail(Throwable)
-   */
-  @DocCategory( DocCategory.Type.CONSTRUCTION )
-  public static <T> Stream<T> error( @Nonnull final Throwable error )
   {
     return new FailStreamSource<>( error );
   }
