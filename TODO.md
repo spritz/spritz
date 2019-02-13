@@ -217,7 +217,7 @@ NOTE: All of these repeats are only valid on completable streams. Can we validat
 
 - [ ] `multicast(Subject)` - Add Subject as observer. Returns a "Connectible" processor that you need to call Connect on before it activates.
 - [ ] `refCount()` - Called on a "Connectible" processor. Will call connect after a subscriber added to it, and will disconnect when no more subscribers.
-- [ ] `publish() == multicast(new Subject())`
+- [ ] `publish() == multicast(new Subject()) == keepAlive()`
 - [ ] `share() == publish().refCount()`
 - [ ] `publishReplay(count) == multicast(new ReplaySubject(count))`
 - [ ] `publishBehaviour(initialValue) == multicast(new BehaviourSubject(initialValue))`
