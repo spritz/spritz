@@ -934,40 +934,18 @@ public abstract class Stream<T>
    * Map each input item to a stream and then concatenate the items emitted by the mapped stream
    * into this stream. The method operates on a single stream at a time and the result is a concatenation of
    * items emitted from all the streams returned by the mapper function. This method is equivalent to
-   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
-   * method is also an alias for {@link #concatMap(Function)}.
+   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>.
    *
    * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
    * @param mapper        the function to map the items to the inner stream.
    * @return the new stream.
-   * @see #concatMap(Function)
-   * @see #mergeMap(Function, int)
-   */
-  @Nonnull
-  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
-  public final <DownstreamT> Stream<DownstreamT> flatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
-  {
-    return mergeMap( mapper, 1 );
-  }
-
-  /**
-   * Map each input item to a stream and then concatenate the items emitted by the mapped stream
-   * into this stream. The method operates on a single stream at a time and the result is a concatenation of
-   * items emitted from all the streams returned by the mapper function. This method is equivalent to
-   * {@link #mergeMap(Function, int)} with a <code>maxConcurrency</code> set to <code>1</code>. This
-   * method is also an alias for {@link #flatMap(Function)}.
-   *
-   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
-   * @param mapper        the function to map the items to the inner stream.
-   * @return the new stream.
-   * @see #flatMap(Function)
    * @see #mergeMap(Function, int)
    */
   @Nonnull
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   public final <DownstreamT> Stream<DownstreamT> concatMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
-    return flatMap( mapper );
+    return mergeMap( mapper, 1 );
   }
 
   /**
