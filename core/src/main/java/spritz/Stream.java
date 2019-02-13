@@ -1228,7 +1228,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
   public final Stream<T> recoverWith( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    return compose( p -> new OnErrorResumeWithOperator<>( p, streamFromErrorFn ) );
+    return onErrorResumeWith( streamFromErrorFn );
   }
 
   /**
