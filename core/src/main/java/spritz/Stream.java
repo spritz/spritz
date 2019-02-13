@@ -788,7 +788,7 @@ public abstract class Stream<T>
    *
    * @param predicate The predicate.
    * @return the new stream.
-   * @see #takeUntil(Predicate)
+   * @see #takeWhile(Predicate)
    */
   @Nonnull
   @DocCategory( DocCategory.Type.SLICING )
