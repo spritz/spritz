@@ -14,11 +14,6 @@ final class OnIdleExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    DomGlobal.requestIdleCallback( deadline -> {
-
-      context().activate( () -> executeTasks( () -> (int) deadline.timeRemaining() ) );
-      //TODO: Omit return after Compiler externs updated and Elemental2 rebuilt
-      return null;
-    } );
+    DomGlobal.requestIdleCallback( deadline -> context().activate( () -> executeTasks( () -> (int) deadline.timeRemaining() ) ) );
   }
 }
