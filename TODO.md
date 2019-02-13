@@ -148,7 +148,6 @@ Below are the old TODO notes:
 
 **Filtering Operators**
 
-- [ ] `skipRepeats()` == `dropConsecutiveDuplicates()`
 - [ ] `skipAfter()` == `takeUntil()`
 - [ ] `skipWhile()` == `dropUntil()`
 

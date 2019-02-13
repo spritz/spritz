@@ -798,35 +798,18 @@ public abstract class Stream<T>
   }
 
   /**
-   * Drops items from the stream if they are equal to the previous item emitted in the stream.
+   * Drops items from the stream if they are equal to the previous item emitted by the stream.
    * The items are tested for equality using the {@link Objects#equals(Object, Object)} method.
-   * This method is an alias for {@link #skipConsecutiveDuplicates()}. It is equivalent to invoking
-   * {@link #filterSuccessive(SuccessivePredicate)} passing a {@link SuccessivePredicate} filters
-   * out successive items that are equal.
+   * It is equivalent to invoking {@link #filterSuccessive(SuccessivePredicate)} passing a
+   * {@link SuccessivePredicate} filters out successive items that are equal.
    *
    * @return the new stream.
-   * @see #skipConsecutiveDuplicates()
    */
   @Nonnull
   @DocCategory( DocCategory.Type.FILTERING )
-  public final Stream<T> dropConsecutiveDuplicates()
+  public final Stream<T> skipRepeats()
   {
     return filterSuccessive( ( prev, current ) -> !Objects.equals( prev, current ) );
-  }
-
-  /**
-   * Drops items from the stream if they are equal to the previous item emitted in the stream.
-   * The items are tested for equality using the {@link Objects#equals(Object, Object)} method.
-   * This method is an alias for {@link #dropConsecutiveDuplicates()}.
-   *
-   * @return the new stream.
-   * @see #dropConsecutiveDuplicates()
-   */
-  @Nonnull
-  @DocCategory( DocCategory.Type.FILTERING )
-  public final Stream<T> skipConsecutiveDuplicates()
-  {
-    return dropConsecutiveDuplicates();
   }
 
   /**

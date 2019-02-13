@@ -8,7 +8,7 @@ public class Example4
   {
     Stream
       .of( 1, 1, 1, 1, 1, 2, 2, 2, 1, 3, 3, 4 )
-      .skipConsecutiveDuplicates()
+      .skipRepeats()
       .subscribe( new LoggingSubscriber<>() );
   }
 }
