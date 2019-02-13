@@ -108,6 +108,7 @@ complete as there is too much un-said.
     However we don't have a good way to describe distinguish between each step or stage and the complete
     stream definition nor the stream executable data (which is really a chain of subscriptions). `Stage`
     seems like a useful term but the codebase has no consistent terminology at this point.
+  - `skip` should be used in preference to `drop` and pairs with `take`
 
 * Scheduler should use a linked list to contain tasks or some other similar mechanism as there is likely
   to be many tasks that are cancelled in flight and need to have resources releases to avoid being unnecessary
@@ -147,9 +148,6 @@ Below are the old TODO notes:
 - [ ] `at(Time,Item)` == `periodic(Time).first().mapTo(Item)` - Create a Stream containing a single event at a specific time.
 
 **Filtering Operators**
-
-- [ ] `skipAfter()` == `takeUntil()`
-- [ ] `skipWhile()` == `dropUntil()`
 
 - [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
 - [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.

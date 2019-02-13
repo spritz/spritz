@@ -4,13 +4,13 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 
-final class DropWhileOperator<T>
+final class SkipWhileOperator<T>
   extends AbstractStream<T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  DropWhileOperator( @Nonnull final Stream<? extends T> upstream,
+  SkipWhileOperator( @Nonnull final Stream<? extends T> upstream,
                      @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );

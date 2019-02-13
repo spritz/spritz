@@ -8,7 +8,7 @@ public class Example3
   {
     Stream
       .range( 42, 20 )
-      .dropUntil( v -> v == 55 )
+      .skipUntil( v -> v == 55 )
       .map( v -> "*" + v + "*" )
       .forEach( v -> System.out.println( "Bang! " + v ) );
   }

@@ -465,7 +465,7 @@ public abstract class Stream<T>
   /**
    * Filter the items emitted by this stream using the specified {@link Predicate}.
    * Any items that return {@code true} when passed to the {@link Predicate} will be
-   * emitted while all other items will be dropped.
+   * emitted while all other items will be skipped.
    *
    * @param predicate the predicate to apply to each item.
    * @return the new stream.
@@ -618,7 +618,7 @@ public abstract class Stream<T>
    * Drop the first {@code count} items of this stream. If the stream contains fewer
    * than {@code count} items then the stream will effectively be an empty stream.
    *
-   * @param count the number of items to drop.
+   * @param count the number of items to skip.
    * @return the new stream.
    */
   @Nonnull
@@ -713,17 +713,17 @@ public abstract class Stream<T>
    * As long as the {@code predicate} returns true, no items will be emitted from this stream. Once
    * the first item is encountered for which the {@code predicate} returns false, all subsequent
    * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
-   * to {@link #dropUntil(Predicate)} if the predicate is negated.
+   * to {@link #skipUntil(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
    * @return the new stream.
-   * @see #dropUntil(Predicate)
+   * @see #skipUntil(Predicate)
    */
   @Nonnull
   @DocCategory( DocCategory.Type.SLICING )
-  public final Stream<T> dropWhile( @Nonnull final Predicate<? super T> predicate )
+  public final Stream<T> skipWhile( @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new DropWhileOperator<>( p, predicate ) );
+    return compose( p -> new SkipWhileOperator<>( p, predicate ) );
   }
 
   /**
@@ -731,17 +731,17 @@ public abstract class Stream<T>
    * As long as the {@code predicate} returns false, no items will be emitted from this stream. Once
    * the first item is encountered for which the {@code predicate} returns true, all subsequent
    * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
-   * to {@link #dropWhile(Predicate)} if the predicate is negated.
+   * to {@link #skipWhile(Predicate)} if the predicate is negated.
    *
    * @param predicate The predicate.
    * @return the new stream.
-   * @see #dropWhile(Predicate)
+   * @see #skipWhile(Predicate)
    */
   @Nonnull
   @DocCategory( DocCategory.Type.SLICING )
-  public final Stream<T> dropUntil( @Nonnull final Predicate<? super T> predicate )
+  public final Stream<T> skipUntil( @Nonnull final Predicate<? super T> predicate )
   {
-    return dropWhile( predicate.negate() );
+    return skipWhile( predicate.negate() );
   }
 
   /**
@@ -798,7 +798,7 @@ public abstract class Stream<T>
   /**
    * Filter consecutive items emitted by this stream using the specified {@link SuccessivePredicate}.
    * Any candidate items that return {@code true} when passed to the {@link Predicate} will be
-   * emitted while all other items will be dropped. The predicate passes the last emitted item
+   * emitted while all other items will be skipped. The predicate passes the last emitted item
    * as well as the candidate item.
    *
    * @param predicate the comparator to determine whether two successive items are equal.
