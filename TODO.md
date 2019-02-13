@@ -55,6 +55,12 @@ complete as there is too much un-said.
 
 * Perhaps oneday the scheduler could be moved to a separate package?
 
+* Perhaps scheduler only deals with `Runnable` instances. `Task` can be separate elements created that know how to schedule etc.
+
+* VPUs or the wrapper around it should have simplified methods that schedule tasks. i.e. `VPU.afterFrame(Runnable)`,
+  `VPU.onIdle(Runnable)` etc. We also have an additional one such as `VPU.next()` that probably adds a `NORMAL_PRIORITY_TIMEOUT`
+  task.
+
 ### Other Tasks
 
 * Change documentation categories and icons? to align with https://reactive.how/rxjs/
