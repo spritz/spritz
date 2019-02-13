@@ -18,11 +18,7 @@ final class AfterFrameExecutor
 
   AfterFrameExecutor()
   {
-    _channel.port2.onmessage = m -> {
-      context().activate( this::executeTasks );
-      //TODO: Remove this return once Closure Externs have been updated
-      return null;
-    };
+    _channel.port2.onmessage = m -> context().activate( this::executeTasks );
   }
 
   /**
