@@ -149,7 +149,7 @@ Below are the old TODO notes:
 
 **Filtering Operators**
 
-- [ ] `skipLast(Count)` or `dropLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
+- [ ] `skipLast(Count)` - Drops the last `Count` items emitted by stream, and emits the remaining items.
 - [ ] `singleOrError()` - Emits the only item emitted by the stream, or signals a error if the stream completes after emitting 0 or more than 1 items.
 - [ ] `singleOrDefault(DefaultValue)` - Emits the only item emitted by the stream, or emits `DefaultValue` if the stream completes after emitting 0 or more than 1 items.
 
