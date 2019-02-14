@@ -33,7 +33,7 @@ public final class VirtualProcessorUnit
    */
   public static void current( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitCurrentHolder.current().queue( task );
+    VirtualProcessorUnitsHolder.current().queue( task );
   }
 
   /**
@@ -121,14 +121,14 @@ public final class VirtualProcessorUnit
    */
   private synchronized void activate( @Nonnull final ActivationFn activationFn )
   {
-    VirtualProcessorUnitCurrentHolder.activate( this );
+    VirtualProcessorUnitsHolder.CurrentVPU.activate( this );
     try
     {
       activationFn.invoke();
     }
     finally
     {
-      VirtualProcessorUnitCurrentHolder.deactivate( this );
+      VirtualProcessorUnitsHolder.CurrentVPU.deactivate( this );
     }
   }
 
@@ -176,8 +176,8 @@ public final class VirtualProcessorUnit
     /**
      * Activate the associated {@link VirtualProcessorUnit}.
      * This method MUST only be called if there is no {@link VirtualProcessorUnit} unit currently activated.
-     * The activation will set the {@link VirtualProcessorUnit#current()} for the duration
-     * of the activation and invoke {@link ActivationFn#invoke()} passed into the method.
+     * The activation will set the "current" VPU for the duration of the activation and invoke the
+     * {@link ActivationFn#invoke()} function passed into the method.
      *
      * @param activationFn the function passed to process tasks.
      */
