@@ -112,7 +112,7 @@ public final class VirtualProcessorUnit
    *
    * @param task the task.
    */
-  public void queue( @Nonnull final Runnable task )
+  void queue( @Nonnull final Runnable task )
   {
     _executor.queue( task );
   }
