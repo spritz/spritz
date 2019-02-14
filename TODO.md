@@ -281,6 +281,8 @@ from subscription via something like `@Nullable Subscription.getFlowControl()`
 
 Once done build a few sample apps.
 
+* [React TodoMVC 1](https://github.com/RxJS-CN/react-rxjs-todos)
+* [React TodoMVC 2](https://github.com/mauriciosoares/todomvc-react-rxjs)
 * [TodoMVC](https://github.com/briancavalier/mostcore-todomvc)
 * [rxsnake](https://github.com/ibaca/rxsnake-gwt) (Implementation described on [blog](http://philipnilsson.github.io/badness/)).
   Maybe style like in [react-game-snake](https://github.com/avin/react-game-snake). Could also look to
