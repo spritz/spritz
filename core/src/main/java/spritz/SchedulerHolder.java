@@ -48,7 +48,6 @@ final class SchedulerHolder
     {
       final ScheduledFuture<?> future = _executorService.schedule( task, delay, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
-
     }
 
     @Nonnull
