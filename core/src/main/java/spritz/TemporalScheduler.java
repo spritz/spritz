@@ -41,7 +41,7 @@ final class TemporalScheduler
    * Schedules the execution of the given task after a specified delay.
    *
    * @param task  the task to execute.
-   * @param delay the delay before the task should execute. Must be a value greater than 0.
+   * @param delay the delay before the task should execute. Must not be a negative value.
    * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
    */
   @Nonnull
@@ -122,9 +122,9 @@ final class TemporalScheduler
     {
       if ( BrainCheckConfig.checkApiInvariants() )
       {
-        apiInvariant( () -> delay > 0,
-                      () -> "Spritz-0016: Scheduler.schedule(...) passed a delay that is " +
-                            "not greater than 0. Actual value passed is " + delay );
+        apiInvariant( () -> delay >= 0,
+                      () -> "Spritz-0016: Scheduler.schedule(...) passed a negative delay. " +
+                            "Actual value passed is " + delay );
       }
       return doSchedule( task, delay );
     }
