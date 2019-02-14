@@ -41,10 +41,10 @@ final class SchedulerHolder
       _executorService.shutdown();
     }
 
+    @GwtIncompatible
     @Nonnull
     @Override
-    @GwtIncompatible
-    public Cancelable schedule( @Nonnull final Runnable task, final int delay )
+    protected Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
     {
       final ScheduledFuture<?> future = _executorService.schedule( task, delay, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -53,7 +53,7 @@ final class SchedulerHolder
     @Nonnull
     @Override
     @GwtIncompatible
-    public Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    protected Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final ScheduledFuture<?> future = _executorService.scheduleAtFixedRate( task, 0, period, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -88,15 +88,30 @@ final class SchedulerHolder
      */
     @Nonnull
     @Override
-    public Cancelable schedule( @Nonnull final Runnable task, final int delay )
+    public final Cancelable schedule( @Nonnull final Runnable task, final int delay )
+    {
+      return doSchedule( task, delay );
+    }
+
+    @Nonnull
+    protected Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
     {
       final double timeoutId = DomGlobal.setTimeout( v -> task.run(), delay );
       return () -> DomGlobal.clearTimeout( timeoutId );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Nonnull
     @Override
-    public Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    public final Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    {
+      return doScheduleAtFixedRate( task, period );
+    }
+
+    @Nonnull
+    protected Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final double timeoutId = DomGlobal.setInterval( v -> task.run(), period );
       return () -> DomGlobal.clearInterval( timeoutId );
