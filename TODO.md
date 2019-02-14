@@ -41,6 +41,8 @@ complete as there is too much un-said.
       // Never times out
       var IDLE_PRIORITY = maxSigned31BitInt;
 
+* Should add a queuing method in VPU that schedules according to one of these above priorities.
+
 * Once the scheduler is in play it is likely we will want to implement code using `idle-until-urgent` strategy.
   Useful to delay some of the expensive setup for off screen stuff.
   - https://philipwalton.com/articles/idle-until-urgent/
@@ -50,10 +52,6 @@ complete as there is too much un-said.
 * Some tasks should be scheduled to current VPU and/or with similar deadlines/priorities as creating task.
 
 * Perhaps one day the scheduler could be moved to a separate package?
-
-* VPUs or the wrapper around it should have simplified methods that schedule tasks. i.e. `VPU.afterFrame(Runnable)`,
-  `VPU.onIdle(Runnable)` etc. We also have an additional one such as `VPU.next()` that probably adds a `NORMAL_PRIORITY_TIMEOUT`
-  task.
 
 ### Other Tasks
 
