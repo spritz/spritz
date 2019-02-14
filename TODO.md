@@ -51,7 +51,7 @@ complete as there is too much un-said.
 
 * Some tasks should be scheduled to current VPU adn/or with similar deadlines/priorities as creating task.
 
-* Perhaps oneday the scheduler could be moved to a separate package?
+* Perhaps one day the scheduler could be moved to a separate package?
 
 * VPUs or the wrapper around it should have simplified methods that schedule tasks. i.e. `VPU.afterFrame(Runnable)`,
   `VPU.onIdle(Runnable)` etc. We also have an additional one such as `VPU.next()` that probably adds a `NORMAL_PRIORITY_TIMEOUT`
