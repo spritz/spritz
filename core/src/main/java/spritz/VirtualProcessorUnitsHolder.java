@@ -65,7 +65,8 @@ final class VirtualProcessorUnitsHolder
     }
 
     @Nonnull
-    private static final VirtualProcessorUnit VPU = new VirtualProcessorUnit( new MacroTaskExecutor() );
+    private static final VirtualProcessorUnit VPU =
+      new VirtualProcessorUnit( Spritz.areNamesEnabled() ? "macro" : null, new MacroTaskExecutor() );
   }
 
   private static final class MicroTaskVPU
@@ -76,7 +77,8 @@ final class VirtualProcessorUnitsHolder
 
     @Nonnull
     private static final VirtualProcessorUnit VPU =
-      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new MicroTaskExecutor() );
+      new VirtualProcessorUnit( Spritz.areNamesEnabled() ? "micro" : null,
+                                SpritzConfig.isJvm() ? new MacroTaskExecutor() : new MicroTaskExecutor() );
   }
 
   private static final class AnimationFrameVPU
@@ -87,7 +89,8 @@ final class VirtualProcessorUnitsHolder
 
     @Nonnull
     private static final VirtualProcessorUnit VPU =
-      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AnimationFrameExecutor() );
+      new VirtualProcessorUnit( Spritz.areNamesEnabled() ? "animationFrame" : null,
+                                SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AnimationFrameExecutor() );
   }
 
   private static final class AfterFrameVPU
@@ -98,7 +101,8 @@ final class VirtualProcessorUnitsHolder
 
     @Nonnull
     private static final VirtualProcessorUnit VPU =
-      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AfterFrameExecutor() );
+      new VirtualProcessorUnit( Spritz.areNamesEnabled() ? "afterFrame" : null,
+                                SpritzConfig.isJvm() ? new MacroTaskExecutor() : new AfterFrameExecutor() );
   }
 
   private static final class OnIdleVPU
@@ -109,7 +113,8 @@ final class VirtualProcessorUnitsHolder
 
     @Nonnull
     private static final VirtualProcessorUnit VPU =
-      new VirtualProcessorUnit( SpritzConfig.isJvm() ? new MacroTaskExecutor() : new OnIdleExecutor() );
+      new VirtualProcessorUnit( Spritz.areNamesEnabled() ? "onIdle" : null,
+                                SpritzConfig.isJvm() ? new MacroTaskExecutor() : new OnIdleExecutor() );
   }
 
   /**

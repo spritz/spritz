@@ -2,12 +2,20 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import static org.realityforge.braincheck.Guards.*;
 
 /**
  * Processing unit responsible for executing tasks.
  */
 public final class VirtualProcessorUnit
 {
+  /**
+   * A human consumable name for node. It should be non-null if {@link Spritz#areNamesEnabled()} returns
+   * true and <tt>null</tt> otherwise.
+   */
+  @Nullable
+  private final String _name;
   /**
    * The executor responsible for selecting and invoking tasks.
    */
@@ -19,10 +27,36 @@ public final class VirtualProcessorUnit
    *
    * @param executor the associated task executor.
    */
-  VirtualProcessorUnit( @Nonnull final Executor executor )
+  VirtualProcessorUnit( @Nullable final String name, @Nonnull final Executor executor )
   {
+    if ( Spritz.shouldCheckApiInvariants() )
+    {
+      apiInvariant( () -> Spritz.areNamesEnabled() || null == name,
+                    () -> "Spritz-0021: VirtualProcessorUnit passed a name '" + name + "' but " +
+                          "Spritz.areNamesEnabled() is false" );
+    }
+    _name = Spritz.areNamesEnabled() ? Objects.requireNonNull( name ) : null;
     _executor = Objects.requireNonNull( executor );
     _executor.init( this::activate );
+  }
+
+  /**
+   * Return the name of the VirtualProcessorUnit.
+   * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns true and will throw an
+   * exception if invariant checking is enabled.
+   *
+   * @return the name of the VirtualProcessorUnit.
+   */
+  @Nonnull
+  public final String getName()
+  {
+    if ( Spritz.shouldCheckApiInvariants() )
+    {
+      apiInvariant( Spritz::areNamesEnabled,
+                    () -> "Spritz-0022: VirtualProcessorUnit.getName() invoked when Spritz.areNamesEnabled() is false" );
+    }
+    assert null != _name;
+    return _name;
   }
 
   /**
@@ -54,6 +88,23 @@ public final class VirtualProcessorUnit
     finally
     {
       VirtualProcessorUnitsHolder.CurrentVPU.deactivate( this );
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Nonnull
+  @Override
+  public final String toString()
+  {
+    if ( Spritz.areNamesEnabled() )
+    {
+      return getName();
+    }
+    else
+    {
+      return super.toString();
     }
   }
 

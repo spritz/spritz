@@ -10,8 +10,6 @@ complete as there is too much un-said.
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
 
-* Add optional name to VPU when naming is enabled so it is easy to perform debugging.
-
 * Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
 
 * Tasks executed by the scheduler should have their own VPU. The VPU will allow the addition of tasks but
