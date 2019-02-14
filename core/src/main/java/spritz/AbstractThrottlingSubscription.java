@@ -22,7 +22,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Override
   public final void onNext( @Nonnull final T item )
   {
-    final int now = VirtualProcessorUnit.now();
+    final int now = Scheduler.now();
 
     /*
      * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
@@ -120,8 +120,8 @@ abstract class AbstractThrottlingSubscription<T>
   final void scheduleTask( final int delay )
   {
     assert delay > 0;
-    _task = VirtualProcessorUnit.schedule( this, delay );
-    _nextTaskTime = VirtualProcessorUnit.now() + delay;
+    _task = Scheduler.schedule( this, delay );
+    _nextTaskTime = Scheduler.now() + delay;
   }
 
   /**
