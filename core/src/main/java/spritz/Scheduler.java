@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  * time and the unit of the value is defined by the implementation. Tasks can be scheduled
  * to be invoked after a delay or repeatedly with a fixed period.</p>
  *
- * <p>The scheduler assigns tasks to different Virtual Processor Unit (VPU) instances that run at
+ * <p>The scheduler assigns tasks to different {@link VirtualProcessorUnit} (VPU) instances that run at
  * different phases in the browser lifecycle. Tasks can be scheduled on the:</p>
  * <ul>
  * <li>"Macro" task VPU. The normal phase where event callbacks, timer timeouts, message channel handlers etc. are invoked.</li>
@@ -71,7 +71,19 @@ public final class Scheduler
    */
   public static void current( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.current().queue( task );
+    currentVpu().queue( task );
+  }
+
+  /**
+   * Return the current VPU.
+   *
+   * @return the current VPU.
+   * @see #current(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit currentVpu()
+  {
+    return VirtualProcessorUnitsHolder.current();
   }
 
   /**
@@ -83,7 +95,19 @@ public final class Scheduler
    */
   public static void macroTask( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.macroTask().queue( task );
+    macroTaskVpu().queue( task );
+  }
+
+  /**
+   * Return the "macro" task VPU.
+   *
+   * @return the "macro" task VPU.
+   * @see #macroTask(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit macroTaskVpu()
+  {
+    return VirtualProcessorUnitsHolder.macroTask();
   }
 
   /**
@@ -95,7 +119,19 @@ public final class Scheduler
    */
   public static void microTask( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.microTask().queue( task );
+    microTaskVpu().queue( task );
+  }
+
+  /**
+   * Return the "micro" task VPU.
+   *
+   * @return the "micro" task VPU.
+   * @see #microTask(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit microTaskVpu()
+  {
+    return VirtualProcessorUnitsHolder.microTask();
   }
 
   /**
@@ -107,7 +143,19 @@ public final class Scheduler
    */
   public static void animationFrame( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.animationFrame().queue( task );
+    animationFrameVpu().queue( task );
+  }
+
+  /**
+   * Return the "animationFrame" VPU.
+   *
+   * @return the "animationFrame" VPU.
+   * @see #microTask(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit animationFrameVpu()
+  {
+    return VirtualProcessorUnitsHolder.animationFrame();
   }
 
   /**
@@ -119,7 +167,19 @@ public final class Scheduler
    */
   public static void afterFrame( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.afterFrame().queue( task );
+    afterFrameVpu().queue( task );
+  }
+
+  /**
+   * Return the "afterFrame" VPU.
+   *
+   * @return the "afterFrame" VPU.
+   * @see #microTask(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit afterFrameVpu()
+  {
+    return VirtualProcessorUnitsHolder.afterFrame();
   }
 
   /**
@@ -135,6 +195,18 @@ public final class Scheduler
    */
   public static void onIdle( @Nonnull final Runnable task )
   {
-    VirtualProcessorUnitsHolder.onIdle().queue( task );
+    onIdleVpu().queue( task );
+  }
+
+  /**
+   * Return the "onIdle" VPU.
+   *
+   * @return the "onIdle" VPU.
+   * @see #microTask(Runnable)
+   */
+  @Nonnull
+  public static VirtualProcessorUnit onIdleVpu()
+  {
+    return VirtualProcessorUnitsHolder.onIdle();
   }
 }

@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 /**
  * Processing unit responsible for executing tasks.
  */
-final class VirtualProcessorUnit
+public final class VirtualProcessorUnit
 {
   /**
    * The executor responsible for selecting and invoking tasks.
