@@ -8,6 +8,9 @@ goog.provide('spritz');
 goog.define('spritz.environment', 'production');
 
 /** @define {string} */
+goog.define('spritz.enable_names', 'false');
+
+/** @define {string} */
 goog.define('spritz.validate_subscriptions', 'false');
 
 /** @define {string} */

@@ -9,6 +9,7 @@ final class SpritzConfig
 {
   private static final ConfigProvider PROVIDER = new ConfigProvider();
   private static final boolean PRODUCTION_MODE = PROVIDER.isProductionMode();
+  private static boolean ENABLE_NAMES = PROVIDER.areNamesEnabled();
   private static boolean VALIDATE_SUBSCRIPTIONS = PROVIDER.shouldValidateSubscriptions();
   private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
 
@@ -31,6 +32,11 @@ final class SpritzConfig
     return PURGE_ON_RUNAWAY;
   }
 
+  static boolean areNamesEnabled()
+  {
+    return ENABLE_NAMES;
+  }
+
   static boolean shouldValidateSubscriptions()
   {
     return VALIDATE_SUBSCRIPTIONS;
@@ -44,6 +50,13 @@ final class SpritzConfig
     boolean isProductionMode()
     {
       return "production".equals( System.getProperty( "spritz.environment", "production" ) );
+    }
+
+    @GwtIncompatible
+    @Override
+    boolean areNamesEnabled()
+    {
+      return "true".equals( System.getProperty( "spritz.enable_names", isProductionMode() ? "false" : "true" ) );
     }
 
     @GwtIncompatible
@@ -68,6 +81,11 @@ final class SpritzConfig
     boolean isProductionMode()
     {
       return "production" == System.getProperty( "spritz.environment" );
+    }
+
+    boolean areNamesEnabled()
+    {
+      return "true" == System.getProperty( "spritz.enable_names" );
     }
 
     boolean shouldValidateSubscriptions()

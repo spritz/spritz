@@ -9,6 +9,11 @@ public final class Spritz
   {
   }
 
+  public static boolean areNamesEnabled()
+  {
+    return SpritzConfig.areNamesEnabled();
+  }
+
   public static boolean shouldValidateSubscriptions()
   {
     return SpritzConfig.shouldValidateSubscriptions();
