@@ -30,8 +30,6 @@ final class ObserveOnOperator<T>
     static final int INITIAL_CAPACITY = 10;
     @Nonnull
     private final VirtualProcessorUnit _virtualProcessorUnit;
-    @Nonnull
-    private final Task _task;
     @Nullable
     private Subscription _subscription;
     @Nullable
@@ -45,7 +43,6 @@ final class ObserveOnOperator<T>
     {
       super( subscriber );
       _virtualProcessorUnit = virtualProcessorUnit;
-      _task = _virtualProcessorUnit.task( this::observe );
     }
 
     /**
@@ -94,7 +91,7 @@ final class ObserveOnOperator<T>
 
     private void scheduleObserve()
     {
-      _virtualProcessorUnit.queue( _task );
+      _virtualProcessorUnit.queue( this::observe );
     }
 
     /**

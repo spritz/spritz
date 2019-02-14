@@ -21,8 +21,6 @@ complete as there is too much un-said.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
-* Consider removing `Task` from the public API.
-
 * Consider replacing `Subscription` and `Scheduler.Task` with `Cancelable` interface.
 
 ### Scheduler
@@ -54,8 +52,6 @@ complete as there is too much un-said.
 * Some tasks should be scheduled to current VPU adn/or with similar deadlines/priorities as creating task.
 
 * Perhaps oneday the scheduler could be moved to a separate package?
-
-* Perhaps scheduler only deals with `Runnable` instances. `Task` can be separate elements created that know how to schedule etc.
 
 * VPUs or the wrapper around it should have simplified methods that schedule tasks. i.e. `VPU.afterFrame(Runnable)`,
   `VPU.onIdle(Runnable)` etc. We also have an additional one such as `VPU.next()` that probably adds a `NORMAL_PRIORITY_TIMEOUT`

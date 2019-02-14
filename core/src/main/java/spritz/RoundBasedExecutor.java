@@ -116,16 +116,12 @@ abstract class RoundBasedExecutor
   {
     final List<String> taskNames =
       BrainCheckConfig.checkInvariants() && BrainCheckConfig.verboseErrorMessages() ?
-      getTaskQueue().stream().map( Task::toString ).collect( Collectors.toList() ) :
+      getTaskQueue().stream().map( Object::toString ).collect( Collectors.toList() ) :
       null;
 
     if ( Spritz.purgeTasksWhenRunawayDetected() )
     {
-      Task task;
-      while ( null != ( task = getTaskQueue().pop() ) )
-      {
-        task.markAsIdle();
-      }
+      getTaskQueue().clear();
     }
 
     if ( BrainCheckConfig.checkInvariants() )
@@ -139,7 +135,7 @@ abstract class RoundBasedExecutor
    * {@inheritDoc}
    */
   @Override
-  public final synchronized void queue( @Nonnull final Task task )
+  public final synchronized void queue( @Nonnull final Runnable task )
   {
     if ( 0 == getQueueSize() )
     {

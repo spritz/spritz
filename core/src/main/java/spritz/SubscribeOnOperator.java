@@ -19,8 +19,6 @@ final class SubscribeOnOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final Task task =
-      _virtualProcessorUnit.task( () -> getUpstream().subscribe( new PassThroughSubscription<>( subscriber ) ) );
-    _virtualProcessorUnit.queue( task );
+    _virtualProcessorUnit.queue( () -> getUpstream().subscribe( new PassThroughSubscription<>( subscriber ) ) );
   }
 }

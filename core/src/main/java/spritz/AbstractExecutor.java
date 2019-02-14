@@ -4,8 +4,6 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.braincheck.BrainCheckConfig;
-import spritz.Task;
-import spritz.VirtualProcessorUnit;
 import spritz.internal.util.CircularBuffer;
 import static org.realityforge.braincheck.Guards.*;
 
@@ -19,7 +17,7 @@ abstract class AbstractExecutor
    * A queue containing tasks that have been scheduled but are not yet executing.
    */
   @Nonnull
-  private final CircularBuffer<Task> _taskQueue;
+  private final CircularBuffer<Runnable> _taskQueue;
   @Nullable
   private VirtualProcessorUnit.Context _context;
 
@@ -33,29 +31,34 @@ abstract class AbstractExecutor
     return _taskQueue.size();
   }
 
-  public void queue( @Nonnull final Task task )
+  public void queue( @Nonnull final Runnable task )
   {
     if ( BrainCheckConfig.checkInvariants() )
     {
       invariant( () -> !_taskQueue.contains( task ),
                  () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );
     }
-    Objects.requireNonNull( task );
-    task.markAsQueued();
-    _taskQueue.add( task );
+    _taskQueue.add( Objects.requireNonNull( task ) );
   }
 
   @Nonnull
-  final CircularBuffer<Task> getTaskQueue()
+  final CircularBuffer<Runnable> getTaskQueue()
   {
     return _taskQueue;
   }
 
   final void executeNextTask()
   {
-    final Task task = _taskQueue.pop();
+    final Runnable task = _taskQueue.pop();
     assert null != task;
-    task.executeTask();
+    try
+    {
+      task.run();
+    }
+    catch ( final Throwable t )
+    {
+      // Should we handle it with a per-task handler or a global error handler?
+    }
   }
 
   /**
