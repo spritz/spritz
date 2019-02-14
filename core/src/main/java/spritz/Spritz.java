@@ -3,6 +3,9 @@ package spritz;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.annotations.MetaDataSource;
 
+/**
+ * Provide access to global configuration settings.
+ */
 @MetaDataSource
 public final class Spritz
 {
@@ -10,11 +13,21 @@ public final class Spritz
   {
   }
 
+  /**
+   * Return true if user should pass names into API methods, false if should pass null.
+   *
+   * @return true if user should pass names into API methods, false if should pass null.
+   */
   public static boolean areNamesEnabled()
   {
     return SpritzConfig.areNamesEnabled();
   }
 
+  /**
+   * Return true if subscription protocol will be validated.
+   *
+   * @return true if subscription protocol will be validated.
+   */
   public static boolean shouldValidateSubscriptions()
   {
     return SpritzConfig.shouldValidateSubscriptions();
@@ -40,6 +53,11 @@ public final class Spritz
     return BrainCheckConfig.checkApiInvariants();
   }
 
+  /**
+   * Return true if active tasks will be purged if the scheduler is still running after the maximum number of rounds.
+   *
+   * @return true if active tasks will be purged if the scheduler is still running after the maximum number of rounds.
+   */
   public static boolean purgeTasksWhenRunawayDetected()
   {
     return SpritzConfig.purgeTasksWhenRunawayDetected();
