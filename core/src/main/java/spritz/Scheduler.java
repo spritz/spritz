@@ -34,7 +34,7 @@ public interface Scheduler
    * Schedules the execution of the given task after a specified delay.
    *
    * @param task  the task to execute.
-   * @param delay the delay before the task should execute.
+   * @param delay the delay before the task should execute. Must be a value greater than 0.
    * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
    */
   @Nonnull
@@ -44,7 +44,7 @@ public interface Scheduler
    * Schedules the periodic execution of the given task with specified period.
    *
    * @param task   the task to execute.
-   * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
+   * @param period the period after execution when the task should be re-executed. Must be a value greater than 0.
    * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
    */
   @Nonnull

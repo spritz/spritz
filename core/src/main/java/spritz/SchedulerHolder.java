@@ -6,7 +6,9 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
+import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.annotations.GwtIncompatible;
+import static org.realityforge.braincheck.Guards.*;
 
 final class SchedulerHolder
 {
@@ -90,6 +92,12 @@ final class SchedulerHolder
     @Override
     public final Cancelable schedule( @Nonnull final Runnable task, final int delay )
     {
+      if ( BrainCheckConfig.checkApiInvariants() )
+      {
+        apiInvariant( () -> delay > 0,
+                      () -> "Spritz-0016: Scheduler.schedule(...) passed a delay that is " +
+                            "not greater than 0. Actual value passed is " + delay );
+      }
       return doSchedule( task, delay );
     }
 
@@ -107,6 +115,12 @@ final class SchedulerHolder
     @Override
     public final Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
+      if ( BrainCheckConfig.checkApiInvariants() )
+      {
+        apiInvariant( () -> period > 0,
+                      () -> "Spritz-0014: Scheduler.scheduleAtFixedRate(...) passed a period that is " +
+                            "not greater than 0. Actual value passed is " + period );
+      }
       return doScheduleAtFixedRate( task, period );
     }
 
