@@ -6,6 +6,9 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
+* Merge `Scheduler` into `VirtualProcessorUnit` as static methods and then rename result to `Scheduler`.
+  Existing `Scheduler` implementations will be hidden away. 
+
 * Add `Elemental2` specific sources and sinks.
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
