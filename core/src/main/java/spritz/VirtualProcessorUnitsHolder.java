@@ -147,7 +147,7 @@ final class VirtualProcessorUnitsHolder
       Objects.requireNonNull( processorUnit );
       if ( BrainCheckConfig.checkInvariants() )
       {
-        invariant( () -> null != c_current,
+        invariant( () -> null == c_current,
                    () -> "Spritz-0015: Attempting set current VirtualProcessorUnit to " + processorUnit +
                          " but there is an existing  VirtualProcessorUnit activated (" + c_current + ")" );
       }
