@@ -49,7 +49,7 @@ complete as there is too much un-said.
   - https://github.com/GoogleChromeLabs/idlize/blob/master/IdleQueue.mjs
   - https://github.com/GoogleChromeLabs/idlize/blob/master/IdleValue.mjs
 
-* Some tasks should be scheduled to current VPU adn/or with similar deadlines/priorities as creating task.
+* Some tasks should be scheduled to current VPU and/or with similar deadlines/priorities as creating task.
 
 * Perhaps one day the scheduler could be moved to a separate package?
 
