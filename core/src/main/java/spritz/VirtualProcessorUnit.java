@@ -19,7 +19,7 @@ public final class VirtualProcessorUnit
    *
    * @param executor the associated task executor.
    */
-  public VirtualProcessorUnit( @Nonnull final Executor executor )
+  VirtualProcessorUnit( @Nonnull final Executor executor )
   {
     _executor = Objects.requireNonNull( executor );
     _executor.init( this::activate );
