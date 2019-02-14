@@ -74,7 +74,10 @@ HEADER
 
     stage('PatchReadme', 'Patch the README to update from previous release') do
       contents = IO.read('README.md')
-      contents = contents.gsub("<version>#{ENV['PREVIOUS_PRODUCT_VERSION']}</version>", "<version>#{ENV['PRODUCT_VERSION']}</version>")
+      contents = contents.
+        gsub("<version>#{ENV['PREVIOUS_PRODUCT_VERSION']}</version>", "<version>#{ENV['PRODUCT_VERSION']}</version>").
+        gsub("/#{ENV['PREVIOUS_PRODUCT_VERSION']}/", "/#{ENV['PRODUCT_VERSION']}/").
+        gsub("-#{ENV['PREVIOUS_PRODUCT_VERSION']}-", "-#{ENV['PRODUCT_VERSION']}-")
       IO.write('README.md', contents)
 
       sh 'git reset 2>&1 1> /dev/null'
