@@ -61,6 +61,10 @@ final class OnErrorResumeWithOperator<T>
         {
           nextStream.subscribe( this );
         }
+        else
+        {
+          super.onError( error );
+        }
       }
       catch ( final Exception e )
       {
