@@ -10,19 +10,57 @@ import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.annotations.GwtIncompatible;
 import static org.realityforge.braincheck.Guards.*;
 
-final class SchedulerHolder
+/**
+ * The scheduler is responsible for scheduling and executing tasks asynchronously.
+ * The scheduler provides an "abstract asynchronous boundary" to stream operators.
+ *
+ * <p>The scheduler has an internal clock that represents time as a monotonically increasing
+ * <code>int</code> value. The value may or may not have a direct relationship to wall-clock
+ * time and the unit of the value is defined by the implementation.</p>
+ */
+final class TemporalScheduler
 {
   @Nonnull
   private static AbstractScheduler c_scheduler = new SchedulerImpl();
 
-  private SchedulerHolder()
+  private TemporalScheduler()
   {
   }
 
-  @Nonnull
-  static Scheduler scheduler()
+  /**
+   * Return a value representing the "current time" of the scheduler.
+   *
+   * @return the "current time" of the scheduler.
+   */
+  static int now()
   {
-    return c_scheduler;
+    return c_scheduler.now();
+  }
+
+  /**
+   * Schedules the execution of the given task after a specified delay.
+   *
+   * @param task  the task to execute.
+   * @param delay the delay before the task should execute. Must be a value greater than 0.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
+   */
+  @Nonnull
+  static Cancelable schedule( @Nonnull final Runnable task, final int delay )
+  {
+    return c_scheduler.schedule( task, delay );
+  }
+
+  /**
+   * Schedules the periodic execution of the given task with specified period.
+   *
+   * @param task   the task to execute.
+   * @param period the period after execution when the task should be re-executed. Must be a value greater than 0.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
+   */
+  @Nonnull
+  static Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+  {
+    return c_scheduler.scheduleAtFixedRate( task, period );
   }
 
   static void reset()
@@ -63,7 +101,6 @@ final class SchedulerHolder
   }
 
   private static abstract class AbstractScheduler
-    implements Scheduler
   {
     private final long _schedulerStart = System.currentTimeMillis();
 
@@ -76,21 +113,12 @@ final class SchedulerHolder
     {
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final int now()
+    final int now()
     {
       return (int) ( System.currentTimeMillis() - getSchedulerStart() );
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Nonnull
-    @Override
-    public final Cancelable schedule( @Nonnull final Runnable task, final int delay )
+    final Cancelable schedule( @Nonnull final Runnable task, final int delay )
     {
       if ( BrainCheckConfig.checkApiInvariants() )
       {
@@ -108,12 +136,8 @@ final class SchedulerHolder
       return () -> DomGlobal.clearTimeout( timeoutId );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Nonnull
-    @Override
-    public final Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    final Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       if ( BrainCheckConfig.checkApiInvariants() )
       {

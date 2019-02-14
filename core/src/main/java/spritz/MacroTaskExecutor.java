@@ -12,6 +12,6 @@ final class MacroTaskExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    Scheduler.instance().schedule( () -> context().activate( this::executeTasks ), 0 );
+    VirtualProcessorUnit.schedule( () -> context().activate( this::executeTasks ), 0 );
   }
 }

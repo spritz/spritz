@@ -68,13 +68,13 @@ final class TimeoutOperator<T>
 
     private void recordLastTime()
     {
-      _lastTime = Scheduler.instance().now();
+      _lastTime = VirtualProcessorUnit.now();
     }
 
     @Nonnull
     private Cancelable scheduleTimeout()
     {
-      return Scheduler.instance().schedule( this, _lastTime + _timeoutTime );
+      return VirtualProcessorUnit.schedule( this, _lastTime + _timeoutTime );
     }
   }
 }

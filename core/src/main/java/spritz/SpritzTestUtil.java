@@ -50,7 +50,7 @@ public final class SpritzTestUtil
    */
   private static void resetState()
   {
-    SchedulerHolder.reset();
+    TemporalScheduler.reset();
   }
 
   /**

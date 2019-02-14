@@ -40,7 +40,7 @@ final class PeriodicStreamSource
 
     void startTimer()
     {
-      _task = Scheduler.instance().scheduleAtFixedRate( this::pushItem, _period );
+      _task = VirtualProcessorUnit.scheduleAtFixedRate( this::pushItem, _period );
     }
 
     void pushItem()

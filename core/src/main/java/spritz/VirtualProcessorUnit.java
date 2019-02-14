@@ -26,6 +26,42 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Return a value representing the "current time" of the scheduler.
+   *
+   * @return the "current time" of the scheduler.
+   */
+  public static int now()
+  {
+    return TemporalScheduler.now();
+  }
+
+  /**
+   * Schedules the execution of the given task after a specified delay.
+   *
+   * @param task  the task to execute.
+   * @param delay the delay before the task should execute. Must be a value greater than 0.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
+   */
+  @Nonnull
+  public static Cancelable schedule( @Nonnull final Runnable task, final int delay )
+  {
+    return TemporalScheduler.schedule( task, delay );
+  }
+
+  /**
+   * Schedules the periodic execution of the given task with specified period.
+   *
+   * @param task   the task to execute.
+   * @param period the period after execution when the task should be re-executed. Must be a value greater than 0.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
+   */
+  @Nonnull
+  public static Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+  {
+    return TemporalScheduler.scheduleAtFixedRate( task, period );
+  }
+
+  /**
    * Queue the task to execute on the current VPU.
    * This method MUST NOT be invoked if there is no {@link VirtualProcessorUnit} activated.
    *
