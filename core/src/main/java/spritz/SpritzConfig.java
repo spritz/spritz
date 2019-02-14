@@ -9,8 +9,8 @@ final class SpritzConfig
 {
   private static final ConfigProvider PROVIDER = new ConfigProvider();
   private static final boolean PRODUCTION_MODE = PROVIDER.isProductionMode();
-  private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
   private static boolean VALIDATE_SUBSCRIPTIONS = PROVIDER.shouldValidateSubscriptions();
+  private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
 
   private SpritzConfig()
   {
@@ -48,17 +48,17 @@ final class SpritzConfig
 
     @GwtIncompatible
     @Override
-    boolean purgeTasksWhenRunawayDetected()
-    {
-      return "true".equals( System.getProperty( "spritz.purge_tasks_when_runaway_detected", "true" ) );
-    }
-
-    @GwtIncompatible
-    @Override
     boolean shouldValidateSubscriptions()
     {
       return "true".equals( System.getProperty( "spritz.validate_subscriptions",
                                                 isProductionMode() ? "false" : "true" ) );
+    }
+
+    @GwtIncompatible
+    @Override
+    boolean purgeTasksWhenRunawayDetected()
+    {
+      return "true".equals( System.getProperty( "spritz.purge_tasks_when_runaway_detected", "true" ) );
     }
   }
 
@@ -70,14 +70,14 @@ final class SpritzConfig
       return "production" == System.getProperty( "spritz.environment" );
     }
 
-    boolean purgeTasksWhenRunawayDetected()
-    {
-      return "true" == System.getProperty( "spritz.purge_tasks_when_runaway_detected" );
-    }
-
     boolean shouldValidateSubscriptions()
     {
       return "true" == System.getProperty( "spritz.validate_subscriptions" );
+    }
+
+    boolean purgeTasksWhenRunawayDetected()
+    {
+      return "true" == System.getProperty( "spritz.purge_tasks_when_runaway_detected" );
     }
   }
 }

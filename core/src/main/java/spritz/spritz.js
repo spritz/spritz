@@ -8,7 +8,7 @@ goog.provide('spritz');
 goog.define('spritz.environment', 'production');
 
 /** @define {string} */
-goog.define('spritz.purge_tasks_when_runaway_detected', 'true');
+goog.define('spritz.validate_subscriptions', 'false');
 
 /** @define {string} */
-goog.define('spritz.validate_subscriptions', 'false');
+goog.define('spritz.purge_tasks_when_runaway_detected', 'true');
