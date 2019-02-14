@@ -35,31 +35,18 @@ public interface Scheduler
    *
    * @param task  the task to execute.
    * @param delay the delay before the task should execute.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
    */
   @Nonnull
-  Task schedule( @Nonnull final Runnable task, final int delay );
+  Cancelable schedule( @Nonnull final Runnable task, final int delay );
 
   /**
    * Schedules the periodic execution of the given task with specified period.
    *
    * @param task   the task to execute.
    * @param period the period after execution when the task should be re-executed. A negative value is invalid while a value of 0 indicates that the task is never rescheduled.
-   * @return the {@link Task} instance that can be used to cancel execution of task.
+   * @return the {@link Cancelable} instance that can be used to cancel execution of the task.
    */
   @Nonnull
-  Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
-
-  /**
-   * Interface to allow cancelling a queued task.
-   */
-  interface Task
-  {
-    /**
-     * Cancel the task.
-     * The task will not be triggered if it has not already been executed.
-     * This task should be cancelled at most once.
-     */
-    void cancel();
-  }
+  Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period );
 }

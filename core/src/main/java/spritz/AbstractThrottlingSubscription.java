@@ -10,7 +10,7 @@ abstract class AbstractThrottlingSubscription<T>
   @Nullable
   private T _nextItem;
   @Nullable
-  private Scheduler.Task _task;
+  private Cancelable _task;
   private int _nextTaskTime;
   private boolean _pendingComplete;
 

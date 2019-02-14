@@ -27,7 +27,7 @@ final class TimeoutOperator<T>
     private final int _timeoutTime;
     private int _lastTime;
     @Nonnull
-    private Scheduler.Task _task;
+    private Cancelable _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int timeoutTime )
     {
@@ -72,7 +72,7 @@ final class TimeoutOperator<T>
     }
 
     @Nonnull
-    private Scheduler.Task scheduleTimeout()
+    private Cancelable scheduleTimeout()
     {
       return Scheduler.instance().schedule( this, _lastTime + _timeoutTime );
     }

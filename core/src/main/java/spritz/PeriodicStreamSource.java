@@ -30,7 +30,7 @@ final class PeriodicStreamSource
     private final int _period;
     private int _counter;
     @Nullable
-    private Scheduler.Task _task;
+    private Cancelable _task;
 
     WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
     {

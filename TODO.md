@@ -21,8 +21,6 @@ complete as there is too much un-said.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
-* Consider replacing `Subscription` and `Scheduler.Task` with `Cancelable` interface.
-
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling

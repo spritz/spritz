@@ -44,7 +44,7 @@ final class SchedulerHolder
     @Nonnull
     @Override
     @GwtIncompatible
-    public Task schedule( @Nonnull final Runnable task, final int delay )
+    public Cancelable schedule( @Nonnull final Runnable task, final int delay )
     {
       final ScheduledFuture<?> future = _executorService.schedule( task, delay, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -54,7 +54,7 @@ final class SchedulerHolder
     @Nonnull
     @Override
     @GwtIncompatible
-    public Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    public Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final ScheduledFuture<?> future = _executorService.scheduleAtFixedRate( task, 0, period, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -89,7 +89,7 @@ final class SchedulerHolder
      */
     @Nonnull
     @Override
-    public Task schedule( @Nonnull final Runnable task, final int delay )
+    public Cancelable schedule( @Nonnull final Runnable task, final int delay )
     {
       final double timeoutId = DomGlobal.setTimeout( v -> task.run(), delay );
       return () -> DomGlobal.clearTimeout( timeoutId );
@@ -97,7 +97,7 @@ final class SchedulerHolder
 
     @Nonnull
     @Override
-    public Task scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    public Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final double timeoutId = DomGlobal.setInterval( v -> task.run(), period );
       return () -> DomGlobal.clearInterval( timeoutId );
