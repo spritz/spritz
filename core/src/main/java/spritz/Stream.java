@@ -235,9 +235,6 @@ public abstract class Stream<T>
     return new CreateStreamSource<>( createFunction );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     doSubscribe( Spritz.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );
