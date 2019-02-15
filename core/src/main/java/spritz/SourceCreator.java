@@ -7,13 +7,8 @@ public interface SourceCreator<T>
   void create( @Nonnull Observer<T> subscriber );
 
   interface Observer<T>
+    extends EventEmitter<T>
   {
-    void next( @Nonnull T item );
-
-    void error( @Nonnull Throwable throwable );
-
-    void complete();
-
     @SuppressWarnings( "BooleanMethodIsAlwaysInverted" )
     boolean isCancelled();
   }
