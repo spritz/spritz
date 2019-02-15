@@ -3,7 +3,6 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.realityforge.braincheck.BrainCheckConfig;
 import static org.realityforge.braincheck.Guards.*;
 
 /**
@@ -150,7 +149,7 @@ final class VirtualProcessorUnitsHolder
     static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
     {
       Objects.requireNonNull( processorUnit );
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         invariant( () -> null == c_current,
                    () -> "Spritz-0015: Attempting set current VirtualProcessorUnit to " + processorUnit +
@@ -168,7 +167,7 @@ final class VirtualProcessorUnitsHolder
     static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
     {
       Objects.requireNonNull( processorUnit );
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         invariant( () -> processorUnit == c_current,
                    () -> "Spritz-0017: Attempting to clear current VirtualProcessorUnit from " + processorUnit +

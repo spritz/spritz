@@ -3,7 +3,6 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.realityforge.braincheck.BrainCheckConfig;
 import org.realityforge.braincheck.Guards;
 
 /**
@@ -42,7 +41,7 @@ abstract class AbstractSubscription
   @Nonnull
   protected final Subscription getUpstream()
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       Guards.invariant( () -> null != _upstream,
                         () -> "Spritz-0002: Attempted to invoke getUpstream() when subscription is not present" );

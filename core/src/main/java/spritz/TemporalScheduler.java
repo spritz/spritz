@@ -6,7 +6,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
-import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.annotations.GwtIncompatible;
 import static org.realityforge.braincheck.Guards.*;
 
@@ -120,7 +119,7 @@ final class TemporalScheduler
 
     final Cancelable schedule( @Nonnull final Runnable task, final int delay )
     {
-      if ( BrainCheckConfig.checkApiInvariants() )
+      if ( Spritz.shouldCheckApiInvariants() )
       {
         apiInvariant( () -> delay >= 0,
                       () -> "Spritz-0016: Scheduler.schedule(...) passed a negative delay. " +
@@ -139,7 +138,7 @@ final class TemporalScheduler
     @Nonnull
     final Cancelable scheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
-      if ( BrainCheckConfig.checkApiInvariants() )
+      if ( Spritz.shouldCheckApiInvariants() )
       {
         apiInvariant( () -> period > 0,
                       () -> "Spritz-0014: Scheduler.scheduleAtFixedRate(...) passed a period that is " +

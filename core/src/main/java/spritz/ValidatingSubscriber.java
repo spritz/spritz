@@ -3,7 +3,6 @@ package spritz;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import org.realityforge.braincheck.BrainCheckConfig;
 import static org.realityforge.braincheck.Guards.*;
 
 final class ValidatingSubscriber<T>
@@ -34,7 +33,7 @@ final class ValidatingSubscriber<T>
   @Override
   public void onSubscribe( @Nonnull final Subscription subscription )
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> State.CREATED == _state,
                  () -> "Spritz-0001: Subscriber.onSubscribe(...) called and expected state " +
@@ -50,7 +49,7 @@ final class ValidatingSubscriber<T>
     }
     catch ( final Throwable throwable )
     {
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0003: Invoking Subscriber.onSubscribe(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
@@ -66,7 +65,7 @@ final class ValidatingSubscriber<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0005: Subscriber.onNext(...) called and expected state " +
@@ -81,7 +80,7 @@ final class ValidatingSubscriber<T>
     }
     catch ( final Throwable throwable )
     {
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0004: Invoking Subscriber.onNext(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
@@ -97,7 +96,7 @@ final class ValidatingSubscriber<T>
   @Override
   public void onError( @Nonnull final Throwable error )
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0006: Subscriber.onError(...) called and expected state " +
@@ -112,7 +111,7 @@ final class ValidatingSubscriber<T>
     }
     catch ( final Throwable t )
     {
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0007: Invoking Subscriber.onError(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
@@ -128,7 +127,7 @@ final class ValidatingSubscriber<T>
   @Override
   public void onComplete()
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0008: Subscriber.onComplete(...) called and expected state " +
@@ -143,7 +142,7 @@ final class ValidatingSubscriber<T>
     }
     catch ( final Throwable t )
     {
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0009: Invoking Subscriber.onComplete(...) incorrectly threw an exception. " +
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
@@ -164,7 +163,7 @@ final class ValidatingSubscriber<T>
   @Nonnull
   private static ValidatingSubscriber<?> currentContext()
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( ValidatingSubscriber::hasContext,
                  () -> "Spritz-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
@@ -180,7 +179,7 @@ final class ValidatingSubscriber<T>
 
   private static void popContext( @Nonnull final ValidatingSubscriber<?> subscriber )
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> !c_subscriberContext.isEmpty(),
                  () -> "Spritz-0010: Invoking Subscriber.popContext(...) but no subscriber on stack. " +
@@ -188,7 +187,7 @@ final class ValidatingSubscriber<T>
     }
     final int index = c_subscriberContext.size() - 1;
     final ValidatingSubscriber<?> removed = c_subscriberContext.remove( index );
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> removed == subscriber,
                  () -> "Spritz-0011: Invoking Subscriber.popContext(...) popped subscriber '" + removed +
@@ -218,7 +217,7 @@ final class ValidatingSubscriber<T>
     @Override
     public void cancel()
     {
-      if ( BrainCheckConfig.checkInvariants() )
+      if ( Spritz.shouldCheckInvariants() )
       {
         invariant( ValidatingSubscriber::hasContext,
                    () -> "Spritz-0018: Invoking Subscription.cancel(...) but not in the context of a subscriber." );
@@ -239,7 +238,7 @@ final class ValidatingSubscriber<T>
         }
         catch ( final Throwable t )
         {
-          if ( BrainCheckConfig.checkInvariants() )
+          if ( Spritz.shouldCheckInvariants() )
           {
             fail( () -> "Spritz-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
                         "Exception:\n" + ErrorUtil.throwableToString( t ) );

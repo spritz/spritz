@@ -3,7 +3,6 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.util.CircularBuffer;
 import static org.realityforge.braincheck.Guards.*;
 
@@ -33,7 +32,7 @@ abstract class AbstractExecutor
 
   public void queue( @Nonnull final Runnable task )
   {
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> !_taskQueue.contains( task ),
                  () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );

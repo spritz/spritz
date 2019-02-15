@@ -115,7 +115,7 @@ abstract class RoundBasedExecutor
   private void onRunawayTasksDetected()
   {
     final List<String> taskNames =
-      BrainCheckConfig.checkInvariants() && BrainCheckConfig.verboseErrorMessages() ?
+      Spritz.shouldCheckInvariants() && BrainCheckConfig.verboseErrorMessages() ?
       getTaskQueue().stream().map( Object::toString ).collect( Collectors.toList() ) :
       null;
 
@@ -124,7 +124,7 @@ abstract class RoundBasedExecutor
       getTaskQueue().clear();
     }
 
-    if ( BrainCheckConfig.checkInvariants() )
+    if ( Spritz.shouldCheckInvariants() )
     {
       fail( () -> "Spritz-0101: Runaway task(s) detected. Tasks still running after " + _maxRounds +
                   " rounds. Current tasks include: " + taskNames );
