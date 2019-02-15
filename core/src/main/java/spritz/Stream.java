@@ -1159,6 +1159,19 @@ public abstract class Stream<T>
   }
 
   /**
+   * When an upstream emits an error then emit supplied value and complete the stream.
+   *
+   * @param value the value to emit on error.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> onErrorReturn( @Nonnull final T value )
+  {
+    return onErrorResumeWith( e -> of( value ) );
+  }
+
+  /**
    * When an upstream emits an error then re-subscribe to upstream rather than emitting an error to downstream.
    * This recovery process will occur up to {@code maxErrorCount} times.
    *
