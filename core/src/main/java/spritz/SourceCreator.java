@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 
 public interface SourceCreator<T>
 {
-  void create( @Nonnull Observer<T> subscriber );
+  void create( @Nonnull Observer<T> observer );
 
   interface Observer<T>
     extends EventEmitter<T>
