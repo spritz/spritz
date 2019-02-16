@@ -10,8 +10,7 @@ final class SkipWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  SkipWhileOperator( @Nonnull final Stream<? extends T> upstream,
-                     @Nonnull final Predicate<? super T> predicate )
+  SkipWhileOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );

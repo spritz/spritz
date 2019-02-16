@@ -7,7 +7,7 @@ final class SkipOperator<T>
 {
   private final int _count;
 
-  SkipOperator( @Nonnull final Stream<? extends T> upstream, final int count )
+  SkipOperator( @Nonnull final Publisher<T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;

@@ -8,8 +8,7 @@ final class ThrottleOperator<T>
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleOperator( @Nonnull final Stream<? extends T> upstream,
-                    @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  ThrottleOperator( @Nonnull final Publisher<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( upstream );
     _timeoutForItemFn = timeoutForItemFn;

@@ -10,7 +10,7 @@ final class OnErrorResumeWithOperator<T>
   @Nonnull
   private final Function<Throwable, Stream<T>> _streamFromErrorFn;
 
-  OnErrorResumeWithOperator( @Nonnull final Stream<? extends T> upstream,
+  OnErrorResumeWithOperator( @Nonnull final Publisher<T> upstream,
                              @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
     super( upstream );

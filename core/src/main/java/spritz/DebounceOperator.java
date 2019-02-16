@@ -8,8 +8,7 @@ final class DebounceOperator<T>
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  DebounceOperator( @Nonnull final Stream<? extends T> upstream,
-                    @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  DebounceOperator( @Nonnull final Publisher<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( upstream );
     _timeoutForItemFn = timeoutForItemFn;

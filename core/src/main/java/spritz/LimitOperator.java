@@ -7,7 +7,7 @@ final class LimitOperator<T>
 {
   private final int _count;
 
-  LimitOperator( @Nonnull final Stream<? extends T> upstream, final int count )
+  LimitOperator( @Nonnull final Publisher<T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;

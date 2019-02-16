@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 final class DistinctOperator<T>
   extends AbstractStream<T>
 {
-  DistinctOperator( @Nonnull final Stream<? extends T> upstream )
+  DistinctOperator( @Nonnull final Publisher<T> upstream )
   {
     super( upstream );
   }

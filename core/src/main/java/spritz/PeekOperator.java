@@ -9,7 +9,7 @@ final class PeekOperator<T>
   extends Stream<T>
 {
   @Nonnull
-  private final Stream<? extends T> _upstream;
+  private final Publisher<T> _upstream;
   @Nullable
   private final Consumer<Subscription> _onSubscription;
   @Nullable
@@ -31,7 +31,7 @@ final class PeekOperator<T>
   @Nullable
   private final Runnable _afterCancel;
 
-  PeekOperator( @Nonnull final Stream<? extends T> upstream,
+  PeekOperator( @Nonnull final Publisher<T> upstream,
                 @Nullable final Consumer<Subscription> onSubscription,
                 @Nullable final Consumer<Subscription> afterSubscription,
                 @Nullable final Consumer<? super T> onNext,

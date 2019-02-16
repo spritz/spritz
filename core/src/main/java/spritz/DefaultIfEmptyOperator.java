@@ -9,7 +9,7 @@ final class DefaultIfEmptyOperator<T>
   @Nonnull
   private final T _defaultValue;
 
-  DefaultIfEmptyOperator( @Nonnull final Stream<? extends T> upstream, @Nonnull final T defaultValue )
+  DefaultIfEmptyOperator( @Nonnull final Publisher<T> upstream, @Nonnull final T defaultValue )
   {
     super( upstream );
     _defaultValue = Objects.requireNonNull( defaultValue );

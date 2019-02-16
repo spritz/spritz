@@ -19,6 +19,7 @@ import spritz.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public abstract class Stream<T>
+  implements Publisher<T>
 {
   /**
    * The maximum concurrency of {@link #mergeMap(Function)} operator that does not specify concurrency.
@@ -235,6 +236,10 @@ public abstract class Stream<T>
     return new CreateStreamSource<>( createFunction );
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     doSubscribe( Spritz.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );

@@ -10,8 +10,7 @@ final class PredicateFilterStream<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterStream( @Nonnull final Stream<? extends T> upstream,
-                         @Nonnull final Predicate<? super T> predicate )
+  PredicateFilterStream( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );

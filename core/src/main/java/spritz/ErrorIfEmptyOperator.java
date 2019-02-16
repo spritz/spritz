@@ -10,7 +10,7 @@ final class ErrorIfEmptyOperator<T>
   @Nonnull
   private final Supplier<Throwable> _errorFactory;
 
-  ErrorIfEmptyOperator( @Nonnull final Stream<? extends T> upstream, @Nonnull final Supplier<Throwable> errorFactory )
+  ErrorIfEmptyOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Supplier<Throwable> errorFactory )
   {
     super( upstream );
     _errorFactory = Objects.requireNonNull( errorFactory );

@@ -8,7 +8,7 @@ final class LastOperator<T>
 {
   private final int _maxBufferSize;
 
-  LastOperator( @Nonnull final Stream<? extends T> upstream, final int maxBufferSize )
+  LastOperator( @Nonnull final Publisher<T> upstream, final int maxBufferSize )
   {
     super( upstream );
     _maxBufferSize = maxBufferSize;

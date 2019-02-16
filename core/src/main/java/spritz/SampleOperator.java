@@ -8,7 +8,7 @@ final class SampleOperator<T>
   private final int _samplePeriod;
   private final boolean _emitFirst;
 
-  SampleOperator( @Nonnull final Stream<? extends T> upstream, final int samplePeriod, final boolean emitFirst )
+  SampleOperator( @Nonnull final Publisher<T> upstream, final int samplePeriod, final boolean emitFirst )
   {
     super( upstream );
     _samplePeriod = samplePeriod;

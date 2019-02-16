@@ -11,8 +11,7 @@ final class ObserveOnOperator<T>
   @Nonnull
   private final VirtualProcessorUnit _virtualProcessorUnit;
 
-  ObserveOnOperator( @Nonnull final Stream<? extends T> upstream,
-                     @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  ObserveOnOperator( @Nonnull final Publisher<T> upstream, @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
     super( upstream );
     _virtualProcessorUnit = Objects.requireNonNull( virtualProcessorUnit );

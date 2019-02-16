@@ -10,8 +10,7 @@ final class FilterSuccessiveOperator<T>
   @Nonnull
   private final SuccessivePredicate<T> _predicate;
 
-  FilterSuccessiveOperator( @Nonnull final Stream<? extends T> upstream,
-                            @Nonnull final SuccessivePredicate<T> predicate )
+  FilterSuccessiveOperator( @Nonnull final Publisher<T> upstream, @Nonnull final SuccessivePredicate<T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );

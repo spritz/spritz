@@ -10,7 +10,7 @@ final class TakeWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  TakeWhileOperator( @Nonnull final Stream<? extends T> upstream, @Nonnull final Predicate<? super T> predicate )
+  TakeWhileOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );

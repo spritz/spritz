@@ -7,7 +7,7 @@ final class TimeoutOperator<T>
 {
   private final int _timeoutTime;
 
-  TimeoutOperator( @Nonnull final Stream<? extends T> upstream, final int timeoutTime )
+  TimeoutOperator( @Nonnull final Publisher<T> upstream, final int timeoutTime )
   {
     super( upstream );
     _timeoutTime = timeoutTime;
