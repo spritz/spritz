@@ -4,6 +4,7 @@ import elemental2.dom.DomGlobal;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import spritz.internal.annotations.GwtIncompatible;
@@ -72,7 +73,16 @@ final class TemporalScheduler
     extends AbstractScheduler
   {
     @GwtIncompatible
-    private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1 );
+    private final ScheduledExecutorService _executorService = new ScheduledThreadPoolExecutor( 1, new ThreadFactory()
+    {
+      @Override
+      public Thread newThread( final Runnable r )
+      {
+        final Thread thread = new Thread( r, "Scheduler" );
+        thread.setDaemon( true );
+        return thread;
+      }
+    } );
 
     @GwtIncompatible
     void shutdown()

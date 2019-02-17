@@ -27,6 +27,5 @@ public final class ExampleUtil
       {
       }
     }
-    System.exit( 0 );
   }
 }
