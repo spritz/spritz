@@ -38,12 +38,12 @@ final class PeriodicStreamSource
       _period = period;
     }
 
-    void startTimer()
+    synchronized void startTimer()
     {
       _task = Scheduler.scheduleAtFixedRate( this::pushItem, _period );
     }
 
-    void pushItem()
+    synchronized void pushItem()
     {
       assert null != _task;
       final int value = _counter++;
