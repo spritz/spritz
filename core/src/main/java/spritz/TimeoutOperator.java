@@ -63,7 +63,7 @@ final class TimeoutOperator<T>
     @Override
     public void run()
     {
-      onError( new TimeoutException() );
+      super.onError( new TimeoutException() );
     }
 
     private void recordLastTime()
