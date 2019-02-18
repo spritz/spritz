@@ -54,6 +54,7 @@ public final class SpritzTestUtil
   {
     ( (SpritzLogger.ProxyLogger) SpritzLogger.getLogger() ).setLogger( null );
     TemporalScheduler.reset();
+    UncaughtErrorHandlerSupport.reset();
   }
 
   /**

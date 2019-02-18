@@ -11,7 +11,7 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void basicOperation()
   {
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
@@ -47,7 +47,7 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void addUncaughtErrorHandler_alreadyExists()
   {
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final UncaughtErrorHandler handler = ( streamArg, throwableArg ) -> {
     };
@@ -61,7 +61,7 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void removeUncaughtErrorHandler_noExists()
   {
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final UncaughtErrorHandler handler = ( streamArg, throwableArg ) -> {
     };
@@ -74,7 +74,7 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void multipleHandlers()
   {
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
@@ -108,7 +108,7 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void onUncaughtError_whereOneHandlerGeneratesError()
   {
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
@@ -153,7 +153,7 @@ public class UncaughtErrorHandlerSupportTest
   {
     SpritzTestUtil.disableNames();
 
-    final UncaughtErrorHandlerSupport support = new UncaughtErrorHandlerSupport();
+    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
 
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();

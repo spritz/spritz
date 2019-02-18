@@ -12,10 +12,25 @@ import static org.realityforge.braincheck.Guards.*;
 final class UncaughtErrorHandlerSupport
   implements UncaughtErrorHandler
 {
+  private static UncaughtErrorHandlerSupport INSTANCE = new UncaughtErrorHandlerSupport();
   /**
    * The list of error handlers to call when an error is received.
    */
   private final ArrayList<UncaughtErrorHandler> _errorHandlers = new ArrayList<>();
+
+  static UncaughtErrorHandlerSupport get()
+  {
+    return INSTANCE;
+  }
+
+  static void reset()
+  {
+    INSTANCE = new UncaughtErrorHandlerSupport();
+  }
+
+  private UncaughtErrorHandlerSupport()
+  {
+  }
 
   /**
    * Add error handler to the list of error handlers called.
