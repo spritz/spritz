@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-final class TestLogger
+public final class TestLogger
   implements SpritzLogger.Logger
 {
-  static final class LogEntry
+  public static final class LogEntry
   {
     @Nonnull
     private final String _message;
@@ -21,13 +21,13 @@ final class TestLogger
     }
 
     @Nonnull
-    String getMessage()
+    public String getMessage()
     {
       return _message;
     }
 
     @Nullable
-    Throwable getThrowable()
+    public Throwable getThrowable()
     {
       return _throwable;
     }
@@ -42,7 +42,7 @@ final class TestLogger
   }
 
   @Nonnull
-  ArrayList<LogEntry> getEntries()
+  public ArrayList<LogEntry> getEntries()
   {
     return _entries;
   }
