@@ -110,6 +110,32 @@ public final class SpritzTestUtil
   }
 
   /**
+   * Set `spritz.enable_uncaught_error_handlers` setting to true.
+   */
+  public static void enableUncaughtErrorHandlers()
+  {
+    setEnableUncaughtErrorHandlers( true );
+  }
+
+  /**
+   * Set `spritz.enable_uncaught_error_handlers` setting to false.
+   */
+  public static void disableUncaughtErrorHandlers()
+  {
+    setEnableUncaughtErrorHandlers( false );
+  }
+
+  /**
+   * Configure the `spritz.enable_uncaught_error_handlers` setting.
+   *
+   * @param value the setting.
+   */
+  private static void setEnableUncaughtErrorHandlers( final boolean value )
+  {
+    setConstant( "UNCAUGHT_ERROR_HANDLERS", value );
+  }
+
+  /**
    * Set `spritz.validate_subscriptions` setting to true.
    */
   public static void validateSubscriptions()

@@ -7,4 +7,5 @@
   <set-property name='spritz.environment' value='development'/>
   <set-property name='spritz.enable_names' value='true'/>
   <set-property name='spritz.validate_subscriptions' value='true'/>
+  <set-property name='spritz.enable_uncaught_error_handlers' value='true'/>
 </module>

@@ -17,4 +17,7 @@ goog.define('spritz.validate_subscriptions', 'false');
 goog.define('spritz.purge_tasks_when_runaway_detected', 'true');
 
 /** @define {string} */
+goog.define('spritz.enable_uncaught_error_handlers', 'false');
+
+/** @define {string} */
 goog.define('spritz.logger', 'none');

@@ -34,6 +34,16 @@ public final class Spritz
   }
 
   /**
+   * Return true if uncaught error handlers are enabled.
+   *
+   * @return true if uncaught error handlers are enabled, false otherwise.
+   */
+  public static boolean areUncaughtErrorHandlersEnabled()
+  {
+    return SpritzConfig.areUncaughtErrorHandlersEnabled();
+  }
+
+  /**
    * Return true if invariants will be checked.
    *
    * @return true if invariants will be checked.
