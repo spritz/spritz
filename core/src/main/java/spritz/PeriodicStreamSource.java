@@ -47,7 +47,14 @@ final class PeriodicStreamSource
     {
       assert null != _task;
       final int value = _counter++;
-      _subscriber.onNext( value );
+      try
+      {
+        _subscriber.onNext( value );
+      }
+      catch ( final Throwable t )
+      {
+        Spritz.reportUncaughtError( t );
+      }
     }
 
     @Override
