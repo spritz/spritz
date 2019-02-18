@@ -75,21 +75,21 @@ final class UncaughtErrorHandlerSupport
    * {@inheritDoc}
    */
   @Override
-  public void onUncaughtError( @Nonnull final Stream<?> stream, @Nonnull final Throwable error )
+  public void onUncaughtError( @Nonnull final Throwable error )
   {
     for ( final UncaughtErrorHandler errorHandler : _errorHandlers )
     {
       try
       {
-        errorHandler.onUncaughtError( stream, error );
+        errorHandler.onUncaughtError( error );
       }
       catch ( final Throwable nestedError )
       {
         if ( Spritz.areNamesEnabled() && BrainCheckConfig.verboseErrorMessages() )
         {
           final String message =
-            SpritzUtil.safeGetString( () -> "Exception when notifying error handler '" + errorHandler + "' of '" +
-                                            error + "' error in stream '" + stream + "'." );
+            SpritzUtil.safeGetString( () -> "Exception =notifying error handler '" + errorHandler +
+                                            "' of '" + error + "' error." );
           SpritzLogger.log( message, nestedError );
         }
         else

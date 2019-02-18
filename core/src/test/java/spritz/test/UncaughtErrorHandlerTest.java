@@ -17,29 +17,27 @@ public class UncaughtErrorHandlerTest
   @Test
   public void basicOperation()
   {
-    final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
     final AtomicInteger callCount = new AtomicInteger();
 
-    final UncaughtErrorHandler handler = ( streamArg, throwableArg ) -> {
+    final UncaughtErrorHandler handler = ( throwableArg ) -> {
       callCount.incrementAndGet();
-      assertEquals( streamArg, stream );
       assertEquals( throwableArg, throwable );
     };
     Spritz.addUncaughtErrorHandler( handler );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount.get(), 1 );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount.get(), 2 );
 
     Spritz.removeUncaughtErrorHandler( handler );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     // Not called again
     assertEquals( callCount.get(), 2 );
@@ -48,7 +46,7 @@ public class UncaughtErrorHandlerTest
   @Test
   public void addUncaughtErrorHandler_alreadyExists()
   {
-    final UncaughtErrorHandler handler = ( s, e ) -> {
+    final UncaughtErrorHandler handler = e -> {
     };
     Spritz.addUncaughtErrorHandler( handler );
 
@@ -60,7 +58,7 @@ public class UncaughtErrorHandlerTest
   @Test
   public void removeUncaughtErrorHandler_noExists()
   {
-    final UncaughtErrorHandler handler = ( s, e ) -> {
+    final UncaughtErrorHandler handler = e -> {
     };
 
     assertInvariantFailure( () -> Spritz.removeUncaughtErrorHandler( handler ),
@@ -71,24 +69,23 @@ public class UncaughtErrorHandlerTest
   @Test
   public void multipleHandlers()
   {
-    final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
     final AtomicInteger callCount1 = new AtomicInteger();
     final AtomicInteger callCount2 = new AtomicInteger();
     final AtomicInteger callCount3 = new AtomicInteger();
 
-    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount1.incrementAndGet() );
-    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount2.incrementAndGet() );
-    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount3.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( e -> callCount1.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( e -> callCount2.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( e -> callCount3.incrementAndGet() );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount1.get(), 1 );
     assertEquals( callCount2.get(), 1 );
     assertEquals( callCount3.get(), 1 );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount1.get(), 2 );
     assertEquals( callCount2.get(), 2 );
@@ -106,14 +103,14 @@ public class UncaughtErrorHandlerTest
 
     final RuntimeException exception = new RuntimeException( "X" );
 
-    final UncaughtErrorHandler handler2 = ( s, e ) -> {
+    final UncaughtErrorHandler handler2 = e -> {
       throw exception;
     };
-    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount1.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( e -> callCount1.incrementAndGet() );
     Spritz.addUncaughtErrorHandler( handler2 );
-    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount3.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( e -> callCount3.incrementAndGet() );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount1.get(), 1 );
     assertEquals( callCount3.get(), 1 );
@@ -126,7 +123,7 @@ public class UncaughtErrorHandlerTest
                   throwable + "' error in stream '" + stream + "'." );
     assertEquals( entry1.getThrowable(), exception );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( callCount1.get(), 2 );
     assertEquals( callCount3.get(), 2 );
@@ -139,17 +136,16 @@ public class UncaughtErrorHandlerTest
   {
     SpritzTestUtil.disableNames();
 
-    final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
     final RuntimeException exception = new RuntimeException( "X" );
 
-    final UncaughtErrorHandler handler2 = ( s, e ) -> {
+    final UncaughtErrorHandler handler2 = e -> {
       throw exception;
     };
     Spritz.addUncaughtErrorHandler( handler2 );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     final ArrayList<TestLogger.LogEntry> entries = getTestLogger().getEntries();
     assertEquals( entries.size(), 1 );
@@ -157,7 +153,7 @@ public class UncaughtErrorHandlerTest
     assertEquals( entry1.getMessage(), "Error triggered when invoking UncaughtErrorHandler.onUncaughtError()" );
     assertEquals( entry1.getThrowable(), exception );
 
-    Spritz.reportUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( throwable );
 
     assertEquals( getTestLogger().getEntries().size(), 2 );
   }
@@ -167,13 +163,13 @@ public class UncaughtErrorHandlerTest
   {
     SpritzTestUtil.disableUncaughtErrorHandlers();
 
-    final UncaughtErrorHandler handler = ( s, e ) -> {
+    final UncaughtErrorHandler handler = e -> {
     };
 
     assertInvariantFailure( () -> Spritz.addUncaughtErrorHandler( handler ),
                             "Spritz-0182: UncaughtErrorHandlerSupport.get() invoked when Spritz.areUncaughtErrorHandlersEnabled() returns false." );
 
     // This should produce no error and will be silently omitted
-    Spritz.reportUncaughtError( Stream.empty(), new IllegalStateException() );
+    Spritz.reportUncaughtError( new IllegalStateException() );
   }
 }

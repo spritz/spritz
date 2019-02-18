@@ -101,14 +101,13 @@ public final class Spritz
   /**
    * Report an uncaught error in stream.
    *
-   * @param stream the stream.
    * @param error  the error.
    */
-  public static void reportUncaughtError( @Nonnull final Stream stream, @Nonnull final Throwable error )
+  public static void reportUncaughtError( @Nonnull final Throwable error )
   {
     if ( areUncaughtErrorHandlersEnabled() )
     {
-      UncaughtErrorHandlerSupport.get().onUncaughtError( stream, error );
+      UncaughtErrorHandlerSupport.get().onUncaughtError( error );
     }
   }
 }
