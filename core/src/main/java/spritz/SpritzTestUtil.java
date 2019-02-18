@@ -36,11 +36,13 @@ public final class SpritzTestUtil
     {
       disableNames();
       noValidateSubscriptions();
+      disableUncaughtErrorHandlers();
     }
     else
     {
       enableNames();
       validateSubscriptions();
+      enableUncaughtErrorHandlers();
     }
     purgeTasksWhenRunawayDetected();
     resetState();
