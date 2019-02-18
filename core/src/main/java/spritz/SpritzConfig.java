@@ -42,6 +42,7 @@ final class SpritzConfig
   {
     return VALIDATE_SUBSCRIPTIONS;
   }
+  
   static String loggerType()
   {
     return LOGGER_TYPE;
