@@ -13,6 +13,7 @@ public abstract class AbstractSpritzTest
   {
     BrainCheckTestUtil.resetConfig( false );
     SpritzTestUtil.resetConfig( false );
+    getProxyLogger().setLogger( new TestLogger() );
   }
 
   @AfterMethod
@@ -20,6 +21,18 @@ public abstract class AbstractSpritzTest
   {
     BrainCheckTestUtil.resetConfig( true );
     SpritzTestUtil.resetConfig( true );
+  }
+
+  @Nonnull
+  final TestLogger getTestLogger()
+  {
+    return (TestLogger) getProxyLogger().getLogger();
+  }
+
+  @Nonnull
+  private SpritzLogger.ProxyLogger getProxyLogger()
+  {
+    return (SpritzLogger.ProxyLogger) SpritzLogger.getLogger();
   }
 
   final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable, @Nonnull final String message )

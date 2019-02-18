@@ -21,4 +21,7 @@
 
   <define-property name='spritz.purge_tasks_when_runaway_detected' values='true,false'/>
   <set-property name='spritz.purge_tasks_when_runaway_detected' value='true'/>
+
+  <define-property name='spritz.logger' values='console_js,jul,proxy,none'/>
+  <set-property name='spritz.logger' value='console_js'/>
 </module>

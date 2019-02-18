@@ -12,6 +12,7 @@ final class SpritzConfig
   private static boolean ENABLE_NAMES = PROVIDER.areNamesEnabled();
   private static boolean VALIDATE_SUBSCRIPTIONS = PROVIDER.shouldValidateSubscriptions();
   private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
+  private static final String LOGGER_TYPE = PROVIDER.loggerType();
 
   private SpritzConfig()
   {
@@ -40,6 +41,10 @@ final class SpritzConfig
   static boolean shouldValidateSubscriptions()
   {
     return VALIDATE_SUBSCRIPTIONS;
+  }
+  static String loggerType()
+  {
+    return LOGGER_TYPE;
   }
 
   private static final class ConfigProvider
@@ -73,6 +78,13 @@ final class SpritzConfig
     {
       return "true".equals( System.getProperty( "spritz.purge_tasks_when_runaway_detected", "true" ) );
     }
+
+    @GwtIncompatible
+    @Override
+    String loggerType()
+    {
+      return System.getProperty( "spritz.logger", PRODUCTION_MODE ? "basic" : "proxy" );
+    }
   }
 
   @SuppressWarnings( { "unused", "StringEquality" } )
@@ -96,6 +108,14 @@ final class SpritzConfig
     boolean purgeTasksWhenRunawayDetected()
     {
       return "true" == System.getProperty( "spritz.purge_tasks_when_runaway_detected" );
+    }
+
+    String loggerType()
+    {
+      /*
+       * Valid values are: "none", "basic", "jul" (java.util.logging) and "proxy" (for testing)
+       */
+      return System.getProperty( "spritz.logger" );
     }
   }
 }

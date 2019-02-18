@@ -50,6 +50,7 @@ public final class SpritzTestUtil
    */
   private static void resetState()
   {
+    ( (SpritzLogger.ProxyLogger) SpritzLogger.getLogger() ).setLogger( null );
     TemporalScheduler.reset();
   }
 
