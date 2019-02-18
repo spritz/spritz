@@ -15,7 +15,7 @@ public final class SpritzTestUtil
   }
 
   /**
-   * Reset the state of Arez config to either production or development state.
+   * Reset the state of spritz config to either production or development state.
    *
    * @param productionMode true to set it to production mode configuration, false to set it to development mode config.
    */
@@ -34,10 +34,12 @@ public final class SpritzTestUtil
 
     if ( productionMode )
     {
+      disableNames();
       noValidateSubscriptions();
     }
     else
     {
+      enableNames();
       validateSubscriptions();
     }
     purgeTasksWhenRunawayDetected();
@@ -52,6 +54,32 @@ public final class SpritzTestUtil
   {
     ( (SpritzLogger.ProxyLogger) SpritzLogger.getLogger() ).setLogger( null );
     TemporalScheduler.reset();
+  }
+
+  /**
+   * Set `spritz.enable_names` setting to true.
+   */
+  public static void enableNames()
+  {
+    setEnableNames( true );
+  }
+
+  /**
+   * Set `spritz.enable_names` setting to false.
+   */
+  public static void disableNames()
+  {
+    setEnableNames( false );
+  }
+
+  /**
+   * Configure the `spritz.enable_names` setting.
+   *
+   * @param value the setting.
+   */
+  private static void setEnableNames( final boolean value )
+  {
+    setConstant( "ENABLE_NAMES", value );
   }
 
   /**
