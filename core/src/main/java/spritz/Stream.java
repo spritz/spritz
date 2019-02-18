@@ -2238,6 +2238,18 @@ public abstract class Stream<T>
   }
 
   /**
+   * Publish emitted items and signals to the specified subject.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> publish()
+  {
+    return compose( p -> new PublishOperator<>( p, new MulticastSubject<>( p ) ) );
+  }
+
+  /**
    * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the public final value to emit if upstream completes and is empty.
