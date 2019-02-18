@@ -19,6 +19,8 @@ complete as there is too much un-said.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
+* Javadoc Doclet that generates a separate page per method in `Stream`
+
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling
