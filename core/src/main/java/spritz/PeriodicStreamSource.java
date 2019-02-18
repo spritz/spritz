@@ -51,7 +51,7 @@ final class PeriodicStreamSource
     }
 
     @Override
-    public void cancel()
+    public synchronized void cancel()
     {
       if ( null != _task )
       {
