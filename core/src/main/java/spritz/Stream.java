@@ -2244,6 +2244,7 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.UNKNOWN )
+  //TODO: This should report a SUbject - which thus needs to extend Stream
   public final Stream<T> publish()
   {
     return compose( p -> new PublishOperator<>( p, new MulticastSubject<>( p ) ) );
