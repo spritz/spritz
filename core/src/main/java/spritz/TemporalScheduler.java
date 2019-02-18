@@ -80,6 +80,7 @@ final class TemporalScheduler
       {
         final Thread thread = new Thread( r, "Scheduler" );
         thread.setDaemon( true );
+        thread.setUncaughtExceptionHandler( ( t, e ) -> Spritz.reportUncaughtError( e ) );
         return thread;
       }
     } );
