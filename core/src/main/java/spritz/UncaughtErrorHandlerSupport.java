@@ -20,6 +20,11 @@ final class UncaughtErrorHandlerSupport
 
   static UncaughtErrorHandlerSupport get()
   {
+    if ( Spritz.shouldCheckInvariants() )
+    {
+      invariant( Spritz::areUncaughtErrorHandlersEnabled,
+                 () -> "Spritz-0182: UncaughtErrorHandlerSupport.get() invoked when Spritz.areUncaughtErrorHandlersEnabled() returns false." );
+    }
     return INSTANCE;
   }
 
@@ -93,11 +98,5 @@ final class UncaughtErrorHandlerSupport
         }
       }
     }
-  }
-
-  @Nonnull
-  ArrayList<UncaughtErrorHandler> getErrorHandlers()
-  {
-    return _errorHandlers;
   }
 }

@@ -1,18 +1,22 @@
-package spritz;
+package spritz.test;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.testng.annotations.Test;
+import spritz.AbstractSpritzTest;
+import spritz.Spritz;
+import spritz.SpritzTestUtil;
+import spritz.Stream;
+import spritz.TestLogger;
+import spritz.UncaughtErrorHandler;
 import static org.testng.Assert.*;
 
-public class UncaughtErrorHandlerSupportTest
+public class UncaughtErrorHandlerTest
   extends AbstractSpritzTest
 {
   @Test
   public void basicOperation()
   {
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
@@ -23,22 +27,19 @@ public class UncaughtErrorHandlerSupportTest
       assertEquals( streamArg, stream );
       assertEquals( throwableArg, throwable );
     };
-    support.addUncaughtErrorHandler( handler );
-    assertEquals( support.getErrorHandlers().size(), 1 );
+    Spritz.addUncaughtErrorHandler( handler );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount.get(), 1 );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount.get(), 2 );
 
-    support.removeUncaughtErrorHandler( handler );
+    Spritz.removeUncaughtErrorHandler( handler );
 
-    assertEquals( support.getErrorHandlers().size(), 0 );
-
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     // Not called again
     assertEquals( callCount.get(), 2 );
@@ -47,13 +48,11 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void addUncaughtErrorHandler_alreadyExists()
   {
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
-    final UncaughtErrorHandler handler = ( streamArg, throwableArg ) -> {
+    final UncaughtErrorHandler handler = ( s, e ) -> {
     };
-    support.addUncaughtErrorHandler( handler );
+    Spritz.addUncaughtErrorHandler( handler );
 
-    assertInvariantFailure( () -> support.addUncaughtErrorHandler( handler ),
+    assertInvariantFailure( () -> Spritz.addUncaughtErrorHandler( handler ),
                             "Spritz-0096: Attempting to add handler " + handler + " that is already in " +
                             "the list of error handlers." );
   }
@@ -61,12 +60,10 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void removeUncaughtErrorHandler_noExists()
   {
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
-    final UncaughtErrorHandler handler = ( streamArg, throwableArg ) -> {
+    final UncaughtErrorHandler handler = ( s, e ) -> {
     };
 
-    assertInvariantFailure( () -> support.removeUncaughtErrorHandler( handler ),
+    assertInvariantFailure( () -> Spritz.removeUncaughtErrorHandler( handler ),
                             "Spritz-0097: Attempting to remove handler " + handler + " that is not in " +
                             "the list of error handlers." );
   }
@@ -74,8 +71,6 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void multipleHandlers()
   {
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
@@ -83,22 +78,17 @@ public class UncaughtErrorHandlerSupportTest
     final AtomicInteger callCount2 = new AtomicInteger();
     final AtomicInteger callCount3 = new AtomicInteger();
 
-    final UncaughtErrorHandler handler1 = ( streamArg, throwableArg ) -> callCount1.incrementAndGet();
-    final UncaughtErrorHandler handler2 = ( streamArg, throwableArg ) -> callCount2.incrementAndGet();
-    final UncaughtErrorHandler handler3 = ( streamArg, throwableArg ) -> callCount3.incrementAndGet();
-    support.addUncaughtErrorHandler( handler1 );
-    support.addUncaughtErrorHandler( handler2 );
-    support.addUncaughtErrorHandler( handler3 );
+    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount1.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount2.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount3.incrementAndGet() );
 
-    assertEquals( support.getErrorHandlers().size(), 3 );
-
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount1.get(), 1 );
     assertEquals( callCount2.get(), 1 );
     assertEquals( callCount3.get(), 1 );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount1.get(), 2 );
     assertEquals( callCount2.get(), 2 );
@@ -108,8 +98,6 @@ public class UncaughtErrorHandlerSupportTest
   @Test
   public void onUncaughtError_whereOneHandlerGeneratesError()
   {
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
@@ -118,16 +106,14 @@ public class UncaughtErrorHandlerSupportTest
 
     final RuntimeException exception = new RuntimeException( "X" );
 
-    final UncaughtErrorHandler handler1 = ( streamArg, throwableArg ) -> callCount1.incrementAndGet();
-    final UncaughtErrorHandler handler2 = ( streamArg, throwableArg ) -> {
+    final UncaughtErrorHandler handler2 = ( s, e ) -> {
       throw exception;
     };
-    final UncaughtErrorHandler handler3 = ( streamArg, throwableArg ) -> callCount3.incrementAndGet();
-    support.addUncaughtErrorHandler( handler1 );
-    support.addUncaughtErrorHandler( handler2 );
-    support.addUncaughtErrorHandler( handler3 );
+    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount1.incrementAndGet() );
+    Spritz.addUncaughtErrorHandler( handler2 );
+    Spritz.addUncaughtErrorHandler( ( s, e ) -> callCount3.incrementAndGet() );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount1.get(), 1 );
     assertEquals( callCount3.get(), 1 );
@@ -140,7 +126,7 @@ public class UncaughtErrorHandlerSupportTest
                   throwable + "' error in stream '" + stream + "'." );
     assertEquals( entry1.getThrowable(), exception );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( callCount1.get(), 2 );
     assertEquals( callCount3.get(), 2 );
@@ -153,19 +139,17 @@ public class UncaughtErrorHandlerSupportTest
   {
     SpritzTestUtil.disableNames();
 
-    final UncaughtErrorHandlerSupport support = UncaughtErrorHandlerSupport.get();
-
     final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
     final RuntimeException exception = new RuntimeException( "X" );
 
-    final UncaughtErrorHandler handler2 = ( streamArg, throwableArg ) -> {
+    final UncaughtErrorHandler handler2 = ( s, e ) -> {
       throw exception;
     };
-    support.addUncaughtErrorHandler( handler2 );
+    Spritz.addUncaughtErrorHandler( handler2 );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     final ArrayList<TestLogger.LogEntry> entries = getTestLogger().getEntries();
     assertEquals( entries.size(), 1 );
@@ -173,8 +157,23 @@ public class UncaughtErrorHandlerSupportTest
     assertEquals( entry1.getMessage(), "Error triggered when invoking UncaughtErrorHandler.onUncaughtError()" );
     assertEquals( entry1.getThrowable(), exception );
 
-    support.onUncaughtError( stream, throwable );
+    Spritz.reportUncaughtError( stream, throwable );
 
     assertEquals( getTestLogger().getEntries().size(), 2 );
+  }
+
+  @Test
+  public void addUncaughtErrorHandler_errorHandlersDisabled()
+  {
+    SpritzTestUtil.disableUncaughtErrorHandlers();
+
+    final UncaughtErrorHandler handler = ( s, e ) -> {
+    };
+
+    assertInvariantFailure( () -> Spritz.addUncaughtErrorHandler( handler ),
+                            "Spritz-0182: UncaughtErrorHandlerSupport.get() invoked when Spritz.areUncaughtErrorHandlersEnabled() returns false." );
+
+    // This should produce no error and will be silently omitted
+    Spritz.reportUncaughtError( Stream.empty(), new IllegalStateException() );
   }
 }

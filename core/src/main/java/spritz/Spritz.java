@@ -1,5 +1,6 @@
 package spritz;
 
+import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
 import spritz.internal.annotations.MetaDataSource;
 
@@ -71,5 +72,43 @@ public final class Spritz
   public static boolean purgeTasksWhenRunawayDetected()
   {
     return SpritzConfig.purgeTasksWhenRunawayDetected();
+  }
+
+  /**
+   * Add error handler to the list of error handlers called.
+   * The handler should not already be in the list. This method should NOT be called if
+   * {@link #areUncaughtErrorHandlersEnabled()} returns false.
+   *
+   * @param handler the error handler.
+   */
+  public static void addUncaughtErrorHandler( @Nonnull final UncaughtErrorHandler handler )
+  {
+    UncaughtErrorHandlerSupport.get().addUncaughtErrorHandler( handler );
+  }
+
+  /**
+   * Remove error handler from list of existing error handlers.
+   * The handler should already be in the list. This method should NOT be called if
+   * {@link #areUncaughtErrorHandlersEnabled()} returns false.
+   *
+   * @param handler the error handler.
+   */
+  public static void removeUncaughtErrorHandler( @Nonnull final UncaughtErrorHandler handler )
+  {
+    UncaughtErrorHandlerSupport.get().removeUncaughtErrorHandler( handler );
+  }
+
+  /**
+   * Report an uncaught error in stream.
+   *
+   * @param stream the stream.
+   * @param error  the error.
+   */
+  public static void reportUncaughtError( @Nonnull final Stream stream, @Nonnull final Throwable error )
+  {
+    if ( areUncaughtErrorHandlersEnabled() )
+    {
+      UncaughtErrorHandlerSupport.get().onUncaughtError( stream, error );
+    }
   }
 }
