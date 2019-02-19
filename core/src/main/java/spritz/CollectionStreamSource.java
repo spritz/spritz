@@ -3,14 +3,16 @@ package spritz;
 import java.util.Collection;
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class CollectionStreamSource<T>
   extends Stream<T>
 {
   private final Collection<T> _data;
 
-  CollectionStreamSource( @Nonnull final Collection<T> data )
+  CollectionStreamSource( @Nullable final String name, @Nonnull final Collection<T> data )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fromCollection", String.valueOf( data ) ) : null );
     _data = Objects.requireNonNull( data );
   }
 

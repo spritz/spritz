@@ -131,7 +131,21 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromCollection( @Nonnull final Collection<T> values )
   {
-    return new CollectionStreamSource<>( values );
+    return fromCollection( null, values );
+  }
+
+  /**
+   * Creates a stream that emits items of the supplied collection.
+   *
+   * @param <T>    the type of items contained in the stream.
+   * @param name   a human consumable name for the stream.
+   * @param values the collection of values to emit.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> fromCollection( @Nullable final String name, @Nonnull final Collection<T> values )
+  {
+    return new CollectionStreamSource<>( name, values );
   }
 
   /**
