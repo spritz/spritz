@@ -973,7 +973,7 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                            final int maxConcurrency )
   {
-    return compose( p -> new MapOperator<>( p, mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) ) );
+    return map( null, mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) );
   }
 
   /**
@@ -1011,7 +1011,7 @@ public abstract class Stream<T>
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   public final <DownstreamT> Stream<DownstreamT> switchMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
-    return compose( p -> new MapOperator<>( p, mapper ).compose( SwitchOperator::new ) );
+    return map( mapper ).compose( SwitchOperator::new );
   }
 
   /**
@@ -1031,7 +1031,7 @@ public abstract class Stream<T>
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   public final <DownstreamT> Stream<DownstreamT> exhaustMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
-    return compose( p -> new MapOperator<>( p, mapper ).compose( ExhaustOperator::new ) );
+    return map( mapper ).compose( ExhaustOperator::new );
   }
 
   /**
