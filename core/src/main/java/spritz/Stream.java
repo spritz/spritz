@@ -1000,7 +1000,7 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                            final int maxConcurrency )
   {
-    return map( null, mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) );
+    return map( mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) );
   }
 
   /**
