@@ -27,6 +27,32 @@ public abstract class Stream<T>
    * overflow in either JS or java compile targets.
    */
   private static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
+  /**
+   * Id of next Stream to be created.
+   * This is only used if {@link Spritz#areNamesEnabled()} returns true but no name has been supplied.
+   */
+  private static int c_nextStreamId = 1;
+  /**
+   * A human consumable name for the stream. It should be non-null if {@link Spritz#areNamesEnabled()} returns
+   * true and <tt>null</tt> otherwise.
+   */
+  @Nullable
+  private final String _name;
+
+  protected Stream()
+  {
+    this( Spritz.areNamesEnabled() ? "<unknown>" : null );
+  }
+
+  protected Stream( @Nullable final String name )
+  {
+    if ( Spritz.shouldCheckApiInvariants() )
+    {
+      apiInvariant( () -> Spritz.areNamesEnabled() || null == name,
+                    () -> "Spritz-0052: Stream passed a name '" + name + "' but Spritz.areNamesEnabled() is false" );
+    }
+    _name = Spritz.areNamesEnabled() ? Objects.requireNonNull( name ) : null;
+  }
 
   /**
    * Creates a stream that emits the parameters as items and then emits the completion signal.
@@ -1253,5 +1279,75 @@ public abstract class Stream<T>
   public final <DownstreamT, S extends Stream<DownstreamT>> S compose( @Nonnull final Function<Stream<T>, S> function )
   {
     return function.apply( this );
+  }
+
+  /**
+   * Return the name of the stream.
+   * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns <code>true</code>.
+   *
+   * @return the name of the node.
+   */
+  @Nonnull
+  public final String getName()
+  {
+    if ( Spritz.shouldCheckApiInvariants() )
+    {
+      apiInvariant( Spritz::areNamesEnabled,
+                    () -> "Spritz-0053: Stream.getName() invoked when Stream.areNamesEnabled() is false" );
+    }
+    assert null != _name;
+    return _name;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Nonnull
+  @Override
+  public final String toString()
+  {
+    if ( Spritz.areNamesEnabled() )
+    {
+      return getName();
+    }
+    else
+    {
+      return super.toString();
+    }
+  }
+
+  /**
+   * Build name for Stream.
+   * If {@link Spritz#areNamesEnabled()} returns false then this method will return null, otherwise the specified
+   * name will be returned or a name synthesized from the prefix and a running number if no name is
+   * specified.
+   *
+   * @param name   the name specified by the user.
+   * @param prefix the prefix used if this method needs to generate name.
+   * @return the name.
+   */
+  @Nullable
+  static String generateName( @Nullable final String name, @Nonnull final String prefix )
+  {
+    return generateName( name, prefix, null );
+  }
+
+  /**
+   * Build name for Stream.
+   * If {@link Spritz#areNamesEnabled()} returns false then this method will return null, otherwise the specified
+   * name will be returned or a name synthesized from the prefix, params and a running number if no name is
+   * specified.
+   *
+   * @param name   the name specified by the user.
+   * @param prefix the prefix used if this method needs to generate name.
+   * @param params a description of parameters used constructing the stream if any.
+   * @return the name.
+   */
+  @Nullable
+  static String generateName( @Nullable final String name, @Nonnull final String prefix, @Nullable final String params )
+  {
+    return Spritz.areNamesEnabled() ?
+           null != name ? name : prefix + "@" + c_nextStreamId++ + "(" + ( null == params ? "" : params ) + ")" :
+           null;
   }
 }
