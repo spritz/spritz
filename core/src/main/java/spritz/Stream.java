@@ -104,7 +104,21 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fail( @Nonnull final Throwable error )
   {
-    return new FailStreamSource<>( error );
+    return fail( null, error );
+  }
+
+  /**
+   * Creates a stream that emits no items and immediately emits an error signal.
+   *
+   * @param <T>   the type of items that the stream declared as containing (despite never containing any items).
+   * @param name  a human consumable name for the stream.
+   * @param error the error to emit.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> fail( @Nullable final String name, @Nonnull final Throwable error )
+  {
+    return new FailStreamSource<>( name, error );
   }
 
   /**
