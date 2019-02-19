@@ -12,6 +12,7 @@ final class ExhaustOperator<T>
 
   ExhaustOperator( @Nonnull final Stream<Stream<T>> upstream )
   {
+    super( Spritz.areNamesEnabled() ? generateName( null, "exhaust" ) : null );
     _upstream = Objects.requireNonNull( upstream );
   }
 
