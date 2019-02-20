@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 abstract class AbstractThrottlingSubscription<T>
-  extends AbstractOperatorSubscription<T>
+  extends PassThroughSubscription<T>
   implements Runnable
 {
   @Nullable

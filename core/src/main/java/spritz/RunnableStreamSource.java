@@ -23,12 +23,11 @@ final class RunnableStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends AbstractSubscription
   {
     private final Subscriber<? super T> _subscriber;
     @Nonnull
     private final Runnable _runnable;
-    private boolean _done;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Runnable runnable )
     {
@@ -44,25 +43,16 @@ final class RunnableStreamSource<T>
       }
       catch ( final Throwable error )
       {
-        if ( !_done )
+        if ( !isDone() )
         {
           _subscriber.onError( error );
         }
         return;
       }
-      if ( !_done )
+      if ( !isDone() )
       {
         _subscriber.onComplete();
       }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _done = true;
     }
   }
 }

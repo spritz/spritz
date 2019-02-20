@@ -73,11 +73,9 @@ final class PeekOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription
+    extends PassThroughSubscription<T>
     implements Subscriber<T>
   {
-    @Nonnull
-    private final Subscriber<? super T> _downstreamSubscriber;
     @Nullable
     private final Consumer<Subscription> _onSubscription;
     @Nullable
@@ -98,7 +96,6 @@ final class PeekOperator<T>
     private final Runnable _onCancel;
     @Nullable
     private final Runnable _afterCancel;
-    private boolean _done;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
                         @Nullable final Consumer<Subscription> onSubscription,
@@ -112,7 +109,7 @@ final class PeekOperator<T>
                         @Nullable final Runnable onCancel,
                         @Nullable final Runnable afterCancel )
     {
-      _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
+      super( downstreamSubscriber );
       _onSubscription = onSubscription;
       _afterSubscription = afterSubscription;
       _onNext = onNext;
@@ -136,7 +133,7 @@ final class PeekOperator<T>
       {
         _onSubscription.accept( subscription );
       }
-      _downstreamSubscriber.onSubscribe( this );
+      getDownstreamSubscriber().onSubscribe( this );
       if ( null != _afterSubscription )
       {
         _afterSubscription.accept( subscription );
@@ -150,7 +147,7 @@ final class PeekOperator<T>
       {
         _onNext.accept( item );
       }
-      _downstreamSubscriber.onNext( item );
+      super.onNext( item );
       if ( null != _afterNext )
       {
         _afterNext.accept( item );
@@ -163,12 +160,12 @@ final class PeekOperator<T>
     @Override
     public void onError( @Nonnull final Throwable error )
     {
-      _done = true;
+      markAsDone();
       if ( null != _onError )
       {
         _onError.accept( error );
       }
-      _downstreamSubscriber.onError( error );
+      super.onError( error );
       if ( null != _afterError )
       {
         _afterError.accept( error );
@@ -181,36 +178,29 @@ final class PeekOperator<T>
     @Override
     public void onComplete()
     {
-      _done = true;
+      markAsDone();
       if ( null != _onComplete )
       {
         _onComplete.run();
       }
-      _downstreamSubscriber.onComplete();
+      super.onComplete();
       if ( null != _afterComplete )
       {
         _afterComplete.run();
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void cancel()
+    final void doCancel()
     {
-      if ( !_done )
+      if ( null != _onCancel )
       {
-        _done = true;
-        if ( null != _onCancel )
-        {
-          _onCancel.run();
-        }
-        getUpstream().cancel();
-        if ( null != _afterCancel )
-        {
-          _afterCancel.run();
-        }
+        _onCancel.run();
+      }
+      super.doCancel();
+      if ( null != _afterCancel )
+      {
+        _afterCancel.run();
       }
     }
   }

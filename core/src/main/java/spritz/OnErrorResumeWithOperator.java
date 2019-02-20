@@ -24,7 +24,7 @@ final class OnErrorResumeWithOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T>
   {
     @Nonnull
     private final Function<Throwable, Stream<T>> _streamFromErrorFn;

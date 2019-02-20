@@ -29,7 +29,7 @@ final class ScanOperator<UpstreamT, DownstreamT>
   }
 
   private static final class WorkerSubscription<UpstreamT, DownstreamT>
-    extends TransformSubscription<UpstreamT, DownstreamT>
+    extends AbstractOperatorSubscription<UpstreamT, DownstreamT>
   {
     @Nonnull
     private final AccumulatorFunction<UpstreamT, DownstreamT> _accumulator;

@@ -24,7 +24,7 @@ final class ObserveOnOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T>
   {
     static final int INITIAL_CAPACITY = 10;
     @Nonnull

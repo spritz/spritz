@@ -22,7 +22,7 @@ final class SwitchOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends TransformSubscription<Stream<T>, T>
+    extends AbstractOperatorSubscription<Stream<T>, T>
     implements InnerSubscription.ContainerSubscription<T>
   {
     /**

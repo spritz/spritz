@@ -25,11 +25,10 @@ final class CollectionStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends AbstractSubscription
   {
     private final Subscriber<? super T> _subscriber;
     private final Collection<T> _data;
-    private boolean _done;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Collection<T> data )
     {
@@ -41,7 +40,7 @@ final class CollectionStreamSource<T>
     {
       for ( final T item : _data )
       {
-        if ( _done )
+        if ( isDone() )
         {
           return;
         }
@@ -49,15 +48,6 @@ final class CollectionStreamSource<T>
       }
       _subscriber.onComplete();
       cancel();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _done = true;
     }
   }
 }

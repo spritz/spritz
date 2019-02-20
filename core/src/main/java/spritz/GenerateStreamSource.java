@@ -24,12 +24,11 @@ final class GenerateStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends AbstractSubscription
   {
     private final Subscriber<? super T> _subscriber;
     @Nonnull
     private final Callable<T> _callable;
-    private boolean _done;
 
     WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Callable<T> callable )
     {
@@ -41,7 +40,7 @@ final class GenerateStreamSource<T>
     {
       try
       {
-        while ( !_done )
+        while ( !isDone() )
         {
           _subscriber.onNext( _callable.call() );
         }
@@ -50,15 +49,6 @@ final class GenerateStreamSource<T>
       {
         _subscriber.onError( error );
       }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _done = true;
     }
   }
 }

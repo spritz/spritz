@@ -3,7 +3,7 @@ package spritz;
 import javax.annotation.Nonnull;
 
 abstract class AbstractFilterSubscription<T>
-  extends AbstractOperatorSubscription<T>
+  extends PassThroughSubscription<T>
 {
   AbstractFilterSubscription( @Nonnull final Subscriber<? super T> subscriber )
   {

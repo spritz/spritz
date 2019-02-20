@@ -22,7 +22,7 @@ final class DefaultIfEmptyOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T>
   {
     @Nonnull
     private final T _defaultValue;

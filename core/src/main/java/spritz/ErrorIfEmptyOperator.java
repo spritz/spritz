@@ -23,7 +23,7 @@ final class ErrorIfEmptyOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T>
   {
     @Nonnull
     private final Supplier<Throwable> _errorFactory;

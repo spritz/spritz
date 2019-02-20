@@ -21,7 +21,7 @@ final class TimeoutOperator<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T>
     implements Runnable
   {
     private final int _timeoutTime;
