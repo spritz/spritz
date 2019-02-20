@@ -1323,7 +1323,7 @@ public abstract class Stream<T>
     if ( Spritz.shouldCheckApiInvariants() )
     {
       apiInvariant( Spritz::areNamesEnabled,
-                    () -> "Spritz-0053: Stream.getName() invoked when Stream.areNamesEnabled() is false" );
+                    () -> "Spritz-0053: Stream.getName() invoked when Spritz.areNamesEnabled() is false" );
     }
     assert null != _name;
     return _name;
