@@ -178,5 +178,14 @@ final class ValidatingSubscriber<T>
         }
       }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+      return _subscription.toString();
+    }
   }
 }
