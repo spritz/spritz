@@ -31,7 +31,7 @@ complete as there is too much un-said.
   These priorities indicate when the task will be executed. By default the task may be scheduled via as an
   idle task but as it approaches the deadline then it is moved to macroTask. The priorities out of react's
   scheduler and the corresponding timeout in ms are as follows
-  
+
       // Times out immediately
       var IMMEDIATE_PRIORITY_TIMEOUT = -1;
       // Eventually times out
