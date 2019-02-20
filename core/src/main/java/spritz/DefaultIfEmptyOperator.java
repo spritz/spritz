@@ -4,12 +4,12 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class DefaultIfEmptyOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final T _defaultValue;
 
-  DefaultIfEmptyOperator( @Nonnull final Publisher<T> upstream, @Nonnull final T defaultValue )
+  DefaultIfEmptyOperator( @Nonnull final Stream<T> upstream, @Nonnull final T defaultValue )
   {
     super( upstream );
     _defaultValue = Objects.requireNonNull( defaultValue );
@@ -18,20 +18,18 @@ final class DefaultIfEmptyOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _defaultValue ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends PassThroughSubscription<T>
+    extends PassThroughSubscription<T, DefaultIfEmptyOperator<T>>
   {
-    @Nonnull
-    private final T _defaultValue;
     private boolean _itemEmitted;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final T defaultValue )
+    WorkerSubscription( @Nonnull final DefaultIfEmptyOperator<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _defaultValue = defaultValue;
+      super( stream, subscriber );
     }
 
     @Override
@@ -39,7 +37,7 @@ final class DefaultIfEmptyOperator<T>
     {
       if ( !_itemEmitted )
       {
-        super.onNext( _defaultValue );
+        super.onNext( getStream()._defaultValue );
       }
       super.onComplete();
     }

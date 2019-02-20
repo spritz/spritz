@@ -5,12 +5,12 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 
 final class PredicateFilterStream<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterStream( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  PredicateFilterStream( @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
     super( upstream );
     _predicate = Objects.requireNonNull( predicate );
@@ -19,20 +19,16 @@ final class PredicateFilterStream<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, PredicateFilterStream<T>>
   {
-    @Nonnull
-    private final Predicate<? super T> _predicate;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final Predicate<? super T> predicate )
+    WorkerSubscription( @Nonnull final PredicateFilterStream<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _predicate = predicate;
+      super( stream, subscriber );
     }
 
     /**
@@ -41,7 +37,7 @@ final class PredicateFilterStream<T>
     @Override
     protected boolean shouldIncludeItem( @Nonnull final T item )
     {
-      return _predicate.test( item );
+      return getStream()._predicate.test( item );
     }
   }
 }

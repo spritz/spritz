@@ -3,8 +3,8 @@ package spritz;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-abstract class AbstractThrottlingSubscription<T>
-  extends PassThroughSubscription<T>
+abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
+  extends PassThroughSubscription<T, StreamT>
   implements Runnable
 {
   @Nullable
@@ -14,9 +14,9 @@ abstract class AbstractThrottlingSubscription<T>
   private int _nextTaskTime;
   private boolean _pendingComplete;
 
-  AbstractThrottlingSubscription( @Nonnull final Subscriber<? super T> subscriber )
+  AbstractThrottlingSubscription( @Nonnull final StreamT stream, @Nonnull final Subscriber<? super T> subscriber )
   {
-    super( subscriber );
+    super( stream, subscriber );
   }
 
   @Override

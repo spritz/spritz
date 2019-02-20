@@ -4,9 +4,9 @@ import java.util.HashSet;
 import javax.annotation.Nonnull;
 
 final class DistinctOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
-  DistinctOperator( @Nonnull final Publisher<T> upstream )
+  DistinctOperator( @Nonnull final Stream<T> upstream )
   {
     super( upstream );
   }
@@ -14,18 +14,18 @@ final class DistinctOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, DistinctOperator<T>>
   {
     @Nonnull
     private final HashSet<T> _emitted = new HashSet<>();
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber )
+    WorkerSubscription( @Nonnull final DistinctOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
+      super( stream, subscriber );
     }
 
     /**

@@ -3,11 +3,11 @@ package spritz;
 import javax.annotation.Nonnull;
 
 final class SkipOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   private final int _count;
 
-  SkipOperator( @Nonnull final Publisher<T> upstream, final int count )
+  SkipOperator( @Nonnull final Stream<T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;
@@ -17,18 +17,18 @@ final class SkipOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _count ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, SkipOperator<T>>
   {
     private int _remaining;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int remaining )
+    WorkerSubscription( @Nonnull final SkipOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _remaining = remaining;
+      super( stream, subscriber );
+      _remaining = stream._count;
     }
 
     /**

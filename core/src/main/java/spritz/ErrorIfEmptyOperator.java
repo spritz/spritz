@@ -5,12 +5,12 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 
 final class ErrorIfEmptyOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Supplier<Throwable> _errorFactory;
 
-  ErrorIfEmptyOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Supplier<Throwable> errorFactory )
+  ErrorIfEmptyOperator( @Nonnull final Stream<T> upstream, @Nonnull final Supplier<Throwable> errorFactory )
   {
     super( upstream );
     _errorFactory = Objects.requireNonNull( errorFactory );
@@ -19,21 +19,17 @@ final class ErrorIfEmptyOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _errorFactory ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends PassThroughSubscription<T>
+    extends PassThroughSubscription<T, ErrorIfEmptyOperator<T>>
   {
-    @Nonnull
-    private final Supplier<Throwable> _errorFactory;
     private boolean _itemEmitted;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final Supplier<Throwable> errorFactory )
+    WorkerSubscription( @Nonnull final ErrorIfEmptyOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _errorFactory = errorFactory;
+      super( stream, subscriber );
     }
 
     @Override
@@ -41,7 +37,7 @@ final class ErrorIfEmptyOperator<T>
     {
       if ( !_itemEmitted )
       {
-        super.onError( _errorFactory.get() );
+        super.onError( getStream()._errorFactory.get() );
       }
       else
       {

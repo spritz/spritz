@@ -2,12 +2,12 @@ package spritz;
 
 import javax.annotation.Nonnull;
 
-abstract class AbstractFilterSubscription<T>
-  extends PassThroughSubscription<T>
+abstract class AbstractFilterSubscription<T, StreamT extends Stream<T>>
+  extends PassThroughSubscription<T, StreamT>
 {
-  AbstractFilterSubscription( @Nonnull final Subscriber<? super T> subscriber )
+  AbstractFilterSubscription( @Nonnull final StreamT stream, @Nonnull final Subscriber<? super T> subscriber )
   {
-    super( subscriber );
+    super( stream, subscriber );
   }
 
   /**
@@ -18,7 +18,7 @@ abstract class AbstractFilterSubscription<T>
   {
     if ( includeItem( item ) )
     {
-      getDownstreamSubscriber().onNext( item );
+      getSubscriber().onNext( item );
     }
   }
 

@@ -19,35 +19,32 @@ final class CollectionStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription
+    extends AbstractSubscription<T, CollectionStreamSource<T>>
   {
-    private final Subscriber<? super T> _subscriber;
-    private final Collection<T> _data;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Collection<T> data )
+    WorkerSubscription( @Nonnull final CollectionStreamSource<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _data = Objects.requireNonNull( data );
+      super( stream, subscriber );
     }
 
     void pushData()
     {
-      for ( final T item : _data )
+      final Subscriber<? super T> subscriber = getSubscriber();
+      for ( final T item : getStream()._data )
       {
         if ( isDone() )
         {
           return;
         }
-        _subscriber.onNext( item );
+        subscriber.onNext( item );
       }
-      _subscriber.onComplete();
-      cancel();
+      subscriber.onComplete();
     }
   }
 }

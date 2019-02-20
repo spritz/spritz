@@ -17,41 +17,36 @@ final class RunnableStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _runnable );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription
+    extends AbstractSubscription<T, RunnableStreamSource<T>>
   {
-    private final Subscriber<? super T> _subscriber;
-    @Nonnull
-    private final Runnable _runnable;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Runnable runnable )
+    WorkerSubscription( @Nonnull final RunnableStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _runnable = runnable;
+      super( stream, subscriber );
     }
 
     void pushData()
     {
       try
       {
-        _runnable.run();
+        getStream()._runnable.run();
       }
       catch ( final Throwable error )
       {
         if ( !isDone() )
         {
-          _subscriber.onError( error );
+          getSubscriber().onError( error );
         }
         return;
       }
       if ( !isDone() )
       {
-        _subscriber.onComplete();
+        getSubscriber().onComplete();
       }
     }
   }

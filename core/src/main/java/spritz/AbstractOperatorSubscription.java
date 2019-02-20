@@ -8,20 +8,27 @@ import org.realityforge.braincheck.Guards;
 /**
  * Abstract implementation for subscription with both an upstream and downstream stream stage.
  */
-abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT>
-  extends AbstractSubscription
+abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT extends Stream<DownstreamT>>
+  extends AbstractSubscription<DownstreamT, StreamT>
   implements Subscriber<UpstreamT>
 {
-  /**
-   * The subscriber for the downstream stream.
-   */
-  @Nonnull
-  private final Subscriber<? super DownstreamT> _downstreamSubscriber;
   /**
    * The upstream subscription.
    */
   @Nullable
   private Subscription _upstream;
+
+  /**
+   * Create the subscription for the specified stream and specified subscriber.
+   *
+   * @param stream     the stream.
+   * @param subscriber the subscriber.
+   */
+  AbstractOperatorSubscription( @Nonnull final StreamT stream,
+                                @Nonnull final Subscriber<? super DownstreamT> subscriber )
+  {
+    super( stream, subscriber );
+  }
 
   /**
    * Set the upstream subscription.
@@ -56,23 +63,13 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT>
   }
 
   /**
-   * Create the subscription with the downstream subscriber.
-   *
-   * @param downstreamSubscriber the downstream subscriber.
-   */
-  AbstractOperatorSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber )
-  {
-    _downstreamSubscriber = Objects.requireNonNull( downstreamSubscriber );
-  }
-
-  /**
    * {@inheritDoc}
    */
   @Override
   public void onSubscribe( @Nonnull final Subscription subscription )
   {
     setUpstream( subscription );
-    _downstreamSubscriber.onSubscribe( this );
+    getSubscriber().onSubscribe( this );
   }
 
   /**
@@ -82,7 +79,7 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT>
   public void onError( @Nonnull final Throwable error )
   {
     markAsDone();
-    getDownstreamSubscriber().onError( error );
+    getSubscriber().onError( error );
   }
 
   /**
@@ -92,22 +89,11 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT>
   public void onComplete()
   {
     markAsDone();
-    getDownstreamSubscriber().onComplete();
+    getSubscriber().onComplete();
   }
 
   void doCancel()
   {
     getUpstream().cancel();
-  }
-
-  /**
-   * Return the downstream subscriber.
-   *
-   * @return the downstream subscriber.
-   */
-  @Nonnull
-  final Subscriber<? super DownstreamT> getDownstreamSubscriber()
-  {
-    return _downstreamSubscriber;
   }
 }

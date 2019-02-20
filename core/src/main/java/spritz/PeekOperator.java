@@ -1,15 +1,12 @@
 package spritz;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class PeekOperator<T>
-  extends Stream<T>
+  extends AbstractStream<T, T>
 {
-  @Nonnull
-  private final Publisher<T> _upstream;
   @Nullable
   private final Consumer<Subscription> _onSubscription;
   @Nullable
@@ -31,7 +28,7 @@ final class PeekOperator<T>
   @Nullable
   private final Runnable _afterCancel;
 
-  PeekOperator( @Nonnull final Publisher<T> upstream,
+  PeekOperator( @Nonnull final Stream<T> upstream,
                 @Nullable final Consumer<Subscription> onSubscription,
                 @Nullable final Consumer<Subscription> afterSubscription,
                 @Nullable final Consumer<? super T> onNext,
@@ -43,7 +40,7 @@ final class PeekOperator<T>
                 @Nullable final Runnable onCancel,
                 @Nullable final Runnable afterCancel )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    super( upstream );
     _onSubscription = onSubscription;
     _afterSubscription = afterSubscription;
     _onNext = onNext;
@@ -59,67 +56,16 @@ final class PeekOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber,
-                                                   _onSubscription,
-                                                   _afterSubscription,
-                                                   _onNext,
-                                                   _afterNext,
-                                                   _onError,
-                                                   _afterError,
-                                                   _onComplete,
-                                                   _afterComplete,
-                                                   _onCancel,
-                                                   _afterCancel ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends PassThroughSubscription<T>
+    extends PassThroughSubscription<T, PeekOperator<T>>
     implements Subscriber<T>
   {
-    @Nullable
-    private final Consumer<Subscription> _onSubscription;
-    @Nullable
-    private final Consumer<Subscription> _afterSubscription;
-    @Nullable
-    private final Consumer<? super T> _onNext;
-    @Nullable
-    private final Consumer<? super T> _afterNext;
-    @Nullable
-    private final Consumer<Throwable> _onError;
-    @Nullable
-    private final Consumer<Throwable> _afterError;
-    @Nullable
-    private final Runnable _onComplete;
-    @Nullable
-    private final Runnable _afterComplete;
-    @Nullable
-    private final Runnable _onCancel;
-    @Nullable
-    private final Runnable _afterCancel;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
-                        @Nullable final Consumer<Subscription> onSubscription,
-                        @Nullable final Consumer<Subscription> afterSubscription,
-                        @Nullable final Consumer<? super T> onNext,
-                        @Nullable final Consumer<? super T> afterNext,
-                        @Nullable final Consumer<Throwable> onError,
-                        @Nullable final Consumer<Throwable> afterError,
-                        @Nullable final Runnable onComplete,
-                        @Nullable final Runnable afterComplete,
-                        @Nullable final Runnable onCancel,
-                        @Nullable final Runnable afterCancel )
+    WorkerSubscription( @Nonnull final PeekOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( downstreamSubscriber );
-      _onSubscription = onSubscription;
-      _afterSubscription = afterSubscription;
-      _onNext = onNext;
-      _afterNext = afterNext;
-      _onError = onError;
-      _afterError = afterError;
-      _onComplete = onComplete;
-      _afterComplete = afterComplete;
-      _onCancel = onCancel;
-      _afterCancel = afterCancel;
+      super( stream, subscriber );
     }
 
     /**
@@ -129,28 +75,32 @@ final class PeekOperator<T>
     public void onSubscribe( @Nonnull final Subscription subscription )
     {
       setUpstream( subscription );
-      if ( null != _onSubscription )
+      final Consumer<Subscription> onSubscription = getStream()._onSubscription;
+      if ( null != onSubscription )
       {
-        _onSubscription.accept( subscription );
+        onSubscription.accept( subscription );
       }
-      getDownstreamSubscriber().onSubscribe( this );
-      if ( null != _afterSubscription )
+      getSubscriber().onSubscribe( this );
+      final Consumer<Subscription> afterSubscription = getStream()._afterSubscription;
+      if ( null != afterSubscription )
       {
-        _afterSubscription.accept( subscription );
+        afterSubscription.accept( subscription );
       }
     }
 
     @Override
     public void onNext( @Nonnull final T item )
     {
-      if ( null != _onNext )
+      final Consumer<? super T> onNext = getStream()._onNext;
+      if ( null != onNext )
       {
-        _onNext.accept( item );
+        onNext.accept( item );
       }
       super.onNext( item );
-      if ( null != _afterNext )
+      final Consumer<? super T> afterNext = getStream()._afterNext;
+      if ( null != afterNext )
       {
-        _afterNext.accept( item );
+        afterNext.accept( item );
       }
     }
 
@@ -161,14 +111,16 @@ final class PeekOperator<T>
     public void onError( @Nonnull final Throwable error )
     {
       markAsDone();
-      if ( null != _onError )
+      final Consumer<Throwable> onError = getStream()._onError;
+      if ( null != onError )
       {
-        _onError.accept( error );
+        onError.accept( error );
       }
       super.onError( error );
-      if ( null != _afterError )
+      final Consumer<Throwable> afterError = getStream()._afterError;
+      if ( null != afterError )
       {
-        _afterError.accept( error );
+        afterError.accept( error );
       }
     }
 
@@ -179,28 +131,32 @@ final class PeekOperator<T>
     public void onComplete()
     {
       markAsDone();
-      if ( null != _onComplete )
+      final Runnable onComplete = getStream()._onComplete;
+      if ( null != onComplete )
       {
-        _onComplete.run();
+        onComplete.run();
       }
       super.onComplete();
-      if ( null != _afterComplete )
+      final Runnable afterComplete = getStream()._afterComplete;
+      if ( null != afterComplete )
       {
-        _afterComplete.run();
+        afterComplete.run();
       }
     }
 
     @Override
     final void doCancel()
     {
-      if ( null != _onCancel )
+      final Runnable onCancel = getStream()._onCancel;
+      if ( null != onCancel )
       {
-        _onCancel.run();
+        onCancel.run();
       }
       super.doCancel();
-      if ( null != _afterCancel )
+      final Runnable afterCancel = getStream()._afterCancel;
+      if ( null != afterCancel )
       {
-        _afterCancel.run();
+        afterCancel.run();
       }
     }
   }

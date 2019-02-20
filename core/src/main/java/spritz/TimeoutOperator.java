@@ -3,11 +3,11 @@ package spritz;
 import javax.annotation.Nonnull;
 
 final class TimeoutOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   private final int _timeoutTime;
 
-  TimeoutOperator( @Nonnull final Publisher<T> upstream, final int timeoutTime )
+  TimeoutOperator( @Nonnull final Stream<T> upstream, final int timeoutTime )
   {
     super( upstream );
     _timeoutTime = timeoutTime;
@@ -17,22 +17,20 @@ final class TimeoutOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _timeoutTime ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends PassThroughSubscription<T>
+    extends PassThroughSubscription<T, TimeoutOperator<T>>
     implements Runnable
   {
-    private final int _timeoutTime;
     private int _lastTime;
     @Nonnull
     private Cancelable _task;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int timeoutTime )
+    WorkerSubscription( @Nonnull final TimeoutOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _timeoutTime = timeoutTime;
+      super( stream, subscriber );
       recordLastTime();
       _task = scheduleTimeout();
     }
@@ -74,7 +72,7 @@ final class TimeoutOperator<T>
     @Nonnull
     private Cancelable scheduleTimeout()
     {
-      return Scheduler.schedule( this, _lastTime + _timeoutTime );
+      return Scheduler.schedule( this, _lastTime + getStream()._timeoutTime );
     }
   }
 }

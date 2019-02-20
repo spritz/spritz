@@ -3,11 +3,11 @@ package spritz;
 import javax.annotation.Nonnull;
 
 final class LimitOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   private final int _count;
 
-  LimitOperator( @Nonnull final Publisher<T> upstream, final int count )
+  LimitOperator( @Nonnull final Stream<T> upstream, final int count )
   {
     super( upstream );
     assert count > 0;
@@ -17,18 +17,19 @@ final class LimitOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _count ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, LimitOperator<T>>
   {
     private int _remaining;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int remaining )
+    public WorkerSubscription( @Nonnull final LimitOperator<T> stream,
+                               @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _remaining = remaining;
+      super( stream, subscriber );
+      _remaining = stream._count;
     }
 
     /**
@@ -45,7 +46,7 @@ final class LimitOperator<T>
       else if ( 1 == _remaining )
       {
         _remaining = 0;
-        getDownstreamSubscriber().onNext( item );
+        getSubscriber().onNext( item );
       }
       doComplete();
       return false;

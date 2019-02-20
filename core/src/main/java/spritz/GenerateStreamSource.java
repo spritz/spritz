@@ -18,36 +18,32 @@ final class GenerateStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _callable );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription
+    extends AbstractSubscription<T, GenerateStreamSource<T>>
   {
-    private final Subscriber<? super T> _subscriber;
-    @Nonnull
-    private final Callable<T> _callable;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Callable<T> callable )
+    WorkerSubscription( @Nonnull GenerateStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _callable = callable;
+      super( stream, subscriber );
     }
 
     void pushData()
     {
+      final Subscriber<? super T> subscriber = getSubscriber();
       try
       {
         while ( !isDone() )
         {
-          _subscriber.onNext( _callable.call() );
+          subscriber.onNext( getStream()._callable.call() );
         }
       }
       catch ( final Throwable error )
       {
-        _subscriber.onError( error );
+        subscriber.onError( error );
       }
     }
   }

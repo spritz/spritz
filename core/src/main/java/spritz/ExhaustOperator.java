@@ -1,29 +1,25 @@
 package spritz;
 
-import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class ExhaustOperator<T>
-  extends Stream<T>
+  extends AbstractStream<Stream<T>, T>
 {
-  @Nonnull
-  private final Stream<Stream<T>> _upstream;
-
   ExhaustOperator( @Nonnull final Stream<Stream<T>> upstream )
   {
-    super( Spritz.areNamesEnabled() ? generateName( null, "exhaust" ) : null );
-    _upstream = Objects.requireNonNull( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( null, "exhaust" ) : null, upstream );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber ) );
+    final WorkerSubscription<T> tWorkerSubscription = new WorkerSubscription<>( this, subscriber );
+    getUpstream().subscribe( tWorkerSubscription );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<Stream<T>, T>
+    extends AbstractOperatorSubscription<Stream<T>, T, ExhaustOperator<T>>
     implements InnerSubscription.ContainerSubscription<T>
   {
     /**
@@ -37,9 +33,9 @@ final class ExhaustOperator<T>
      */
     private boolean _upstreamCompleted;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber )
+    WorkerSubscription( @Nonnull final ExhaustOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( downstreamSubscriber );
+      super( stream, subscriber );
       _activeStream = null;
     }
 
@@ -51,7 +47,7 @@ final class ExhaustOperator<T>
     {
       if ( null == _activeStream )
       {
-        _activeStream = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
+        _activeStream = new InnerSubscription<>( this, getSubscriber(), item );
         _activeStream.pushData();
       }
     }
@@ -63,7 +59,7 @@ final class ExhaustOperator<T>
     public void onError( @Nonnull final Throwable error )
     {
       _activeStream = null;
-      getDownstreamSubscriber().onError( error );
+      getSubscriber().onError( error );
     }
 
     /**
@@ -75,7 +71,7 @@ final class ExhaustOperator<T>
       _upstreamCompleted = true;
       if ( null == _activeStream )
       {
-        getDownstreamSubscriber().onComplete();
+        getSubscriber().onComplete();
       }
     }
 
@@ -86,7 +82,7 @@ final class ExhaustOperator<T>
       _activeStream = null;
       if ( _upstreamCompleted )
       {
-        getDownstreamSubscriber().onComplete();
+        getSubscriber().onComplete();
       }
     }
   }

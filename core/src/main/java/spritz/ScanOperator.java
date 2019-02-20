@@ -4,20 +4,18 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class ScanOperator<UpstreamT, DownstreamT>
-  extends Stream<DownstreamT>
+  extends AbstractStream<UpstreamT, DownstreamT>
 {
-  @Nonnull
-  private final Stream<? extends UpstreamT> _upstream;
   @Nonnull
   private final AccumulatorFunction<UpstreamT, DownstreamT> _accumulator;
   @Nonnull
   private final DownstreamT _initialValue;
 
-  ScanOperator( @Nonnull final Stream<? extends UpstreamT> upstream,
+  ScanOperator( @Nonnull final Stream<UpstreamT> upstream,
                 @Nonnull final AccumulatorFunction<UpstreamT, DownstreamT> accumulator,
                 @Nonnull final DownstreamT initialValue )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    super( upstream );
     _accumulator = Objects.requireNonNull( accumulator );
     _initialValue = Objects.requireNonNull( initialValue );
   }
@@ -25,24 +23,20 @@ final class ScanOperator<UpstreamT, DownstreamT>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber, _accumulator, _initialValue ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<UpstreamT, DownstreamT>
-    extends AbstractOperatorSubscription<UpstreamT, DownstreamT>
+    extends AbstractOperatorSubscription<UpstreamT, DownstreamT, ScanOperator<UpstreamT, DownstreamT>>
   {
-    @Nonnull
-    private final AccumulatorFunction<UpstreamT, DownstreamT> _accumulator;
     @Nonnull
     private DownstreamT _value;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super DownstreamT> downstreamSubscriber,
-                        @Nonnull final AccumulatorFunction<UpstreamT, DownstreamT> accumulator,
-                        @Nonnull final DownstreamT initialValue )
+    public WorkerSubscription( @Nonnull final ScanOperator<UpstreamT, DownstreamT> stream,
+                               @Nonnull final Subscriber<? super DownstreamT> subscriber )
     {
-      super( downstreamSubscriber );
-      _accumulator = accumulator;
-      _value = initialValue;
+      super( stream, subscriber );
+      _value = stream._initialValue;
     }
 
     /**
@@ -51,8 +45,8 @@ final class ScanOperator<UpstreamT, DownstreamT>
     @Override
     public void onNext( @Nonnull final UpstreamT item )
     {
-      _value = _accumulator.accumulate( item, _value );
-      getDownstreamSubscriber().onNext( _value );
+      _value = getStream()._accumulator.accumulate( item, _value );
+      getSubscriber().onNext( _value );
     }
   }
 }

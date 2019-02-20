@@ -3,12 +3,12 @@ package spritz;
 import javax.annotation.Nonnull;
 
 final class ThrottleOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleOperator( @Nonnull final Publisher<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  ThrottleOperator( @Nonnull final Stream<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( upstream );
     _timeoutForItemFn = timeoutForItemFn;
@@ -17,20 +17,15 @@ final class ThrottleOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _timeoutForItemFn ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractThrottlingSubscription<T>
+    extends AbstractThrottlingSubscription<T, ThrottleOperator<T>>
   {
-    @Nonnull
-    private final TimeoutForItemFn<T> _timeoutForItemFn;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+    WorkerSubscription( @Nonnull final ThrottleOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _timeoutForItemFn = timeoutForItemFn;
+      super( stream, subscriber );
     }
 
     @Override
@@ -38,7 +33,7 @@ final class ThrottleOperator<T>
     {
       if ( !hasNextItem() )
       {
-        scheduleTaskForItem( item, _timeoutForItemFn.getTimeout( item ) );
+        scheduleTaskForItem( item, getStream()._timeoutForItemFn.getTimeout( item ) );
       }
     }
   }
