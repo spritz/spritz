@@ -10,16 +10,17 @@ complete as there is too much un-said.
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
 
-* Complete `VirtualProcessorUnit` implementation so that it supports more than ASP.
-
-* Tasks executed by the scheduler should have their own VPU. The VPU will allow the addition of tasks but
-  disallow scheduling when the VPU is not active.
-
 * Add annotation and enhance processor so that VPUs are included in the documentation.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
+
+* Change `Scheduler.currentVpu()` so that it always returns a value. If none is active then `directVpu()`
+  is returned. `directVpu()` just runs task inline. We should also change `Stream.subscribe()` so that it
+  will be wrapped with direct if no other VPU is active. All other event generators (i.e. things that
+  invoke `onSubscription()`, `onNext()`,`onError()` and `onComplete()`) must be changed to be invoked with
+  a VPU. We can always add in validation to `ValidatingSubscriber` to ensure that this is the case.
 
 ### Scheduler
 
