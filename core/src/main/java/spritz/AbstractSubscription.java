@@ -80,7 +80,7 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
    * @return the name of the subscription.
    */
   @Nonnull
-  public final String getName()
+  final String getName()
   {
     if ( Spritz.shouldCheckApiInvariants() )
     {
