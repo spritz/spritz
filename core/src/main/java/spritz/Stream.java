@@ -289,7 +289,25 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> create( @Nonnull final SourceCreator<T> createFunction )
   {
-    return new CreateStreamSource<>( createFunction );
+    return create( null, createFunction );
+  }
+
+  /**
+   * Creates a stream using a simple function.
+   * THe function will simplify the creation of stream sources. In particular it eliminates the need to
+   * maintain the state for subscription and will handle cancelled subscriptions by ignoring calls when in
+   * cancelled state. While the code has a better developer experience, it may introduce a slightly worse runtime
+   * experience.
+   *
+   * @param <T>            the type of items that the stream contains.
+   * @param name           a human consumable name for the stream.
+   * @param createFunction the function for creating the source.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> create( @Nullable final String name, @Nonnull final SourceCreator<T> createFunction )
+  {
+    return new CreateStreamSource<>( name, createFunction );
   }
 
   /**
