@@ -99,7 +99,7 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
   {
     if ( Spritz.areNamesEnabled() )
     {
-      return "Subscription[" + getName() + "]";
+      return "Subscription[" + getStream().getQualifiedName() + "]";
     }
     else
     {

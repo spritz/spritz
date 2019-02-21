@@ -1330,10 +1330,10 @@ public abstract class Stream<T>
   }
 
   /**
-   * Return the name of the stream.
+   * Return the locl name of the stream.
    * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns <code>true</code>.
    *
-   * @return the name of the node.
+   * @return the local name of the node.
    */
   @Nonnull
   final String getName()
@@ -1348,6 +1348,19 @@ public abstract class Stream<T>
   }
 
   /**
+   * Return the qualified name of the stream.
+   * The qualified name includes the local name suffixed to the upstream name.
+   * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns <code>true</code>.
+   *
+   * @return the qualified name of the node.
+   */
+  @Nonnull
+  String getQualifiedName()
+  {
+    return getName();
+  }
+
+  /**
    * {@inheritDoc}
    */
   @Nonnull
@@ -1356,7 +1369,7 @@ public abstract class Stream<T>
   {
     if ( Spritz.areNamesEnabled() )
     {
-      return getName();
+      return getQualifiedName();
     }
     else
     {
