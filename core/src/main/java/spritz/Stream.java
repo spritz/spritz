@@ -67,7 +67,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> of( @Nonnull final T... values )
   {
-    return new StaticStreamSource<>( values );
+    return of( null, values );
+  }
+
+  /**
+   * Creates a stream that emits the parameters as items and then emits the completion signal.
+   *
+   * @param <T>    the type of items contained in the stream.
+   * @param name   a human consumable name for the stream.
+   * @param values the values to emit.
+   * @return the new stream.
+   */
+  @SafeVarargs
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> of( @Nullable final String name, @Nonnull final T... values )
+  {
+    return new StaticStreamSource<>( name, values );
   }
 
   /**

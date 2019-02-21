@@ -1,7 +1,9 @@
 package spritz;
 
+import java.util.Arrays;
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class StaticStreamSource<T>
   extends Stream<T>
@@ -9,8 +11,9 @@ final class StaticStreamSource<T>
   @Nonnull
   private final T[] _data;
 
-  StaticStreamSource( @Nonnull final T[] data )
+  StaticStreamSource( @Nullable final String name, @Nonnull final T[] data )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "of", Arrays.asList( data ).toString() ) : null );
     _data = Objects.requireNonNull( data );
   }
 
