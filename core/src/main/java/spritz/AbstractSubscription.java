@@ -2,7 +2,6 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import static org.realityforge.braincheck.Guards.*;
 
 /**
  * Abstract subscription implementation for the common scenario where
@@ -71,23 +70,6 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
 
   void doCancel()
   {
-  }
-
-  /**
-   * Return the name of the subscription.
-   * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns <code>true</code>.
-   *
-   * @return the name of the subscription.
-   */
-  @Nonnull
-  final String getName()
-  {
-    if ( Spritz.shouldCheckApiInvariants() )
-    {
-      apiInvariant( Spritz::areNamesEnabled,
-                    () -> "Spritz-0010: Subscription.getName() invoked when Spritz.areNamesEnabled() is false" );
-    }
-    return getStream().getName();
   }
 
   /**
