@@ -1336,7 +1336,7 @@ public abstract class Stream<T>
    * @return the name of the node.
    */
   @Nonnull
-  public final String getName()
+  final String getName()
   {
     if ( Spritz.shouldCheckApiInvariants() )
     {
