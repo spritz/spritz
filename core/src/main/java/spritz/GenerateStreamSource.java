@@ -28,7 +28,7 @@ final class GenerateStreamSource<T>
   private static final class WorkerSubscription<T>
     extends AbstractSubscription<T, GenerateStreamSource<T>>
   {
-    WorkerSubscription( @Nonnull GenerateStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
+    WorkerSubscription( @Nonnull final GenerateStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
       super( stream, subscriber );
     }
