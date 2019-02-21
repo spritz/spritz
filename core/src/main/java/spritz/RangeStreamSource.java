@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * A synchronous implementation of the {@link spritz.Stream} that can
@@ -27,8 +28,9 @@ final class RangeStreamSource
    * @param start the starting value of the range
    * @param count the number of items to emit
    */
-  RangeStreamSource( final int start, final int count )
+  RangeStreamSource( @Nullable final String name, final int start, final int count )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "range", start + ", " + count ) : null );
     assert count >= 0;
     _start = start;
     _count = count;

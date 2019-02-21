@@ -277,7 +277,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static Stream<Integer> range( final int start, final int count )
   {
-    return new RangeStreamSource( start, count );
+    return range( null, start, count );
+  }
+
+  /**
+   * Create a stream that emits a sequence of numbers within a specified range.
+   * The stream create a sequence of [start, start + count).
+   *
+   * @param name  a human consumable name for the stream.
+   * @param start the starting value of the range
+   * @param count the number of items to emit
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static Stream<Integer> range( @Nullable final String name, final int start, final int count )
+  {
+    return new RangeStreamSource( name, start, count );
   }
 
   /**
