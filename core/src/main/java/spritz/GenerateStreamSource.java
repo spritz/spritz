@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class GenerateStreamSource<T>
   extends Stream<T>
@@ -10,8 +11,9 @@ final class GenerateStreamSource<T>
   @Nonnull
   private final Callable<T> _callable;
 
-  GenerateStreamSource( @Nonnull final Callable<T> callable )
+  GenerateStreamSource( @Nullable final String name, @Nonnull final Callable<T> callable )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fromCallable" ) : null );
     _callable = Objects.requireNonNull( callable );
   }
 

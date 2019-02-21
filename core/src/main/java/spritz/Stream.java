@@ -174,7 +174,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromCallable( @Nonnull final Callable<T> callable )
   {
-    return new GenerateStreamSource<>( callable );
+    return fromCallable( null, callable );
+  }
+
+  /**
+   * Creates an infinite stream that emits items from the {@link Callable} parameter.
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
+   * otherwise this source will result in an infinite loop.
+   *
+   * @param <T>      the type of items contained in the stream.
+   * @param name     a human consumable name for the stream.
+   * @param callable the function that generates values to emit.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> fromCallable( @Nullable final String name, @Nonnull final Callable<T> callable )
+  {
+    return new GenerateStreamSource<>( name, callable );
   }
 
   /**
@@ -189,7 +205,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromSupplier( @Nonnull final Supplier<T> supplier )
   {
-    return new GenerateStreamSource<>( supplier::get );
+    return fromSupplier( null, supplier );
+  }
+
+  /**
+   * Creates an infinite stream that emits items from the {@link Supplier} parameter.
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
+   * otherwise this source will result in an infinite loop.
+   *
+   * @param <T>      the type of items contained in the stream.
+   * @param name     a human consumable name for the stream.
+   * @param supplier the function that generates values to emit.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> fromSupplier( @Nullable final String name, @Nonnull final Supplier<T> supplier )
+  {
+    return fromCallable( Spritz.areNamesEnabled() ? generateName( name, "fromSupplier" ) : null, supplier::get );
   }
 
   /**
