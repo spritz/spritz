@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class RunnableStreamSource<T>
   extends Stream<T>
@@ -9,8 +10,9 @@ final class RunnableStreamSource<T>
   @Nonnull
   private final Runnable _runnable;
 
-  RunnableStreamSource( @Nonnull final Runnable runnable )
+  RunnableStreamSource( @Nullable final String name, @Nonnull final Runnable runnable )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fromRunnable" ) : null );
     _runnable = Objects.requireNonNull( runnable );
   }
 

@@ -235,7 +235,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromRunnable( @Nonnull final Runnable runnable )
   {
-    return new RunnableStreamSource<>( runnable );
+    return fromRunnable( null, runnable );
+  }
+
+  /**
+   * Creates a stream that completes when the {@link Runnable} parameter completes running.
+   * The stream will signal an error if the runnable generates an error while running.
+   *
+   * @param <T>      the type of items that the stream declared as containing (despite never containing any items).
+   * @param name     a human consumable name for the stream.
+   * @param runnable the runnable to execute.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> fromRunnable( @Nullable final String name, @Nonnull final Runnable runnable )
+  {
+    return new RunnableStreamSource<>( name, runnable );
   }
 
   /**
