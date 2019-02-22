@@ -29,7 +29,7 @@ abstract class AbstractStream<UpstreamT, DownstreamT>
    */
   protected AbstractStream( @Nonnull final Stream<UpstreamT> upstream )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    this( Spritz.areNamesEnabled() ? "<unknown>" : null, upstream );
   }
 
   /**

@@ -41,11 +41,6 @@ public abstract class Stream<T>
   @Nullable
   private final String _name;
 
-  protected Stream()
-  {
-    this( Spritz.areNamesEnabled() ? "<unknown>" : null );
-  }
-
   protected Stream( @Nullable final String name )
   {
     if ( Spritz.shouldCheckApiInvariants() )
