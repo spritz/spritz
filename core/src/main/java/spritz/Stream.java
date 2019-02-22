@@ -695,7 +695,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> distinct()
   {
-    return compose( DistinctOperator::new );
+    return distinct( null );
+  }
+
+  /**
+   * Filter the items if they have been previously emitted.
+   * To determine whether an item has been previous emitted the {@link Object#equals(Object)}
+   * and {@link Object#hashCode()} must be correctly implemented for items type.
+   *
+   * <p>WARNING: It should be noted that every distinct item is retained until the stream
+   * completes. As a result this operator can cause significant amount of memory pressure if many
+   * distinct items exist or the stream persists for a long time.</p>
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
+  public final Stream<T> distinct( @Nullable final String name )
+  {
+    return compose( s -> new DistinctOperator<>( name, s ) );
   }
 
   /**

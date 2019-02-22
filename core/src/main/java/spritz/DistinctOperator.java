@@ -2,13 +2,14 @@ package spritz;
 
 import java.util.HashSet;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class DistinctOperator<T>
   extends AbstractStream<T, T>
 {
-  DistinctOperator( @Nonnull final Stream<T> upstream )
+  DistinctOperator( @Nullable final String name, @Nonnull final Stream<T> upstream )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "distinct" ) : null, upstream );
   }
 
   @Override
