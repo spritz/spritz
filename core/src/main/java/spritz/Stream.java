@@ -293,7 +293,20 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> never()
   {
-    return new NeverStreamSource<>();
+    return never( null );
+  }
+
+  /**
+   * Creates a stream that emits no items, never completes and never fails.
+   *
+   * @param <T>  the type of items that the stream declared as containing (despite never containing any items).
+   * @param name a human consumable name for the stream.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> never( @Nullable final String name )
+  {
+    return new NeverStreamSource<>( name );
   }
 
   /**
