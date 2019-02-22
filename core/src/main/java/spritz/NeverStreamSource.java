@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 final class NeverStreamSource<T>
   extends Stream<T>
 {
-  NeverStreamSource( @Nullable final String name, )
+  NeverStreamSource( @Nullable final String name )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "never" ) : null );
   }
