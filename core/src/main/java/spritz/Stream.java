@@ -818,7 +818,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final Stream<T> errorIfEmpty( @Nonnull final Supplier<Throwable> errorFactory )
   {
-    return compose( p -> new ErrorIfEmptyOperator<>( p, errorFactory ) );
+    return errorIfEmpty( null, errorFactory );
+  }
+
+  /**
+   * Emit an error if the stream completes and no items were emitted.
+   * The error is created by invoking errorFactory when the error will be emitted.
+   *
+   * @param name         the name specified by the user.
+   * @param errorFactory the factory responsible for creating error.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> errorIfEmpty( @Nullable final String name, @Nonnull final Supplier<Throwable> errorFactory )
+  {
+    return compose( p -> new ErrorIfEmptyOperator<>( name, p, errorFactory ) );
   }
 
   /**

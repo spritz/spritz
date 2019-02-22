@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class ErrorIfEmptyOperator<T>
   extends AbstractStream<T, T>
@@ -10,9 +11,11 @@ final class ErrorIfEmptyOperator<T>
   @Nonnull
   private final Supplier<Throwable> _errorFactory;
 
-  ErrorIfEmptyOperator( @Nonnull final Stream<T> upstream, @Nonnull final Supplier<Throwable> errorFactory )
+  ErrorIfEmptyOperator( @Nullable final String name,
+                        @Nonnull final Stream<T> upstream,
+                        @Nonnull final Supplier<Throwable> errorFactory )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "errorIfEmpty" ) : null, upstream );
     _errorFactory = Objects.requireNonNull( errorFactory );
   }
 
