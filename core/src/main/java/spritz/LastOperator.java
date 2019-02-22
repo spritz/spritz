@@ -1,6 +1,7 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import spritz.internal.util.CircularBuffer;
 
 final class LastOperator<T>
@@ -8,9 +9,9 @@ final class LastOperator<T>
 {
   private final int _maxBufferSize;
 
-  LastOperator( @Nonnull final Stream<T> upstream, final int maxBufferSize )
+  LastOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, final int maxBufferSize )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "last", String.valueOf( maxBufferSize ) ) : null, upstream );
     _maxBufferSize = maxBufferSize;
     assert maxBufferSize > 0;
   }

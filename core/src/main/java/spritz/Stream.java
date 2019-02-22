@@ -909,7 +909,25 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> last( final int maxElements )
   {
-    return compose( p -> new LastOperator<>( p, maxElements ) );
+    return last( null, maxElements );
+  }
+
+  /**
+   * Drop all items except for the last {@code maxElements} items.
+   * This operator will buffer up to {@code maxElements} items until it receives the complete
+   * signal and then it will send all the buffered items and the complete signal. If less than
+   * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
+   * less than {@code maxElements} items.
+   *
+   * @param name        the name specified by the user.
+   * @param maxElements the maximum number
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> last( @Nullable final String name, final int maxElements )
+  {
+    return compose( p -> new LastOperator<>( name, p, maxElements ) );
   }
 
   /**
