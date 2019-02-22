@@ -89,7 +89,20 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> empty()
   {
-    return of();
+    return empty( null );
+  }
+
+  /**
+   * Creates a stream that emits no items and immediately emits a completion signal.
+   *
+   * @param <T>  the type of items that the stream declared as containing (despite never containing any items).
+   * @param name a human consumable name for the stream.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> empty( @Nullable final String name )
+  {
+    return of( Spritz.areNamesEnabled() ? generateName( name, "empty" ) : null );
   }
 
   /**
