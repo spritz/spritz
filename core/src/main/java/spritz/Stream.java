@@ -1561,7 +1561,21 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final Stream<T> timeout( final int timeoutTime )
   {
-    return compose( p -> new TimeoutOperator<>( p, timeoutTime ) );
+    return timeout( null, timeoutTime );
+  }
+
+  /**
+   * Signals error with a {@link TimeoutException} if an item is not emitted within the specified timeout period from the previous item.
+   *
+   * @param name        the name specified by the user.
+   * @param timeoutTime the timeout period after which the stream is terminated.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> timeout( @Nullable final String name, final int timeoutTime )
+  {
+    return compose( p -> new TimeoutOperator<>( name, p, timeoutTime ) );
   }
 
   @DocCategory( DocCategory.Type.UNKNOWN )

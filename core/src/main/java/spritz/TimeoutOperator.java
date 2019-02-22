@@ -1,15 +1,16 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T, T>
 {
   private final int _timeoutTime;
 
-  TimeoutOperator( @Nonnull final Stream<T> upstream, final int timeoutTime )
+  TimeoutOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, final int timeoutTime )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "timeout", String.valueOf( timeoutTime ) ) : null, upstream );
     _timeoutTime = timeoutTime;
     assert timeoutTime > 0;
   }
