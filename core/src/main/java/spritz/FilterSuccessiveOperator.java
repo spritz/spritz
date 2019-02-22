@@ -10,9 +10,11 @@ final class FilterSuccessiveOperator<T>
   @Nonnull
   private final SuccessivePredicate<T> _predicate;
 
-  FilterSuccessiveOperator( @Nonnull final Stream<T> upstream, @Nonnull final SuccessivePredicate<T> predicate )
+  FilterSuccessiveOperator( @Nullable final String name,
+                            @Nonnull final Stream<T> upstream,
+                            @Nonnull final SuccessivePredicate<T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "errorIfEmpty" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 

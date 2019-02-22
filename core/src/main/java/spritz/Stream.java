@@ -1014,7 +1014,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> skipRepeats()
   {
-    return filterSuccessive( ( prev, current ) -> !Objects.equals( prev, current ) );
+    return skipRepeats( null );
+  }
+
+  /**
+   * Drops items from the stream if they are equal to the previous item emitted by the stream.
+   * The items are tested for equality using the {@link Objects#equals(Object, Object)} method.
+   * It is equivalent to invoking {@link #filterSuccessive(SuccessivePredicate)} passing a
+   * {@link SuccessivePredicate} filters out successive items that are equal.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
+  public final Stream<T> skipRepeats( @Nullable final String name )
+  {
+    return filterSuccessive( Spritz.areNamesEnabled() ? generateName( name, "skipRepeats" ) : null,
+                             ( prev, current ) -> !Objects.equals( prev, current ) );
   }
 
   /**
@@ -1030,7 +1046,25 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> filterSuccessive( @Nonnull final SuccessivePredicate<T> predicate )
   {
-    return compose( s -> new FilterSuccessiveOperator<>( s, predicate ) );
+    return filterSuccessive( null, predicate );
+  }
+
+  /**
+   * Filter consecutive items emitted by this stream using the specified {@link SuccessivePredicate}.
+   * Any candidate items that return {@code true} when passed to the {@link Predicate} will be
+   * emitted while all other items will be skipped. The predicate passes the last emitted item
+   * as well as the candidate item.
+   *
+   * @param name      the name specified by the user.
+   * @param predicate the comparator to determine whether two successive items are equal.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
+  public final Stream<T> filterSuccessive( @Nullable final String name,
+                                           @Nonnull final SuccessivePredicate<T> predicate )
+  {
+    return compose( s -> new FilterSuccessiveOperator<>( name, s, predicate ) );
   }
 
   /**
