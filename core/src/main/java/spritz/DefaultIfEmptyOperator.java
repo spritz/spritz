@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class DefaultIfEmptyOperator<T>
   extends AbstractStream<T, T>
@@ -9,9 +10,12 @@ final class DefaultIfEmptyOperator<T>
   @Nonnull
   private final T _defaultValue;
 
-  DefaultIfEmptyOperator( @Nonnull final Stream<T> upstream, @Nonnull final T defaultValue )
+  DefaultIfEmptyOperator( @Nullable final String name,
+                          @Nonnull final Stream<T> upstream,
+                          @Nonnull final T defaultValue )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "defaultIfEmpty", String.valueOf( defaultValue ) ) : null,
+           upstream );
     _defaultValue = Objects.requireNonNull( defaultValue );
   }
 

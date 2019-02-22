@@ -1437,7 +1437,21 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
   {
-    return compose( p -> new DefaultIfEmptyOperator<>( p, defaultValue ) );
+    return defaultIfEmpty( null, defaultValue );
+  }
+
+  /**
+   * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
+   *
+   * @param name         the name specified by the user.
+   * @param defaultValue the public final value to emit if upstream completes and is empty.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> defaultIfEmpty( @Nullable final String name, @Nonnull final T defaultValue )
+  {
+    return compose( p -> new DefaultIfEmptyOperator<>( name, p, defaultValue ) );
   }
 
   /**
