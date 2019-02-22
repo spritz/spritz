@@ -1,15 +1,16 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class LimitOperator<T>
   extends AbstractStream<T, T>
 {
   private final int _count;
 
-  LimitOperator( @Nonnull final Stream<T> upstream, final int count )
+  LimitOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, final int count )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "limit", String.valueOf( count ) ) : null, upstream );
     assert count > 0;
     _count = count;
   }

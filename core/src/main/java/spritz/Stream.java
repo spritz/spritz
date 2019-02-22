@@ -759,7 +759,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> limit( final int maxSize )
   {
-    return compose( p -> new LimitOperator<>( p, maxSize ) );
+    return limit( null, maxSize );
+  }
+
+  /**
+   * Truncate the stream, ensuring the stream is no longer than {@code maxSize} items in length.
+   * If {@code maxSize} is reached then the item will be passed downstream, the downstream will be
+   * completed and then the upstream will be cancelled. This method is an alias for {@link #take(int)}
+   *
+   * @param name    the name specified by the user.
+   * @param maxSize The maximum number of items returned by the stream.
+   * @return the new stream.
+   * @see #take(int)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> limit( @Nullable final String name, final int maxSize )
+  {
+    return compose( p -> new LimitOperator<>( name, p, maxSize ) );
   }
 
   /**
