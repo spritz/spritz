@@ -335,7 +335,21 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static Stream<Integer> periodic( final int period )
   {
-    return new PeriodicStreamSource( period );
+    return periodic( null, period );
+  }
+
+  /**
+   * Create a stream that emits sequential numbers every specified interval of time.
+   * The stream create a sequence of [start, start + count).
+   *
+   * @param name   a human consumable name for the stream.
+   * @param period the period with which items are emitted.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static Stream<Integer> periodic( @Nullable final String name, final int period )
+  {
+    return new PeriodicStreamSource( name, period );
   }
 
   @DocCategory( DocCategory.Type.CONSTRUCTION )
