@@ -1059,7 +1059,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> debounce( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
-    return compose( s -> new DebounceOperator<>( s, timeoutForItemFn ) );
+    return debounce( null, timeoutForItemFn );
+  }
+
+  /**
+   * Drops items emitted by a stream that are followed by newer items before
+   * the timeout returned by the function expires. The timer resets on each emission.
+   *
+   * @param name             the name specified by the user.
+   * @param timeoutForItemFn the function that returns the timeout.
+   * @return the new stream.
+   * @see #debounce(int)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> debounce( @Nullable final String name,
+                                   @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  {
+    return compose( s -> new DebounceOperator<>( name, s, timeoutForItemFn ) );
   }
 
   /**
@@ -1073,8 +1090,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> debounce( final int timeout )
   {
+    return debounce( null, timeout );
+  }
+
+  /**
+   * Drops items emitted by a stream that are followed by newer items before
+   * the given timeout value expires. The timer resets on each emission.
+   *
+   * @param name    the name specified by the user.
+   * @param timeout the timeout.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> debounce( @Nullable final String name, final int timeout )
+  {
     assert timeout > 0;
-    return debounce( i -> timeout );
+    return debounce( Spritz.areNamesEnabled() ? generateName( name, "debounce", String.valueOf( timeout ) ) : null,
+                     i -> timeout );
   }
 
   /**

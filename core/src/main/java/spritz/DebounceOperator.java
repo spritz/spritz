@@ -1,6 +1,7 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class DebounceOperator<T>
   extends AbstractStream<T, T>
@@ -8,9 +9,11 @@ final class DebounceOperator<T>
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  DebounceOperator( @Nonnull final Stream<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  DebounceOperator( @Nullable final String name,
+                    @Nonnull final Stream<T> upstream,
+                    @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "debounce" ) : null, upstream );
     _timeoutForItemFn = timeoutForItemFn;
   }
 
