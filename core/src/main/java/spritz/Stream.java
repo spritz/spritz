@@ -1401,7 +1401,7 @@ public abstract class Stream<T>
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.MERGING } )
   public final <DownstreamT> Stream<DownstreamT> switchMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper )
   {
-    return map( mapper ).compose( SwitchOperator::new );
+    return map( mapper ).compose( s -> new SwitchOperator<>( null, s ) );
   }
 
   /**

@@ -6,9 +6,9 @@ import javax.annotation.Nullable;
 final class SwitchOperator<T>
   extends AbstractStream<Stream<T>, T>
 {
-  SwitchOperator( @Nonnull final Stream<Stream<T>> upstream )
+  SwitchOperator( @Nullable final String name, @Nonnull final Stream<Stream<T>> upstream )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "switch" ) : null, upstream );
   }
 
   @Override
