@@ -1200,7 +1200,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> sample( final int samplePeriod )
   {
-    return sample( samplePeriod, true );
+    return sample( null, samplePeriod );
+  }
+
+  /**
+   * Sample items from stream emitting the first item and the last item in each sample period.
+   * If a sampling period ever passes without emitting a value then the sampler is reset and
+   * and will start sampling again after the next item is emitted by the upstream stage.
+   *
+   * @param name         the name specified by the user.
+   * @param samplePeriod the period at which the stream is sampled.
+   * @return the new stream.
+   * @see #sample(int, boolean)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> sample( @Nullable final String name, final int samplePeriod )
+  {
+    return sample( name, samplePeriod, true );
   }
 
   /**
@@ -1218,7 +1235,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> sample( final int samplePeriod, final boolean emitInitiatingItem )
   {
-    return compose( s -> new SampleOperator<>( s, samplePeriod, emitInitiatingItem ) );
+    return sample( null, samplePeriod, emitInitiatingItem );
+  }
+
+  /**
+   * Sample items from stream emitting the last item in each sample period. The first item
+   * is emitted if {@code emitInitiatingItem} is <code>true</code>. If a sampling period ever
+   * passes without emitting a value then the sampler is reset and and will start sampling
+   * again after the next item is emitted by the upstream stage.
+   *
+   * @param name               the name specified by the user.
+   * @param samplePeriod       the period at which the stream is sampled.
+   * @param emitInitiatingItem true to emit the first item that initiates sampling.
+   * @return the new stream.
+   * @see #sample(int)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> sample( @Nullable final String name, final int samplePeriod, final boolean emitInitiatingItem )
+  {
+    return compose( s -> new SampleOperator<>( name, s, samplePeriod, emitInitiatingItem ) );
   }
 
   /**

@@ -1,6 +1,7 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class SampleOperator<T>
   extends AbstractStream<T, T>
@@ -8,9 +9,14 @@ final class SampleOperator<T>
   private final int _samplePeriod;
   private final boolean _emitFirst;
 
-  SampleOperator( @Nonnull final Stream<T> upstream, final int samplePeriod, final boolean emitFirst )
+  SampleOperator( @Nullable final String name,
+                  @Nonnull final Stream<T> upstream,
+                  final int samplePeriod,
+                  final boolean emitFirst )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ?
+           generateName( name, "sample", "samplePeriod=" + samplePeriod + ",emitFirst=" + emitFirst ) :
+           null, upstream );
     _samplePeriod = samplePeriod;
     _emitFirst = emitFirst;
     assert samplePeriod > 0;
