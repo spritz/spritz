@@ -13,9 +13,10 @@ final class MergeOperator<T>
    */
   private final int _maxConcurrency;
 
-  MergeOperator( @Nonnull final Stream<Stream<T>> upstream, final int maxConcurrency )
+  MergeOperator( @Nullable final String name, @Nonnull final Stream<Stream<T>> upstream, final int maxConcurrency )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "merge", String.valueOf( maxConcurrency ) ) : null,
+           upstream );
     _maxConcurrency = maxConcurrency;
     assert maxConcurrency > 0;
   }

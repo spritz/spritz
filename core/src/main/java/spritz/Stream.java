@@ -1856,7 +1856,7 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                            final int maxConcurrency )
   {
-    return map( mapper ).compose( o -> new MergeOperator<>( o, maxConcurrency ) );
+    return map( mapper ).compose( o -> new MergeOperator<>( null,o, maxConcurrency ) );
   }
 
   /**
@@ -1933,7 +1933,7 @@ public abstract class Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     s.add( this );
     Collections.addAll( s, streams );
-    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null,o, 1 ) ) );
   }
 
   /**
@@ -1953,7 +1953,7 @@ public abstract class Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     Collections.addAll( s, streams );
     s.add( this );
-    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( o, 1 ) ) );
+    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null,o, 1 ) ) );
   }
 
   /**
