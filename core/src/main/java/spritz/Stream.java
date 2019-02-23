@@ -1146,7 +1146,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> throttle( final int timeout )
   {
-    return throttle( i -> timeout );
+    return throttle( null, timeout );
+  }
+
+  /**
+   * Drops items emitted by a stream that follow emitted item until the timeout expires.
+   *
+   * @param name    the name specified by the user.
+   * @param timeout the timeout window.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> throttle( @Nullable final String name, final int timeout )
+  {
+    return throttle( Spritz.areNamesEnabled() ? generateName( name, "throttle", String.valueOf( timeout ) ) : null,
+                     i -> timeout );
   }
 
   /**
@@ -1160,7 +1175,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.RATE_LIMITING )
   public final Stream<T> throttle( @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
-    return compose( s -> new ThrottleOperator<>( s, timeoutForItemFn ) );
+    return throttle( null, timeoutForItemFn );
+  }
+
+  /**
+   * Drops items emitted by a stream that follow emitted item until the timeout
+   * returned by the function expires.
+   *
+   * @param name             the name specified by the user.
+   * @param timeoutForItemFn the function that returns the timeout.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.RATE_LIMITING )
+  public final Stream<T> throttle( @Nullable final String name, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  {
+    return compose( s -> new ThrottleOperator<>( name, s, timeoutForItemFn ) );
   }
 
   /**

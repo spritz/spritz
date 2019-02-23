@@ -1,6 +1,7 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class ThrottleOperator<T>
   extends AbstractStream<T, T>
@@ -8,9 +9,9 @@ final class ThrottleOperator<T>
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleOperator( @Nonnull final Stream<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  ThrottleOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "throttle" ) : null, upstream );
     _timeoutForItemFn = timeoutForItemFn;
   }
 
