@@ -2058,7 +2058,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SCHEDULING )
   public final Stream<T> observeOn( @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    return compose( p -> new ObserveOnOperator<>( p, virtualProcessorUnit ) );
+    return observeOn( null, virtualProcessorUnit );
+  }
+
+  /**
+   * Emit signals and item on the specified {@link VirtualProcessorUnit}.
+   * In practical terms this means that all of the {@link Subscription} methods for
+   * the downstream are invoked on the specified {@link VirtualProcessorUnit}.
+   *
+   * @param name                 the name specified by the user.
+   * @param virtualProcessorUnit the VPU on which to invoke signals and emit items.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SCHEDULING )
+  public final Stream<T> observeOn( @Nullable final String name,
+                                    @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  {
+    return compose( p -> new ObserveOnOperator<>( name, p, virtualProcessorUnit ) );
   }
 
   /**

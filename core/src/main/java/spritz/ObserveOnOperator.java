@@ -11,9 +11,12 @@ final class ObserveOnOperator<T>
   @Nonnull
   private final VirtualProcessorUnit _virtualProcessorUnit;
 
-  ObserveOnOperator( @Nonnull final Stream<T> upstream, @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  ObserveOnOperator( @Nullable final String name,
+                     @Nonnull final Stream<T> upstream,
+                     @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "observeOn", virtualProcessorUnit.getName() ) : null,
+           upstream );
     _virtualProcessorUnit = Objects.requireNonNull( virtualProcessorUnit );
   }
 
