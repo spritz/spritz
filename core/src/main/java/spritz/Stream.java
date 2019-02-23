@@ -440,7 +440,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onSubscribe( @Nonnull final Consumer<Subscription> action )
   {
-    return new PeekOperator<>( this, action, null, null, null, null, null, null, null, null, null );
+    return onSubscribe( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before signalling subscription.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called before signalling subscription.
+   * @return the new stream.
+   * @see #afterSubscribe(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onSubscribe( @Nullable final String name, @Nonnull final Consumer<Subscription> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onSubscribe" ) : null,
+                               this,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -455,7 +482,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterSubscribe( @Nonnull final Consumer<Subscription> action )
   {
-    return new PeekOperator<>( this, null, action, null, null, null, null, null, null, null, null );
+    return afterSubscribe( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after signalling subscription.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called after signalling subscription.
+   * @return the new stream.
+   * @see #onSubscribe(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterSubscribe( @Nullable final String name, @Nonnull final Consumer<Subscription> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterSubscribe" ) : null,
+                               this,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -470,7 +524,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> tap( @Nonnull final Consumer<? super T> action )
   {
-    return onNext( action );
+    return tap( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before each item is emitted. This method is an alias for {@link #onNext(Consumer)}.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function before each item is emitted.
+   * @return the new stream.
+   * @see #onNext(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> tap( @Nullable final String name, @Nonnull final Consumer<? super T> action )
+  {
+    return onNext( Spritz.areNamesEnabled() ? generateName( name, "tap" ) : null, action );
   }
 
   /**
@@ -485,7 +555,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peek( @Nonnull final Consumer<? super T> action )
   {
-    return onNext( action );
+    return peek( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before each item is emitted. This method is an alias for {@link #onNext(Consumer)}.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function before each item is emitted.
+   * @return the new stream.
+   * @see #onNext(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> peek( @Nullable final String name, @Nonnull final Consumer<? super T> action )
+  {
+    return onNext( Spritz.areNamesEnabled() ? generateName( name, "peek" ) : null, action );
   }
 
   /**
@@ -502,7 +588,36 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( this, null, null, action, null, null, null, null, null, null, null );
+    return onNext( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before each item is emitted. This method is an alias for {@link #peek(Consumer)}.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function before each item is emitted.
+   * @return the new stream.
+   * @see #peek(Consumer)
+   * @see #tap(Consumer)
+   * @see #afterNext(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onNext( @Nullable final String name, @Nonnull final Consumer<? super T> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onNext" ) : null,
+                               this,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -516,7 +631,33 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterNext( @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( this, null, null, null, action, null, null, null, null, null, null );
+    return afterNext( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after each item is emitted. This method is an alias for {@link #peek(Consumer)}.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function after each item is emitted.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterNext( @Nullable final String name, @Nonnull final Consumer<? super T> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterNext" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -531,7 +672,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( this, null, null, null, null, action, null, null, null, null, null );
+    return onError( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before signalling error.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called before signalling error.
+   * @return the new stream.
+   * @see #afterError(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onError( @Nullable final String name, @Nonnull final Consumer<Throwable> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onError" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -546,7 +714,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterError( @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, action, null, null, null, null );
+    return afterError( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after signalling error.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called after signalling error.
+   * @return the new stream.
+   * @see #onError(Consumer)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterError( @Nullable final String name, @Nonnull final Consumer<Throwable> action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterError" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -561,7 +756,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, action, null, null, null );
+    return onComplete( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before signalling complete.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called when the stream completes.
+   * @return the new stream.
+   * @see #afterComplete(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onComplete( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onComplete" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null,
+                               null );
   }
 
   /**
@@ -576,7 +798,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterComplete( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, null, action, null, null );
+    return afterComplete( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after signalling complete.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called when the stream completes.
+   * @return the new stream.
+   * @see #onComplete(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterComplete( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterComplete" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null,
+                               null );
   }
 
   /**
@@ -591,7 +840,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onCancel( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, null, null, action, null );
+    return onCancel( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before the stream is canceled by a downstream stage.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called before the stream is canceled by a downstream stage.
+   * @return the new stream.
+   * @see #afterCancel(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onCancel( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onCancel" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action,
+                               null );
   }
 
   /**
@@ -606,7 +882,34 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterCancel( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, null, null, null, null, action );
+    return afterCancel( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after the stream is canceled by a downstream stage.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called after the stream is canceled by a downstream stage.
+   * @return the new stream.
+   * @see #onCancel(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterCancel( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterCancel" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               action );
   }
 
   /**
@@ -624,7 +927,37 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> onTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, e -> action.run(), null, action, null, action, null );
+    return onTerminate( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter before signalling complete or signalling error. If you need to know know
+   * whether the stream failed or completed then use {@link #onError(Consumer)} and
+   * {@link #onComplete(Runnable)}. In addition, the action is called if the stream is
+   * cancelled by a downstream stage.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called before signalling complete or signalling error or being cancelled by downstream stage.
+   * @return the new stream.
+   * @see #afterTerminate(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> onTerminate( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onTerminate" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               e -> action.run(),
+                               null,
+                               action,
+                               null,
+                               action,
+                               null );
   }
 
   /**
@@ -642,7 +975,37 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterTerminate( @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( this, null, null, null, null, null, e -> action.run(), null, action, null, action );
+    return afterTerminate( null, action );
+  }
+
+  /**
+   * Return a stream containing all the items from this stream that invokes the action
+   * parameter after signalling complete or signalling error. If you need to know know
+   * whether the stream failed or completed then use {@link #onError(Consumer)} and
+   * {@link #onComplete(Runnable)}. In addition, the action is called if the stream is
+   * cancelled by a downstream stage.
+   *
+   * @param name   the name specified by the user.
+   * @param action the function called after signalling complete or signalling error or being cancelled by downstream stage.
+   * @return the new stream.
+   * @see #onTerminate(Runnable)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.PEEKING )
+  public final Stream<T> afterTerminate( @Nullable final String name, @Nonnull final Runnable action )
+  {
+    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterTerminate" ) : null,
+                               this,
+                               null,
+                               null,
+                               null,
+                               null,
+                               null,
+                               e -> action.run(),
+                               null,
+                               action,
+                               null,
+                               action );
   }
 
   /**

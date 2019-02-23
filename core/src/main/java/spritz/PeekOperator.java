@@ -28,7 +28,8 @@ final class PeekOperator<T>
   @Nullable
   private final Runnable _afterCancel;
 
-  PeekOperator( @Nonnull final Stream<T> upstream,
+  PeekOperator( @Nullable final String name,
+                @Nonnull final Stream<T> upstream,
                 @Nullable final Consumer<Subscription> onSubscription,
                 @Nullable final Consumer<Subscription> afterSubscription,
                 @Nullable final Consumer<? super T> onNext,
@@ -40,7 +41,7 @@ final class PeekOperator<T>
                 @Nullable final Runnable onCancel,
                 @Nullable final Runnable afterCancel )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "peek" ) : null, upstream );
     _onSubscription = onSubscription;
     _afterSubscription = afterSubscription;
     _onNext = onNext;
