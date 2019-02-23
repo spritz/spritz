@@ -5,13 +5,13 @@ import java.util.concurrent.Callable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-final class GenerateStreamSource<T>
+final class CallableStreamSource<T>
   extends Stream<T>
 {
   @Nonnull
   private final Callable<T> _callable;
 
-  GenerateStreamSource( @Nullable final String name, @Nonnull final Callable<T> callable )
+  CallableStreamSource( @Nullable final String name, @Nonnull final Callable<T> callable )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "fromCallable" ) : null );
     _callable = Objects.requireNonNull( callable );
@@ -26,9 +26,9 @@ final class GenerateStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription<T, GenerateStreamSource<T>>
+    extends AbstractSubscription<T, CallableStreamSource<T>>
   {
-    WorkerSubscription( @Nonnull final GenerateStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
+    WorkerSubscription( @Nonnull final CallableStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
       super( stream, subscriber );
     }

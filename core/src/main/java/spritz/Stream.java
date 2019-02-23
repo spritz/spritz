@@ -208,7 +208,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> fromCallable( @Nullable final String name, @Nonnull final Callable<T> callable )
   {
-    return new GenerateStreamSource<>( name, callable );
+    return new CallableStreamSource<>( name, callable );
   }
 
   /**

@@ -10,8 +10,6 @@ complete as there is too much un-said.
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
 
-* Rename `GenerateStreamSource` to `CallableStreamSource`
-
 * Add annotation and enhance processor so that VPUs are included in the documentation.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
