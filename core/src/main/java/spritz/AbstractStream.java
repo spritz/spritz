@@ -23,16 +23,6 @@ abstract class AbstractStream<UpstreamT, DownstreamT>
   }
 
   /**
-   * Create a stream with specified upstream.
-   *
-   * @param upstream the upstream stream.
-   */
-  protected AbstractStream( @Nonnull final Stream<UpstreamT> upstream )
-  {
-    this( Spritz.areNamesEnabled() ? "<unknown>" : null, upstream );
-  }
-
-  /**
    * Return the upstream stream.
    *
    * @return the upstream stream.
