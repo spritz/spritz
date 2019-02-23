@@ -1551,7 +1551,25 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> scan( @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
                                                        @Nonnull final DownstreamT initialValue )
   {
-    return compose( p -> new ScanOperator<>( p, accumulatorFunction, initialValue ) );
+    return scan( null, accumulatorFunction, initialValue );
+  }
+
+  /**
+   * Apply an accumulator function to each item in the stream emit the accumulated value.
+   *
+   * @param <DownstreamT>       the type of the items that the {@code accumulatorFunction} function emits.
+   * @param name                the name specified by the user.
+   * @param accumulatorFunction the function to use to accumulate the values.
+   * @param initialValue        the initial value to begin accumulation from.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ACCUMULATING )
+  public final <DownstreamT> Stream<DownstreamT> scan( @Nullable final String name,
+                                                       @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
+                                                       @Nonnull final DownstreamT initialValue )
+  {
+    return compose( p -> new ScanOperator<>( name, p, accumulatorFunction, initialValue ) );
   }
 
   /**

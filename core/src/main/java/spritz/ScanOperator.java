@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class ScanOperator<UpstreamT, DownstreamT>
   extends AbstractStream<UpstreamT, DownstreamT>
@@ -11,11 +12,12 @@ final class ScanOperator<UpstreamT, DownstreamT>
   @Nonnull
   private final DownstreamT _initialValue;
 
-  ScanOperator( @Nonnull final Stream<UpstreamT> upstream,
+  ScanOperator( @Nullable final String name,
+                @Nonnull final Stream<UpstreamT> upstream,
                 @Nonnull final AccumulatorFunction<UpstreamT, DownstreamT> accumulator,
                 @Nonnull final DownstreamT initialValue )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "scan" ) : null, upstream );
     _accumulator = Objects.requireNonNull( accumulator );
     _initialValue = Objects.requireNonNull( initialValue );
   }
