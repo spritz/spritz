@@ -864,22 +864,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> skip( final int count )
   {
-    return skip(null, count);
+    return skip( null, count );
   }
 
   /**
    * Drop the first {@code count} items of this stream. If the stream contains fewer
    * than {@code count} items then the stream will effectively be an empty stream.
    *
-   * @param name      the name specified by the user.
+   * @param name  the name specified by the user.
    * @param count the number of items to skip.
    * @return the new stream.
    */
   @Nonnull
   @DocCategory( DocCategory.Type.SLICING )
-  public final Stream<T> skip( @Nullable final String name,final int count )
+  public final Stream<T> skip( @Nullable final String name, final int count )
   {
-    return compose( p -> new SkipOperator<>( name,p, count ) );
+    return compose( p -> new SkipOperator<>( name, p, count ) );
   }
 
   /**
