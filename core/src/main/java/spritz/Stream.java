@@ -657,7 +657,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> filter( @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new PredicateFilterStream<>( p, predicate ) );
+    return filter( null, predicate );
+  }
+
+  /**
+   * Filter the items emitted by this stream using the specified {@link Predicate}.
+   * Any items that return {@code true} when passed to the {@link Predicate} will be
+   * emitted while all other items will be skipped.
+   *
+   * @param name      the name specified by the user.
+   * @param predicate the predicate to apply to each item.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
+  public final Stream<T> filter( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
+  {
+    return compose( p -> new PredicateFilterStream<>( name, p, predicate ) );
   }
 
   /**
