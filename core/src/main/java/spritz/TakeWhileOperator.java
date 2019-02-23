@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class TakeWhileOperator<T>
   extends AbstractStream<T, T>
@@ -10,9 +11,9 @@ final class TakeWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  TakeWhileOperator( @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  TakeWhileOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 

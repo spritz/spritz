@@ -1016,7 +1016,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> takeWhile( @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new TakeWhileOperator<>( p, predicate ) );
+    return takeWhile( null, predicate );
+  }
+
+  /**
+   * Return items from this stream until an item fails to match the supplied {@code predicate}.
+   * As long as the {@code predicate} returns true, items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns false, the stream will
+   * be completed and the upstream canceled. This is equivalent to {@link #takeUntil(Predicate)}
+   * if the predicate is negated.
+   *
+   * @param name      the name specified by the user.
+   * @param predicate The predicate.
+   * @return the new stream.
+   * @see #takeUntil(Predicate)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> takeWhile( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
+  {
+    return compose( p -> new TakeWhileOperator<>( name, p, predicate ) );
   }
 
   /**
@@ -1034,7 +1053,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> takeUntil( @Nonnull final Predicate<? super T> predicate )
   {
-    return takeWhile( predicate.negate() );
+    return takeUntil( null, predicate );
+  }
+
+  /**
+   * Return items from this stream until an item matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns false, items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns true, the stream will
+   * be completed and the upstream canceled. This is equivalent to {@link #takeWhile(Predicate)}
+   * if the predicate is negated.
+   *
+   * @param name      the name specified by the user.
+   * @param predicate The predicate.
+   * @return the new stream.
+   * @see #takeWhile(Predicate)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> takeUntil( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
+  {
+    return takeWhile( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, predicate.negate() );
   }
 
   /**
