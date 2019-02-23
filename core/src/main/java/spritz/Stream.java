@@ -689,7 +689,26 @@ public abstract class Stream<T>
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.FILTERING } )
   public final <DownstreamT extends T> Stream<DownstreamT> ofType( @Nonnull final Class<DownstreamT> type )
   {
-    return filter( type::isInstance ).map( i -> (DownstreamT) i );
+    return ofType( null, type );
+  }
+
+  /**
+   * Remove items in the stream that are not instances of the specified {@code type} and return a stream of the specified type.
+   *
+   * @param <DownstreamT> the type of item emitted downstream.
+   * @param name          the name specified by the user.
+   * @param type          the class of items to be emitted downstream.
+   * @return the new stream.
+   */
+  @SuppressWarnings( { "unchecked", "NonJREEmulationClassesInClientCode" } )
+  @Nonnull
+  @GwtIncompatible
+  @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.FILTERING } )
+  public final <DownstreamT extends T> Stream<DownstreamT> ofType( @Nullable final String name,
+                                                                   @Nonnull final Class<DownstreamT> type )
+  {
+    return filter( Spritz.areNamesEnabled() ? generateName( name, "ofType", type.getName() ) : null, type::isInstance )
+      .map( i -> (DownstreamT) i );
   }
 
   /**
@@ -701,7 +720,20 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> ignoreElements()
   {
-    return filter( e -> false );
+    return ignoreElements( null );
+  }
+
+  /**
+   * Drop all items from this stream, only emitting the completion or failed signal.
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.FILTERING )
+  public final Stream<T> ignoreElements( @Nullable final String name )
+  {
+    return filter( Spritz.areNamesEnabled() ? generateName( name, "ignoreElements" ) : null, e -> false );
   }
 
   /**
