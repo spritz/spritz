@@ -683,7 +683,6 @@ public abstract class Stream<T>
    * @param type          the class of items to be emitted downstream.
    * @return the new stream.
    */
-  @SuppressWarnings( { "unchecked", "NonJREEmulationClassesInClientCode" } )
   @Nonnull
   @GwtIncompatible
   @DocCategory( { DocCategory.Type.TRANSFORMATION, DocCategory.Type.FILTERING } )
