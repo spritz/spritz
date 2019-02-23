@@ -16,7 +16,8 @@ final class SampleOperator<T>
   {
     super( Spritz.areNamesEnabled() ?
            generateName( name, "sample", "samplePeriod=" + samplePeriod + ",emitFirst=" + emitFirst ) :
-           null, upstream );
+           null,
+           upstream );
     _samplePeriod = samplePeriod;
     _emitFirst = emitFirst;
     assert samplePeriod > 0;
