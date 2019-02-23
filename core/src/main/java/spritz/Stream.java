@@ -1517,7 +1517,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SCHEDULING )
   public final Stream<T> subscribeOn( @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    return compose( p -> new SubscribeOnOperator<>( p, virtualProcessorUnit ) );
+    return subscribeOn( null, virtualProcessorUnit );
+  }
+
+  /**
+   * Invoke the {@link Subscriber#onSubscribe(Subscription)} on upstream on the specified {@link VirtualProcessorUnit}.
+   *
+   * @param name                 the name specified by the user.
+   * @param virtualProcessorUnit the VPU on which to invoke onSubscribe.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SCHEDULING )
+  public final Stream<T> subscribeOn( @Nullable final String name,
+                                      @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  {
+    return compose( p -> new SubscribeOnOperator<>( name, p, virtualProcessorUnit ) );
   }
 
   /**
