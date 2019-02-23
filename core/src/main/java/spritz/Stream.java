@@ -980,7 +980,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> skipWhile( @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new SkipWhileOperator<>( p, predicate ) );
+    return skipWhile( null, predicate );
+  }
+
+  /**
+   * Drop items from this stream until an item no longer matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns true, no items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns false, all subsequent
+   * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
+   * to {@link #skipUntil(Predicate)} if the predicate is negated.
+   *
+   * @param name      the name specified by the user.
+   * @param predicate The predicate.
+   * @return the new stream.
+   * @see #skipUntil(Predicate)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> skipWhile( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
+  {
+    return compose( p -> new SkipWhileOperator<>( name, p, predicate ) );
   }
 
   /**
@@ -998,7 +1017,25 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> skipUntil( @Nonnull final Predicate<? super T> predicate )
   {
-    return skipWhile( predicate.negate() );
+    return skipUntil( null, predicate );
+  }
+
+  /**
+   * Drop items from this stream until an item matches the supplied {@code predicate}.
+   * As long as the {@code predicate} returns false, no items will be emitted from this stream. Once
+   * the first item is encountered for which the {@code predicate} returns true, all subsequent
+   * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
+   * to {@link #skipWhile(Predicate)} if the predicate is negated.
+   *
+   * @param predicate The predicate.
+   * @return the new stream.
+   * @see #skipWhile(Predicate)
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.SLICING )
+  public final Stream<T> skipUntil( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
+  {
+    return skipWhile( Spritz.areNamesEnabled() ? generateName( name, "skipUntil" ) : null, predicate.negate() );
   }
 
   /**

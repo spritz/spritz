@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class SkipWhileOperator<T>
   extends AbstractStream<T, T>
@@ -10,9 +11,11 @@ final class SkipWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  SkipWhileOperator( @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  SkipWhileOperator( @Nullable final String name,
+                     @Nonnull final Stream<T> upstream,
+                     @Nonnull final Predicate<? super T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "skipWhile" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
