@@ -1,15 +1,16 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class SkipOperator<T>
   extends AbstractStream<T, T>
 {
   private final int _count;
 
-  SkipOperator( @Nonnull final Stream<T> upstream, final int count )
+  SkipOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, final int count )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "skip", String.valueOf( count ) ) : null, upstream );
     assert count > 0;
     _count = count;
   }
