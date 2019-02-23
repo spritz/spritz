@@ -2,51 +2,90 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import org.realityforge.braincheck.Guards;
 
 /**
  * Abstract subscription implementation for the common scenario where
  * there is an upstream stage and associated subscription.
  */
-abstract class AbstractSubscription
+abstract class AbstractSubscription<T, S extends Stream<T>>
   implements Subscription
 {
   /**
-   * The upstream subscription.
+   * The stream from which this subscription was created.
    */
-  @Nullable
-  private Subscription _upstream;
-
+  @Nonnull
+  private final S _stream;
   /**
-   * Set the upstream subscription.
-   * This method is expected to be invoked as the first part of the {@link Subscriber#onSubscribe(Subscription)}
-   * step.
-   *
-   * @param upstream the upstream subscription.
+   * The subscriber associated with the subscription.
    */
-  protected final void setUpstream( @Nonnull final Subscription upstream )
+  @Nonnull
+  private final Subscriber<? super T> _subscriber;
+  private boolean _done;
+
+  AbstractSubscription( @Nonnull final S stream, @Nonnull final Subscriber<? super T> subscriber )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    _stream = Objects.requireNonNull( stream );
+    _subscriber = Objects.requireNonNull( subscriber );
+  }
+
+  @Nonnull
+  final S getStream()
+  {
+    return _stream;
   }
 
   /**
-   * Return the subscription used to interact with the upstream stage.
-   * This method should not be invoked except when the subscription is
-   * known to be set and an invariant failure will be generated in development
-   * mode if upstream not set.
+   * Return the subscriber.
    *
-   * @return the subscription used to interact with the upstream stage.
+   * @return the subscriber.
    */
   @Nonnull
-  protected final Subscription getUpstream()
+  final Subscriber<? super T> getSubscriber()
   {
-    if ( Spritz.shouldCheckInvariants() )
+    return _subscriber;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final void cancel()
+  {
+    if ( !_done )
     {
-      Guards.invariant( () -> null != _upstream,
-                        () -> "Spritz-0002: Attempted to invoke getUpstream() when subscription is not present" );
+      markAsDone();
+      doCancel();
     }
-    assert null != _upstream;
-    return _upstream;
+  }
+
+  final void markAsDone()
+  {
+    _done = true;
+  }
+
+  final boolean isDone()
+  {
+    return _done;
+  }
+
+  void doCancel()
+  {
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Nonnull
+  @Override
+  public final String toString()
+  {
+    if ( Spritz.areNamesEnabled() )
+    {
+      return "Subscription[" + getStream().getQualifiedName() + "]";
+    }
+    else
+    {
+      return super.toString();
+    }
   }
 }

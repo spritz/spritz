@@ -1,16 +1,23 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class SampleOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   private final int _samplePeriod;
   private final boolean _emitFirst;
 
-  SampleOperator( @Nonnull final Publisher<T> upstream, final int samplePeriod, final boolean emitFirst )
+  SampleOperator( @Nullable final String name,
+                  @Nonnull final Stream<T> upstream,
+                  final int samplePeriod,
+                  final boolean emitFirst )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ?
+           generateName( name, "sample", "samplePeriod=" + samplePeriod + ",emitFirst=" + emitFirst ) :
+           null,
+           upstream );
     _samplePeriod = samplePeriod;
     _emitFirst = emitFirst;
     assert samplePeriod > 0;
@@ -19,14 +26,12 @@ final class SampleOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _samplePeriod, _emitFirst ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractThrottlingSubscription<T>
+    extends AbstractThrottlingSubscription<T, SampleOperator<T>>
   {
-    private final int _samplePeriod;
-    private final boolean _emitFirst;
     /**
      * The next time that the subscription can emit an item.
      * If no item is emitted before next sample time then the sampling starts again.
@@ -35,13 +40,9 @@ final class SampleOperator<T>
      */
     private int _nextSampleTime;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        final int samplePeriod,
-                        final boolean emitFirst )
+    WorkerSubscription( @Nonnull final SampleOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _samplePeriod = samplePeriod;
-      _emitFirst = emitFirst;
+      super( stream, subscriber );
       _nextSampleTime = 0;
     }
 
@@ -56,8 +57,8 @@ final class SampleOperator<T>
          * to start again.
          */
         assert !hasNextItem();
-        _nextSampleTime = now + _samplePeriod;
-        if ( _emitFirst )
+        _nextSampleTime = now + getStream()._samplePeriod;
+        if ( getStream()._emitFirst )
         {
           // Emit here and return immediately so don't schedule emit.
           super.onNext( item );
@@ -75,7 +76,7 @@ final class SampleOperator<T>
     @Override
     void executeTask()
     {
-      _nextSampleTime = _nextSampleTime + _samplePeriod;
+      _nextSampleTime = _nextSampleTime + getStream()._samplePeriod;
       super.executeTask();
     }
   }

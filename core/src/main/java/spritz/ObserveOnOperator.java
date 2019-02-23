@@ -6,29 +6,30 @@ import javax.annotation.Nullable;
 import spritz.internal.util.CircularBuffer;
 
 final class ObserveOnOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final VirtualProcessorUnit _virtualProcessorUnit;
 
-  ObserveOnOperator( @Nonnull final Publisher<T> upstream, @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+  ObserveOnOperator( @Nullable final String name,
+                     @Nonnull final Stream<T> upstream,
+                     @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "observeOn", virtualProcessorUnit.getName() ) : null,
+           upstream );
     _virtualProcessorUnit = Objects.requireNonNull( virtualProcessorUnit );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _virtualProcessorUnit ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T, ObserveOnOperator<T>>
   {
     static final int INITIAL_CAPACITY = 10;
-    @Nonnull
-    private final VirtualProcessorUnit _virtualProcessorUnit;
     @Nullable
     private Subscription _subscription;
     @Nullable
@@ -37,11 +38,9 @@ final class ObserveOnOperator<T>
     private Throwable _error;
     private boolean _complete;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
+    WorkerSubscription( @Nonnull final ObserveOnOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _virtualProcessorUnit = virtualProcessorUnit;
+      super( stream, subscriber );
     }
 
     /**
@@ -90,7 +89,7 @@ final class ObserveOnOperator<T>
 
     private void scheduleObserve()
     {
-      _virtualProcessorUnit.queue( this::observe );
+      getStream()._virtualProcessorUnit.queue( this::observe );
     }
 
     /**

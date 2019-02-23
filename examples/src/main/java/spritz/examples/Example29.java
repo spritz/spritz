@@ -1,6 +1,5 @@
 package spritz.examples;
 
-import spritz.Spritz;
 import spritz.Stream;
 
 public class Example29

@@ -1,22 +1,22 @@
 package spritz;
 
 import java.util.HashSet;
-import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.internal.util.CircularBuffer;
 
 final class MergeOperator<T>
-  extends Stream<T>
+  extends AbstractStream<Stream<T>, T>
 {
-  @Nonnull
-  private final Stream<Stream<T>> _upstream;
+  /**
+   * The maximum number of streams that can be subscribed to at one time.
+   */
   private final int _maxConcurrency;
 
-  MergeOperator( @Nonnull final Stream<Stream<T>> upstream,
-                 final int maxConcurrency )
+  MergeOperator( @Nullable final String name, @Nonnull final Stream<Stream<T>> upstream, final int maxConcurrency )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "merge", String.valueOf( maxConcurrency ) ) : null,
+           upstream );
     _maxConcurrency = maxConcurrency;
     assert maxConcurrency > 0;
   }
@@ -24,17 +24,13 @@ final class MergeOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber, _maxConcurrency ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends TransformSubscription<Stream<T>, T>
+    extends AbstractOperatorSubscription<Stream<T>, T, MergeOperator<T>>
     implements InnerSubscription.ContainerSubscription<T>
   {
-    /**
-     * The maximum number of stream that have been subscribed to at one time.
-     */
-    private final int _maxConcurrency;
     /**
      * The streams that have been received from upstream but have yet to be subscribed.
      */
@@ -56,11 +52,9 @@ final class MergeOperator<T>
      */
     private boolean _upstreamCompleted;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber,
-                        final int maxConcurrency )
+    WorkerSubscription( @Nonnull final MergeOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( downstreamSubscriber );
-      _maxConcurrency = maxConcurrency;
+      super( stream, subscriber );
       _pendingUpstream = null;
     }
 
@@ -70,8 +64,8 @@ final class MergeOperator<T>
     @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
-      final InnerSubscription<T> subscription = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
-      if ( _activeCount < _maxConcurrency )
+      final InnerSubscription<T> subscription = new InnerSubscription<>( this, getSubscriber(), item );
+      if ( _activeCount < getStream()._maxConcurrency )
       {
         _activeCount++;
         _activeStreams.add( subscription );
@@ -100,7 +94,7 @@ final class MergeOperator<T>
       }
       _activeStreams.forEach( InnerSubscription::cancel );
       _activeStreams.clear();
-      getDownstreamSubscriber().onError( error );
+      getSubscriber().onError( error );
     }
 
     /**
@@ -119,7 +113,7 @@ final class MergeOperator<T>
     private void doComplete()
     {
       _activeCount = -1;
-      getDownstreamSubscriber().onComplete();
+      getSubscriber().onComplete();
     }
 
     @Override

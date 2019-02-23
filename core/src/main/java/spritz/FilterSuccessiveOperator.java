@@ -5,36 +5,35 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class FilterSuccessiveOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final SuccessivePredicate<T> _predicate;
 
-  FilterSuccessiveOperator( @Nonnull final Publisher<T> upstream, @Nonnull final SuccessivePredicate<T> predicate )
+  FilterSuccessiveOperator( @Nullable final String name,
+                            @Nonnull final Stream<T> upstream,
+                            @Nonnull final SuccessivePredicate<T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "errorIfEmpty" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, FilterSuccessiveOperator<T>>
   {
-    @Nonnull
-    private final SuccessivePredicate<T> _predicate;
     @Nullable
     private T _lastItem;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final SuccessivePredicate<T> predicate )
+    WorkerSubscription( @Nonnull final FilterSuccessiveOperator<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _predicate = predicate;
+      super( stream, subscriber );
     }
 
     /**
@@ -43,7 +42,7 @@ final class FilterSuccessiveOperator<T>
     @Override
     protected boolean shouldIncludeItem( @Nonnull final T item )
     {
-      if ( _predicate.filter( _lastItem, item ) )
+      if ( getStream()._predicate.filter( _lastItem, item ) )
       {
         _lastItem = item;
         return true;

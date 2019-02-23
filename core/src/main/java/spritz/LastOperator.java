@@ -1,16 +1,17 @@
 package spritz;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import spritz.internal.util.CircularBuffer;
 
 final class LastOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   private final int _maxBufferSize;
 
-  LastOperator( @Nonnull final Publisher<T> upstream, final int maxBufferSize )
+  LastOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, final int maxBufferSize )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "last", String.valueOf( maxBufferSize ) ) : null, upstream );
     _maxBufferSize = maxBufferSize;
     assert maxBufferSize > 0;
   }
@@ -18,19 +19,19 @@ final class LastOperator<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _maxBufferSize ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T, LastOperator<T>>
   {
     @Nonnull
     private final CircularBuffer<T> _buffer;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, final int maxBufferSize )
+    WorkerSubscription( @Nonnull final LastOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _buffer = new CircularBuffer<>( maxBufferSize );
+      super( stream, subscriber );
+      _buffer = new CircularBuffer<>( stream._maxBufferSize );
     }
 
     @Override

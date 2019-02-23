@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class FailStreamSource<T>
   extends Stream<T>
@@ -9,15 +10,16 @@ final class FailStreamSource<T>
   @Nonnull
   private final Throwable _error;
 
-  FailStreamSource( @Nonnull final Throwable error )
+  FailStreamSource( @Nullable final String name, @Nonnull final Throwable error )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fail" ) : null );
     _error = Objects.requireNonNull( error );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>();
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this );
     subscriber.onSubscribe( subscription );
     subscriber.onError( _error );
     subscription.cancel();
@@ -26,8 +28,12 @@ final class FailStreamSource<T>
   private static final class WorkerSubscription<T>
     implements Subscription
   {
-    private WorkerSubscription()
+    @Nonnull
+    private final FailStreamSource<T> _stream;
+
+    WorkerSubscription( @Nonnull final FailStreamSource<T> stream )
     {
+      _stream = stream;
     }
 
     /**

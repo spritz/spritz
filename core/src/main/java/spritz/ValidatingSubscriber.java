@@ -1,6 +1,5 @@
 package spritz;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import static org.realityforge.braincheck.Guards.*;
@@ -8,8 +7,6 @@ import static org.realityforge.braincheck.Guards.*;
 final class ValidatingSubscriber<T>
   implements Subscriber<T>
 {
-  private static final ArrayList<ValidatingSubscriber<?>> c_subscriberContext = new ArrayList<>();
-
   enum State
   {
     CREATED,
@@ -42,7 +39,6 @@ final class ValidatingSubscriber<T>
     }
     try
     {
-      pushContext( this );
       _state = State.SUBSCRIBE_STARTED;
       _target.onSubscribe( new WorkerSubscription<>( this, subscription ) );
       _state = State.SUBSCRIBE_COMPLETED;
@@ -55,10 +51,6 @@ final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
-    }
-    finally
-    {
-      popContext( this );
     }
   }
 
@@ -75,7 +67,6 @@ final class ValidatingSubscriber<T>
 
     try
     {
-      pushContext( this );
       _target.onNext( item );
     }
     catch ( final Throwable throwable )
@@ -86,10 +77,6 @@ final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
       }
       throw throwable;
-    }
-    finally
-    {
-      popContext( this );
     }
   }
 
@@ -105,7 +92,6 @@ final class ValidatingSubscriber<T>
     }
     try
     {
-      pushContext( this );
       _state = State.ERRORED;
       _target.onError( error );
     }
@@ -117,10 +103,6 @@ final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
-    }
-    finally
-    {
-      popContext( this );
     }
   }
 
@@ -136,7 +118,6 @@ final class ValidatingSubscriber<T>
 
     try
     {
-      pushContext( this );
       _state = State.COMPLETED;
       _target.onComplete();
     }
@@ -148,50 +129,6 @@ final class ValidatingSubscriber<T>
                     "Exception:\n" + ErrorUtil.throwableToString( t ) );
       }
       throw t;
-    }
-    finally
-    {
-      popContext( this );
-    }
-  }
-
-  private static boolean hasContext()
-  {
-    return !c_subscriberContext.isEmpty();
-  }
-
-  @Nonnull
-  private static ValidatingSubscriber<?> currentContext()
-  {
-    if ( Spritz.shouldCheckInvariants() )
-    {
-      invariant( ValidatingSubscriber::hasContext,
-                 () -> "Spritz-0012: Invoking Subscriber.currentContext(...) but no subscriber on stack." );
-    }
-    final int index = c_subscriberContext.size() - 1;
-    return c_subscriberContext.remove( index );
-  }
-
-  private static void pushContext( @Nonnull final ValidatingSubscriber<?> subscriber )
-  {
-    c_subscriberContext.add( Objects.requireNonNull( subscriber ) );
-  }
-
-  private static void popContext( @Nonnull final ValidatingSubscriber<?> subscriber )
-  {
-    if ( Spritz.shouldCheckInvariants() )
-    {
-      invariant( () -> !c_subscriberContext.isEmpty(),
-                 () -> "Spritz-0010: Invoking Subscriber.popContext(...) but no subscriber on stack. " +
-                       "Expecting subscriber: " + subscriber );
-    }
-    final int index = c_subscriberContext.size() - 1;
-    final ValidatingSubscriber<?> removed = c_subscriberContext.remove( index );
-    if ( Spritz.shouldCheckInvariants() )
-    {
-      invariant( () -> removed == subscriber,
-                 () -> "Spritz-0011: Invoking Subscriber.popContext(...) popped subscriber '" + removed +
-                       "' but was expecting subscriber '" + subscriber + "'." );
     }
   }
 
@@ -219,14 +156,8 @@ final class ValidatingSubscriber<T>
     {
       if ( Spritz.shouldCheckInvariants() )
       {
-        invariant( ValidatingSubscriber::hasContext,
-                   () -> "Spritz-0018: Invoking Subscription.cancel(...) but not in the context of a subscriber." );
-        final ValidatingSubscriber<?> subscriber = currentContext();
-        invariant( () -> subscriber == _subscriber,
-                   () -> "Spritz-0019: Invoking Subscription.cancel(...) in the context of subscriber '" + subscriber +
-                         "' but expected to be in the context of subscriber '" + _subscriber + "'." );
         invariant( () -> !_cancelled,
-                   () -> "Spritz-0013: Invoking Subscription.cancel(...) for subscriber '" + subscriber +
+                   () -> "Spritz-0013: Invoking Subscription.cancel(...) for subscriber '" + _subscriber +
                          "' but the subscription is already cancelled." );
       }
       if ( !_cancelled )
@@ -246,6 +177,15 @@ final class ValidatingSubscriber<T>
           throw t;
         }
       }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+      return _subscription.toString();
     }
   }
 }

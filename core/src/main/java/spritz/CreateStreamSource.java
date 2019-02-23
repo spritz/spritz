@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class CreateStreamSource<T>
   extends Stream<T>
@@ -9,8 +10,9 @@ final class CreateStreamSource<T>
   @Nonnull
   private final SourceCreator<T> _createFunction;
 
-  CreateStreamSource( @Nonnull final SourceCreator<T> createFunction )
+  CreateStreamSource( @Nullable final String name, @Nonnull final SourceCreator<T> createFunction )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "create" ) : null );
     _createFunction = Objects.requireNonNull( createFunction );
   }
 

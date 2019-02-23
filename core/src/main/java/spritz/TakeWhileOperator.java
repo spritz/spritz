@@ -3,36 +3,32 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class TakeWhileOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  TakeWhileOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  TakeWhileOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, TakeWhileOperator<T>>
   {
-    @Nonnull
-    private final Predicate<? super T> _predicate;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final Predicate<? super T> predicate )
+    WorkerSubscription( @Nonnull final TakeWhileOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _predicate = predicate;
+      super( stream, subscriber );
     }
 
     /**
@@ -41,7 +37,7 @@ final class TakeWhileOperator<T>
     @Override
     protected boolean shouldIncludeItem( @Nonnull final T item )
     {
-      if ( _predicate.test( item ) )
+      if ( getStream()._predicate.test( item ) )
       {
         return true;
       }

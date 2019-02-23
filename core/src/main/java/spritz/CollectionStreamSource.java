@@ -3,59 +3,48 @@ package spritz;
 import java.util.Collection;
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class CollectionStreamSource<T>
   extends Stream<T>
 {
   private final Collection<T> _data;
 
-  CollectionStreamSource( @Nonnull final Collection<T> data )
+  CollectionStreamSource( @Nullable final String name, @Nonnull final Collection<T> data )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fromCollection", String.valueOf( data ) ) : null );
     _data = Objects.requireNonNull( data );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends AbstractSubscription<T, CollectionStreamSource<T>>
   {
-    private final Subscriber<? super T> _subscriber;
-    private final Collection<T> _data;
-    private boolean _done;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Collection<T> data )
+    WorkerSubscription( @Nonnull final CollectionStreamSource<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _data = Objects.requireNonNull( data );
+      super( stream, subscriber );
     }
 
     void pushData()
     {
-      for ( final T item : _data )
+      final Subscriber<? super T> subscriber = getSubscriber();
+      for ( final T item : getStream()._data )
       {
-        if ( _done )
+        if ( isDone() )
         {
           return;
         }
-        _subscriber.onNext( item );
+        subscriber.onNext( item );
       }
-      _subscriber.onComplete();
-      cancel();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _done = true;
+      subscriber.onComplete();
     }
   }
 }

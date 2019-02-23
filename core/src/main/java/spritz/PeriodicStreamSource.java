@@ -9,8 +9,9 @@ final class PeriodicStreamSource
 {
   private final int _period;
 
-  PeriodicStreamSource( final int period )
+  PeriodicStreamSource( @Nullable final String name, final int period )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "periodic", String.valueOf( period ) ) : null );
     assert period >= 0;
     _period = period;
   }

@@ -3,37 +3,36 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class SkipWhileOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  SkipWhileOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  SkipWhileOperator( @Nullable final String name,
+                     @Nonnull final Stream<T> upstream,
+                     @Nonnull final Predicate<? super T> predicate )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "skipWhile" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _predicate ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractFilterSubscription<T>
+    extends AbstractFilterSubscription<T, SkipWhileOperator<T>>
   {
-    @Nonnull
-    private final Predicate<? super T> _predicate;
     private boolean _allow;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final Predicate<? super T> predicate )
+    WorkerSubscription( @Nonnull final SkipWhileOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _predicate = Objects.requireNonNull( predicate );
+      super( stream, subscriber );
     }
 
     /**
@@ -46,7 +45,7 @@ final class SkipWhileOperator<T>
       {
         return true;
       }
-      else if ( !_predicate.test( item ) )
+      else if ( !getStream()._predicate.test( item ) )
       {
         _allow = true;
         return true;

@@ -3,38 +3,37 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class OnErrorResumeWithOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Function<Throwable, Stream<T>> _streamFromErrorFn;
 
-  OnErrorResumeWithOperator( @Nonnull final Publisher<T> upstream,
+  OnErrorResumeWithOperator( @Nullable final String name,
+                             @Nonnull final Stream<T> upstream,
                              @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "onErrorResumeWith" ) : null, upstream );
     _streamFromErrorFn = Objects.requireNonNull( streamFromErrorFn );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( subscriber, _streamFromErrorFn ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractOperatorSubscription<T>
+    extends PassThroughSubscription<T, OnErrorResumeWithOperator<T>>
   {
-    @Nonnull
-    private final Function<Throwable, Stream<T>> _streamFromErrorFn;
     private boolean _downstreamSubscribed;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber,
-                        @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+    WorkerSubscription( @Nonnull final OnErrorResumeWithOperator<T> stream,
+                        @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( subscriber );
-      _streamFromErrorFn = streamFromErrorFn;
+      super( stream, subscriber );
     }
 
     @Override
@@ -56,7 +55,7 @@ final class OnErrorResumeWithOperator<T>
     {
       try
       {
-        final Stream<T> nextStream = _streamFromErrorFn.apply( error );
+        final Stream<T> nextStream = getStream()._streamFromErrorFn.apply( error );
         if ( null != nextStream )
         {
           nextStream.subscribe( this );

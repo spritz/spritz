@@ -1,28 +1,24 @@
 package spritz;
 
-import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 final class SwitchOperator<T>
-  extends Stream<T>
+  extends AbstractStream<Stream<T>, T>
 {
-  @Nonnull
-  private final Stream<Stream<T>> _upstream;
-
-  SwitchOperator( @Nonnull final Stream<Stream<T>> upstream )
+  SwitchOperator( @Nullable final String name, @Nonnull final Stream<Stream<T>> upstream )
   {
-    _upstream = Objects.requireNonNull( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "switch" ) : null, upstream );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _upstream.subscribe( new WorkerSubscription<>( subscriber ) );
+    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>
-    extends TransformSubscription<Stream<T>, T>
+    extends AbstractOperatorSubscription<Stream<T>, T, SwitchOperator<T>>
     implements InnerSubscription.ContainerSubscription<T>
   {
     /**
@@ -36,9 +32,9 @@ final class SwitchOperator<T>
      */
     private boolean _upstreamCompleted;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super T> downstreamSubscriber )
+    WorkerSubscription( @Nonnull final SwitchOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      super( downstreamSubscriber );
+      super( stream, subscriber );
       _activeStream = null;
     }
 
@@ -52,7 +48,7 @@ final class SwitchOperator<T>
       {
         _activeStream.cancel();
       }
-      _activeStream = new InnerSubscription<>( this, getDownstreamSubscriber(), item );
+      _activeStream = new InnerSubscription<>( this, getSubscriber(), item );
       _activeStream.pushData();
     }
 
@@ -63,7 +59,7 @@ final class SwitchOperator<T>
     public void onError( @Nonnull final Throwable error )
     {
       _activeStream = null;
-      getDownstreamSubscriber().onError( error );
+      getSubscriber().onError( error );
     }
 
     /**
@@ -75,7 +71,7 @@ final class SwitchOperator<T>
       _upstreamCompleted = true;
       if ( null == _activeStream )
       {
-        getDownstreamSubscriber().onComplete();
+        getSubscriber().onComplete();
       }
     }
 
@@ -86,7 +82,7 @@ final class SwitchOperator<T>
       _activeStream = null;
       if ( _upstreamCompleted )
       {
-        getDownstreamSubscriber().onComplete();
+        getSubscriber().onComplete();
       }
     }
   }

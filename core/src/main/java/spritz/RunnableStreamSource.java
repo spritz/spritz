@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class RunnableStreamSource<T>
   extends Stream<T>
@@ -9,60 +10,46 @@ final class RunnableStreamSource<T>
   @Nonnull
   private final Runnable _runnable;
 
-  RunnableStreamSource( @Nonnull final Runnable runnable )
+  RunnableStreamSource( @Nullable final String name, @Nonnull final Runnable runnable )
   {
+    super( Spritz.areNamesEnabled() ? generateName( name, "fromRunnable" ) : null );
     _runnable = Objects.requireNonNull( runnable );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _runnable );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends AbstractSubscription<T, RunnableStreamSource<T>>
   {
-    private final Subscriber<? super T> _subscriber;
-    @Nonnull
-    private final Runnable _runnable;
-    private boolean _done;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final Runnable runnable )
+    WorkerSubscription( @Nonnull final RunnableStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _runnable = runnable;
+      super( stream, subscriber );
     }
 
     void pushData()
     {
       try
       {
-        _runnable.run();
+        getStream()._runnable.run();
       }
       catch ( final Throwable error )
       {
-        if ( !_done )
+        if ( !isDone() )
         {
-          _subscriber.onError( error );
+          getSubscriber().onError( error );
         }
         return;
       }
-      if ( !_done )
+      if ( !isDone() )
       {
-        _subscriber.onComplete();
+        getSubscriber().onComplete();
       }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _done = true;
     }
   }
 }
