@@ -2073,7 +2073,24 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
   public final Stream<T> onErrorResumeWith( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    return compose( p -> new OnErrorResumeWithOperator<>( p, streamFromErrorFn ) );
+    return onErrorResumeWith( null, streamFromErrorFn );
+  }
+
+  /**
+   * When an upstream emits an error then replace upstream with the stream returned by the supplied function rather
+   * than emitting an error to downstream. If the function throws an exception or returns null then the original
+   * error will be emitted downstream.
+   *
+   * @param name              the name specified by the user.
+   * @param streamFromErrorFn the function invoked when upstream emits an error.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> onErrorResumeWith( @Nullable final String name,
+                                            @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+  {
+    return compose( p -> new OnErrorResumeWithOperator<>( name, p, streamFromErrorFn ) );
   }
 
   /**
@@ -2086,7 +2103,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
   public final Stream<T> onErrorReturn( @Nonnull final T value )
   {
-    return onErrorResumeWith( e -> of( value ) );
+    return onErrorReturn( null, value );
+  }
+
+  /**
+   * When an upstream emits an error then emit supplied value and complete the stream.
+   *
+   * @param name  the name specified by the user.
+   * @param value the value to emit on error.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> onErrorReturn( @Nullable final String name, @Nonnull final T value )
+  {
+    final String actualName =
+      Spritz.areNamesEnabled() ? generateName( name, "onErrorReturn", String.valueOf( value ) ) : null;
+    return onErrorResumeWith( actualName, e -> of( value ) );
   }
 
   /**
@@ -2101,8 +2134,26 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
   public final Stream<T> repeat( final int maxErrorCount )
   {
+    return repeat( null, maxErrorCount );
+  }
+
+  /**
+   * When an upstream emits an error then re-subscribe to upstream rather than emitting an error to downstream.
+   * This recovery process will occur up to {@code maxErrorCount} times.
+   *
+   * @param name          the name specified by the user.
+   * @param maxErrorCount the maximum number of times to try and re-susbcribe to upstream.
+   * @return the new stream.
+   * @see #repeat()
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.ERROR_HANDLING )
+  public final Stream<T> repeat( @Nullable final String name, final int maxErrorCount )
+  {
     final int[] state = new int[]{ maxErrorCount };
-    return onErrorResumeWith( e -> ( --state[ 0 ] ) >= 0 ? this : null );
+    final String actualName =
+      Spritz.areNamesEnabled() ? generateName( name, "repeat", String.valueOf( maxErrorCount ) ) : null;
+    return onErrorResumeWith( actualName, e -> ( --state[ 0 ] ) >= 0 ? this : null );
   }
 
   /**

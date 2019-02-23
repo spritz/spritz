@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class OnErrorResumeWithOperator<T>
   extends AbstractStream<T, T>
@@ -10,10 +11,11 @@ final class OnErrorResumeWithOperator<T>
   @Nonnull
   private final Function<Throwable, Stream<T>> _streamFromErrorFn;
 
-  OnErrorResumeWithOperator( @Nonnull final Stream<T> upstream,
+  OnErrorResumeWithOperator( @Nullable final String name,
+                             @Nonnull final Stream<T> upstream,
                              @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "onErrorResumeWith" ) : null, upstream );
     _streamFromErrorFn = Objects.requireNonNull( streamFromErrorFn );
   }
 
