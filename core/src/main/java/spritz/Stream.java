@@ -30,11 +30,6 @@ public abstract class Stream<T>
    */
   private static final int DEFAULT_MERGE_CONCURRENCY = 1024 * 1024;
   /**
-   * Id of next Stream to be created.
-   * This is only used if {@link Spritz#areNamesEnabled()} returns true but no name has been supplied.
-   */
-  private static int c_nextStreamId = 1;
-  /**
    * A human consumable name for the stream. It should be non-null if {@link Spritz#areNamesEnabled()} returns
    * true and <tt>null</tt> otherwise.
    */
@@ -1819,7 +1814,7 @@ public abstract class Stream<T>
   static String generateName( @Nullable final String name, @Nonnull final String prefix, @Nullable final String params )
   {
     return Spritz.areNamesEnabled() ?
-           null != name ? name : prefix + "@" + c_nextStreamId++ + "(" + ( null == params ? "" : params ) + ")" :
+           null != name ? name : prefix + "(" + ( null == params ? "" : params ) + ")" :
            null;
   }
 }
