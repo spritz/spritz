@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class MapOperator<UpstreamT, DownstreamT>
   extends AbstractStream<UpstreamT, DownstreamT>
@@ -10,9 +11,11 @@ final class MapOperator<UpstreamT, DownstreamT>
   @Nonnull
   private final Function<UpstreamT, DownstreamT> _transform;
 
-  MapOperator( @Nonnull final Stream<UpstreamT> upstream, @Nonnull final Function<UpstreamT, DownstreamT> transform )
+  MapOperator( @Nullable final String name,
+               @Nonnull final Stream<UpstreamT> upstream,
+               @Nonnull final Function<UpstreamT, DownstreamT> transform )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "map" ) : null, upstream );
     _transform = Objects.requireNonNull( transform );
   }
 

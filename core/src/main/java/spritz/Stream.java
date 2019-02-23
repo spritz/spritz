@@ -284,7 +284,27 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> generate( @Nonnull final Supplier<T> supplier, final int period )
   {
-    return periodic( period ).map( e -> supplier.get() );
+    return generate( null, supplier, period );
+  }
+
+  /**
+   * Creates an infinite stream that emits items from the {@link Supplier} parameter at specified period.
+   * The user must be very careful to add a subsequent stream stage that cancels the stream
+   * otherwise this source will result in an infinite loop.
+   *
+   * @param <T>      the type of items contained in the stream.
+   * @param name     a human consumable name for the stream.
+   * @param supplier the function that generates values to emit.
+   * @param period   the period with which items are emitted.
+   * @return the new stream.
+   */
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static <T> Stream<T> generate( @Nullable final String name,
+                                        @Nonnull final Supplier<T> supplier,
+                                        final int period )
+  {
+    return periodic( period ).map( Spritz.areNamesEnabled() ? generateName( name, "generate" ) : null,
+                                   e -> supplier.get() );
   }
 
   /**
@@ -1798,7 +1818,23 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.TRANSFORMATION )
   public final <DownstreamT> Stream<DownstreamT> map( @Nonnull final Function<T, DownstreamT> mapper )
   {
-    return compose( p -> new MapOperator<>( p, mapper ) );
+    return map( null, mapper );
+  }
+
+  /**
+   * Transform items emitted by this stream using the {@code mapper} function.
+   *
+   * @param <DownstreamT> the type of the items that the {@code mapper} function emits.
+   * @param name          the name specified by the user.
+   * @param mapper        the function to use to map the items.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.TRANSFORMATION )
+  public final <DownstreamT> Stream<DownstreamT> map( @Nullable final String name,
+                                                      @Nonnull final Function<T, DownstreamT> mapper )
+  {
+    return compose( p -> new MapOperator<>( name, p, mapper ) );
   }
 
   /**
@@ -1812,7 +1848,22 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.TRANSFORMATION )
   public final <DownstreamT> Stream<DownstreamT> mapTo( final DownstreamT value )
   {
-    return map( v -> value );
+    return mapTo( null, value );
+  }
+
+  /**
+   * Transform items emitted by this stream to a constant {@code value}.
+   *
+   * @param <DownstreamT> the type of the constant value emitted.
+   * @param name          the name specified by the user.
+   * @param value         the constant value to emit.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.TRANSFORMATION )
+  public final <DownstreamT> Stream<DownstreamT> mapTo( @Nullable final String name, final DownstreamT value )
+  {
+    return map( Spritz.areNamesEnabled() ? generateName( name, "mapTo", String.valueOf( value ) ) : null, v -> value );
   }
 
   /**
@@ -1856,7 +1907,7 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> mergeMap( @Nonnull final Function<T, Stream<DownstreamT>> mapper,
                                                            final int maxConcurrency )
   {
-    return map( mapper ).compose( o -> new MergeOperator<>( null,o, maxConcurrency ) );
+    return map( mapper ).compose( o -> new MergeOperator<>( null, o, maxConcurrency ) );
   }
 
   /**
@@ -1933,7 +1984,7 @@ public abstract class Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     s.add( this );
     Collections.addAll( s, streams );
-    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null,o, 1 ) ) );
+    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null, o, 1 ) ) );
   }
 
   /**
@@ -1953,7 +2004,7 @@ public abstract class Stream<T>
     final ArrayList<Stream<T>> s = new ArrayList<>( streams.length + 1 );
     Collections.addAll( s, streams );
     s.add( this );
-    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null,o, 1 ) ) );
+    return compose( p -> fromCollection( s ).compose( o -> new MergeOperator<>( null, o, 1 ) ) );
   }
 
   /**
