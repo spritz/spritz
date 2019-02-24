@@ -1549,7 +1549,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> takeUntil( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
   {
-    return takeWhile( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, predicate.negate() );
+    return takeWhile( Spritz.areNamesEnabled() ? generateName( name, "takeUntil" ) : null, predicate.negate() );
   }
 
   /**
