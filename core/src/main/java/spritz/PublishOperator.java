@@ -2,23 +2,24 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class PublishOperator<T>
-  extends AbstractStream<T>
+  extends AbstractStream<T, T>
 {
   @Nonnull
   private final Subject<T> _subject;
 
-  PublishOperator( @Nonnull final Publisher<T> upstream, @Nonnull final Subject<T> subject )
+  PublishOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Subject<T> subject )
   {
-    super( upstream );
+    super( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null, upstream );
     _subject = Objects.requireNonNull( subject );
   }
 
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _subject.subscribe( new PassThroughSubscription<>( subscriber ) );
+    _subject.subscribe( new PassThroughSubscription<>( this, subscriber ) );
   }
 
   private static final class WorkerSubscription<T>

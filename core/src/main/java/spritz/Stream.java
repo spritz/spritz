@@ -2244,10 +2244,22 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.UNKNOWN )
-  //TODO: This should report a SUbject - which thus needs to extend Stream
   public final Stream<T> publish()
   {
-    return compose( p -> new PublishOperator<>( p, new MulticastSubject<>( p ) ) );
+    return publish( null );
+  }
+
+  /**
+   * Publish emitted items and signals to the specified subject.
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> publish( @Nullable final String name )
+  {
+    return compose( p -> new PublishOperator<>( name, p, new MulticastSubject<>( p ) ) );
   }
 
   /**
