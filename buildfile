@@ -3,6 +3,7 @@ require 'buildr/gpg'
 require 'buildr/single_intermediate_layout'
 require 'buildr/top_level_generate_dir'
 require 'buildr/gwt'
+require 'buildr/jacoco'
 
 GWT_EXAMPLES = %w()
 
@@ -53,6 +54,7 @@ define 'spritz' do
     iml.add_gwt_facet(gwt_modules,
                       :settings => { :compilerMaxHeapSize => '1024' },
                       :gwt_dev_artifact => :gwt_dev)
+    project.jacoco.enabled = false
   end
 
   desc 'Spritz Support Annotation processor'

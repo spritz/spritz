@@ -2,6 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/spritz/spritz.png?branch=master)](http://travis-ci.org/spritz/spritz)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.spritz/spritz.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.spritz%22%20a%3A%22spritz%22)
+[![codecov](https://codecov.io/gh/spritz/spritz/branch/master/graph/badge.svg)](https://codecov.io/gh/spritz/spritz)
 ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg)
 
 Spritz is a browser based, reactive event streaming library that is best used when coordinating events.
