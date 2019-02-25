@@ -119,8 +119,7 @@ public class UncaughtErrorHandlerTest
     assertEquals( entries.size(), 1 );
     final TestLogger.LogEntry entry1 = entries.get( 0 );
     assertEquals( entry1.getMessage(),
-                  "Exception when notifying error handler '" + handler2 + "' of '" +
-                  throwable + "' error in stream '" + stream + "'." );
+                  "Exception when notifying error handler '" + handler2 + "' of '" + throwable + "' error." );
     assertEquals( entry1.getThrowable(), exception );
 
     Spritz.reportUncaughtError( throwable );
