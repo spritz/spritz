@@ -7,6 +7,12 @@ require 'buildr/jacoco'
 
 GWT_EXAMPLES = %w()
 
+SPRITZ_TEST_OPTIONS =
+  {
+    'braincheck.environment' => 'development',
+    'spritz.environment' => 'development'
+  }
+
 desc 'Spritz: A browser based, reactive event streaming library that is best used when coordinating events'
 define 'spritz' do
   project.group = 'org.realityforge.spritz'
@@ -40,6 +46,9 @@ define 'spritz' do
     package(:javadoc)
 
     test.using :testng
+
+    test.options[:properties] = SPRITZ_TEST_OPTIONS
+    test.options[:java_args] = ['-ea']
   end
 
   desc 'Spritz Examples'
