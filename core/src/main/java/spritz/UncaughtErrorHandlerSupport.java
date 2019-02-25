@@ -88,7 +88,7 @@ final class UncaughtErrorHandlerSupport
         if ( Spritz.areNamesEnabled() && BrainCheckConfig.verboseErrorMessages() )
         {
           final String message =
-            SpritzUtil.safeGetString( () -> "Exception =notifying error handler '" + errorHandler +
+            SpritzUtil.safeGetString( () -> "Exception when notifying error handler '" + errorHandler +
                                             "' of '" + error + "' error." );
           SpritzLogger.log( message, nestedError );
         }
