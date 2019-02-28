@@ -33,12 +33,6 @@ public abstract class AbstractSpritzTest
     return _logger;
   }
 
-  @Nonnull
-  private SpritzLogger.ProxyLogger getProxyLogger()
-  {
-    return (SpritzLogger.ProxyLogger) SpritzLogger.getLogger();
-  }
-
   protected final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable,
                                                @Nonnull final String message )
   {
