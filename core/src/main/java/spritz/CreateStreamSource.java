@@ -19,38 +19,22 @@ final class CreateStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription subscription = new WorkerSubscription();
+    final PassThroughSubscription<T, CreateStreamSource<T>> subscription =
+      new PassThroughSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     _createFunction.create( new SimpleSubscriberAdapter<>( subscriber, subscription ) );
-  }
-
-  private static final class WorkerSubscription
-    implements Subscription
-  {
-    private boolean _cancelled;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _cancelled = true;
-    }
-
-    boolean isCancelled()
-    {
-      return _cancelled;
-    }
   }
 
   private static class SimpleSubscriberAdapter<T>
     implements SourceCreator.Observer<T>
   {
+    @Nonnull
     private final Subscriber<? super T> _subscriber;
-    private final WorkerSubscription _subscription;
+    @Nonnull
+    private final PassThroughSubscription<T, CreateStreamSource<T>> _subscription;
 
-    SimpleSubscriberAdapter( final Subscriber<? super T> subscriber, final WorkerSubscription subscription )
+    SimpleSubscriberAdapter( @Nonnull final Subscriber<? super T> subscriber,
+                             @Nonnull final PassThroughSubscription<T, CreateStreamSource<T>> subscription )
     {
       _subscriber = subscriber;
       _subscription = subscription;
