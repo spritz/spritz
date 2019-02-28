@@ -1,6 +1,5 @@
 package spritz;
 
-import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -42,66 +41,35 @@ final class RangeStreamSource
   @Override
   protected void doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )
   {
-    final WorkerSubscription subscription = new WorkerSubscription( subscriber, _start, _start + _count - 1 );
+    final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription
-    implements Subscription
+    extends AbstractSubscription<Integer, RangeStreamSource>
   {
-    private final Subscriber<? super Integer> _subscriber;
-    /**
-     * The end index (exclusive).
-     */
-    private final int _end;
-    /**
-     * The current value and within the [_start, _start + count) range that will be emitted as subscriber.onNext().
-     */
-    private int _current;
-
-    /**
-     * Constructs a stateful WorkerSubscription that emits signals to the given
-     * downstream from an integer range of [_start, end).
-     *
-     * @param subscriber the Subscriber receiving the integer values and the completion signal.
-     * @param start      the first integer value emitted, _start of the range
-     * @param end        the end of the range, exclusive
-     */
-    WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, int start, int end )
+    WorkerSubscription( @Nonnull final RangeStreamSource stream, @Nonnull final Subscriber<? super Integer> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _end = end;
-      _current = start;
+      super( stream, subscriber );
     }
 
     void pushData()
     {
-      while ( _current <= _end && isNotCancelled() )
+      final RangeStreamSource stream = getStream();
+      final int start = stream._start;
+      final int end = start + stream._count - 1;
+      int current = start;
+      while ( current <= end && isNotCancelled() )
       {
-        final int value = _current;
-        _current++;
-        _subscriber.onNext( value );
+        final int value = current;
+        current++;
+        getSubscriber().onNext( value );
       }
       if ( isNotCancelled() )
       {
-        _subscriber.onComplete();
-        cancel();
+        getSubscriber().onComplete();
       }
-    }
-
-    private boolean isNotCancelled()
-    {
-      return -1 != _current;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _current = -1;
     }
   }
 }
