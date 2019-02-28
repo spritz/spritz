@@ -27,57 +27,34 @@ final class StaticStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( subscriber, _data );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
   }
 
   private static final class WorkerSubscription<T>
+    extends AbstractSubscription<T, StaticStreamSource<T>>
     implements Subscription
   {
-    private final Subscriber<? super T> _subscriber;
-    private final T[] _data;
-    /**
-     * Index into data.
-     * _offset == _data.length implies next action is onComplete.
-     * _offset == _data.length + 1 implies cancelled or onComplete has been invoked.
-     */
-    private int _offset;
-
-    WorkerSubscription( @Nonnull final Subscriber<? super T> subscriber, @Nonnull final T[] data )
+    WorkerSubscription( @Nonnull final StaticStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _data = data;
-      _offset = 0;
+      super( stream, subscriber );
     }
 
     void pushData()
     {
-      while ( _offset < _data.length && isActive() )
+      final T[] data = getStream()._data;
+      int offset = 0;
+      while ( offset < data.length && isNotCancelled() )
       {
-        final T item = _data[ _offset ];
-        _offset++;
-        _subscriber.onNext( item );
+        final T item = data[ offset ];
+        offset++;
+        getSubscriber().onNext( item );
       }
-      if ( isActive() )
+      if ( isNotCancelled() )
       {
-        _subscriber.onComplete();
-        cancel();
+        getSubscriber().onComplete();
       }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-      _offset = _data.length + 1;
-    }
-
-    private boolean isActive()
-    {
-      return _offset <= _data.length;
     }
   }
 }
