@@ -64,7 +64,7 @@ final class MergeOperator<T>
     @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
-      final InnerSubscription<T> subscription = new InnerSubscription<>( this, getSubscriber(), item );
+      final InnerSubscription<T> subscription = new InnerSubscription<>( item, getSubscriber(), this );
       if ( _activeCount < getStream()._maxConcurrency )
       {
         _activeCount++;

@@ -4,7 +4,8 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class InnerSubscription<T>
-  implements Subscription, Subscriber<T>
+  extends AbstractSubscription<T, Stream<T>>
+  implements Subscriber<T>
 {
   interface ContainerSubscription<T>
   {
@@ -15,28 +16,23 @@ final class InnerSubscription<T>
 
   @Nonnull
   private final ContainerSubscription<T> _container;
-  @Nonnull
-  private final Stream<T> _upstream;
-  @Nonnull
-  private final Subscriber<? super T> _downstream;
   private Subscription _upstreamSubscription;
 
-  InnerSubscription( @Nonnull final ContainerSubscription<T> container,
-                     @Nonnull final Subscriber<? super T> downstream,
-                     @Nonnull final Stream<T> upstream )
+  InnerSubscription( @Nonnull final Stream<T> stream,
+                     @Nonnull final Subscriber<? super T> subscriber,
+                     @Nonnull final ContainerSubscription<T> container )
   {
+    super( stream, subscriber );
     _container = Objects.requireNonNull( container );
-    _downstream = Objects.requireNonNull( downstream );
-    _upstream = Objects.requireNonNull( upstream );
   }
 
   void pushData()
   {
-    _upstream.subscribe( this );
+    getStream().subscribe( this );
   }
 
   @Override
-  public void cancel()
+  final void doCancel()
   {
     if ( null != _upstreamSubscription )
     {
@@ -55,7 +51,7 @@ final class InnerSubscription<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    _downstream.onNext( item );
+    getSubscriber().onNext( item );
   }
 
   @Override

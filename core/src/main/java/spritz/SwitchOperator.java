@@ -48,7 +48,7 @@ final class SwitchOperator<T>
       {
         _activeStream.cancel();
       }
-      _activeStream = new InnerSubscription<>( this, getSubscriber(), item );
+      _activeStream = new InnerSubscription<>( item, getSubscriber(), this );
       _activeStream.pushData();
     }
 
