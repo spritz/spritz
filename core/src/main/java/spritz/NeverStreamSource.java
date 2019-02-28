@@ -14,22 +14,6 @@ final class NeverStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    subscriber.onSubscribe( new WorkerSubscription() );
-  }
-
-  private static final class WorkerSubscription
-    implements Subscription
-  {
-    private WorkerSubscription()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-    }
+    subscriber.onSubscribe( new PassThroughSubscription<>( this, subscriber ) );
   }
 }
