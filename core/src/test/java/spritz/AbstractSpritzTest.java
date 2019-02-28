@@ -8,12 +8,16 @@ import static org.testng.Assert.*;
 
 public abstract class AbstractSpritzTest
 {
+  @Nonnull
+  private final TestLogger _logger = new TestLogger();
+
   @BeforeMethod
   protected void beforeTest()
   {
     BrainCheckTestUtil.resetConfig( false );
     SpritzTestUtil.resetConfig( false );
-    getProxyLogger().setLogger( new TestLogger() );
+    _logger.getEntries().clear();
+    SpritzTestUtil.setLogger( _logger );
   }
 
   @AfterMethod
@@ -26,7 +30,7 @@ public abstract class AbstractSpritzTest
   @Nonnull
   protected final TestLogger getTestLogger()
   {
-    return (TestLogger) getProxyLogger().getLogger();
+    return _logger;
   }
 
   @Nonnull

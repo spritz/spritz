@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class TestLogger
-  implements SpritzLogger.Logger
+  implements SpritzTestUtil.Logger
 {
   public static final class LogEntry
   {

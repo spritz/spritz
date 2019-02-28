@@ -2,6 +2,7 @@ package spritz;
 
 import java.lang.reflect.Field;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import spritz.internal.annotations.GwtIncompatible;
 
 /**
@@ -12,6 +13,14 @@ public final class SpritzTestUtil
 {
   private SpritzTestUtil()
   {
+  }
+
+  /**
+   * Interface to intercept log messages emitted by runtime.
+   */
+  public interface Logger
+  {
+    void log( @Nonnull String message, @Nullable Throwable throwable );
   }
 
   /**
@@ -54,9 +63,30 @@ public final class SpritzTestUtil
    */
   private static void resetState()
   {
-    ( (SpritzLogger.ProxyLogger) SpritzLogger.getLogger() ).setLogger( null );
+    setLogger( null );
     TemporalScheduler.reset();
     UncaughtErrorHandlerSupport.reset();
+  }
+
+  /**
+   * Specify logger to use to capture logging in tests
+   *
+   * @param logger the logger.
+   */
+  public static void setLogger( @Nullable final Logger logger )
+  {
+    if ( SpritzConfig.isProductionMode() )
+    {
+      /*
+       * This should really never happen but if it does add assertion (so code stops in debugger) or
+       * failing that throw an exception.
+       */
+      assert SpritzConfig.isDevelopmentMode();
+      throw new IllegalStateException( "Unable to call SpritzTestUtil.setLogger() as Spritz is in production mode" );
+    }
+
+    final SpritzLogger.ProxyLogger proxyLogger = (SpritzLogger.ProxyLogger) SpritzLogger.getLogger();
+    proxyLogger.setLogger( null == logger ? null : logger::log );
   }
 
   /**
