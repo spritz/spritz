@@ -19,21 +19,17 @@ final class FailStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this );
+    final WorkerSubscription subscription = new WorkerSubscription();
     subscriber.onSubscribe( subscription );
     subscriber.onError( _error );
     subscription.cancel();
   }
 
-  private static final class WorkerSubscription<T>
+  private static final class WorkerSubscription
     implements Subscription
   {
-    @Nonnull
-    private final FailStreamSource<T> _stream;
-
-    WorkerSubscription( @Nonnull final FailStreamSource<T> stream )
+    WorkerSubscription()
     {
-      _stream = stream;
     }
 
     /**

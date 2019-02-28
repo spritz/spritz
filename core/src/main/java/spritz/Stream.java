@@ -1549,7 +1549,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> takeUntil( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
   {
-    return takeWhile( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, predicate.negate() );
+    return takeWhile( Spritz.areNamesEnabled() ? generateName( name, "takeUntil" ) : null, predicate.negate() );
   }
 
   /**
@@ -2235,6 +2235,31 @@ public abstract class Stream<T>
   public final Stream<T> repeat()
   {
     return repeat( Integer.MAX_VALUE );
+  }
+
+  /**
+   * Publish emitted items and signals to the specified subject.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> publish()
+  {
+    return publish( null );
+  }
+
+  /**
+   * Publish emitted items and signals to the specified subject.
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> publish( @Nullable final String name )
+  {
+    return compose( p -> new PublishOperator<>( name, p, new MulticastSubject<>( p ) ) );
   }
 
   /**

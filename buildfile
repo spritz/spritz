@@ -3,8 +3,15 @@ require 'buildr/gpg'
 require 'buildr/single_intermediate_layout'
 require 'buildr/top_level_generate_dir'
 require 'buildr/gwt'
+require 'buildr/jacoco'
 
 GWT_EXAMPLES = %w()
+
+SPRITZ_TEST_OPTIONS =
+  {
+    'braincheck.environment' => 'development',
+    'spritz.environment' => 'development'
+  }
 
 desc 'Spritz: A browser based, reactive event streaming library that is best used when coordinating events'
 define 'spritz' do
@@ -39,6 +46,9 @@ define 'spritz' do
     package(:javadoc)
 
     test.using :testng
+
+    test.options[:properties] = SPRITZ_TEST_OPTIONS
+    test.options[:java_args] = ['-ea']
   end
 
   desc 'Spritz Examples'
@@ -53,6 +63,7 @@ define 'spritz' do
     iml.add_gwt_facet(gwt_modules,
                       :settings => { :compilerMaxHeapSize => '1024' },
                       :gwt_dev_artifact => :gwt_dev)
+    project.jacoco.enabled = false
   end
 
   desc 'Spritz Support Annotation processor'

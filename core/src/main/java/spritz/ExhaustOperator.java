@@ -47,7 +47,7 @@ final class ExhaustOperator<T>
     {
       if ( null == _activeStream )
       {
-        _activeStream = new InnerSubscription<>( this, getSubscriber(), item );
+        _activeStream = new InnerSubscription<>( item, getSubscriber(), this );
         _activeStream.pushData();
       }
     }
