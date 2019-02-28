@@ -1,6 +1,5 @@
 package spritz;
 
-import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -19,29 +18,27 @@ final class PeriodicStreamSource
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
   {
-    final WorkerSubscription subscription = new WorkerSubscription( subscriber, _period );
+    final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.startTimer();
   }
 
   private static final class WorkerSubscription
-    implements Subscription
+    extends AbstractSubscription<Integer, PeriodicStreamSource>
   {
-    private final Subscriber<? super Integer> _subscriber;
-    private final int _period;
     private int _counter;
     @Nullable
     private Cancelable _task;
 
-    WorkerSubscription( @Nonnull final Subscriber<? super Integer> subscriber, final int period )
+    WorkerSubscription( @Nonnull final PeriodicStreamSource stream,
+                        @Nonnull final Subscriber<? super Integer> subscriber )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
-      _period = period;
+      super( stream, subscriber );
     }
 
     synchronized void startTimer()
     {
-      _task = Scheduler.scheduleAtFixedRate( this::pushItem, _period );
+      _task = Scheduler.scheduleAtFixedRate( this::pushItem, getStream()._period );
     }
 
     synchronized void pushItem()
@@ -50,7 +47,7 @@ final class PeriodicStreamSource
       final int value = _counter++;
       try
       {
-        _subscriber.onNext( value );
+        getSubscriber().onNext( value );
       }
       catch ( final Throwable t )
       {
@@ -59,7 +56,7 @@ final class PeriodicStreamSource
     }
 
     @Override
-    public synchronized void cancel()
+    protected synchronized void doCancel()
     {
       if ( null != _task )
       {
