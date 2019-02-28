@@ -39,7 +39,8 @@ public abstract class AbstractSpritzTest
     return (SpritzLogger.ProxyLogger) SpritzLogger.getLogger();
   }
 
-  protected final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable, @Nonnull final String message )
+  protected final void assertInvariantFailure( @Nonnull final ThrowingRunnable throwingRunnable,
+                                               @Nonnull final String message )
   {
     assertEquals( expectThrows( IllegalStateException.class, throwingRunnable ).getMessage(), message );
   }
