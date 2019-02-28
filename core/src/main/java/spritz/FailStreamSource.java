@@ -19,25 +19,7 @@ final class FailStreamSource<T>
   @Override
   protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription subscription = new WorkerSubscription();
-    subscriber.onSubscribe( subscription );
+    subscriber.onSubscribe( new PassThroughSubscription<>( this, subscriber ) );
     subscriber.onError( _error );
-    subscription.cancel();
-  }
-
-  private static final class WorkerSubscription
-    implements Subscription
-  {
-    WorkerSubscription()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void cancel()
-    {
-    }
   }
 }
