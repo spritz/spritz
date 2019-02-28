@@ -8,8 +8,6 @@ complete as there is too much un-said.
 
 * Add `Elemental2` specific sources and sinks.
 
-* `void subscribe( @Nonnull Subscriber<? super T> subscriber );` should return a `Subscription`
-
 * Should we remove the `Subscription` interface altogether - simply replace it with `Cancellable`?
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
