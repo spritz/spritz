@@ -8,6 +8,8 @@ complete as there is too much un-said.
 
 * Add `Elemental2` specific sources and sinks.
 
+* Fix implementation of subjects.
+
 * Should we remove the `Subscription` interface altogether - simply replace it with `Cancellable`?
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
