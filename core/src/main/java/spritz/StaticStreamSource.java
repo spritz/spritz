@@ -13,8 +13,15 @@ final class StaticStreamSource<T>
 
   StaticStreamSource( @Nullable final String name, @Nonnull final T[] data )
   {
-    super( Spritz.areNamesEnabled() ? generateName( name, "of", Arrays.asList( data ).toString() ) : null );
+    super( Spritz.areNamesEnabled() ? generateName( name, "of", arrayToString( data ) ) : null );
     _data = Objects.requireNonNull( data );
+  }
+
+  @Nonnull
+  private static <T> String arrayToString( @Nonnull final T[] data )
+  {
+    final String str = Arrays.asList( data ).toString();
+    return str.substring( 1, str.length() - 1 );
   }
 
   @Override
