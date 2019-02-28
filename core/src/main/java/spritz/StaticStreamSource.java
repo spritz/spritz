@@ -34,7 +34,6 @@ final class StaticStreamSource<T>
 
   private static final class WorkerSubscription<T>
     extends AbstractSubscription<T, StaticStreamSource<T>>
-    implements Subscription
   {
     WorkerSubscription( @Nonnull final StaticStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
