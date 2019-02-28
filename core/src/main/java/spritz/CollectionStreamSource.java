@@ -44,7 +44,10 @@ final class CollectionStreamSource<T>
         }
         subscriber.onNext( item );
       }
-      subscriber.onComplete();
+      if ( isNotCancelled() )
+      {
+        subscriber.onComplete();
+      }
     }
   }
 }
