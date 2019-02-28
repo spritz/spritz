@@ -20,7 +20,7 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
    */
   @Nonnull
   private final Subscriber<? super T> _subscriber;
-  private boolean _done;
+  private boolean _cancelled;
 
   AbstractSubscription( @Nonnull final S stream, @Nonnull final Subscriber<? super T> subscriber )
   {
@@ -51,21 +51,26 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
   @Override
   public final void cancel()
   {
-    if ( !_done )
+    if ( !_cancelled )
     {
-      markAsDone();
+      markAsCancelled();
       doCancel();
     }
   }
 
-  final void markAsDone()
+  final void markAsCancelled()
   {
-    _done = true;
+    _cancelled = true;
   }
 
-  final boolean isDone()
+  final boolean isCancelled()
   {
-    return _done;
+    return _cancelled;
+  }
+
+  final boolean isNotCancelled()
+  {
+    return !isCancelled();
   }
 
   void doCancel()

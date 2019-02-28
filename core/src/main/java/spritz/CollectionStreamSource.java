@@ -38,7 +38,7 @@ final class CollectionStreamSource<T>
       final Subscriber<? super T> subscriber = getSubscriber();
       for ( final T item : getStream()._data )
       {
-        if ( isDone() )
+        if ( isCancelled() )
         {
           return;
         }

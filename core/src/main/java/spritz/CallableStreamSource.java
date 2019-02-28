@@ -38,7 +38,7 @@ final class CallableStreamSource<T>
       final Subscriber<? super T> subscriber = getSubscriber();
       try
       {
-        while ( !isDone() )
+        while ( isNotCancelled() )
         {
           subscriber.onNext( getStream()._callable.call() );
         }
