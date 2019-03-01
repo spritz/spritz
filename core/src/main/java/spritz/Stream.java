@@ -1467,6 +1467,7 @@ public abstract class Stream<T>
    * items will be emitted, and the {@code predicate} will no longer be invoked. This is equivalent
    * to {@link #skipWhile(Predicate)} if the predicate is negated.
    *
+   * @param name      the name specified by the user.
    * @param predicate The predicate.
    * @return the new stream.
    * @see #skipWhile(Predicate)
@@ -1573,6 +1574,7 @@ public abstract class Stream<T>
    * It is equivalent to invoking {@link #filterSuccessive(SuccessivePredicate)} passing a
    * {@link SuccessivePredicate} filters out successive items that are equal.
    *
+   * @param name the name specified by the user.
    * @return the new stream.
    */
   @Nonnull
