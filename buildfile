@@ -51,6 +51,37 @@ define 'spritz' do
     test.options[:java_args] = ['-ea']
   end
 
+  desc 'Test Spritz API'
+  define 'api-test' do
+    test.compile.with :javax_annotation,
+                      :javax_json,
+                      :gir
+
+    test.options[:properties] =
+      SPRITZ_TEST_OPTIONS.merge(
+        'spritz.api_test.store_api_diff' => ENV['STORE_API_DIFF'] == 'true',
+        'spritz.prev.version' => ENV['PREVIOUS_PRODUCT_VERSION'],
+        'spritz.prev.jar' => artifact("org.realityforge.spritz:spritz-core:jar:#{ENV['PREVIOUS_PRODUCT_VERSION'] || project.version}").to_s,
+        'spritz.next.version' => ENV['PRODUCT_VERSION'],
+        'spritz.next.jar' => project('core').package(:jar).to_s,
+        'spritz.api_test.fixture_dir' => _('src/test/resources/fixtures').to_s,
+        'spritz.revapi.jar' => artifact(:revapi_diff).to_s
+      )
+    test.options[:java_args] = ['-ea']
+    test.using :testng
+
+    test.compile.enhance do
+      mkdir_p _('src/test/resources/fixtures')
+      artifact("org.realityforge.spritz:spritz-core:jar:#{ENV['PREVIOUS_PRODUCT_VERSION']}").invoke
+      project('core').package(:jar).invoke
+      artifact(:revapi_diff).invoke
+    end unless ENV['TEST'] == 'no'
+
+    test.exclude '*ApiDiffTest' if ENV['PRODUCT_VERSION'].nil? || ENV['PREVIOUS_PRODUCT_VERSION'].nil?
+
+    project.jacoco.enabled = false
+  end
+
   desc 'Spritz Examples'
   define 'examples' do
     compile.with project('core').package(:jar),
