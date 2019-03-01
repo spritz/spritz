@@ -75,7 +75,7 @@ define 'spritz' do
       artifact("org.realityforge.spritz:spritz-core:jar:#{ENV['PREVIOUS_PRODUCT_VERSION']}").invoke
       project('core').package(:jar).invoke
       artifact(:revapi_diff).invoke
-    end unless ENV['TEST'] == 'no'
+    end unless ENV['TEST'] == 'no' || ENV['PRODUCT_VERSION'].nil? || ENV['PREVIOUS_PRODUCT_VERSION'].nil?
 
     test.exclude '*ApiDiffTest' if ENV['PRODUCT_VERSION'].nil? || ENV['PREVIOUS_PRODUCT_VERSION'].nil?
 
