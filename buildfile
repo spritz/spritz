@@ -130,3 +130,10 @@ define 'spritz' do
 
   ipr.add_component_from_artifact(:idea_codestyle)
 end
+
+# Avoid uploading any packages except those we explicitly allow
+Buildr.projects.each do |project|
+  unless %w(spritz:core).include?(project.name)
+    project.task('upload').actions.clear
+  end
+end
