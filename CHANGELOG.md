@@ -1,6 +1,7 @@
 # Change Log
 
-### Unreleased
+### [v0.02](https://github.com/spritz/spritz/tree/v0.02) (2019-03-01)
+[Full Changelog](https://github.com/spritz/spritz/compare/v0.01...v0.02)
 
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.13.0`.
 * Upgrade the `org.realityforge.com.google.jsinterop` artifact to version `1.0.0-b2-e6d791f`.
