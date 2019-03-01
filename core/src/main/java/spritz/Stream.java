@@ -2344,7 +2344,7 @@ public abstract class Stream<T>
   }
 
   /**
-   * Return the locl name of the stream.
+   * Return the local name of the stream.
    * This method should NOT be invoked unless {@link Spritz#areNamesEnabled()} returns <code>true</code>.
    *
    * @return the local name of the node.
