@@ -83,10 +83,11 @@ final class CircularBuffer<T>
 
   private void tryGrowBeforeAdd()
   {
-    final int newSize = size() + 1;
-    if ( newSize > _elements.length )
+    final int currentSize = size();
+    if ( currentSize + 1 > _elements.length )
     {
-      grow( newSize );
+      final int newSize = ( ( _elements.length - 1 ) * 2 ) + 1;
+      resizeElements( newSize, currentSize );
     }
   }
 
@@ -134,7 +135,7 @@ final class CircularBuffer<T>
   {
     if ( _elements.length > size )
     {
-      shrink( size );
+      resizeElements( size, Math.min( size(), size ) );
     }
   }
 
@@ -173,46 +174,11 @@ final class CircularBuffer<T>
     }
   }
 
-  /**
-   * Increase the size of the buffer.
-   */
-  private void grow( final int minCapacity )
+  private void resizeElements( final int newSize, final int size )
   {
-    int newSize = _elements.length;
-    while ( newSize < minCapacity )
-    {
-      newSize = ( ( newSize - 1 ) * 2 ) + 1;
-    }
-
     @SuppressWarnings( "unchecked" )
     final T[] elements = (T[]) new Object[ newSize ];
-
     int j = 0;
-    final int size = size();
-    for ( int i = 0; i < size; i++ )
-    {
-      final int index = ( _head + i ) % _elements.length;
-      elements[ j ] = _elements[ index ];
-      _elements[ index ] = null;
-      j++;
-    }
-
-    _elements = elements;
-    _head = 0;
-    _tail = j;
-    _isWrappedBuffer = false;
-  }
-
-  /**
-   * Decrease the size of the buffer.
-   */
-  private void shrink( final int maxCapacity )
-  {
-    @SuppressWarnings( "unchecked" )
-    final T[] elements = (T[]) new Object[ maxCapacity ];
-
-    int j = 0;
-    final int size = Math.min( size(), maxCapacity );
     for ( int i = 0; i < size; i++ )
     {
       final int index = ( _head + i ) % _elements.length;
