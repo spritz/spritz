@@ -14,7 +14,7 @@ public final class ExampleUtil
   {
     final AtomicBoolean complete = new AtomicBoolean();
     stream
-      .onTerminate( () -> complete.set( true ) )
+      .peekTerminate( () -> complete.set( true ) )
       .subscribe( new LoggingSubscriber<>() );
 
     while ( !complete.get() )

@@ -145,6 +145,226 @@
     "name": "final method added to non-final class",
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekCancel(java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekCancel",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekCancel(java.lang.String, java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekCancel",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekComplete(java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekComplete",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekComplete(java.lang.String, java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekComplete",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekError",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekError(java.util.function.Consumer<java.lang.Throwable>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekError",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekSubscribe",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekSubscribe(java.util.function.Consumer<spritz.Subscription>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekSubscribe",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekTerminate(java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekTerminate",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekTerminate(java.lang.String, java.lang.Runnable)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "peekTerminate",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::rescue(java.lang.String, java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
     "oldElement": null,
@@ -235,6 +455,138 @@
     "description": "Method was removed.",
     "newElement": null,
     "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onCancel(java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onCancel",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onCancel(java.lang.String, java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onCancel",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onComplete(java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onComplete",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onComplete(java.lang.String, java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onComplete",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onError",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onError(java.util.function.Consumer<java.lang.Throwable>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onError",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onErrorResumeWith(java.lang.String, java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
     "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
     "classification": {
@@ -313,6 +665,182 @@
       "elementKind": "method",
       "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "onErrorReturn",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onNext(java.lang.String, java.util.function.Consumer<? super T>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onNext",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onNext(java.util.function.Consumer<? super T>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onNext",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onSubscribe",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onSubscribe(java.util.function.Consumer<spritz.Subscription>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onSubscribe",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onTerminate(java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onTerminate",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onTerminate(java.lang.String, java.lang.Runnable)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "onTerminate",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::tap(java.lang.String, java.util.function.Consumer<? super T>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "tap",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method removed",
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::tap(java.util.function.Consumer<? super T>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "tap",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
       "package": "spritz"
     }

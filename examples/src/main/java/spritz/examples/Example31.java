@@ -9,19 +9,19 @@ public class Example31
   {
     final Stream<Integer> stream = Stream
       .range( 42, 1 )
-      .onSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Scheduler.currentVpu() ) )
+      .peekSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Scheduler.currentVpu() ) )
       .observeOn( Scheduler.microTaskVpu() )
       .peek( v -> System.out.println( "Peek1 on Thread: " + Scheduler.currentVpu() ) )
-      .onComplete( () -> System.out.println( "onComplete1 on Thread: " + Scheduler.currentVpu() ) )
+      .peekComplete( () -> System.out.println( "onComplete1 on Thread: " + Scheduler.currentVpu() ) )
       .subscribeOn( Scheduler.macroTaskVpu() )
       .observeOn( Scheduler.animationFrameVpu() )
-      .onSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Scheduler.currentVpu() ) )
+      .peekSubscribe( s -> System.out.println( "onSubscribe on Thread: " + Scheduler.currentVpu() ) )
       .peek( v -> System.out.println( "Peek2 on Thread: " + Scheduler.currentVpu() ) )
-      .onComplete( () -> System.out.println( "onComplete2 on Thread: " + Scheduler.currentVpu() ) )
+      .peekComplete( () -> System.out.println( "onComplete2 on Thread: " + Scheduler.currentVpu() ) )
       .subscribeOn( Scheduler.microTaskVpu() )
       .observeOn( Scheduler.macroTaskVpu() )
       .peek( v -> System.out.println( "Peek3 on Thread: " + Scheduler.currentVpu() ) )
-      .onComplete( () -> System.out.println( "onComplete3 on Thread: " + Scheduler.currentVpu() ) );
+      .peekComplete( () -> System.out.println( "onComplete3 on Thread: " + Scheduler.currentVpu() ) );
     ExampleUtil.run( stream );
   }
 }

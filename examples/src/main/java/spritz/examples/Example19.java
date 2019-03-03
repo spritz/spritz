@@ -1,5 +1,6 @@
 package spritz.examples;
 
+import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import spritz.Stream;
 
@@ -25,17 +26,17 @@ public class Example19
   private static <T> Stream<T> peekAll( @Nonnull final Stream<T> stream )
   {
     return stream
-      .onSubscribe( e -> System.out.println( "\uD83D\uDC41 onSubscribe(" + e + ")" ) )
-      .afterSubscribe( e -> System.out.println( "\uD83D\uDC41 afterSubscribe(" + e + ")" ) )
-      .onNext( e -> System.out.println( "\uD83D\uDC41 onNext(" + e + ")" ) )
+      .peekSubscribe( e1 -> System.out.println( "\uD83D\uDC41 onSubscribe(" + e1 + ")" ) )
+      .afterSubscribe( e1 -> System.out.println( "\uD83D\uDC41 afterSubscribe(" + e1 + ")" ) )
+      .peek( (Consumer<? super T>) e2 -> System.out.println( "\uD83D\uDC41 onNext(" + e2 + ")" ) )
       .afterNext( e -> System.out.println( "\uD83D\uDC41 afterNext(" + e + ")" ) )
-      .onComplete( () -> System.out.println( "\uD83D\uDC41 onComplete()" ) )
+      .peekComplete( () -> System.out.println( "\uD83D\uDC41 onComplete()" ) )
       .afterComplete( () -> System.out.println( "\uD83D\uDC41 afterComplete()" ) )
-      .onError( e -> System.out.println( "\uD83D\uDC41 onError(" + e + ")" ) )
+      .peekError( e -> System.out.println( "\uD83D\uDC41 onError(" + e + ")" ) )
       .afterError( e -> System.out.println( "\uD83D\uDC41 afterError(" + e + ")" ) )
-      .onCancel( () -> System.out.println( "\uD83D\uDC41 onCancel()" ) )
+      .peekCancel( () -> System.out.println( "\uD83D\uDC41 onCancel()" ) )
       .afterCancel( () -> System.out.println( "\uD83D\uDC41 afterCancel()" ) )
-      .onTerminate( () -> System.out.println( "\uD83D\uDC41 onTerminate()" ) )
+      .peekTerminate( () -> System.out.println( "\uD83D\uDC41 onTerminate()" ) )
       .afterTerminate( () -> System.out.println( "\uD83D\uDC41 afterTerminate()" ) );
   }
 }

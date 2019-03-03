@@ -60,8 +60,6 @@ complete as there is too much un-said.
 
 * Perhaps one day the scheduler could be moved to a separate package?
 
-* Consider renaming operators `onSubscribe` as `peekSubscribe`, `onTerminate` as `peekTerminate` etc.
-
 ### Other Tasks
 
 * Change documentation categories and icons? to align with https://reactive.how/rxjs/
