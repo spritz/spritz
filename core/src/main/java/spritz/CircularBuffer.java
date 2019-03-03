@@ -8,8 +8,7 @@ import javax.annotation.Nullable;
 /**
  * A circular buffer implementation.
  */
-@SuppressWarnings( "Duplicates" )
-public final class CircularBuffer<T>
+final class CircularBuffer<T>
 {
   /**
    * The underlying object array.
@@ -34,13 +33,13 @@ public final class CircularBuffer<T>
    * @param initialCapacity the initial capacity of the buffer.
    */
   @SuppressWarnings( "unchecked" )
-  public CircularBuffer( final int initialCapacity )
+  CircularBuffer( final int initialCapacity )
   {
     assert initialCapacity > 0;
     _elements = (T[]) new Object[ initialCapacity ];
   }
 
-  public void clear()
+  void clear()
   {
     _head = 0;
     _tail = 0;
@@ -53,12 +52,12 @@ public final class CircularBuffer<T>
    *
    * @return the current capacity of the buffer.
    */
-  public int getCapacity()
+  int getCapacity()
   {
     return _elements.length;
   }
 
-  public int size()
+  int size()
   {
     if ( _isWrappedBuffer )
     {
@@ -70,13 +69,13 @@ public final class CircularBuffer<T>
     }
   }
 
-  public void add( @Nonnull final T object )
+  void add( @Nonnull final T object )
   {
     tryGrowBeforeAdd();
     insertLast( Objects.requireNonNull( object ) );
   }
 
-  public void addFirst( @Nonnull final T object )
+  void addFirst( @Nonnull final T object )
   {
     tryGrowBeforeAdd();
     insertFirst( Objects.requireNonNull( object ) );
@@ -92,7 +91,7 @@ public final class CircularBuffer<T>
   }
 
   @Nullable
-  public T get( final int index )
+  T get( final int index )
   {
     if ( index >= size() )
     {
@@ -106,7 +105,7 @@ public final class CircularBuffer<T>
   }
 
   @Nullable
-  public T pop()
+  T pop()
   {
     if ( isEmpty() )
     {
@@ -125,12 +124,13 @@ public final class CircularBuffer<T>
     return result;
   }
 
-  public boolean isEmpty()
+  boolean isEmpty()
   {
     return 0 == size();
   }
 
-  public void truncate( final int size )
+  @SuppressWarnings( "SameParameterValue" )
+  void truncate( final int size )
   {
     if ( _elements.length > size )
     {
@@ -230,7 +230,7 @@ public final class CircularBuffer<T>
   /*
    * This method is very inefficient and should only be used in invariant checking code.
    */
-  public boolean contains( final T value )
+  boolean contains( final T value )
   {
     final int size = size();
     for ( int i = 0; i < size; i++ )
@@ -246,7 +246,7 @@ public final class CircularBuffer<T>
   /*
    * This method is very inefficient and should only be used in invariant checking code.
    */
-  public Stream<T> stream()
+  Stream<T> stream()
   {
     final int size = size();
     @SuppressWarnings( "unchecked" )
