@@ -171,7 +171,6 @@ Below are the old TODO notes:
       a.k.a. For each event in a sampler Stream, apply a function to combine its value with the most recent event value in another Stream. The resulting Stream will contain the same number of events as the sampler Stream.
 - [ ] `zip(Streams)` - select N-th value of each stream and combine them using a function. onComplete if all onComplete, onError if any onError
 - [ ] `firstEmitting(Stream...)` or `selectFirstEmitting(Stream...)` or `race(Stream...)` - wait for first publisher to emit a value, select publisher and then cancel other publishers and pass on signals from selected publisher
-- [ ] `withItems(Array[])` - Replace each event value with the array item at the respective index. Cancel or loop if reach end of array
 
 **Accumulating Operators** (Takes 1 or more values from a single streams and combine) (a.k.a horizontal merging operations as it combines values within streams)
 
