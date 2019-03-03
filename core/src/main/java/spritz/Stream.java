@@ -2161,9 +2161,9 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
-  public final Stream<T> onErrorResumeWith( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+  public final Stream<T> rescue( @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    return onErrorResumeWith( null, streamFromErrorFn );
+    return rescue( null, streamFromErrorFn );
   }
 
   /**
@@ -2177,8 +2177,8 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
-  public final Stream<T> onErrorResumeWith( @Nullable final String name,
-                                            @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
+  public final Stream<T> rescue( @Nullable final String name,
+                                 @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
     return compose( p -> new OnErrorResumeWithOperator<>( name, p, streamFromErrorFn ) );
   }
@@ -2209,7 +2209,7 @@ public abstract class Stream<T>
   {
     final String actualName =
       Spritz.areNamesEnabled() ? generateName( name, "onErrorReturn", String.valueOf( value ) ) : null;
-    return onErrorResumeWith( actualName, e -> of( value ) );
+    return rescue( actualName, e -> of( value ) );
   }
 
   /**
@@ -2243,7 +2243,7 @@ public abstract class Stream<T>
     final int[] state = new int[]{ maxErrorCount };
     final String actualName =
       Spritz.areNamesEnabled() ? generateName( name, "repeat", String.valueOf( maxErrorCount ) ) : null;
-    return onErrorResumeWith( actualName, e -> ( --state[ 0 ] ) >= 0 ? this : null );
+    return rescue( actualName, e -> ( --state[ 0 ] ) >= 0 ? this : null );
   }
 
   /**
