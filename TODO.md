@@ -161,7 +161,6 @@ Below are the old TODO notes:
 
 **Combination Operators** (Take 2 or more streams and combine) (a.k.a vertical merging operations as it combines values across streams)
 
-- [ ] `merge(Streams)` - combine specified streams in the middle of stream.
 - [ ] `combineLatest(Streams)` == `combine(Streams)` - for each stream grab latest value and pass through a function and pass on result of function this happens anytime an item is received on any stream. onComplete if all onComplete, onError if any onError
 - [ ] `withLatestFrom(MasterStream,Streams)` a.k.a. `snapshot(MasterStream,Streams)` - for a primary stream, any time an item appears combine it with latest from other streams using function to produce new item. onComplete if all onComplete, onError if any onError
       a.k.a. For each event in a sampler Stream, apply a function to combine its value with the most recent event value in another Stream. The resulting Stream will contain the same number of events as the sampler Stream.

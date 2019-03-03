@@ -1971,6 +1971,26 @@ public abstract class Stream<T>
   }
 
   /**
+   * Concurrently merge items from the specified streams into the current stream. The items from
+   * different streams may be interleaved with other streams.
+   *
+   * @param streams the streams to merge int.
+   * @return the new stream.
+   * @see #mergeMap(Function)
+   */
+  @SuppressWarnings( "unchecked" )
+  @Nonnull
+  @SafeVarargs
+  @DocCategory( DocCategory.Type.MERGING )
+  public final Stream<T> mergeWith( @Nonnull final Stream<T>... streams )
+  {
+    final Stream<T>[] upstreams = (Stream<T>[]) new Stream[ streams.length + 1 ];
+    upstreams[ 0 ] = this;
+    System.arraycopy( streams, 0, upstreams, 1, streams.length );
+    return merge( upstreams );
+  }
+
+  /**
    * Emit all the items from this stream and then when the complete signal is emitted then
    * merge the items from the specified streams one after another until all streams complete.
    *
