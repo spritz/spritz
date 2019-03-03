@@ -2191,9 +2191,9 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
-  public final Stream<T> onErrorReturn( @Nonnull final T value )
+  public final Stream<T> rescueThenReturn( @Nonnull final T value )
   {
-    return onErrorReturn( null, value );
+    return rescueThenReturn( null, value );
   }
 
   /**
@@ -2205,7 +2205,7 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.ERROR_HANDLING )
-  public final Stream<T> onErrorReturn( @Nullable final String name, @Nonnull final T value )
+  public final Stream<T> rescueThenReturn( @Nullable final String name, @Nonnull final T value )
   {
     final String actualName =
       Spritz.areNamesEnabled() ? generateName( name, "onErrorReturn", String.valueOf( value ) ) : null;

@@ -13,7 +13,7 @@ public class Example35
         c.next( 3 );
         c.error( new Exception( "Bad Stuff" ) );
       } )
-      .onErrorReturn( 22 );
+      .rescueThenReturn( 22 );
     ExampleUtil.run( stream );
   }
 }
