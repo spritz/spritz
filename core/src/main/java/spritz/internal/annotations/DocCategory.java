@@ -48,10 +48,6 @@ public @interface DocCategory
      */
     ACCUMULATING,
     /**
-     * Operators that combine multiple streams under different circumstances.
-     */
-    COMBINING,
-    /**
      * Operators that change the {@link spritz.VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
      */
     SCHEDULING,

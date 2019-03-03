@@ -1257,7 +1257,7 @@ public abstract class Stream<T>
    * @return the new stream.
    */
   @Nonnull
-  @DocCategory( DocCategory.Type.COMBINING )
+  @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> errorIfEmpty( @Nonnull final Supplier<Throwable> errorFactory )
   {
     return errorIfEmpty( null, errorFactory );
@@ -1272,7 +1272,7 @@ public abstract class Stream<T>
    * @return the new stream.
    */
   @Nonnull
-  @DocCategory( DocCategory.Type.COMBINING )
+  @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> errorIfEmpty( @Nullable final String name, @Nonnull final Supplier<Throwable> errorFactory )
   {
     return compose( p -> new ErrorIfEmptyOperator<>( name, p, errorFactory ) );
@@ -2271,7 +2271,7 @@ public abstract class Stream<T>
    * @return the new stream.
    */
   @Nonnull
-  @DocCategory( DocCategory.Type.COMBINING )
+  @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> defaultIfEmpty( @Nonnull final T defaultValue )
   {
     return defaultIfEmpty( null, defaultValue );
@@ -2285,7 +2285,7 @@ public abstract class Stream<T>
    * @return the new stream.
    */
   @Nonnull
-  @DocCategory( DocCategory.Type.COMBINING )
+  @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> defaultIfEmpty( @Nullable final String name, @Nonnull final T defaultValue )
   {
     return compose( p -> new DefaultIfEmptyOperator<>( name, p, defaultValue ) );
