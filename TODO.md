@@ -128,7 +128,6 @@ Below are the old TODO notes:
 ## Links
 
 * [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
-* [Callbag Operators](https://github.com/callbag/callbag/wiki)
 
 ## To Implement
 
