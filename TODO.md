@@ -243,43 +243,6 @@ Steal some documentation terminology for timeline notation from https://mostcore
 
 Steal some general documentation concepts from https://mostcore.readthedocs.io/en/latest/concepts.html
 
-### Rethink
-
-A stream is a series of steps. Some sequences of steps are push based. i.e. The agent that pushes value executes
-the sequence of steps and can not be told to stop generating values except via unsubscribe. Some sequences are
-pull based in that the agent that requests a number of values and each step will execute the steps in the requesters
-execution context or if not enough values are present could execute in a scheduler context but will only send as many
-values as has been requested. Separating these sequences are barriers and the barriers may consist of queues. Sometimes
-these barriers will try and signal to upstream to pause delivery (will be ignored for push based sequences) or will
-employ other strategies to deal with event stream  not being consumed at a fast enough rate (i.e. store, drop newest,
-drop latest etc). Barriers that are queues will often be scheduled in the same executor when values are added but may
-also be scheduled at some point in the future. (i.e. schedule at next requestIdleCallback)
-
-* `.queue()` - create a barrier containing a queue
-
-* Maybe the flow control object can be passed up and down without wrapping if step needs no mods
-
-
-    interface FlowControl
-    {
-      // pull based
-      void requestItems(Count)
-
-      // push based with flow control
-      void activate()
-      void pause()
-      void resume()
-      void deactivate()
-
-      // push based without flow control
-      void activate()
-      void deactivate()
-    }
-
-
-Alternative design: Only the "source" publisher can perform flow control. That is optionally accessible
-from subscription via something like `@Nullable Subscription.getFlowControl()`
-
 ### Sample Applications
 
 Once done build a few sample apps.
