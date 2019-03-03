@@ -125,10 +125,6 @@ Below are the old TODO notes:
 
 ---
 
-## Links
-
-* [ReactiveX Scheduler](http://reactivex.io/documentation/scheduler.html)
-
 ## To Implement
 
 **Elemental2 Sources**
