@@ -63,6 +63,7 @@ complete as there is too much un-said.
 * Consider renaming operators `onSubscribe` as `peekSubscribe`, `onTerminate` as `peekTerminate` etc.
 
 * Consider renaming operators `onErrorResumeWith` to `catchError` or `recoverFromErrorWith`. Same with `onErrorReturn`
+  Or just rename it `rescue()`
 
 ### Other Tasks
 
