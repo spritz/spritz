@@ -3,7 +3,6 @@ package spritz;
 import java.util.HashSet;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.internal.util.CircularBuffer;
 
 final class MergeOperator<T>
   extends AbstractStream<Stream<T>, T>

@@ -1,4 +1,4 @@
-package spritz.internal.util;
+package spritz;
 
 import java.util.Objects;
 import java.util.stream.Stream;
