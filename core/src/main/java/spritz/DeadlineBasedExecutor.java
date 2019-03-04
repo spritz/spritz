@@ -19,7 +19,7 @@ abstract class DeadlineBasedExecutor
   /**
    * Returns true if the executor should yield and return control to invoker.
    *
-   * @param function    the function that specifies deadline, if any.
+   * @param function the function that specifies deadline, if any.
    * @return true to yield to caller, false to continue executing tasks.
    */
   private boolean shouldYield( @Nullable final DeadlineFunction function )
