@@ -18,7 +18,7 @@ final class AfterFrameExecutor
 
   AfterFrameExecutor()
   {
-    _channel.port2.onmessage = m -> context().activate( this::executeTasks );
+    _channel.port2.onmessage = m -> activate();
   }
 
   /**

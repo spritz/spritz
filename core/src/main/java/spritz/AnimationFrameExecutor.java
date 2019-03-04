@@ -14,6 +14,6 @@ final class AnimationFrameExecutor
   @Override
   protected final void scheduleForActivation()
   {
-    DomGlobal.requestAnimationFrame( v -> context().activate( this::executeTasks ) );
+    DomGlobal.requestAnimationFrame( v -> activate() );
   }
 }

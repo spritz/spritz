@@ -15,7 +15,7 @@ final class MicroTaskExecutor
   protected final void scheduleForActivation()
   {
     new Promise<>( null ).then( v -> {
-      context().activate( this::executeTasks );
+      activate();
       return null;
     } );
   }

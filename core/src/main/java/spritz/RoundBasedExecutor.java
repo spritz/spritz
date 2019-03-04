@@ -42,6 +42,11 @@ abstract class RoundBasedExecutor
     _maxRounds = maxRounds;
   }
 
+  public void activate()
+  {
+    context().activate( this::executeTasks );
+  }
+
   /**
    * Run tasks until complete or runaway tasks detected.
    */
