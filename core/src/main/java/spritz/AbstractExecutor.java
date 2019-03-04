@@ -32,12 +32,17 @@ abstract class AbstractExecutor
   @Override
   public void queue( @Nonnull final Runnable task )
   {
+    ensureNotQueued( task );
+    _taskQueue.add( Objects.requireNonNull( task ) );
+  }
+
+  private void ensureNotQueued( @Nonnull final Runnable task )
+  {
     if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> !_taskQueue.contains( task ),
                  () -> "Spritz-0098: Attempting to queue task " + task + " when task is already queued." );
     }
-    _taskQueue.add( Objects.requireNonNull( task ) );
   }
 
   @Nonnull
