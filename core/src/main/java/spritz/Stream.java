@@ -443,7 +443,9 @@ public abstract class Stream<T>
   @Override
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    doSubscribe( Spritz.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );
+    Scheduler.current( () -> doSubscribe( Spritz.shouldValidateSubscriptions() ?
+                                          new ValidatingSubscriber<>( subscriber ) :
+                                          subscriber ) );
   }
 
   protected abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );

@@ -51,6 +51,11 @@ public final class MulticastSubject<T>
   @Override
   public synchronized void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
+    Scheduler.current( () -> doSubscribe( subscriber ) );
+  }
+
+  private void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  {
     if ( Spritz.shouldCheckApiInvariants() )
     {
       apiInvariant( () -> !_downstreamSubscribers.contains( subscriber ),
