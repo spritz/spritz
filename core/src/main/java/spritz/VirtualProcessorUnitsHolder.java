@@ -24,7 +24,8 @@ final class VirtualProcessorUnitsHolder
   @Nonnull
   static VirtualProcessorUnit current()
   {
-    return CurrentVPU.current();
+    final VirtualProcessorUnit current = CurrentVPU.current();
+    return null != current ? current : direct();
   }
 
   @Nonnull
@@ -150,10 +151,9 @@ final class VirtualProcessorUnitsHolder
      *
      * @return the VirtualProcessorUnit.
      */
-    @Nonnull
+    @Nullable
     private static VirtualProcessorUnit current()
     {
-      assert null != c_current;
       return c_current;
     }
 

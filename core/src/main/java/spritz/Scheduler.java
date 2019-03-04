@@ -76,6 +76,7 @@ public final class Scheduler
 
   /**
    * Return the current VPU.
+   * If VPU is active then a "direct" VPU will be returned will execute task in the current execution context.
    *
    * @return the current VPU.
    * @see #current(Runnable)
