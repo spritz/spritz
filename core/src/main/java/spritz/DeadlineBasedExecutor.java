@@ -27,6 +27,10 @@ abstract class DeadlineBasedExecutor
     return null != function && function.getTimeRemaining() <= MIN_TASK_TIME;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void activate()
   {
     context().activate( () -> executeTasks( null ) );

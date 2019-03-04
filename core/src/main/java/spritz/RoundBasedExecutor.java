@@ -42,6 +42,10 @@ abstract class RoundBasedExecutor
     _maxRounds = maxRounds;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void activate()
   {
     context().activate( this::executeTasks );

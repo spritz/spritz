@@ -71,6 +71,15 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Activate the scheduler
+   * This calls into executor that calls back into this class.
+   */
+  void activate()
+  {
+    _executor.activate();
+  }
+
+  /**
    * Activate the unit.
    * This involves setting current unit, invoking the activation function and clearing the current unit.
    * It is an error to invoke this method if there is already a current unit.
@@ -131,6 +140,11 @@ public final class VirtualProcessorUnit
      * @param task the task.
      */
     void queue( @Nonnull Runnable task );
+
+    /**
+     * Activate the executor.
+     */
+    void activate();
   }
 
   @FunctionalInterface
