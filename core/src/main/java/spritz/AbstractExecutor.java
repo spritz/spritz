@@ -29,6 +29,7 @@ abstract class AbstractExecutor
     return _taskQueue.size();
   }
 
+  @Override
   public void queue( @Nonnull final Runnable task )
   {
     if ( Spritz.shouldCheckInvariants() )
