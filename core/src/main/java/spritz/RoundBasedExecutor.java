@@ -153,4 +153,18 @@ abstract class RoundBasedExecutor
       scheduleForActivation();
     }
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void queueNext( @Nonnull final Runnable task )
+  {
+    final boolean needsActivation = 0 == getQueueSize();
+    super.queueNext( task );
+    if ( needsActivation )
+    {
+      scheduleForActivation();
+    }
+  }
 }

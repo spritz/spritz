@@ -36,6 +36,16 @@ abstract class AbstractExecutor
     _taskQueue.add( Objects.requireNonNull( task ) );
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void queueNext( @Nonnull final Runnable task )
+  {
+    ensureNotQueued( task );
+    _taskQueue.addFirst( Objects.requireNonNull( task ) );
+  }
+
   private void ensureNotQueued( @Nonnull final Runnable task )
   {
     if ( Spritz.shouldCheckInvariants() )

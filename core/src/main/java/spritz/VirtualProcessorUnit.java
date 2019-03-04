@@ -71,6 +71,17 @@ public final class VirtualProcessorUnit
   }
 
   /**
+   * Queue the specified task for execution next and enable the VirtualProcessorUnit for activation if necessary.
+   * The task must not be already queued. The task will be placed at the start of the queue.
+   *
+   * @param task the task.
+   */
+  void queueNext( @Nonnull final Runnable task )
+  {
+    _executor.queueNext( task );
+  }
+
+  /**
    * Activate the scheduler
    * This calls into executor that calls back into this class.
    */
@@ -140,6 +151,14 @@ public final class VirtualProcessorUnit
      * @param task the task.
      */
     void queue( @Nonnull Runnable task );
+
+    /**
+     * Queue task for execution next and enable the executor for activation if necessary.
+     * The task must not be already queued.
+     *
+     * @param task the task.
+     */
+    void queueNext( @Nonnull Runnable task );
 
     /**
      * Activate the executor.
