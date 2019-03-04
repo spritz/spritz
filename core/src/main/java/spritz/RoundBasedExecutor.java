@@ -137,10 +137,11 @@ abstract class RoundBasedExecutor
   @Override
   public final synchronized void queue( @Nonnull final Runnable task )
   {
-    if ( 0 == getQueueSize() )
+    final boolean needsActivation = 0 == getQueueSize();
+    super.queue( task );
+    if ( needsActivation )
     {
       scheduleForActivation();
     }
-    super.queue( task );
   }
 }
