@@ -136,7 +136,7 @@ final class TemporalScheduler
                       () -> "Spritz-0016: Scheduler.schedule(...) passed a negative delay. " +
                             "Actual value passed is " + delay );
       }
-      return doSchedule( task, delay );
+      return doSchedule( () -> runTask( task ), delay );
     }
 
     @Nonnull
@@ -155,7 +155,7 @@ final class TemporalScheduler
                       () -> "Spritz-0014: Scheduler.scheduleAtFixedRate(...) passed a period that is " +
                             "not greater than 0. Actual value passed is " + period );
       }
-      return doScheduleAtFixedRate( task, period );
+      return doScheduleAtFixedRate( () -> runTask( task ), period );
     }
 
     @Nonnull
@@ -163,6 +163,13 @@ final class TemporalScheduler
     {
       final double timeoutId = DomGlobal.setInterval( v -> task.run(), period );
       return () -> DomGlobal.clearInterval( timeoutId );
+    }
+
+    private void runTask( @Nonnull final Runnable task )
+    {
+      final VirtualProcessorUnit vpu = Scheduler.macroTaskVpu();
+      vpu.queueNext( task );
+      vpu.activate();
     }
   }
 }
