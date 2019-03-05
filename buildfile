@@ -117,9 +117,13 @@ define 'spritz' do
 
     test.compile.enhance(['copy-annotations'])
     task 'copy-annotations' do
-      target_dir = _('src/test/resources/input/spritz/internal/annotations')
+      source_dir = "#{WORKSPACE_DIR}/core/src/main/java/spritz"
+      target_dir = _('src/test/resources/input/spritz')
       FileUtils.mkdir_p target_dir
-      FileUtils.cp Dir["#{WORKSPACE_DIR}/core/src/main/java/spritz/internal/annotations/*.java"], target_dir
+      FileUtils.cp "#{source_dir}/DocCategory.java", target_dir
+      FileUtils.cp "#{source_dir}/GwtIncompatible.java", target_dir
+      FileUtils.cp "#{source_dir}/MetaDataSource.java", target_dir
+      FileUtils.cp "#{source_dir}/SourceCategory.java", target_dir
     end
 
     package(:jar)
@@ -133,8 +137,6 @@ define 'spritz' do
           :linksource => true,
           :overview => _('generated/javadocs/overview.html'),
           :timestamp => false,
-          :exclude => 'spritz.internal',
-          :subpackages => 'spritz',
           :link => %w(https://arez.github.io/api https://docs.oracle.com/javase/8/docs/api)
     ).sourcepath << project('core').compile.sources
 

@@ -3,7 +3,6 @@ package spritz;
 import java.lang.reflect.Field;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.internal.annotations.GwtIncompatible;
 
 /**
  * Utility class for interacting with Spritz config settings in tests.

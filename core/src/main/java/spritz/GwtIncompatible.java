@@ -1,4 +1,4 @@
-package spritz.internal.annotations;
+package spritz;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
 @Retention( RetentionPolicy.CLASS )
 @Target( { ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.FIELD } )
 @Documented
-public @interface GwtIncompatible
+@interface GwtIncompatible
 {
 }

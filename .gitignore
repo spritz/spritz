@@ -8,4 +8,7 @@
 /tmp
 /generated
 /*/generated
-/processor/src/test/resources/input/spritz/internal
+/processor/src/test/resources/input/spritz/DocCategory.java
+/processor/src/test/resources/input/spritz/GwtIncompatible.java
+/processor/src/test/resources/input/spritz/MetaDataSource.java
+/processor/src/test/resources/input/spritz/SourceCategory.java

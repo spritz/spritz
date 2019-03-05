@@ -1,6 +1,6 @@
 
 {
-    "class": "spritz.internal.annotations.DocCategory",
+    "class": "spritz.spritzDocCategory",
     "categories": [
         {
             "id": 0,

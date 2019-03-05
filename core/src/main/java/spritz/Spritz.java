@@ -2,7 +2,6 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import org.realityforge.braincheck.BrainCheckConfig;
-import spritz.internal.annotations.MetaDataSource;
 
 /**
  * Provide access to global configuration settings.

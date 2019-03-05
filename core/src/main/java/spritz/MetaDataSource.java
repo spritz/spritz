@@ -1,4 +1,4 @@
-package spritz.internal.annotations;
+package spritz;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
  * Mark a type as needing to be processed by SpritzProcessor.
  */
 @Target( ElementType.TYPE )
-public @interface MetaDataSource
+@interface MetaDataSource
 {
 }

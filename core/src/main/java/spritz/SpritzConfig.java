@@ -1,7 +1,5 @@
 package spritz;
 
-import spritz.internal.annotations.GwtIncompatible;
-
 /**
  * Location of all compile time configuration settings for framework.
  */

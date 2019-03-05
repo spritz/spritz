@@ -1,4 +1,4 @@
-package spritz.internal.annotations;
+package spritz;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
  * Category where operator resides in documentation.
  */
 @Target( ElementType.METHOD )
-public @interface DocCategory
+@interface DocCategory
 {
   enum Type
   {

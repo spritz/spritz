@@ -1,8 +1,5 @@
 package spritz;
 
-import spritz.internal.annotations.DocCategory;
-import spritz.internal.annotations.MetaDataSource;
-
 @MetaDataSource
 public interface MultipleOperatorsStream<T>
 {

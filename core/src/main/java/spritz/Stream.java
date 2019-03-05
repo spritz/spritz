@@ -13,9 +13,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.internal.annotations.DocCategory;
-import spritz.internal.annotations.GwtIncompatible;
-import spritz.internal.annotations.MetaDataSource;
 import static org.realityforge.braincheck.Guards.*;
 
 @SuppressWarnings( { "WeakerAccess", "unused" } )

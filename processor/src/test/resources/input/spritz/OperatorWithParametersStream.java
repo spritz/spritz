@@ -2,8 +2,6 @@ package spritz;
 
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
-import spritz.internal.annotations.DocCategory;
-import spritz.internal.annotations.MetaDataSource;
 
 @MetaDataSource
 public interface OperatorWithParametersStream<T>
