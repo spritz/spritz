@@ -1,12 +1,15 @@
 package spritz;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.annotation.Nonnull;
 
 /**
  * Category where operator resides in documentation.
  */
+@Retention( RetentionPolicy.SOURCE )
 @Target( ElementType.METHOD )
 @interface DocCategory
 {
