@@ -450,6 +450,27 @@
     }
   },
   {
+    "name": "class removed",
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "class spritz.internal.util.CircularBuffer<T extends java.lang.Object>",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.internal.util.CircularBuffer",
+      "classSimpleName": "CircularBuffer",
+      "elementKind": "class",
+      "exampleUseChainInOldApi": "class spritz.internal.util.CircularBuffer<T extends java.lang.Object> is part of the API",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz.internal.util"
+    }
+  },
+  {
     "name": "method removed",
     "code": "java.method.removed",
     "description": "Method was removed.",
