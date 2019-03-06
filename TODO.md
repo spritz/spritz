@@ -22,9 +22,6 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
-* All event generators (i.e. things that invoke `onSubscription()`, `onNext()`,`onError()` and `onComplete()`) must
-  be invoked in the context of a VPU. We need validation in `ValidatingSubscriber` to ensure that this is the case.
-
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling
