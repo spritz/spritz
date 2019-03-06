@@ -35,7 +35,7 @@ abstract class RoundBasedExecutor
    * {@inheritDoc}
    */
   @Override
-  public void activate()
+  public final void activate()
   {
     context().activate( this::executeTasks );
   }
