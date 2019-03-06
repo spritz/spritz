@@ -2218,6 +2218,39 @@ public abstract class Stream<T>
   }
 
   /**
+   * Publish emitted items and signals to the specified subject.
+   * When downstream stages subscribe they are subscribed to the subject.
+   * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
+   * returned stream.
+   *
+   * @param subject the subject to publish to.
+   * @return the new stream.
+   */
+  @Nonnull
+  public ConnectableStream<T> multicast( @Nonnull final Subject<T> subject )
+  {
+    return multicast( null, subject );
+  }
+
+  /**
+   * Publish emitted items and signals to the specified subject.
+   * When downstream stages subscribe they are subscribed to the subject.
+   * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
+   * returned stream.
+   *
+   * @param name    the name specified by the user.
+   * @param subject the subject to publist to.
+   * @return the new stream.
+   */
+  @Nonnull
+  public ConnectableStream<T> multicast( @Nullable final String name, @Nonnull final Subject<T> subject )
+  {
+    return new ConnectableStream<>( Spritz.areNamesEnabled() ? generateName( name, "multicast" ) : null,
+                                    this,
+                                    () -> subject );
+  }
+
+  /**
    * If upstream emits no items and then completes then emit the {@code defaultValue} before completing this stream.
    *
    * @param defaultValue the public final value to emit if upstream completes and is empty.
