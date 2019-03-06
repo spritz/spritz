@@ -28,38 +28,6 @@ final class VirtualProcessorUnitsHolder
     return null != current ? current : direct();
   }
 
-  /**
-   * Return true if there is a current VPU activated.
-   *
-   * @return true if there is a current VPU activated.
-   */
-  static boolean isVirtualProcessorUnitActivated()
-  {
-    return CurrentVPU.isVirtualProcessorUnitActivated();
-  }
-
-  /**
-   * Set the current VirtualProcessorUnit.
-   * The {@link VirtualProcessorUnit} should call this during an activation.
-   *
-   * @param processorUnit the VirtualProcessorUnit.
-   */
-  static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
-  {
-    CurrentVPU.activate( processorUnit );
-  }
-
-  /**
-   * Clear the current VirtualProcessorUnit.
-   * The {@link VirtualProcessorUnit} should call this after an activation is completed.
-   *
-   * @param processorUnit the VirtualProcessorUnit.
-   */
-  static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
-  {
-    CurrentVPU.deactivate( processorUnit );
-  }
-
   @Nonnull
   static VirtualProcessorUnit macroTask()
   {
@@ -94,6 +62,39 @@ final class VirtualProcessorUnitsHolder
   static VirtualProcessorUnit onIdle()
   {
     return OnIdleVPU.VPU;
+  }
+
+  /**
+   * Return true if there is a current VPU activated.
+   *
+   * @return true if there is a current VPU activated.
+   */
+  synchronized static boolean isVirtualProcessorUnitActivated()
+  {
+    return CurrentVPU.isVirtualProcessorUnitActivated();
+  }
+
+  /**
+   * Activate the VirtualProcessorUnit.
+   * This involves setting current unit, invoking the activation function and clearing the current unit.
+   * It is an error to invoke this method if there is already a current unit.
+   *
+   * @param processorUnit the VirtualProcessorUnit.
+   * @param activationFn  the activation function.
+   * @see VirtualProcessorUnit.Context#activate(VirtualProcessorUnit.ActivationFn)
+   */
+  synchronized static void activate( @Nonnull final VirtualProcessorUnit processorUnit,
+                                     @Nonnull final VirtualProcessorUnit.ActivationFn activationFn )
+  {
+    CurrentVPU.activate( processorUnit );
+    try
+    {
+      activationFn.invoke();
+    }
+    finally
+    {
+      CurrentVPU.deactivate( processorUnit );
+    }
   }
 
   private static final class MacroTaskVPU
@@ -205,7 +206,7 @@ final class VirtualProcessorUnitsHolder
      *
      * @param processorUnit the VirtualProcessorUnit.
      */
-    static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
+    private static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
     {
       Objects.requireNonNull( processorUnit );
       if ( Spritz.shouldCheckInvariants() )
@@ -223,7 +224,7 @@ final class VirtualProcessorUnitsHolder
      *
      * @param processorUnit the VirtualProcessorUnit.
      */
-    static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
+    private static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
     {
       Objects.requireNonNull( processorUnit );
       if ( Spritz.shouldCheckInvariants() )

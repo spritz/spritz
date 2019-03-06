@@ -1,5 +1,6 @@
 package spritz;
 
+import java.util.Objects;
 import javax.annotation.Nonnull;
 
 /**
@@ -71,7 +72,7 @@ public final class Scheduler
    */
   public static void current( @Nonnull final Runnable task )
   {
-    currentVpu().queue( task );
+    currentVpu().getExecutor().queue( task );
   }
 
   /**
@@ -96,7 +97,7 @@ public final class Scheduler
    */
   public static void macroTask( @Nonnull final Runnable task )
   {
-    macroTaskVpu().queue( task );
+    macroTaskVpu().getExecutor().queue( task );
   }
 
   /**
@@ -112,6 +113,19 @@ public final class Scheduler
   }
 
   /**
+   * Run specified task now by queuing on MacroTask VPU and activating VPU.
+   *
+   * @param task the task.
+   */
+  static void runMacroTaskNow( @Nonnull final Runnable task )
+  {
+    final VirtualProcessorUnit vpu = Scheduler.macroTaskVpu();
+    final VirtualProcessorUnit.Executor executor = vpu.getExecutor();
+    executor.queueNext( Objects.requireNonNull( task ), false );
+    executor.activate();
+  }
+
+  /**
    * Queue the task to execute in the next "micro" task.
    * The "micro" tasks are those that the browser executes after the current "macro" or "micro" task.
    * This VPU schedules an activation via a call to {@code Promise.resolve().then( v -> callback() )}.
@@ -120,7 +134,7 @@ public final class Scheduler
    */
   public static void microTask( @Nonnull final Runnable task )
   {
-    microTaskVpu().queue( task );
+    microTaskVpu().getExecutor().queue( task );
   }
 
   /**
@@ -144,7 +158,7 @@ public final class Scheduler
    */
   public static void animationFrame( @Nonnull final Runnable task )
   {
-    animationFrameVpu().queue( task );
+    animationFrameVpu().getExecutor().queue( task );
   }
 
   /**
@@ -168,7 +182,7 @@ public final class Scheduler
    */
   public static void afterFrame( @Nonnull final Runnable task )
   {
-    afterFrameVpu().queue( task );
+    afterFrameVpu().getExecutor().queue( task );
   }
 
   /**
@@ -196,7 +210,7 @@ public final class Scheduler
    */
   public static void onIdle( @Nonnull final Runnable task )
   {
-    onIdleVpu().queue( task );
+    onIdleVpu().getExecutor().queue( task );
   }
 
   /**

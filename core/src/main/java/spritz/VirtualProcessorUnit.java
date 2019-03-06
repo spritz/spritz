@@ -37,7 +37,7 @@ public final class VirtualProcessorUnit
     }
     _name = Spritz.areNamesEnabled() ? Objects.requireNonNull( name ) : null;
     _executor = Objects.requireNonNull( executor );
-    _executor.init( this::activate );
+    _executor.init( activationFn -> VirtualProcessorUnitsHolder.activate( this, activationFn ) );
   }
 
   /**
@@ -59,56 +59,10 @@ public final class VirtualProcessorUnit
     return _name;
   }
 
-  /**
-   * Queue the specified task for execution and enable the VirtualProcessorUnit for activation if necessary.
-   * The task must not be already queued.
-   *
-   * @param task the task.
-   */
-  void queue( @Nonnull final Runnable task )
+  @Nonnull
+  Executor getExecutor()
   {
-    _executor.queue( task );
-  }
-
-  /**
-   * Queue the specified task for execution next and enable the VirtualProcessorUnit for activation if necessary.
-   * The task must not be already queued. The task will be placed at the start of the queue.
-   *
-   * @param task the task.
-   */
-  void queueNext( @Nonnull final Runnable task )
-  {
-    _executor.queueNext( task );
-  }
-
-  /**
-   * Activate the scheduler
-   * This calls into executor that calls back into this class.
-   */
-  void activate()
-  {
-    _executor.activate();
-  }
-
-  /**
-   * Activate the unit.
-   * This involves setting current unit, invoking the activation function and clearing the current unit.
-   * It is an error to invoke this method if there is already a current unit.
-   *
-   * @param activationFn the activation function.
-   * @see Context#activate(ActivationFn)
-   */
-  private synchronized void activate( @Nonnull final ActivationFn activationFn )
-  {
-    VirtualProcessorUnitsHolder.activate( this );
-    try
-    {
-      activationFn.invoke();
-    }
-    finally
-    {
-      VirtualProcessorUnitsHolder.deactivate( this );
-    }
+    return _executor;
   }
 
   /**
