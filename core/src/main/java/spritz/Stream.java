@@ -434,9 +434,10 @@ public abstract class Stream<T>
   }
 
   /**
-   * {@inheritDoc}
+   * Subscribe the subscriber to this stream so that it can receive events.
+   *
+   * @param subscriber the subscriber.
    */
-  @Override
   public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     Scheduler.current( () -> doSubscribe( Spritz.shouldValidateSubscriptions() ?
