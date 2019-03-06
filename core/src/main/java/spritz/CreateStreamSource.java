@@ -21,6 +21,7 @@ final class CreateStreamSource<T>
   {
     final PassThroughSubscription<T, CreateStreamSource<T>> subscription =
       new PassThroughSubscription<>( this, subscriber );
+    subscription.setUpstream( subscription );
     subscriber.onSubscribe( subscription );
     _createFunction.create( new SimpleSubscriberAdapter<>( subscriber, subscription ) );
   }
