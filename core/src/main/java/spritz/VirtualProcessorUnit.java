@@ -107,8 +107,7 @@ public final class VirtualProcessorUnit
     void queue( @Nonnull Runnable task );
 
     /**
-     * Queue task for execution next and enable the executor for activation if necessary.
-     * The task must not be already queued.
+     * Queue task for execution next. The executor is not activated. The task must not be already queued.
      *
      * @param task the task.
      */
