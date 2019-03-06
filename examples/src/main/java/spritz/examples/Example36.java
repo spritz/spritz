@@ -1,12 +1,13 @@
 package spritz.examples;
 
+import spritz.ConnectableStream;
 import spritz.Stream;
 
 public class Example36
 {
   public static void main( String[] args )
   {
-    final Stream<Integer> ticker$ = Stream
+    final ConnectableStream<Integer> ticker$ = Stream
       .periodic( 1000 )
       .takeUntil( v11 -> v11 > 10 ).peek( v12 -> System.out.println( "Tick " + v12 ) )
       .publish();
@@ -21,6 +22,7 @@ public class Example36
       .peek( v1 -> System.out.println( "T3=" + v1 ) )
       .subscribe( new LoggingSubscriber<>() );
 
+    ticker$.connect();
     ExampleUtil.run( ticker$ );
   }
 }
