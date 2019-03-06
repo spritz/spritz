@@ -7,9 +7,6 @@ public class Example21
 {
   public static void main( String[] args )
   {
-    Stream
-      .empty()
-      .errorIfEmpty( NoSuchElementException::new )
-      .subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( Stream.empty().errorIfEmpty( NoSuchElementException::new ) );
   }
 }

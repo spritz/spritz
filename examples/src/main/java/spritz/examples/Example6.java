@@ -6,9 +6,6 @@ public class Example6
 {
   public static void main( String[] args )
   {
-    final Stream<Integer> stream = Stream
-      .periodic( 100 )
-      .takeUntil( v -> v > 5 );
-    ExampleUtil.run( stream );
+    ExampleUtil.run( Stream.periodic( 100 ).takeUntil( v -> v > 5 ) );
   }
 }

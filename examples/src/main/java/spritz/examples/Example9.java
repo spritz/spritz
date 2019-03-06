@@ -7,10 +7,9 @@ public class Example9
 {
   public static void main( String[] args )
   {
-    Stream
-      .fromCollection( Arrays.asList( "A", "B", "C", "D", "E" ) )
-      .append( Stream.of( "F", "G" ), Stream.of( "H", "I" ) )
-      .prepend( Stream.of( "1", "2" ), Stream.of( "3", "4" ) )
-      .subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( Stream
+                       .fromCollection( Arrays.asList( "A", "B", "C", "D", "E" ) )
+                       .append( Stream.of( "F", "G" ), Stream.of( "H", "I" ) )
+                       .prepend( Stream.of( "1", "2" ), Stream.of( "3", "4" ) ) );
   }
 }

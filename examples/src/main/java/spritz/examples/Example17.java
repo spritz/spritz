@@ -6,9 +6,6 @@ public class Example17
 {
   public static void main( String[] args )
   {
-    final Stream<String> stream = Stream
-      .generate( () -> "Tick", 200 )
-      .take( 12 );
-    ExampleUtil.run( stream );
+    ExampleUtil.run( Stream.generate( () -> "Tick", 200 ).take( 12 ) );
   }
 }

@@ -20,7 +20,7 @@ public class Example29
         }
         s.complete();
       } );
-    source.take( 2 ).subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( source.take( 2 ) );
     System.out.println( "Second Materialization of Source" );
     ExampleUtil.run( source );
   }

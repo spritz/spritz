@@ -6,9 +6,9 @@ public class Example22
 {
   public static void main( String[] args )
   {
-    Stream.empty().firstOrError().subscribe( new LoggingSubscriber<>() );
-    Stream.of( 1 ).firstOrError().subscribe( new LoggingSubscriber<>() );
-    Stream.empty().firstOrDefault( 22 ).subscribe( new LoggingSubscriber<>() );
-    Stream.of( 1 ).firstOrDefault( 22 ).subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( Stream.empty().firstOrError() );
+    ExampleUtil.run( Stream.of( 1 ).firstOrError() );
+    ExampleUtil.run( Stream.empty().firstOrDefault( 22 ) );
+    ExampleUtil.run( Stream.of( 1 ).firstOrDefault( 22 ) );
   }
 }

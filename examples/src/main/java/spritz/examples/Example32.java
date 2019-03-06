@@ -6,9 +6,8 @@ public class Example32
 {
   public static void main( String[] args )
   {
-    final Stream<Integer> stream = Stream
-      .<Integer>create( c -> c.error( new Exception( "Bad Stuff" ) ) )
-      .rescue( s -> Stream.of( 1, 2, 3 ) );
-    ExampleUtil.run( stream );
+    ExampleUtil.run( Stream
+                       .<Integer>create( c -> c.error( new Exception( "Bad Stuff" ) ) )
+                       .rescue( s -> Stream.of( 1, 2, 3 ) ) );
   }
 }

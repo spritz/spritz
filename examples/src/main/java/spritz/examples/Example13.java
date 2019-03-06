@@ -6,9 +6,6 @@ public class Example13
 {
   public static void main( String[] args )
   {
-    Stream
-      .empty()
-      .defaultIfEmpty( 23 )
-      .subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( Stream.empty().defaultIfEmpty( 23 ) );
   }
 }

@@ -7,8 +7,6 @@ public class Example14
 {
   public static void main( String[] args )
   {
-    Stream
-      .fail( new IOException() )
-      .subscribe( new LoggingSubscriber<>() );
+    ExampleUtil.run( Stream.fail( new IOException() ) );
   }
 }
