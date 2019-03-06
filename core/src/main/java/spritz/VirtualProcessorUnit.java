@@ -100,14 +100,14 @@ public final class VirtualProcessorUnit
    */
   private synchronized void activate( @Nonnull final ActivationFn activationFn )
   {
-    VirtualProcessorUnitsHolder.CurrentVPU.activate( this );
+    VirtualProcessorUnitsHolder.activate( this );
     try
     {
       activationFn.invoke();
     }
     finally
     {
-      VirtualProcessorUnitsHolder.CurrentVPU.deactivate( this );
+      VirtualProcessorUnitsHolder.deactivate( this );
     }
   }
 

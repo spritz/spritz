@@ -28,6 +28,28 @@ final class VirtualProcessorUnitsHolder
     return null != current ? current : direct();
   }
 
+  /**
+   * Set the current VirtualProcessorUnit.
+   * The {@link VirtualProcessorUnit} should call this during an activation.
+   *
+   * @param processorUnit the VirtualProcessorUnit.
+   */
+  static void activate( @Nonnull final VirtualProcessorUnit processorUnit )
+  {
+    CurrentVPU.activate( processorUnit );
+  }
+
+  /**
+   * Clear the current VirtualProcessorUnit.
+   * The {@link VirtualProcessorUnit} should call this after an activation is completed.
+   *
+   * @param processorUnit the VirtualProcessorUnit.
+   */
+  static void deactivate( @Nonnull final VirtualProcessorUnit processorUnit )
+  {
+    CurrentVPU.deactivate( processorUnit );
+  }
+
   @Nonnull
   static VirtualProcessorUnit macroTask()
   {
@@ -137,7 +159,7 @@ final class VirtualProcessorUnitsHolder
   /**
    * A utility class that contains reference to singleton VPU that is currently active.
    */
-  static final class CurrentVPU
+  private static final class CurrentVPU
   {
     @Nullable
     private static VirtualProcessorUnit c_current = null;
