@@ -40,7 +40,7 @@ abstract class AbstractExecutor
    * {@inheritDoc}
    */
   @Override
-  public void queueNext( @Nonnull final Runnable task )
+  public final void queueNext( @Nonnull final Runnable task )
   {
     ensureNotQueued( task );
     _taskQueue.addFirst( Objects.requireNonNull( task ) );
