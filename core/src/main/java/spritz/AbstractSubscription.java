@@ -8,24 +8,18 @@ import javax.annotation.Nonnull;
  * there is an upstream stage and associated subscription.
  */
 abstract class AbstractSubscription<T, S extends Stream<T>>
-  implements Subscription
+  extends AbstractBaseSubscription<T>
 {
   /**
    * The stream from which this subscription was created.
    */
   @Nonnull
   private final S _stream;
-  /**
-   * The subscriber associated with the subscription.
-   */
-  @Nonnull
-  private final Subscriber<? super T> _subscriber;
-  private boolean _cancelled;
 
   AbstractSubscription( @Nonnull final S stream, @Nonnull final Subscriber<? super T> subscriber )
   {
+    super( subscriber );
     _stream = Objects.requireNonNull( stream );
-    _subscriber = Objects.requireNonNull( subscriber );
   }
 
   @Nonnull
@@ -34,63 +28,9 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
     return _stream;
   }
 
-  /**
-   * Return the subscriber.
-   *
-   * @return the subscriber.
-   */
-  @Nonnull
-  final Subscriber<? super T> getSubscriber()
-  {
-    return _subscriber;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public final void cancel()
+  protected final String getQualifiedName()
   {
-    if ( !_cancelled )
-    {
-      markAsCancelled();
-      doCancel();
-    }
-  }
-
-  final void markAsCancelled()
-  {
-    _cancelled = true;
-  }
-
-  final boolean isCancelled()
-  {
-    return _cancelled;
-  }
-
-  final boolean isNotCancelled()
-  {
-    return !isCancelled();
-  }
-
-  void doCancel()
-  {
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Nonnull
-  @Override
-  public final String toString()
-  {
-    if ( Spritz.areNamesEnabled() )
-    {
-      return "Subscription[" + getStream().getQualifiedName() + "]";
-    }
-    else
-    {
-      return super.toString();
-    }
+    return getStream().getQualifiedName();
   }
 }
