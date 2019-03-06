@@ -2193,7 +2193,7 @@ public abstract class Stream<T>
   }
 
   /**
-   * Publish emitted items and signals to the specified subject.
+   * Publish emitted items and signals to a publish subject.
    *
    * @return the new stream.
    */
@@ -2205,7 +2205,7 @@ public abstract class Stream<T>
   }
 
   /**
-   * Publish emitted items and signals to the specified subject.
+   * Publish emitted items and signals to a publish subject.
    *
    * @param name the name specified by the user.
    * @return the new stream.
