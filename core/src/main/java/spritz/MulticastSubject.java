@@ -59,7 +59,7 @@ public final class MulticastSubject<T>
     if ( Spritz.shouldCheckApiInvariants() )
     {
       apiInvariant( () -> !_downstreamSubscribers.contains( subscriber ),
-                    () -> "Spritz-0023: Invoked MulticastSubject.subscribe(...) when subscriber is " +
+                    () -> "Spritz-0010: Invoked MulticastSubject.subscribe(...) when subscriber is " +
                           "already subscribed." );
     }
     if ( isComplete() )
