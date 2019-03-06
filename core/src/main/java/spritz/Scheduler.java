@@ -122,7 +122,7 @@ public final class Scheduler
   {
     final VirtualProcessorUnit vpu = Scheduler.macroTaskVpu();
     final VirtualProcessorUnit.Executor executor = vpu.getExecutor();
-    executor.queueNext( Objects.requireNonNull( task ), false );
+    executor.queueNext( Objects.requireNonNull( task ) );
     executor.activate();
   }
 
