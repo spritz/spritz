@@ -19,7 +19,11 @@ public class Example29
           s.next( '7' );
         }
         s.complete();
-      } );
+      } )
+      .peekSubscribe( s -> System.out.println( "peekSubscribe => " + s ) )
+      .peek( s -> System.out.println( "peek => " + s ) )
+      .peekError( s -> System.out.println( "peekError => " + s ) )
+      .peekComplete( () -> System.out.println( "peekComplete " ) );
     ExampleUtil.run( source.take( 2 ) );
     System.out.println( "Second Materialization of Source" );
     ExampleUtil.run( source );
