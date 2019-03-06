@@ -26,8 +26,7 @@ final class LimitOperator<T>
   {
     private int _remaining;
 
-    public WorkerSubscription( @Nonnull final LimitOperator<T> stream,
-                               @Nonnull final Subscriber<? super T> subscriber )
+    WorkerSubscription( @Nonnull final LimitOperator<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {
       super( stream, subscriber );
       _remaining = stream._count;
