@@ -29,6 +29,16 @@ final class VirtualProcessorUnitsHolder
   }
 
   /**
+   * Return true if there is a current VPU activated.
+   *
+   * @return true if there is a current VPU activated.
+   */
+  static boolean isVirtualProcessorUnitActivated()
+  {
+    return CurrentVPU.isVirtualProcessorUnitActivated();
+  }
+
+  /**
    * Set the current VirtualProcessorUnit.
    * The {@link VirtualProcessorUnit} should call this during an activation.
    *
@@ -177,6 +187,16 @@ final class VirtualProcessorUnitsHolder
     private static VirtualProcessorUnit current()
     {
       return c_current;
+    }
+
+    /**
+     * Return true if there is a current VPU activated.
+     *
+     * @return true if there is a current VPU activated.
+     */
+    private static boolean isVirtualProcessorUnitActivated()
+    {
+      return null != c_current;
     }
 
     /**

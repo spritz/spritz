@@ -35,6 +35,8 @@ final class ValidatingSubscriber<T>
       invariant( () -> State.CREATED == _state,
                  () -> "Spritz-0001: Subscriber.onSubscribe(...) called and expected state " +
                        "to be CREATED but is " + _state );
+      invariant( VirtualProcessorUnitsHolder::isVirtualProcessorUnitActivated,
+                 () -> "Spritz-0011: Subscriber.onSubscribe(...) invoked when no VPU was active." );
       Objects.requireNonNull( subscription );
     }
     try
@@ -59,6 +61,8 @@ final class ValidatingSubscriber<T>
   {
     if ( Spritz.shouldCheckInvariants() )
     {
+      invariant( VirtualProcessorUnitsHolder::isVirtualProcessorUnitActivated,
+                 () -> "Spritz-0012: Subscriber.onNext(...) invoked when no VPU was active." );
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0005: Subscriber.onNext(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
@@ -85,6 +89,8 @@ final class ValidatingSubscriber<T>
   {
     if ( Spritz.shouldCheckInvariants() )
     {
+      invariant( VirtualProcessorUnitsHolder::isVirtualProcessorUnitActivated,
+                 () -> "Spritz-0018: Subscriber.onError(...) invoked when no VPU was active." );
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0006: Subscriber.onError(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
@@ -111,6 +117,8 @@ final class ValidatingSubscriber<T>
   {
     if ( Spritz.shouldCheckInvariants() )
     {
+      invariant( VirtualProcessorUnitsHolder::isVirtualProcessorUnitActivated,
+                 () -> "Spritz-0019: Subscriber.onComplete() invoked when no VPU was active." );
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
                  () -> "Spritz-0008: Subscriber.onComplete(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
@@ -156,6 +164,8 @@ final class ValidatingSubscriber<T>
     {
       if ( Spritz.shouldCheckInvariants() )
       {
+        invariant( VirtualProcessorUnitsHolder::isVirtualProcessorUnitActivated,
+                   () -> "Spritz-0029: Subscription.cancel() invoked when no VPU was active." );
         invariant( () -> !_cancelled,
                    () -> "Spritz-0013: Invoking Subscription.cancel(...) for subscriber '" + _subscriber +
                          "' but the subscription is already cancelled." );
