@@ -18,7 +18,6 @@ import static org.realityforge.braincheck.Guards.*;
 @SuppressWarnings( { "WeakerAccess", "unused" } )
 @MetaDataSource
 public abstract class Stream<T>
-  implements Publisher<T>
 {
   /**
    * The maximum concurrency of {@link #mergeMap(Function)} operator that does not specify concurrency.
