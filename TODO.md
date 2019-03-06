@@ -101,7 +101,6 @@ complete as there is too much un-said.
     However we don't have a good way to describe distinguish between each step or stage and the complete
     stream definition nor the stream executable data (which is really a chain of subscriptions). `Stage`
     seems like a useful term but the codebase has no consistent terminology at this point.
-  - `skip` should be used in preference to `drop` and pairs with `take`
 
 * Scheduler should use a linked list to contain tasks or some other similar mechanism as there is likely
   to be many tasks that are cancelled in flight and need to have resources releases to avoid being unnecessary
