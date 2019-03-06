@@ -49,7 +49,7 @@ public final class MulticastSubject<T>
    * {@inheritDoc}
    */
   @Override
-  public synchronized void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  public void subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     Scheduler.current( () -> doSubscribe( subscriber ) );
   }
