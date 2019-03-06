@@ -54,7 +54,7 @@ abstract class RoundBasedExecutor
   /**
    * Run tasks until complete or runaway tasks detected.
    */
-  void executeTasks()
+  private void executeTasks()
   {
     while ( true )
     {
