@@ -21,7 +21,7 @@ abstract class RoundBasedExecutor
    * The maximum number of iterations that can be triggered in sequence without triggering an error. Set this
    * to 0 to disable check, otherwise trigger
    */
-  private final int _maxRounds;
+  private final int _maxRounds = DEFAULT_MAX_ROUNDS;
   /**
    * The current round.
    */
@@ -30,17 +30,6 @@ abstract class RoundBasedExecutor
    * The number of tasks left in the current round.
    */
   private int _remainingTasksInCurrentRound;
-
-  RoundBasedExecutor()
-  {
-    this( DEFAULT_MAX_ROUNDS );
-  }
-
-  private RoundBasedExecutor( final int maxRounds )
-  {
-    assert maxRounds > 0;
-    _maxRounds = maxRounds;
-  }
 
   /**
    * {@inheritDoc}
