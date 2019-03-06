@@ -25,6 +25,7 @@ final class PeriodicStreamSource
 
   private static final class WorkerSubscription
     extends AbstractSubscription<Integer, PeriodicStreamSource>
+    implements Runnable
   {
     private int _counter;
     @Nullable
@@ -38,7 +39,13 @@ final class PeriodicStreamSource
 
     synchronized void startTimer()
     {
-      _task = Scheduler.scheduleAtFixedRate( this::pushItem, getStream()._period );
+      _task = Scheduler.scheduleAtFixedRate( this, getStream()._period );
+    }
+
+    @Override
+    public void run()
+    {
+      Scheduler.runMacroTaskNow( this::pushItem );
     }
 
     synchronized void pushItem()

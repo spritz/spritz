@@ -70,7 +70,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   @Override
   public final void run()
   {
-    executeTask();
+    Scheduler.runMacroTaskNow( this::executeTask );
   }
 
   final boolean hasTask()

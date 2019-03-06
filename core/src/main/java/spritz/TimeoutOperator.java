@@ -62,7 +62,7 @@ final class TimeoutOperator<T>
     @Override
     public void run()
     {
-      super.onError( new TimeoutException() );
+      Scheduler.runMacroTaskNow( () -> super.onError( new TimeoutException() ) );
     }
 
     private void recordLastTime()
