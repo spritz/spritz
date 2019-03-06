@@ -8,6 +8,6 @@ public class Example32
   {
     ExampleUtil.run( Stream
                        .<Integer>create( c -> c.error( new Exception( "Bad Stuff" ) ) )
-                       .rescue( s -> Stream.of( 1, 2, 3 ) ) );
+                       .rescue( error -> Stream.of( 1, 2, 3 ) ) );
   }
 }
