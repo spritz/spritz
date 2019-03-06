@@ -53,7 +53,7 @@ final class VirtualProcessorUnitsHolder
   }
 
   @Nonnull
-  private static VirtualProcessorUnit direct()
+  static VirtualProcessorUnit direct()
   {
     return DirectVPU.VPU;
   }
