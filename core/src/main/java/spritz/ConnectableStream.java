@@ -110,7 +110,6 @@ public final class ConnectableStream<T>
                    () -> "Spritz-0035: ConnectableStream.getSubject() on stream '" + getName() +
                          "' attempted to create subject but factory returned a terminated subject." );
       }
-
     }
     return _subject;
   }
