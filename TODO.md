@@ -22,6 +22,8 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
+* Rename `AbstractSubscription` to `AbstractStreamSubscription` and then rename `AbstractBaseSubscription` to `AbstractSubscription`
+
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling
@@ -108,6 +110,8 @@ complete as there is too much un-said.
 
 * Figure out how to implement `Stream.ofType(...)` in GWT/J2CL. It may just be that we have to attempt to
   cast and then catch failure but this may not work if we strip cast checks?
+
+* State fields in AbstractSubject could probably be collapsed into a bit-field.
 
 Below are the old TODO notes:
 
