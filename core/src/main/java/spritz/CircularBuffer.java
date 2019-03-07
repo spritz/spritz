@@ -86,7 +86,7 @@ final class CircularBuffer<T>
     final int currentSize = size();
     if ( currentSize + 1 > _elements.length )
     {
-      final int newSize = ( ( _elements.length - 1 ) * 2 ) + 1;
+      final int newSize = ( ( Math.max( _elements.length - 1, 1 ) ) * 2 ) + 1;
       resizeElements( newSize, currentSize );
     }
   }

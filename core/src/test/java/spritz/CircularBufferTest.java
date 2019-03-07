@@ -204,4 +204,23 @@ public class CircularBufferTest
     assertEquals( buffer.peek(), "G" );
     assertEquals( buffer.pop(), "G" );
   }
+
+  @Test
+  public void startSmall()
+  {
+    final CircularBuffer<String> buffer = new CircularBuffer<>( 1 );
+
+    buffer.add( "A" );
+    assertEquals( buffer.getCapacity(), 1 );
+    buffer.add( "B" );
+    assertEquals( buffer.getCapacity(), 3 );
+    buffer.add( "C" );
+    assertEquals( buffer.getCapacity(), 3 );
+    buffer.add( "D" );
+    assertEquals( buffer.getCapacity(), 5 );
+    buffer.add( "E" );
+    assertEquals( buffer.getCapacity(), 5 );
+    buffer.add( "F" );
+    assertEquals( buffer.getCapacity(), 9 );
+  }
 }
