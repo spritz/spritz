@@ -26,7 +26,7 @@ public final class ConnectableStream<T>
   }
 
   /**
-   * Ensure that {@link #connect()} is when there is a first downstream subscriber and {@link #disconnect()} when the last downstream subscriber is removed.
+   * a stream that ensures that as long as there is at least one subscriber to this stream, then this stream will be subscribed to upstream.
    *
    * @return the new stream.
    */
@@ -38,7 +38,7 @@ public final class ConnectableStream<T>
   }
 
   /**
-   * Ensure that {@link #connect()} is when there is a first downstream subscriber and {@link #disconnect()} when the last downstream subscriber is removed.
+   * Return a stream that ensures that as long as there is at least one subscriber to this stream, then this stream will be subscribed to upstream.
    *
    * @param name the name specified by the user.
    * @return the new stream.
