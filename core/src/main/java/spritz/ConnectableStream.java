@@ -24,6 +24,31 @@ public final class ConnectableStream<T>
     _subject.subscribe( subscriber );
   }
 
+  /**
+   * Ensure that {@link #connect()} is when there is a first downstream subscriber and {@link #disconnect()} when the last downstream subscriber is removed.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> refCount()
+  {
+    return refCount( null );
+  }
+
+  /**
+   * Ensure that {@link #connect()} is when there is a first downstream subscriber and {@link #disconnect()} when the last downstream subscriber is removed.
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> refCount( @Nullable final String name )
+  {
+    return compose( s -> new RefCountOperator<>( name, (ConnectableStream<T>) s ) );
+  }
+
   public void connect()
   {
     if ( Spritz.shouldCheckInvariants() )
@@ -34,5 +59,23 @@ public final class ConnectableStream<T>
       _connectCalled = true;
     }
     getUpstream().subscribe( _subject.newUpstreamSubscriber() );
+  }
+
+  public void disconnect()
+  {
+    if ( Spritz.shouldCheckInvariants() )
+    {
+      apiInvariant( () -> _connectCalled,
+                    () -> "Spritz-1033: Subject.disconnect(...) invoked on subject '" + getName() + "' but " +
+                          "subject is not connected." );
+      _connectCalled = false;
+    }
+    _subject.terminateUpstreamSubscribers();
+  }
+
+  @Nonnull
+  Subject<T> getSubject()
+  {
+    return _subject;
   }
 }

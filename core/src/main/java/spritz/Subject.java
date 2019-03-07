@@ -103,7 +103,7 @@ class Subject<T>
     terminateUpstreamSubscribers();
   }
 
-  private void terminateUpstreamSubscribers()
+  final void terminateUpstreamSubscribers()
   {
     for ( final ForwardToSubjectSubscriber<T> subscriber : new ArrayList<>( _upstreamSubscribers ) )
     {
@@ -133,6 +133,11 @@ class Subject<T>
   public boolean isDone()
   {
     return _complete || null != _error;
+  }
+
+  final boolean hasUpstreamSubscribers()
+  {
+    return !_upstreamSubscribers.isEmpty();
   }
 
   void doNext( @Nonnull final T item )
