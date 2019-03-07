@@ -6,7 +6,6 @@ import org.realityforge.braincheck.BrainCheckConfig;
 /**
  * Provide access to global configuration settings.
  */
-@MetaDataSource
 public final class Spritz
 {
   private Spritz()
