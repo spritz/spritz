@@ -2260,6 +2260,76 @@ public abstract class Stream<T>
   }
 
   /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream buffers and replays events to new {@link Subscriber}s and then emits
+   * events to the new subscriber as they are received. The buffering is bound by size and age.
+   *
+   * @param maxSize the maximum number of items to replay.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishReplayWithMaxSize( final int maxSize )
+  {
+    return publishReplay( maxSize, ReplaySubject.DEFAULT_VALUE );
+  }
+
+  /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream buffers and replays events to new {@link Subscriber}s and then emits
+   * events to the new subscriber as they are received. The buffering is bound by age.
+   *
+   * @param maxAge the oldest age of items to replay.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishReplayWithMaxAge( final int maxAge )
+  {
+    return publishReplay( ReplaySubject.DEFAULT_VALUE, maxAge );
+  }
+
+  /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream buffers and replays events to new {@link Subscriber}s and then emits
+   * events to the new subscriber as they are received. The buffering is bound by size and age.
+   *
+   * @param maxSize the maximum number of items to replay.
+   * @param maxAge  the oldest age of items to replay.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishReplay( final int maxSize, final int maxAge )
+  {
+    return publishReplay( null, maxSize, maxAge );
+  }
+
+  /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream buffers and replays events to new {@link Subscriber}s and then emits
+   * events to the new subscriber as they are received. The buffering is bound by size and age.
+   *
+   * @param name    the name specified by the user.
+   * @param maxSize the maximum number of items to replay.
+   * @param maxAge  the oldest age of items to replay.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishReplay( @Nullable final String name, final int maxSize, final int maxAge )
+  {
+    final String actualName =
+      Spritz.areNamesEnabled() ?
+      generateName( name,
+                    "publishReplay",
+                    ( ReplaySubject.DEFAULT_VALUE == maxSize ? "unbound" : String.valueOf( maxSize ) ) + "," +
+                    ( ReplaySubject.DEFAULT_VALUE == maxAge ? "unbound" : String.valueOf( maxAge ) ) ) :
+      null;
+    return multicast( new ReplaySubject<>( actualName, maxSize, maxAge ) );
+  }
+
+  /**
    * Publish emitted items and signals to the specified subject.
    * When downstream stages subscribe they are subscribed to the subject.
    * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
