@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import static org.realityforge.braincheck.Guards.*;
 
+@MetaDataSource
 public final class ConnectableStream<T>
   extends AbstractStream<T, T>
 {
