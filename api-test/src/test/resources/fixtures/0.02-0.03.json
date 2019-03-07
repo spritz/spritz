@@ -4006,6 +4006,58 @@
     }
   },
   {
+    "name": "visibility reduced",
+    "code": "java.method.visibilityReduced",
+    "description": "visibility reduced",
+    "newElement": "method void spritz.Stream<T>::<init>(java.lang.String)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": "method void spritz.Stream<T>::<init>(java.lang.String)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "constructor",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "<init>",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "newVisibility": "package",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "oldVisibility": "protected",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "visibility reduced",
+    "code": "java.method.visibilityReduced",
+    "description": "visibility reduced",
+    "newElement": "method void spritz.Stream<T>::doSubscribe(spritz.Subscriber<? super T>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": "method void spritz.Stream<T>::doSubscribe(spritz.Subscriber<? super T>)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "doSubscribe",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "newVisibility": "package",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "oldVisibility": "protected",
+      "package": "spritz"
+    }
+  },
+  {
     "name": "removed annotation",
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
@@ -4132,28 +4184,6 @@
       "newModifiers": "public final",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
       "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void spritz.Subject<T>::doSubscribe(spritz.Subscriber<? super T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "doSubscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
       "package": "spritz"
     }
   },

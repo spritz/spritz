@@ -10,7 +10,7 @@ final class MacroTaskExecutor
    * {@inheritDoc}
    */
   @Override
-  protected final void scheduleForActivation()
+  final void scheduleForActivation()
   {
     Scheduler.schedule( this::activate, 0 );
   }

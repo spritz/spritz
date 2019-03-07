@@ -11,14 +11,16 @@ final class PredicateFilterStream<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  PredicateFilterStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  PredicateFilterStream( @Nullable final String name,
+                         @Nonnull final Stream<T> upstream,
+                         @Nonnull final Predicate<? super T> predicate )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "filter" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -36,7 +38,7 @@ final class PredicateFilterStream<T>
      * {@inheritDoc}
      */
     @Override
-    protected boolean shouldIncludeItem( @Nonnull final T item )
+    boolean shouldIncludeItem( @Nonnull final T item )
     {
       return getStream()._predicate.test( item );
     }

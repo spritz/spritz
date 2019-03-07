@@ -22,7 +22,7 @@ public class Subject<T>
     super( name );
   }
 
-  protected final void doSubscribe( @Nonnull Subscriber<? super T> subscriber )
+  final void doSubscribe( @Nonnull Subscriber<? super T> subscriber )
   {
     if ( Spritz.shouldCheckApiInvariants() )
     {

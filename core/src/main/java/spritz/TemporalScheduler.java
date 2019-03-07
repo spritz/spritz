@@ -93,7 +93,7 @@ final class TemporalScheduler
     @GwtIncompatible
     @Nonnull
     @Override
-    protected Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
+    Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
     {
       final ScheduledFuture<?> future = _executorService.schedule( task, delay, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -102,7 +102,7 @@ final class TemporalScheduler
     @Nonnull
     @Override
     @GwtIncompatible
-    protected Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final ScheduledFuture<?> future = _executorService.scheduleAtFixedRate( task, 0, period, TimeUnit.MILLISECONDS );
       return () -> future.cancel( true );
@@ -139,7 +139,7 @@ final class TemporalScheduler
     }
 
     @Nonnull
-    protected Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
+    Cancelable doSchedule( @Nonnull final Runnable task, final int delay )
     {
       final double timeoutId = DomGlobal.setTimeout( v -> task.run(), delay );
       return () -> DomGlobal.clearTimeout( timeoutId );
@@ -158,7 +158,7 @@ final class TemporalScheduler
     }
 
     @Nonnull
-    protected Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
+    Cancelable doScheduleAtFixedRate( @Nonnull final Runnable task, final int period )
     {
       final double timeoutId = DomGlobal.setInterval( v -> task.run(), period );
       return () -> DomGlobal.clearInterval( timeoutId );

@@ -24,7 +24,7 @@ final class SampleOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -47,7 +47,7 @@ final class SampleOperator<T>
     }
 
     @Override
-    protected void doOnNext( final int now, @Nonnull final T item )
+    void doOnNext( final int now, @Nonnull final T item )
     {
       if ( now > _nextSampleTime )
       {

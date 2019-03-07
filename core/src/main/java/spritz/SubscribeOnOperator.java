@@ -20,8 +20,9 @@ final class SubscribeOnOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _virtualProcessorUnit.getExecutor().queue( () -> getUpstream().subscribe( new PassThroughSubscription<>( this, subscriber ) ) );
+    _virtualProcessorUnit.getExecutor()
+      .queue( () -> getUpstream().subscribe( new PassThroughSubscription<>( this, subscriber ) ) );
   }
 }

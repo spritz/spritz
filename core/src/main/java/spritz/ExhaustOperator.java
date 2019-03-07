@@ -12,7 +12,7 @@ final class ExhaustOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> tWorkerSubscription = new WorkerSubscription<>( this, subscriber );
     getUpstream().subscribe( tWorkerSubscription );

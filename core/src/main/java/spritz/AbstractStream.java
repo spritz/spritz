@@ -28,7 +28,7 @@ abstract class AbstractStream<UpstreamT, DownstreamT>
    * @return the upstream stream.
    */
   @Nonnull
-  protected final Stream<UpstreamT> getUpstream()
+  final Stream<UpstreamT> getUpstream()
   {
     return _upstream;
   }

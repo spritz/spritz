@@ -100,7 +100,7 @@ public final class Spritz
   /**
    * Report an uncaught error in stream.
    *
-   * @param error  the error.
+   * @param error the error.
    */
   public static void reportUncaughtError( @Nonnull final Throwable error )
   {

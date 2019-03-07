@@ -18,7 +18,7 @@ final class DebounceOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -32,7 +32,7 @@ final class DebounceOperator<T>
     }
 
     @Override
-    protected void doOnNext( final int now, @Nonnull final T item )
+    void doOnNext( final int now, @Nonnull final T item )
     {
       cancelPendingTask();
       scheduleTaskForItem( item, getStream()._timeoutForItemFn.getTimeout( item ) );

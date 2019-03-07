@@ -12,7 +12,7 @@ final class NeverStreamSource<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     subscriber.onSubscribe( new PassThroughSubscription<>( this, subscriber ) );
   }

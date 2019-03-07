@@ -19,7 +19,7 @@ final class FilterSuccessiveOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -40,7 +40,7 @@ final class FilterSuccessiveOperator<T>
      * {@inheritDoc}
      */
     @Override
-    protected boolean shouldIncludeItem( @Nonnull final T item )
+    boolean shouldIncludeItem( @Nonnull final T item )
     {
       if ( getStream()._predicate.filter( _lastItem, item ) )
       {

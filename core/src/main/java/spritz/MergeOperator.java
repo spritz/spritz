@@ -21,7 +21,7 @@ final class MergeOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }

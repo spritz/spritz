@@ -12,7 +12,7 @@ final class AnimationFrameExecutor
    * {@inheritDoc}
    */
   @Override
-  protected final void scheduleForActivation()
+  final void scheduleForActivation()
   {
     DomGlobal.requestAnimationFrame( v -> activate() );
   }

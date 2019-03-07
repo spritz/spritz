@@ -13,7 +13,7 @@ final class DistinctOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -33,7 +33,7 @@ final class DistinctOperator<T>
      * {@inheritDoc}
      */
     @Override
-    protected boolean shouldIncludeItem( @Nonnull final T item )
+    boolean shouldIncludeItem( @Nonnull final T item )
     {
       if ( _emitted.contains( item ) )
       {

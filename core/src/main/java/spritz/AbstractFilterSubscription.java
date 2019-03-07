@@ -48,5 +48,5 @@ abstract class AbstractFilterSubscription<T, StreamT extends Stream<T>>
    *
    * @return true if the specified item should be included in the subscription.
    */
-  protected abstract boolean shouldIncludeItem( @Nonnull T item );
+  abstract boolean shouldIncludeItem( @Nonnull T item );
 }

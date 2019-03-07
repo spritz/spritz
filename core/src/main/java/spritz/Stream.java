@@ -32,7 +32,7 @@ public abstract class Stream<T>
   @Nullable
   private final String _name;
 
-  protected Stream( @Nullable final String name )
+  Stream( @Nullable final String name )
   {
     if ( Spritz.shouldCheckApiInvariants() )
     {
@@ -445,7 +445,7 @@ public abstract class Stream<T>
                                           subscriber ) );
   }
 
-  protected abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );
+  abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );
 
   /**
    * Return a stream containing all the items from this stream that invokes the action

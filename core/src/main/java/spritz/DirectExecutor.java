@@ -17,7 +17,7 @@ final class DirectExecutor
    * {@inheritDoc}
    */
   @Override
-  protected final void scheduleForActivation()
+  final void scheduleForActivation()
   {
     if ( VirtualProcessorUnitsHolder.isVirtualProcessorUnitActivated() )
     {

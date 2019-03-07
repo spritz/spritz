@@ -19,7 +19,7 @@ public final class ConnectableStream<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     _subject.subscribe( subscriber );
   }

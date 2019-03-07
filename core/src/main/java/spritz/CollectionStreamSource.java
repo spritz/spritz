@@ -17,7 +17,7 @@ final class CollectionStreamSource<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );

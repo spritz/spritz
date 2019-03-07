@@ -12,7 +12,7 @@ final class OnIdleExecutor
    * {@inheritDoc}
    */
   @Override
-  protected final void scheduleForActivation()
+  final void scheduleForActivation()
   {
     DomGlobal.requestIdleCallback( deadline -> context().activate( () -> executeTasks( () -> (int) deadline.timeRemaining() ) ) );
   }

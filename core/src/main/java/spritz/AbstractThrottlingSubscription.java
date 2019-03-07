@@ -39,7 +39,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
     doOnNext( now, item );
   }
 
-  protected abstract void doOnNext( final int now, @Nonnull final T item );
+  abstract void doOnNext( final int now, @Nonnull final T item );
 
   @Override
   public final void onError( @Nonnull final Throwable error )

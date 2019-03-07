@@ -16,7 +16,7 @@ final class LimitOperator<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -36,7 +36,7 @@ final class LimitOperator<T>
      * {@inheritDoc}
      */
     @Override
-    protected boolean shouldIncludeItem( @Nonnull final T item )
+    boolean shouldIncludeItem( @Nonnull final T item )
     {
       if ( _remaining > 1 )
       {

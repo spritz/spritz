@@ -9,14 +9,16 @@ final class ThrottleOperator<T>
   @Nonnull
   private final TimeoutForItemFn<T> _timeoutForItemFn;
 
-  ThrottleOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
+  ThrottleOperator( @Nullable final String name,
+                    @Nonnull final Stream<T> upstream,
+                    @Nonnull final TimeoutForItemFn<T> timeoutForItemFn )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "throttle" ) : null, upstream );
     _timeoutForItemFn = timeoutForItemFn;
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -30,7 +32,7 @@ final class ThrottleOperator<T>
     }
 
     @Override
-    protected final void doOnNext( final int now, @Nonnull final T item )
+    final void doOnNext( final int now, @Nonnull final T item )
     {
       if ( !hasNextItem() )
       {

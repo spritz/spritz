@@ -12,7 +12,7 @@ final class MicroTaskExecutor
    * {@inheritDoc}
    */
   @Override
-  protected final void scheduleForActivation()
+  final void scheduleForActivation()
   {
     new Promise<>( null ).then( v -> {
       activate();

@@ -29,7 +29,7 @@ abstract class AbstractSubscription<T, S extends Stream<T>>
   }
 
   @Override
-  protected final String getQualifiedName()
+  final String getQualifiedName()
   {
     return getStream().getQualifiedName();
   }

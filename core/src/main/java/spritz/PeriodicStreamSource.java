@@ -16,7 +16,7 @@ final class PeriodicStreamSource
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
@@ -63,7 +63,7 @@ final class PeriodicStreamSource
     }
 
     @Override
-    protected synchronized void doCancel()
+    synchronized void doCancel()
     {
       if ( null != _task )
       {

@@ -11,7 +11,7 @@ public interface UncaughtErrorHandler
   /**
    * Callback invoked when an unexpected error occurs.
    *
-   * @param error  the exception.
+   * @param error the exception.
    */
   void onUncaughtError( @Nonnull Throwable error );
 }

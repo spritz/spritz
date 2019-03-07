@@ -17,7 +17,7 @@ final class CreateStreamSource<T>
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final PassThroughSubscription<T, CreateStreamSource<T>> subscription =
       new PassThroughSubscription<>( this, subscriber );

@@ -95,5 +95,5 @@ abstract class AbstractExecutor
    * Mark executor as ready for activation.
    * This typically means scheduling Executor to call activate on the correct VPU.
    */
-  protected abstract void scheduleForActivation();
+  abstract void scheduleForActivation();
 }

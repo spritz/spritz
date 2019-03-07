@@ -11,14 +11,16 @@ final class TakeWhileOperator<T>
   @Nonnull
   private final Predicate<? super T> _predicate;
 
-  TakeWhileOperator( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Predicate<? super T> predicate )
+  TakeWhileOperator( @Nullable final String name,
+                     @Nonnull final Stream<T> upstream,
+                     @Nonnull final Predicate<? super T> predicate )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "takeWhile" ) : null, upstream );
     _predicate = Objects.requireNonNull( predicate );
   }
 
   @Override
-  protected void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
   }
@@ -35,7 +37,7 @@ final class TakeWhileOperator<T>
      * {@inheritDoc}
      */
     @Override
-    protected boolean shouldIncludeItem( @Nonnull final T item )
+    boolean shouldIncludeItem( @Nonnull final T item )
     {
       if ( getStream()._predicate.test( item ) )
       {

@@ -37,7 +37,7 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
    *
    * @param upstream the upstream subscription.
    */
-  protected final void setUpstream( @Nonnull final Subscription upstream )
+  final void setUpstream( @Nonnull final Subscription upstream )
   {
     _upstream = Objects.requireNonNull( upstream );
   }
@@ -51,7 +51,7 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
    * @return the subscription used to interact with the upstream stage.
    */
   @Nonnull
-  protected final Subscription getUpstream()
+  final Subscription getUpstream()
   {
     if ( Spritz.shouldCheckInvariants() )
     {
