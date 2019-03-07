@@ -106,23 +106,32 @@ final class CircularBuffer<T>
   }
 
   @Nullable
+  T peek()
+  {
+    return isEmpty() ? null : _elements[ _head ];
+  }
+
+  @Nullable
   T pop()
   {
     if ( isEmpty() )
     {
       return null;
     }
-    final T result = _elements[ _head ];
-    _elements[ _head ] = null;
-
-    _head++;
-    if ( _head >= _elements.length )
+    else
     {
-      _head = 0;
-      _isWrappedBuffer = false;
-    }
+      final T result = _elements[ _head ];
+      _elements[ _head ] = null;
 
-    return result;
+      _head++;
+      if ( _head >= _elements.length )
+      {
+        _head = 0;
+        _isWrappedBuffer = false;
+      }
+
+      return result;
+    }
   }
 
   boolean isEmpty()

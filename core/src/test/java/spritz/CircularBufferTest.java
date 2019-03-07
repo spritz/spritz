@@ -47,6 +47,7 @@ public class CircularBufferTest
     assertNull( buffer.get( 3 ) );
     assertNull( buffer.get( 4 ) );
 
+    assertEquals( buffer.peek(), "A" );
     assertEquals( buffer.pop(), "A" );
 
     assertEquals( buffer.size(), 2 );
@@ -78,13 +79,21 @@ public class CircularBufferTest
     assertEquals( buffer.get( 4 ), "F" );
     assertEquals( buffer.get( 5 ), "G" );
 
+    assertEquals( buffer.peek(), "B" );
     assertEquals( buffer.pop(), "B" );
+    assertEquals( buffer.peek(), "C" );
     assertEquals( buffer.pop(), "C" );
+    assertEquals( buffer.peek(), "D" );
     assertEquals( buffer.pop(), "D" );
+    assertEquals( buffer.peek(), "E" );
     assertEquals( buffer.pop(), "E" );
+    assertEquals( buffer.peek(), "F" );
     assertEquals( buffer.pop(), "F" );
+    assertEquals( buffer.peek(), "G" );
     assertEquals( buffer.pop(), "G" );
+    assertNull( buffer.peek() );
     assertNull( buffer.pop() );
+    assertNull( buffer.peek() );
   }
 
   @Test
@@ -108,7 +117,9 @@ public class CircularBufferTest
     assertEquals( buffer.get( 1 ), "B" );
     assertEquals( buffer.get( 2 ), "C" );
 
+    assertEquals( buffer.peek(), "A" );
     assertEquals( buffer.pop(), "A" );
+    assertEquals( buffer.peek(), "B" );
     assertEquals( buffer.pop(), "B" );
 
     assertEquals( buffer.size(), 1 );
@@ -121,8 +132,11 @@ public class CircularBufferTest
 
     buffer.add( "E" );
 
+    assertEquals( buffer.peek(), "C" );
     assertEquals( buffer.pop(), "C" );
+    assertEquals( buffer.peek(), "D" );
     assertEquals( buffer.pop(), "D" );
+    assertEquals( buffer.peek(), "E" );
     assertEquals( buffer.pop(), "E" );
   }
 
@@ -136,7 +150,9 @@ public class CircularBufferTest
     buffer.add( "B" );
     buffer.add( "C" );
 
+    assertEquals( buffer.peek(), "A" );
     assertEquals( buffer.pop(), "A" );
+    assertEquals( buffer.peek(), "B" );
     assertEquals( buffer.pop(), "B" );
 
     assertEquals( buffer.size(), 1 );
@@ -146,8 +162,11 @@ public class CircularBufferTest
 
     buffer.truncate( 2 );
 
+    assertEquals( buffer.peek(), "C" );
     assertEquals( buffer.pop(), "C" );
+    assertEquals( buffer.peek(), "D" );
     assertEquals( buffer.pop(), "D" );
+    assertNull( buffer.peek() );
     assertNull( buffer.pop() );
   }
 
@@ -165,17 +184,24 @@ public class CircularBufferTest
 
     assertEquals( buffer.size(), 4 );
 
+    assertEquals( buffer.peek(), "D" );
     assertEquals( buffer.pop(), "D" );
+    assertEquals( buffer.peek(), "A" );
     assertEquals( buffer.pop(), "A" );
+    assertEquals( buffer.peek(), "B" );
     assertEquals( buffer.pop(), "B" );
+    assertEquals( buffer.peek(), "C" );
     assertEquals( buffer.pop(), "C" );
 
     buffer.addFirst( "E" );
     buffer.addFirst( "F" );
     buffer.add( "G" );
 
+    assertEquals( buffer.peek(), "F" );
     assertEquals( buffer.pop(), "F" );
+    assertEquals( buffer.peek(), "E" );
     assertEquals( buffer.pop(), "E" );
+    assertEquals( buffer.peek(), "G" );
     assertEquals( buffer.pop(), "G" );
   }
 }
