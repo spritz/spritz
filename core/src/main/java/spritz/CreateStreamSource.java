@@ -27,7 +27,7 @@ final class CreateStreamSource<T>
   }
 
   private static class SimpleSubscriberAdapter<T>
-    implements SourceCreator.Observer<T>
+    implements EventEmitter<T>
   {
     @Nonnull
     private final Subscriber<? super T> _subscriber;

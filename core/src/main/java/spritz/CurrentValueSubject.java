@@ -25,7 +25,7 @@ final class CurrentValueSubject<T>
   void completeSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     super.completeSubscribe( subscriber );
-    if ( !isTerminated() && isSubscriber( subscriber ) )
+    if ( !isDone() && isSubscriber( subscriber ) )
     {
       subscriber.onNext( _currentValue );
     }

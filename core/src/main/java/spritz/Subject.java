@@ -144,7 +144,11 @@ public class Subject<T>
     return _complete;
   }
 
-  final boolean isTerminated()
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isDone()
   {
     return _complete || null != _error;
   }

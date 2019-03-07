@@ -1254,6 +1254,51 @@
     }
   },
   {
+    "name": "method added to interface",
+    "code": "java.method.addedToInterface",
+    "description": "Method was added to an interface.",
+    "newElement": "method boolean spritz.EventEmitter<T>::isDone()",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "NON_BREAKING",
+      "SEMANTIC": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.EventEmitter",
+      "classSimpleName": "EventEmitter",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "interface spritz.EventEmitter<T extends java.lang.Object> is part of the API",
+      "methodName": "isDone",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method added",
+    "code": "java.method.added",
+    "description": "Method was added.",
+    "newElement": "method boolean spritz.Subject<T>::isDone()",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Subject",
+      "classSimpleName": "Subject",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
+      "methodName": "isDone",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
     "name": "method added",
     "code": "java.method.added",
     "description": "Method was added.",
@@ -4470,6 +4515,27 @@
     }
   },
   {
+    "name": "class removed",
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "interface spritz.SourceCreator.Observer<T extends java.lang.Object>",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SourceCreator.Observer",
+      "classSimpleName": "Observer",
+      "elementKind": "interface",
+      "exampleUseChainInOldApi": "interface spritz.SourceCreator.Observer<T extends java.lang.Object> is part of the API",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "package": "spritz"
+    }
+  },
+  {
     "name": "method removed",
     "code": "java.method.removed",
     "description": "Method was removed.",
@@ -4863,6 +4929,33 @@
       "methodName": "tap",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
       "package": "spritz"
+    }
+  },
+  {
+    "name": "parameter type changed",
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'spritz.SourceCreator.Observer<T extends java.lang.Object>' to 'spritz.EventEmitter<T extends java.lang.Object>'.",
+    "newElement": "parameter void spritz.SourceCreator<T>::create(===spritz.EventEmitter<T>===)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": "parameter void spritz.SourceCreator<T>::create(===spritz.SourceCreator.Observer<T>===)",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SourceCreator",
+      "classSimpleName": "SourceCreator",
+      "elementKind": "parameter",
+      "exampleUseChainInNewApi": "interface spritz.SourceCreator<T extends java.lang.Object> is part of the API",
+      "exampleUseChainInOldApi": "interface spritz.SourceCreator<T extends java.lang.Object> is part of the API",
+      "methodName": "create",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "newType": "spritz.EventEmitter<T extends java.lang.Object>",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
+      "oldType": "spritz.SourceCreator.Observer<T extends java.lang.Object>",
+      "package": "spritz",
+      "parameterIndex": "0"
     }
   }
 ]
