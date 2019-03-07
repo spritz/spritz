@@ -18,6 +18,17 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
+* Fix javadoc tool so that it skips operations where first parameter is `name` of type `String`
+
+**Subjects**
+
+- [ ] Create `Subject.create()`
+- [ ] Create `Subject.createReplayWithMaxSize()`
+- [ ] Create `Subject.createReplayWithMaxAge()`
+- [ ] Create `Subject.createReplay()`
+- [ ] Create `Subject.createCurrentValue(initialValue)`
+- [ ] `share() == publish().refCount()`
+
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling
@@ -190,10 +201,6 @@ NOTE: All of these repeats are only valid on completable streams. Can we validat
 
 - [ ] `retryWhen(RetryCount, RetryWhenFunction)` - Like retry but a function indicates when should start retry.
 - [ ] `retryWithExponentialBackoff(RetryCount)` - A call to `retryWhen` with some simple parameters .
-
-**Subjects**
-
-- [ ] `share() == publish().refCount()`
 
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
