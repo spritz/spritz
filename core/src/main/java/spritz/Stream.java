@@ -2224,6 +2224,44 @@ public abstract class Stream<T>
   }
 
   /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream emits the current value to downstream {@link Subscriber}s and then emits items
+   * any items that are emitted subsequent to the time that the downstream {@link Subscriber} subscribes.
+   * The current value is the last emitted value or the initialValue if no value has been emitted by the upstream.
+   * The new stream subscribes to this stream when the {@link ConnectableStream#connect()} method is called.
+   *
+   * @param initialValue the initial value.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishCurrentValue( @Nonnull final T initialValue )
+  {
+    return publishCurrentValue( null, initialValue );
+  }
+
+  /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream emits the current value to downstream {@link Subscriber}s and then emits items
+   * any items that are emitted subsequent to the time that the downstream {@link Subscriber} subscribes.
+   * The current value is the last emitted value or the initialValue if no value has been emitted by the upstream.
+   * The new stream subscribes to this stream when the {@link ConnectableStream#connect()} method is called.
+   *
+   * @param name         the name specified by the user.
+   * @param initialValue the initial value.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishCurrentValue( @Nullable final String name, @Nonnull final T initialValue )
+  {
+    return multicast( name,
+                      new CurrentValueSubject<>( Spritz.areNamesEnabled() ?
+                                                 generateName( name, "publishCurrentValue" ) :
+                                                 null, initialValue ) );
+  }
+
+  /**
    * Publish emitted items and signals to the specified subject.
    * When downstream stages subscribe they are subscribed to the subject.
    * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
