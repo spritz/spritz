@@ -199,10 +199,6 @@ NOTE: All of these repeats are only valid on completable streams. Can we validat
 
 - [ ] `refCount()` - Called on a "Connectible" processor. Will call connect after a subscriber added to it, and will disconnect when no more subscribers.
 - [ ] `share() == publish().refCount()`
-- [ ] `publishReplay(count) == multicast(new ReplaySubject(count)) == replay()`
-- [ ] `remember() == publishCurrentValue()` - create a subject that remembers the last value
-- [ ] `publish() == keepAlive()`
-- [ ] `asyncSubject()` - Replay one, only after completion - can this be modelled by expanding last to (before error) and then piping that in?
 
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
 delayed to, when a retry occurs). These methods should also take an observable that signals when the action should
