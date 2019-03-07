@@ -2230,7 +2230,7 @@ public abstract class Stream<T>
    * returned stream.
    *
    * @param name    the name specified by the user.
-   * @param subject the subject to publist to.
+   * @param subject the subject to publish to.
    * @return the new stream.
    */
   @Nonnull
