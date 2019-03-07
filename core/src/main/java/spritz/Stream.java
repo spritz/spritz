@@ -989,7 +989,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.FILTERING )
   public final Stream<T> filter( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new PredicateFilterStream<>( name, p, predicate ) );
+    return compose( s -> new PredicateFilterStream<>( name, s, predicate ) );
   }
 
   /**
@@ -1134,7 +1134,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> limit( @Nullable final String name, final int maxSize )
   {
-    return compose( p -> new LimitOperator<>( name, p, maxSize ) );
+    return compose( s -> new LimitOperator<>( name, s, maxSize ) );
   }
 
   /**
@@ -1208,7 +1208,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> errorIfEmpty( @Nullable final String name, @Nonnull final Supplier<Throwable> errorFactory )
   {
-    return compose( p -> new ErrorIfEmptyOperator<>( name, p, errorFactory ) );
+    return compose( s -> new ErrorIfEmptyOperator<>( name, s, errorFactory ) );
   }
 
   /**
@@ -1237,7 +1237,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> skip( @Nullable final String name, final int count )
   {
-    return compose( p -> new SkipOperator<>( name, p, count ) );
+    return compose( s -> new SkipOperator<>( name, s, count ) );
   }
 
   /**
@@ -1317,7 +1317,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> last( @Nullable final String name, final int maxElements )
   {
-    return compose( p -> new LastOperator<>( name, p, maxElements ) );
+    return compose( s -> new LastOperator<>( name, s, maxElements ) );
   }
 
   /**
@@ -1372,7 +1372,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> skipWhile( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new SkipWhileOperator<>( name, p, predicate ) );
+    return compose( s -> new SkipWhileOperator<>( name, s, predicate ) );
   }
 
   /**
@@ -1446,7 +1446,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.SLICING )
   public final Stream<T> takeWhile( @Nullable final String name, @Nonnull final Predicate<? super T> predicate )
   {
-    return compose( p -> new TakeWhileOperator<>( name, p, predicate ) );
+    return compose( s -> new TakeWhileOperator<>( name, s, predicate ) );
   }
 
   /**
@@ -1769,7 +1769,7 @@ public abstract class Stream<T>
   public final <DownstreamT> Stream<DownstreamT> map( @Nullable final String name,
                                                       @Nonnull final Function<T, DownstreamT> mapper )
   {
-    return compose( p -> new MapOperator<>( name, p, mapper ) );
+    return compose( s -> new MapOperator<>( name, s, mapper ) );
   }
 
   /**
@@ -2021,7 +2021,7 @@ public abstract class Stream<T>
                                                        @Nonnull final AccumulatorFunction<T, DownstreamT> accumulatorFunction,
                                                        @Nonnull final DownstreamT initialValue )
   {
-    return compose( p -> new ScanOperator<>( name, p, accumulatorFunction, initialValue ) );
+    return compose( s -> new ScanOperator<>( name, s, accumulatorFunction, initialValue ) );
   }
 
   /**
@@ -2049,7 +2049,7 @@ public abstract class Stream<T>
   public final Stream<T> subscribeOn( @Nullable final String name,
                                       @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    return compose( p -> new SubscribeOnOperator<>( name, p, virtualProcessorUnit ) );
+    return compose( s -> new SubscribeOnOperator<>( name, s, virtualProcessorUnit ) );
   }
 
   /**
@@ -2081,7 +2081,7 @@ public abstract class Stream<T>
   public final Stream<T> observeOn( @Nullable final String name,
                                     @Nonnull final VirtualProcessorUnit virtualProcessorUnit )
   {
-    return compose( p -> new ObserveOnOperator<>( name, p, virtualProcessorUnit ) );
+    return compose( s -> new ObserveOnOperator<>( name, s, virtualProcessorUnit ) );
   }
 
   /**
@@ -2113,7 +2113,7 @@ public abstract class Stream<T>
   public final Stream<T> rescue( @Nullable final String name,
                                  @Nonnull final Function<Throwable, Stream<T>> streamFromErrorFn )
   {
-    return compose( p -> new OnErrorResumeWithOperator<>( name, p, streamFromErrorFn ) );
+    return compose( s -> new OnErrorResumeWithOperator<>( name, s, streamFromErrorFn ) );
   }
 
   /**
@@ -2341,7 +2341,7 @@ public abstract class Stream<T>
   @Nonnull
   private ConnectableStream<T> multicast( @Nonnull final Subject<T> subject )
   {
-    return new ConnectableStream<>( Spritz.areNamesEnabled() ? "multicast" : null, this, subject );
+    return compose( s -> new ConnectableStream<>( Spritz.areNamesEnabled() ? "multicast" : null, s, subject ) );
   }
 
   /**
@@ -2368,7 +2368,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.MERGING )
   public final Stream<T> defaultIfEmpty( @Nullable final String name, @Nonnull final T defaultValue )
   {
-    return compose( p -> new DefaultIfEmptyOperator<>( name, p, defaultValue ) );
+    return compose( s -> new DefaultIfEmptyOperator<>( name, s, defaultValue ) );
   }
 
   /**
@@ -2395,7 +2395,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final Stream<T> timeout( @Nullable final String name, final int timeoutTime )
   {
-    return compose( p -> new TimeoutOperator<>( name, p, timeoutTime ) );
+    return compose( s -> new TimeoutOperator<>( name, s, timeoutTime ) );
   }
 
   @DocCategory( DocCategory.Type.UNKNOWN )
