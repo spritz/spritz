@@ -2262,7 +2262,7 @@ public abstract class Stream<T>
   /**
    * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
    * The created stream buffers and replays events to new {@link Subscriber}s and then emits
-   * events to the new subscriber as they are received. The buffering is bound by size and age.
+   * events to the new subscriber as they are received. The buffering is bound by size.
    *
    * @param maxSize the maximum number of items to replay.
    * @return the new stream.
