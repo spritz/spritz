@@ -1357,6 +1357,28 @@
     "name": "final method added to non-final class",
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay()",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "publishReplay",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay(int, int)",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
     "oldElement": null,
