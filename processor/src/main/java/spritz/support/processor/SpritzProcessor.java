@@ -92,7 +92,6 @@ public final class SpritzProcessor
   private void emitCategoryEnums( @Nonnull final JsonGenerator generator,
                                   @Nonnull final TypeElement typeElement,
                                   @Nonnull final TypeElement typeTypeElement )
-    throws Throwable
   {
     generator.writeStartObject();
     generator.write( "class", typeElement.getQualifiedName().toString() );
