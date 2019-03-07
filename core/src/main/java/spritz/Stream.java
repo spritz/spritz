@@ -2262,6 +2262,21 @@ public abstract class Stream<T>
   /**
    * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
    * The created stream buffers and replays events to new {@link Subscriber}s and then emits
+   * events to the new subscriber as they are received. The buffering is not unbound and the developer
+   * should be careful to avoid excessive memory pressure.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final ConnectableStream<T> publishReplay()
+  {
+    return publishReplay( ReplaySubject.DEFAULT_VALUE, ReplaySubject.DEFAULT_VALUE );
+  }
+
+  /**
+   * Create a multicast, {@link ConnectableStream} that shares a single subscription to this stream.
+   * The created stream buffers and replays events to new {@link Subscriber}s and then emits
    * events to the new subscriber as they are received. The buffering is bound by size.
    *
    * @param maxSize the maximum number of items to replay.
