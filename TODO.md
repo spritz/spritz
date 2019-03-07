@@ -12,8 +12,6 @@ complete as there is too much un-said.
 
 * Copy the invariant code from Arez - including the documentation generator etc.
 
-* Should we remove the `Subscription` interface altogether - simply replace it with `Cancellable`?
-
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
 
 * Add annotation and enhance processor so that VPUs are included in the documentation.
