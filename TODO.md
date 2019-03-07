@@ -201,24 +201,11 @@ NOTE: All of these repeats are only valid on completable streams. Can we validat
 
 **Subjects**
 
-- [ ] `multicast(Subject)` - Add Subject as observer. Returns a "Connectible" processor that you need to call Connect on before it activates.
 - [ ] `refCount()` - Called on a "Connectible" processor. Will call connect after a subscriber added to it, and will disconnect when no more subscribers.
-- [ ] `publish() == multicast(new Subject()) == keepAlive()`
 - [ ] `share() == publish().refCount()`
-- [ ] `publishReplay(count) == multicast(new ReplaySubject(count))`
-- [ ] `publishBehaviour(initialValue) == multicast(new BehaviourSubject(initialValue))`
-- [ ] `remember() == multicast(new BehaviourSubject())` - create a subject that remembers the last value
-
-Multicast producers allow you to add N (a.k.a. subscribe) multiple subscribers which it will publish to. i.e. they
-are processors - both publishers an subscribers. In rxjs they are `Subjects`. There is also `BehaviourSubjects` that
-cache the last value emitted so new subscriptions will send the "current" value or the last value emitted by upstream.
-`ReplaySubjects` are similar to `BehaviourSubjects` except they cache N values rather than 1 and replay all N when new
-subscribers connect. `BehaviourSubjects` may also have a time window after which signals will be dropped. So replay
-subjects have a buffer bound by size and time window. `BehaviourSubjects` will also not emit a value if you subscribe
-after they are complete where-as replay will always replay signals.
-
-- [ ] `replay()` - Replay many signals before or after completion
-- [ ] `behaviourSubject()` - Replay one value, only before completion
+- [ ] `publishReplay(count) == multicast(new ReplaySubject(count)) == replay()`
+- [ ] `remember() == publishCurrentValue()` - create a subject that remembers the last value
+- [ ] `publish() == keepAlive()`
 - [ ] `asyncSubject()` - Replay one, only after completion - can this be modelled by expanding last to (before error) and then piping that in?
 
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
