@@ -2232,7 +2232,7 @@ public abstract class Stream<T>
    * @return the new stream.
    */
   @Nonnull
-  public ConnectableStream<T> multicast( @Nullable final String name, @Nonnull final Subject<T> subject )
+  private ConnectableStream<T> multicast( @Nullable final String name, @Nonnull final Subject<T> subject )
   {
     return new ConnectableStream<>( Spritz.areNamesEnabled() ? generateName( name, "multicast" ) : null,
                                     this,
