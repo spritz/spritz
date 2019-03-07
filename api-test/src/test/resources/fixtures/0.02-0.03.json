@@ -120,9 +120,9 @@
     }
   },
   {
-    "name": "class kind changed",
-    "code": "java.class.kindChanged",
-    "description": "Class kind changed from 'interface' to 'class'.",
+    "name": "visibility reduced",
+    "code": "java.class.visibilityReduced",
+    "description": "Visibility was reduced from 'public' to 'package'.",
     "newElement": "class spritz.Subject<T extends java.lang.Object>",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
     "oldElement": "interface spritz.Subject<T extends java.lang.Object>",
@@ -135,86 +135,13 @@
       "classQualifiedName": "spritz.Subject",
       "classSimpleName": "Subject",
       "elementKind": "interface",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
+      "exampleUseChainInNewApi": "",
       "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newKind": "class",
+      "newVisibility": "package",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldKind": "interface",
+      "oldVisibility": "public",
       "package": "spritz"
-    }
-  },
-  {
-    "name": "class no longer abstract",
-    "code": "java.class.noLongerAbstract",
-    "description": "Class is no longer abstract.",
-    "newElement": "class spritz.Subject<T extends java.lang.Object>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "interface spritz.Subject<T extends java.lang.Object>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "interface",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "class no longer implements interface",
-    "code": "java.class.noLongerImplementsInterface",
-    "description": "Class no longer implements interface 'spritz.Publisher<T extends java.lang.Object>'.",
-    "newElement": "class spritz.Subject<T extends java.lang.Object>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "interface spritz.Subject<T extends java.lang.Object>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "BREAKING",
-      "BINARY": "BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "interface",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "interface": "spritz.Publisher<T extends java.lang.Object>",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "new super class of non-final class",
-    "code": "java.class.nonFinalClassInheritsFromNewClass",
-    "description": "Non-final class now inherits from 'spritz.Stream<T extends java.lang.Object>'.",
-    "newElement": "class spritz.Subject<T extends java.lang.Object>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "interface spritz.Subject<T extends java.lang.Object>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "interface",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "package": "spritz",
-      "superClass": "spritz.Stream<T extends java.lang.Object>"
     }
   },
   {
@@ -1232,28 +1159,6 @@
     }
   },
   {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method boolean java.lang.Object::equals(java.lang.Object) @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "equals",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
     "name": "method added to interface",
     "code": "java.method.addedToInterface",
     "description": "Method was added to an interface.",
@@ -1272,116 +1177,6 @@
       "elementKind": "method",
       "exampleUseChainInNewApi": "interface spritz.EventEmitter<T extends java.lang.Object> is part of the API",
       "methodName": "isDone",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method boolean spritz.Subject<T>::isDone()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "isDone",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method int java.lang.Object::hashCode() @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "hashCode",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method java.lang.Class<?> java.lang.Object::getClass() @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "getClass",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method java.lang.Object java.lang.Object::clone() throws java.lang.CloneNotSupportedException @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "clone",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method java.lang.String java.lang.Object::toString() @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "toString",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
       "package": "spritz"
     }
@@ -1530,6 +1325,94 @@
       "elementKind": "method",
       "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "publishCurrentValue",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay(int, int)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "publishReplay",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay(java.lang.String, int, int)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "publishReplay",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplayWithMaxAge(int)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "publishReplayWithMaxAge",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplayWithMaxSize(int)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "publishReplayWithMaxSize",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
       "package": "spritz"
     }
@@ -3919,138 +3802,6 @@
     }
   },
   {
-    "name": "method added",
-    "code": "java.method.added",
-    "description": "Method was added.",
-    "newElement": "method void java.lang.Object::finalize() throws java.lang.Throwable @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "finalize",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void java.lang.Object::notify() @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "notify",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void java.lang.Object::notifyAll() @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "notifyAll",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void java.lang.Object::wait() throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "wait",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void java.lang.Object::wait(long) throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "wait",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "final method added to non-final class",
-    "code": "java.method.finalMethodAddedToNonFinalClass",
-    "description": "A final method has been added to an inheritable class.",
-    "newElement": "method void java.lang.Object::wait(long, int) throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "wait",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "package": "spritz"
-    }
-  },
-  {
     "name": "visibility reduced",
     "code": "java.method.visibilityReduced",
     "description": "visibility reduced",
@@ -4151,240 +3902,6 @@
       "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "terminate",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "inherited method moved to class",
-    "code": "java.method.inheritedMovedToClass",
-    "description": "The method was previously declared in superclass 'spritz.EventEmitter<T extends java.lang.Object>' but is now declared in class 'spritz.Subject<T extends java.lang.Object>'.",
-    "newElement": "method void spritz.Subject<T>::complete()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::complete() @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "complete",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newClass": "spritz.Subject<T extends java.lang.Object>",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldClass": "spritz.EventEmitter<T extends java.lang.Object>",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "Method no longer abstract",
-    "code": "java.method.noLongerAbstract",
-    "description": "Method no longer abstract",
-    "newElement": "method void spritz.Subject<T>::complete()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::complete() @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "complete",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method now final",
-    "code": "java.method.nowFinal",
-    "description": "Method is now final.",
-    "newElement": "method void spritz.Subject<T>::complete()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::complete() @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "complete",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "inherited method moved to class",
-    "code": "java.method.inheritedMovedToClass",
-    "description": "The method was previously declared in superclass 'spritz.EventEmitter<T extends java.lang.Object>' but is now declared in class 'spritz.Subject<T extends java.lang.Object>'.",
-    "newElement": "method void spritz.Subject<T>::error(java.lang.Throwable)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::error(java.lang.Throwable) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "error",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newClass": "spritz.Subject<T extends java.lang.Object>",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldClass": "spritz.EventEmitter<T extends java.lang.Object>",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "Method no longer abstract",
-    "code": "java.method.noLongerAbstract",
-    "description": "Method no longer abstract",
-    "newElement": "method void spritz.Subject<T>::error(java.lang.Throwable)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::error(java.lang.Throwable) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "error",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method now final",
-    "code": "java.method.nowFinal",
-    "description": "Method is now final.",
-    "newElement": "method void spritz.Subject<T>::error(java.lang.Throwable)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::error(java.lang.Throwable) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "error",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "inherited method moved to class",
-    "code": "java.method.inheritedMovedToClass",
-    "description": "The method was previously declared in superclass 'spritz.EventEmitter<T extends java.lang.Object>' but is now declared in class 'spritz.Subject<T extends java.lang.Object>'.",
-    "newElement": "method void spritz.Subject<T>::next(T)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::next(T) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "next",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newClass": "spritz.Subject<T extends java.lang.Object>",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldClass": "spritz.EventEmitter<T extends java.lang.Object>",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "Method no longer abstract",
-    "code": "java.method.noLongerAbstract",
-    "description": "Method no longer abstract",
-    "newElement": "method void spritz.Subject<T>::next(T)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::next(T) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "EQUIVALENT",
-      "BINARY": "EQUIVALENT"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "next",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "method now final",
-    "code": "java.method.nowFinal",
-    "description": "Method is now final.",
-    "newElement": "method void spritz.Subject<T>::next(T)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
-    "oldElement": "method void spritz.EventEmitter<T>::next(T) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.02",
-    "classification": {
-      "SOURCE": "POTENTIALLY_BREAKING",
-      "BINARY": "POTENTIALLY_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.Subject",
-      "classSimpleName": "Subject",
-      "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "interface spritz.Subject<T extends java.lang.Object> is part of the API",
-      "methodName": "next",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
-      "newModifiers": "public final",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.02",
-      "oldModifiers": "public abstract",
       "package": "spritz"
     }
   },
