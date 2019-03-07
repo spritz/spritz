@@ -2220,7 +2220,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final ConnectableStream<T> publish( @Nullable final String name )
   {
-    return multicast( name, new Subject<>( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null ) );
+    return multicast( new Subject<>( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null ) );
   }
 
   /**
@@ -2255,10 +2255,8 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final ConnectableStream<T> publishCurrentValue( @Nullable final String name, @Nonnull final T initialValue )
   {
-    return multicast( name,
-                      new CurrentValueSubject<>( Spritz.areNamesEnabled() ?
-                                                 generateName( name, "publishCurrentValue" ) :
-                                                 null, initialValue ) );
+    final String actualName = generateName( name, "publishCurrentValue", String.valueOf( initialValue ) );
+    return multicast( new CurrentValueSubject<>( Spritz.areNamesEnabled() ? actualName : null, initialValue ) );
   }
 
   /**
@@ -2267,16 +2265,13 @@ public abstract class Stream<T>
    * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
    * returned stream.
    *
-   * @param name    the name specified by the user.
    * @param subject the subject to publish to.
    * @return the new stream.
    */
   @Nonnull
-  private ConnectableStream<T> multicast( @Nullable final String name, @Nonnull final Subject<T> subject )
+  private ConnectableStream<T> multicast( @Nonnull final Subject<T> subject )
   {
-    return new ConnectableStream<>( Spritz.areNamesEnabled() ? generateName( name, "multicast" ) : null,
-                                    this,
-                                    subject );
+    return new ConnectableStream<>( Spritz.areNamesEnabled() ? "multicast" : null, this, subject );
   }
 
   /**
