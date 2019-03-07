@@ -2218,7 +2218,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.UNKNOWN )
   public final ConnectableStream<T> publish( @Nullable final String name )
   {
-    return multicast( name, new PublishSubject<>( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null ) );
+    return multicast( name, new Subject<>( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null ) );
   }
 
   /**

@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import static org.realityforge.braincheck.Guards.*;
 
-public abstract class Subject<T>
+public class Subject<T>
   extends Stream<T>
   implements EventEmitter<T>
 {
@@ -42,7 +42,27 @@ public abstract class Subject<T>
     _downstreamSubscribers.add( subscriber );
   }
 
-  abstract void completeSubscribe( @Nonnull final Subscriber<? super T> subscriber );
+  boolean isSubscriber( @Nonnull final Subscriber<? super T> subscriber )
+  {
+    return _downstreamSubscribers.contains( subscriber );
+  }
+
+  void completeSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  {
+    subscriber.onSubscribe( () -> removeSubscriber( subscriber ) );
+    if ( isComplete() )
+    {
+      subscriber.onComplete();
+    }
+    else if ( null != getError() )
+    {
+      subscriber.onError( getError() );
+    }
+    else
+    {
+      addSubscriber( subscriber );
+    }
+  }
 
   /**
    * {@inheritDoc}
@@ -122,6 +142,11 @@ public abstract class Subject<T>
   final boolean isComplete()
   {
     return _complete;
+  }
+
+  final boolean isTerminated()
+  {
+    return _complete || null != _error;
   }
 
   void doNext( @Nonnull final T item )
