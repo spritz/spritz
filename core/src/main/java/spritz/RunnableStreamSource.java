@@ -40,13 +40,13 @@ final class RunnableStreamSource<T>
       }
       catch ( final Throwable error )
       {
-        if ( isNotCancelled() )
+        if ( isNotDone() )
         {
           getSubscriber().onError( error );
         }
         return;
       }
-      if ( isNotCancelled() )
+      if ( isNotDone() )
       {
         getSubscriber().onComplete();
       }

@@ -86,7 +86,7 @@ final class CreateStreamSource<T>
     @Override
     public boolean isDone()
     {
-      return _done || _subscription.isCancelled();
+      return _done || _subscription.isDone();
     }
   }
 }

@@ -111,7 +111,7 @@ final class PeekOperator<T>
     @Override
     public void onError( @Nonnull final Throwable error )
     {
-      markAsCancelled();
+      markAsDone();
       final Consumer<Throwable> onError = getStream()._onError;
       if ( null != onError )
       {
@@ -131,7 +131,7 @@ final class PeekOperator<T>
     @Override
     public void onComplete()
     {
-      markAsCancelled();
+      markAsDone();
       final Runnable onComplete = getStream()._onComplete;
       if ( null != onComplete )
       {

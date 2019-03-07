@@ -78,7 +78,7 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
   @Override
   public void onError( @Nonnull final Throwable error )
   {
-    markAsCancelled();
+    markAsDone();
     getSubscriber().onError( error );
   }
 
@@ -88,7 +88,7 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
   @Override
   public void onComplete()
   {
-    markAsCancelled();
+    markAsDone();
     getSubscriber().onComplete();
   }
 

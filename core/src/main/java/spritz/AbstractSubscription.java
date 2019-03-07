@@ -14,7 +14,7 @@ abstract class AbstractSubscription<T>
    */
   @Nonnull
   private final Subscriber<? super T> _subscriber;
-  private boolean _cancelled;
+  private boolean _done;
 
   AbstractSubscription( @Nonnull final Subscriber<? super T> subscriber )
   {
@@ -38,26 +38,26 @@ abstract class AbstractSubscription<T>
   @Override
   public final void cancel()
   {
-    if ( !_cancelled )
+    if ( !_done )
     {
-      markAsCancelled();
+      markAsDone();
       doCancel();
     }
   }
 
-  final void markAsCancelled()
+  final void markAsDone()
   {
-    _cancelled = true;
+    _done = true;
   }
 
-  final boolean isCancelled()
+  final boolean isDone()
   {
-    return _cancelled;
+    return _done;
   }
 
-  final boolean isNotCancelled()
+  final boolean isNotDone()
   {
-    return !isCancelled();
+    return !isDone();
   }
 
   void doCancel()

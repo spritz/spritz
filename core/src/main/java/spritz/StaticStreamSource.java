@@ -44,13 +44,13 @@ final class StaticStreamSource<T>
     {
       final T[] data = getStream()._data;
       int offset = 0;
-      while ( offset < data.length && isNotCancelled() )
+      while ( offset < data.length && isNotDone() )
       {
         final T item = data[ offset ];
         offset++;
         getSubscriber().onNext( item );
       }
-      if ( isNotCancelled() )
+      if ( isNotDone() )
       {
         getSubscriber().onComplete();
       }

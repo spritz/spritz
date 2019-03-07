@@ -38,13 +38,13 @@ final class CollectionStreamSource<T>
       final Subscriber<? super T> subscriber = getSubscriber();
       for ( final T item : getStream()._data )
       {
-        if ( isCancelled() )
+        if ( isDone() )
         {
           return;
         }
         subscriber.onNext( item );
       }
-      if ( isNotCancelled() )
+      if ( isNotDone() )
       {
         subscriber.onComplete();
       }

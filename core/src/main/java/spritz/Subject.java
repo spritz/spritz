@@ -26,11 +26,11 @@ class Subject<T>
   {
     final DownstreamSubscription subscription = new DownstreamSubscription( subscriber );
     subscriber.onSubscribe( subscription );
-    if ( subscription.isNotCancelled() )
+    if ( subscription.isNotDone() )
     {
       completeSubscribe( subscription );
     }
-    if ( subscription.isNotCancelled() )
+    if ( subscription.isNotDone() )
     {
       if ( _complete )
       {

@@ -92,15 +92,15 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   {
     assert null != _nextItem;
     assert null != _task;
-    final boolean notCancelled = isNotCancelled();
-    if ( notCancelled )
+    final boolean notDone = isNotDone();
+    if ( notDone )
     {
       super.onNext( _nextItem );
     }
     _nextItem = null;
     _task = null;
     _nextTaskTime = 0;
-    if ( notCancelled && _pendingComplete )
+    if ( notDone && _pendingComplete )
     {
       doOnComplete();
     }

@@ -39,7 +39,7 @@ final class ReplaySubject<T>
       assert null != entry;
       if ( DEFAULT_VALUE == _maxAge || entry.getTime() + _maxAge >= now )
       {
-        if ( !isDone() && subscription.isNotCancelled() )
+        if ( !isDone() && subscription.isNotDone() )
         {
           subscriber.onNext( entry.getItem() );
         }

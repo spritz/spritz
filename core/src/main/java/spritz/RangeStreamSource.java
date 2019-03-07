@@ -60,13 +60,13 @@ final class RangeStreamSource
       final int start = stream._start;
       final int end = start + stream._count - 1;
       int current = start;
-      while ( current <= end && isNotCancelled() )
+      while ( current <= end && isNotDone() )
       {
         final int value = current;
         current++;
         getSubscriber().onNext( value );
       }
-      if ( isNotCancelled() )
+      if ( isNotDone() )
       {
         getSubscriber().onComplete();
       }
