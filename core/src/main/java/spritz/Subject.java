@@ -64,7 +64,7 @@ public class Subject<T>
       apiInvariant( () -> !_complete,
                     () -> "Spritz-0024: Subject.next(...) invoked after Subject.complete() invoked." );
     }
-    doNext( item );
+    Scheduler.current( () -> doNext( item ) );
   }
 
   /**
@@ -81,7 +81,7 @@ public class Subject<T>
                     () -> "Spritz-0026: Subject.error(...) invoked after Subject.complete() invoked." );
     }
     _error = error;
-    doError( error );
+    Scheduler.current( () -> doError( error ) );
     terminateUpstreamSubscribers();
   }
 
@@ -99,7 +99,7 @@ public class Subject<T>
                  () -> "Spritz-0028: Subject.complete(...) invoked after Subject.complete() invoked." );
     }
     _complete = true;
-    doComplete();
+    Scheduler.current( this::doComplete );
     terminateUpstreamSubscribers();
   }
 
