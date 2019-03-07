@@ -21,6 +21,11 @@ import javax.annotation.Nonnull;
     @SourceCategory
     CONSTRUCTION,
     /**
+     * Methods to construct a subject.
+     */
+    @SourceCategory
+    SUBJECT,
+    /**
      * Observing items and signals as they pass through the stream.
      */
     PEEKING,

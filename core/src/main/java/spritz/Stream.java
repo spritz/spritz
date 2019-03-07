@@ -433,6 +433,90 @@ public abstract class Stream<T>
     return new CreateStreamSource<>( name, createFunction );
   }
 
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> subject()
+  {
+    return subject( null );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> subject( @Nullable final String name )
+  {
+    return new Subject<>( name );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> currentValueSubject( @Nonnull final T initialValue )
+  {
+    return currentValueSubject( null, initialValue );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> currentValueSubject( @Nullable final String name, @Nonnull final T initialValue )
+  {
+    return new CurrentValueSubject<>( name, initialValue );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubjectWithMaxAge( final int maxAge )
+  {
+    return replaySubjectWithMaxAge( null, maxAge );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubjectWithMaxAge( @Nullable final String name, final int maxAge )
+  {
+    return replaySubject( name, ReplaySubject.DEFAULT_VALUE, maxAge );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubjectWithMaxSize( final int maxSize )
+  {
+    return replaySubjectWithMaxSize( null, maxSize );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubjectWithMaxSize( @Nullable final String name, final int maxSize )
+  {
+    return replaySubject( name, maxSize, ReplaySubject.DEFAULT_VALUE );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubject( final int maxSize, final int maxAge )
+  {
+    return replaySubject( null, maxSize, maxAge );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubject( @Nullable final String name, final int maxSize, final int maxAge )
+  {
+    return new ReplaySubject<>( name, maxSize, maxAge );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubject()
+  {
+    return replaySubject( null );
+  }
+
+  @DocCategory( DocCategory.Type.SUBJECT )
+  @Nonnull
+  public static <T> Subject<T> replaySubject( @Nullable final String name )
+  {
+    return replaySubject( name, ReplaySubject.DEFAULT_VALUE, ReplaySubject.DEFAULT_VALUE );
+  }
+
   /**
    * Subscribe the subscriber to this stream so that it can receive events.
    *

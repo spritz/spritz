@@ -1,6 +1,7 @@
 package spritz.examples;
 
 import spritz.Scheduler;
+import spritz.Stream;
 import spritz.Subject;
 
 public class Example41
@@ -8,7 +9,7 @@ public class Example41
   public static void main( String[] args )
     throws Exception
   {
-    final Subject<Object> value$ = Subject.createSubject();
+    final Subject<Object> value$ = Stream.subject();
 
     value$.next( Math.random() );
 
