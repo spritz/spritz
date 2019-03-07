@@ -60,6 +60,8 @@ complete as there is too much un-said.
   Probably can do this for every by enqueuing streams which can be cancelled and then checking that
   there are no uncancelled timer tasks on test complete.
 
+* Ensure that cancel of last item prior to `onComplete` or `onError` will avoid the onComplete and onError calls.
+
 * Ensure that cancel after `onComplete` or `onError` is a noop.
 
 * Ensure tests verify that every stream source supports being disposed in `onNext(item)` invocation.
