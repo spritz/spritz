@@ -475,18 +475,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekSubscribe( @Nullable final String name, @Nonnull final Consumer<Subscription> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onSubscribe" ) : null,
-                               this,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onSubscribe" ) : null,
+                                             s,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -517,18 +517,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterSubscribe( @Nullable final String name, @Nonnull final Consumer<Subscription> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterSubscribe" ) : null,
-                               this,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterSubscribe" ) : null,
+                                             s,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -559,18 +559,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peek( @Nullable final String name, @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "peek" ) : null,
-                               this,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "peek" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -599,18 +599,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterNext( @Nullable final String name, @Nonnull final Consumer<? super T> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterNext" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterNext" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -641,18 +641,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekError( @Nullable final String name, @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onError" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onError" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -683,18 +683,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterError( @Nullable final String name, @Nonnull final Consumer<Throwable> action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterError" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterError" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -725,18 +725,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekComplete( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onComplete" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onComplete" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -767,18 +767,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterComplete( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterComplete" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterComplete" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null,
+                                             null ) );
   }
 
   /**
@@ -809,18 +809,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekCancel( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onCancel" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onCancel" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action,
+                                             null ) );
   }
 
   /**
@@ -851,18 +851,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterCancel( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterCancel" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               action );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterCancel" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             action ) );
   }
 
   /**
@@ -899,18 +899,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekTerminate( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onTerminate" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               e -> action.run(),
-                               null,
-                               action,
-                               null,
-                               action,
-                               null );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onTerminate" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             e -> action.run(),
+                                             null,
+                                             action,
+                                             null,
+                                             action,
+                                             null ) );
   }
 
   /**
@@ -947,18 +947,18 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> afterTerminate( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterTerminate" ) : null,
-                               this,
-                               null,
-                               null,
-                               null,
-                               null,
-                               null,
-                               e -> action.run(),
-                               null,
-                               action,
-                               null,
-                               action );
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "afterTerminate" ) : null,
+                                             s,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             e -> action.run(),
+                                             null,
+                                             action,
+                                             null,
+                                             action ) );
   }
 
   /**
