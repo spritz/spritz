@@ -9,7 +9,6 @@ public interface SourceCreator<T>
   interface Observer<T>
     extends EventEmitter<T>
   {
-    @SuppressWarnings( "BooleanMethodIsAlwaysInverted" )
-    boolean isCancelled();
+    boolean isDone();
   }
 }

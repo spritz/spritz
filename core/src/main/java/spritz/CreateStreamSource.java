@@ -47,7 +47,7 @@ final class CreateStreamSource<T>
     @Override
     public void next( @Nonnull final T item )
     {
-      if ( !isCancelled() )
+      if ( !isDone() )
       {
         _subscriber.onNext( item );
       }
@@ -59,7 +59,7 @@ final class CreateStreamSource<T>
     @Override
     public void error( @Nonnull final Throwable throwable )
     {
-      if ( !isCancelled() )
+      if ( !isDone() )
       {
         _subscriber.onError( throwable );
       }
@@ -71,7 +71,7 @@ final class CreateStreamSource<T>
     @Override
     public void complete()
     {
-      if ( !isCancelled() )
+      if ( !isDone() )
       {
         _subscriber.onComplete();
       }
@@ -81,7 +81,7 @@ final class CreateStreamSource<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean isCancelled()
+    public boolean isDone()
     {
       return _subscription.isCancelled();
     }
