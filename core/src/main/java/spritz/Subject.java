@@ -42,24 +42,9 @@ class Subject<T>
       }
       else
       {
-        addSubscriber( subscription );
+        _downstreamSubscriptions.add( subscription );
       }
     }
-  }
-
-  void removeSubscriber( @Nonnull final DownstreamSubscription subscriber )
-  {
-    _downstreamSubscriptions.remove( subscriber );
-  }
-
-  void addSubscriber( @Nonnull final DownstreamSubscription subscriber )
-  {
-    _downstreamSubscriptions.add( subscriber );
-  }
-
-  boolean isSubscriber( @Nonnull final DownstreamSubscription subscriber )
-  {
-    return _downstreamSubscriptions.contains( subscriber );
   }
 
   void completeSubscribe( @Nonnull final DownstreamSubscription subscription )
@@ -141,11 +126,6 @@ class Subject<T>
     return _error;
   }
 
-  final boolean isComplete()
-  {
-    return _complete;
-  }
-
   /**
    * {@inheritDoc}
    */
@@ -193,7 +173,7 @@ class Subject<T>
     @Override
     void doCancel()
     {
-      removeSubscriber( this );
+      _downstreamSubscriptions.remove( this );
     }
 
     @Override
