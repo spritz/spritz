@@ -14,7 +14,7 @@ def generate_overview(project)
         data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
         data['operators'].each do |operator|
           name = operator['name']
-          next if name =~ /\(name[,\)]/
+          next if name =~ /\(name[,)]/
           operator = operator.merge('class' => data['class'])
           operators_by_name[name] = operator
           operator['categories'].each do |category|
