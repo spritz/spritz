@@ -197,7 +197,6 @@ NOTE: All of these repeats are only valid on completable streams. Can we validat
 
 **Subjects**
 
-- [ ] `refCount()` - Called on a "Connectible" processor. Will call connect after a subscriber added to it, and will disconnect when no more subscribers.
 - [ ] `share() == publish().refCount()`
 
 Note: Several of the above functions take functions that control when an event occurs (i.e. when an event is
