@@ -2199,7 +2199,7 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.UNKNOWN )
-  public final Stream<T> publish()
+  public final ConnectableStream<T> publish()
   {
     return publish( null );
   }
@@ -2212,9 +2212,9 @@ public abstract class Stream<T>
    */
   @Nonnull
   @DocCategory( DocCategory.Type.UNKNOWN )
-  public final Stream<T> publish( @Nullable final String name )
+  public final ConnectableStream<T> publish( @Nullable final String name )
   {
-    return compose( p -> new PublishOperator<>( name, p, new MulticastSubject<>( p ) ) );
+    return multicast( name, new PublishSubject<>( Spritz.areNamesEnabled() ? generateName( name, "publish" ) : null ) );
   }
 
   /**
@@ -2247,7 +2247,7 @@ public abstract class Stream<T>
   {
     return new ConnectableStream<>( Spritz.areNamesEnabled() ? generateName( name, "multicast" ) : null,
                                     this,
-                                    () -> subject );
+                                    subject );
   }
 
   /**
