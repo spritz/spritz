@@ -2205,7 +2205,11 @@ public abstract class Stream<T>
   }
 
   /**
-   * Publish emitted items and signals to a publish subject.
+   * Publish emitted items and signals to a subject.
+   * When downstream stages subscribe they are subscribed to the subject. The subject emits to
+   * downstream {@link Subscriber}s only those items that are emitted subsequent to the time that
+   * the downstream {@link Subscriber} subscribes. This stream only subscribes to the upstream when
+   * the {@link ConnectableStream#connect()} method is called on the returned stream.
    *
    * @param name the name specified by the user.
    * @return the new stream.
