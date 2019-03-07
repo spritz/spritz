@@ -8,8 +8,6 @@ complete as there is too much un-said.
 
 * Add `Elemental2` specific sources and sinks.
 
-* Fix implementation of subjects.
-
 * Copy the invariant code from Arez - including the documentation generator etc.
 
 * Experiment with using MessageChannel.send for MacroTask and compare jitter/delay between the two
