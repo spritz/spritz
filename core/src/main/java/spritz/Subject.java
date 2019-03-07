@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import static org.realityforge.braincheck.Guards.*;
 
-class Subject<T>
+public class Subject<T>
   extends Stream<T>
   implements EventEmitter<T>
 {
