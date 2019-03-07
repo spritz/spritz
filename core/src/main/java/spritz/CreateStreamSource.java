@@ -33,6 +33,7 @@ final class CreateStreamSource<T>
     private final Subscriber<? super T> _subscriber;
     @Nonnull
     private final PassThroughSubscription<T, CreateStreamSource<T>> _subscription;
+    private boolean _done;
 
     SimpleSubscriberAdapter( @Nonnull final Subscriber<? super T> subscriber,
                              @Nonnull final PassThroughSubscription<T, CreateStreamSource<T>> subscription )
@@ -62,6 +63,7 @@ final class CreateStreamSource<T>
       if ( !isDone() )
       {
         _subscriber.onError( throwable );
+        _done = true;
       }
     }
 
@@ -74,6 +76,7 @@ final class CreateStreamSource<T>
       if ( !isDone() )
       {
         _subscriber.onComplete();
+        _done = true;
       }
     }
 
@@ -83,7 +86,7 @@ final class CreateStreamSource<T>
     @Override
     public boolean isDone()
     {
-      return _subscription.isCancelled();
+      return _done || _subscription.isCancelled();
     }
   }
 }
