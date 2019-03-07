@@ -13,8 +13,10 @@ def generate_overview(project)
       Dir["#{WORKSPACE_DIR}/#{project_name}/generated/processors/main/java/**/*.doc.json"].each do |file|
         data = JSON.parse(IO.read(file, :encoding => 'UTF-8'))
         data['operators'].each do |operator|
+          name = operator['name']
+          next if name =~ /\(name[,\)]/
           operator = operator.merge('class' => data['class'])
-          operators_by_name[operator['name']] = operator
+          operators_by_name[name] = operator
           operator['categories'].each do |category|
             (operators_by_category[category] ||= []) << operator
           end

@@ -18,8 +18,6 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
-* Fix javadoc tool so that it skips operations where first parameter is `name` of type `String`
-
 **Subjects**
 
 - [ ] Create `Subject.create()`
