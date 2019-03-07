@@ -17,7 +17,9 @@ final class CurrentValueSubject<T>
 
   CurrentValueSubject( @Nullable final String name, @Nonnull final T initialValue )
   {
-    super( name );
+    super( Spritz.areNamesEnabled() ?
+           generateName( name, "currentValueSubject", String.valueOf( initialValue ) ) :
+           null );
     _currentValue = Objects.requireNonNull( initialValue );
   }
 

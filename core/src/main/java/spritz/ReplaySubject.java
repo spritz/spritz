@@ -19,7 +19,12 @@ final class ReplaySubject<T>
 
   ReplaySubject( @Nullable final String name, final int maxSize, final int maxAge )
   {
-    super( name );
+    super( Spritz.areNamesEnabled() ?
+           generateName( name,
+                         "replaySubject",
+                         ( DEFAULT_VALUE == maxSize ? "unbound" : String.valueOf( maxSize ) ) + "," +
+                         ( DEFAULT_VALUE == maxAge ? "unbound" : String.valueOf( maxAge ) ) ) :
+           null );
     assert maxSize > 0 || DEFAULT_VALUE == maxSize;
     assert maxAge > 0 || DEFAULT_VALUE == maxAge;
     _buffer = new CircularBuffer<>( Math.min( Math.max( 1, maxSize ), INITIAL_CAPACITY ) );

@@ -19,7 +19,7 @@ class Subject<T>
 
   Subject( @Nullable final String name )
   {
-    super( name );
+    super( Spritz.areNamesEnabled() ? Stream.generateName( name, "subject" ) : null );
   }
 
   final void doSubscribe( @Nonnull Subscriber<? super T> subscriber )
