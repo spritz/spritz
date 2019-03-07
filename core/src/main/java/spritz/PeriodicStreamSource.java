@@ -24,7 +24,7 @@ final class PeriodicStreamSource
   }
 
   private static final class WorkerSubscription
-    extends AbstractSubscription<Integer, PeriodicStreamSource>
+    extends AbstractStreamSubscription<Integer, PeriodicStreamSource>
     implements Runnable
   {
     private int _counter;

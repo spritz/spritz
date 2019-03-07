@@ -4,7 +4,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 final class InnerSubscription<T>
-  extends AbstractSubscription<T, Stream<T>>
+  extends AbstractStreamSubscription<T, Stream<T>>
   implements Subscriber<T>
 {
   interface ContainerSubscription<T>

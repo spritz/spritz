@@ -162,7 +162,7 @@ class Subject<T>
   }
 
   final class DownstreamSubscription
-    extends AbstractBaseSubscription<T>
+    extends AbstractSubscription<T>
     implements Subscription
   {
     DownstreamSubscription( @Nonnull final Subscriber<? super T> subscriber )

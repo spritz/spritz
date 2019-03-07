@@ -25,7 +25,7 @@ final class RunnableStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription<T, RunnableStreamSource<T>>
+    extends AbstractStreamSubscription<T, RunnableStreamSource<T>>
   {
     WorkerSubscription( @Nonnull final RunnableStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {

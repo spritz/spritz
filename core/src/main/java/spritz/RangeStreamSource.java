@@ -47,7 +47,7 @@ final class RangeStreamSource
   }
 
   private static final class WorkerSubscription
-    extends AbstractSubscription<Integer, RangeStreamSource>
+    extends AbstractStreamSubscription<Integer, RangeStreamSource>
   {
     WorkerSubscription( @Nonnull final RangeStreamSource stream, @Nonnull final Subscriber<? super Integer> subscriber )
     {

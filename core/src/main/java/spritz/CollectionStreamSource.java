@@ -25,7 +25,7 @@ final class CollectionStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription<T, CollectionStreamSource<T>>
+    extends AbstractStreamSubscription<T, CollectionStreamSource<T>>
   {
     WorkerSubscription( @Nonnull final CollectionStreamSource<T> stream,
                         @Nonnull final Subscriber<? super T> subscriber )

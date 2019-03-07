@@ -33,7 +33,7 @@ final class StaticStreamSource<T>
   }
 
   private static final class WorkerSubscription<T>
-    extends AbstractSubscription<T, StaticStreamSource<T>>
+    extends AbstractStreamSubscription<T, StaticStreamSource<T>>
   {
     WorkerSubscription( @Nonnull final StaticStreamSource<T> stream, @Nonnull final Subscriber<? super T> subscriber )
     {

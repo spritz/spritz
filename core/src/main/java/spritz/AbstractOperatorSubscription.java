@@ -9,7 +9,7 @@ import org.realityforge.braincheck.Guards;
  * Abstract implementation for subscription with both an upstream and downstream stream stage.
  */
 abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT extends Stream<DownstreamT>>
-  extends AbstractSubscription<DownstreamT, StreamT>
+  extends AbstractStreamSubscription<DownstreamT, StreamT>
   implements Subscriber<UpstreamT>
 {
   /**
