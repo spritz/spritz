@@ -12,7 +12,7 @@ public class Subject<T>
   implements EventEmitter<T>
 {
   private final Set<ForwardToSubjectSubscriber<T>> _upstreamSubscribers = new HashSet<>();
-  private final Set<Subscriber<? super T>> _downstreamSubscribers = new HashSet<>();
+  private final Set<DownstreamSubscription> _downstreamSubscriptions = new HashSet<>();
   @Nullable
   private Throwable _error;
   private boolean _complete;
@@ -24,44 +24,46 @@ public class Subject<T>
 
   final void doSubscribe( @Nonnull Subscriber<? super T> subscriber )
   {
-    if ( Spritz.shouldCheckApiInvariants() )
+    final DownstreamSubscription subscription = new DownstreamSubscription( subscriber );
+    subscriber.onSubscribe( subscription );
+    if ( subscription.isNotCancelled() )
     {
-      apiInvariant( () -> !_downstreamSubscribers.contains( subscriber ),
-                    () -> "Spritz-0010: Invoked Subject.subscribe(...) when subscriber is already subscribed." );
+      completeSubscribe( subscription );
     }
-    completeSubscribe( subscriber );
+    if ( subscription.isNotCancelled() )
+    {
+      if ( _complete )
+      {
+        subscriber.onComplete();
+      }
+      else if ( null != _error )
+      {
+        subscriber.onError( _error );
+      }
+      else
+      {
+        addSubscriber( subscription );
+      }
+    }
   }
 
-  void removeSubscriber( @Nonnull final Subscriber<? super T> subscriber )
+  void removeSubscriber( @Nonnull final DownstreamSubscription subscriber )
   {
-    _downstreamSubscribers.remove( subscriber );
+    _downstreamSubscriptions.remove( subscriber );
   }
 
-  void addSubscriber( @Nonnull final Subscriber<? super T> subscriber )
+  void addSubscriber( @Nonnull final DownstreamSubscription subscriber )
   {
-    _downstreamSubscribers.add( subscriber );
+    _downstreamSubscriptions.add( subscriber );
   }
 
-  boolean isSubscriber( @Nonnull final Subscriber<? super T> subscriber )
+  boolean isSubscriber( @Nonnull final DownstreamSubscription subscriber )
   {
-    return _downstreamSubscribers.contains( subscriber );
+    return _downstreamSubscriptions.contains( subscriber );
   }
 
-  void completeSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void completeSubscribe( @Nonnull final DownstreamSubscription subscription )
   {
-    subscriber.onSubscribe( () -> removeSubscriber( subscriber ) );
-    if ( isComplete() )
-    {
-      subscriber.onComplete();
-    }
-    else if ( null != getError() )
-    {
-      subscriber.onError( getError() );
-    }
-    else
-    {
-      addSubscriber( subscriber );
-    }
   }
 
   /**
@@ -155,27 +157,49 @@ public class Subject<T>
 
   void doNext( @Nonnull final T item )
   {
-    for ( final Subscriber<? super T> subscriber : _downstreamSubscribers )
+    for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
-      subscriber.onNext( item );
+      subscription.getSubscriber().onNext( item );
     }
   }
 
   final void doError( @Nonnull final Throwable error )
   {
-    for ( final Subscriber<? super T> subscriber : _downstreamSubscribers )
+    for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
-      subscriber.onError( error );
+      subscription.getSubscriber().onError( error );
     }
-    _downstreamSubscribers.clear();
+    _downstreamSubscriptions.clear();
   }
 
   final void doComplete()
   {
-    for ( final Subscriber<? super T> subscriber : _downstreamSubscribers )
+    for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
-      subscriber.onComplete();
+      subscription.getSubscriber().onComplete();
     }
-    _downstreamSubscribers.clear();
+    _downstreamSubscriptions.clear();
+  }
+
+  final class DownstreamSubscription
+    extends AbstractBaseSubscription<T>
+    implements Subscription
+  {
+    DownstreamSubscription( @Nonnull final Subscriber<? super T> subscriber )
+    {
+      super( subscriber );
+    }
+
+    @Override
+    void doCancel()
+    {
+      removeSubscriber( this );
+    }
+
+    @Override
+    String getQualifiedName()
+    {
+      return Subject.this.getQualifiedName();
+    }
   }
 }

@@ -22,12 +22,11 @@ final class CurrentValueSubject<T>
   }
 
   @Override
-  void completeSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  void completeSubscribe( @Nonnull final DownstreamSubscription subscription )
   {
-    super.completeSubscribe( subscriber );
-    if ( !isDone() && isSubscriber( subscriber ) )
+    if ( !isDone() && subscription.isNotCancelled() )
     {
-      subscriber.onNext( _currentValue );
+      subscription.getSubscriber().onNext( _currentValue );
     }
   }
 
