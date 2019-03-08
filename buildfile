@@ -29,13 +29,13 @@ define 'spritz' do
   desc 'Core Event Streaming Library'
   define 'core' do
     project.enable_annotation_processor = true
+    project.processorpath << project('processor').package(:jar)
+    project.processorpath << project('processor').compile.dependencies
 
     compile.with :javax_annotation,
                  :braincheck,
                  :jsinterop_annotations,
                  :jsinterop_base,
-                 project('processor').package(:jar),
-                 project('processor').compile.dependencies,
                  :elemental2_core,
                  :elemental2_dom,
                  :elemental2_promise
