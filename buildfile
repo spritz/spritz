@@ -86,7 +86,8 @@ define 'spritz' do
   desc 'Spritz Examples'
   define 'examples' do
     compile.with project('core').package(:jar),
-                 project('core').compile.dependencies
+                 project('core').compile.dependencies,
+                 :gwt_user
 
     gwt_modules = {}
     GWT_EXAMPLES.each do |gwt_module|
