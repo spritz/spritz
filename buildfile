@@ -5,7 +5,9 @@ require 'buildr/top_level_generate_dir'
 require 'buildr/gwt'
 require 'buildr/jacoco'
 
-GWT_EXAMPLES = %w()
+GWT_EXAMPLES =
+  {
+  }
 
 SPRITZ_TEST_OPTIONS =
   {
@@ -90,8 +92,8 @@ define 'spritz' do
                  :gwt_user
 
     gwt_modules = {}
-    GWT_EXAMPLES.each do |gwt_module|
-      gwt_modules[gwt_module] = false
+    GWT_EXAMPLES.each_pair do |gwt_module, path|
+      gwt_modules["spritz.examples.dom.#{path}.#{gwt_module}"] = false
     end
     iml.add_gwt_facet(gwt_modules,
                       :settings => { :compilerMaxHeapSize => '1024' },
@@ -148,17 +150,16 @@ define 'spritz' do
   ipr.extra_modules << 'support/processor/processor.iml'
   iml.excluded_directories << project._('tmp')
 
-  GWT_EXAMPLES.each do |gwt_module|
-    short_name = gwt_module.gsub(/.*\./, '')
+  GWT_EXAMPLES.each_pair do |gwt_module, path|
     ipr.add_gwt_configuration(project,
-                              :iml_name => 'example',
-                              :name => short_name,
-                              :gwt_module => gwt_module,
+                              :iml_name => 'examples',
+                              :name => gwt_module,
+                              :gwt_module => "spritz.examples.dom.#{path}.#{gwt_module}",
                               :start_javascript_debugger => false,
                               :open_in_browser => false,
                               :vm_parameters => '-Xmx2G',
-                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', short_name)}/",
-                              :launch_page => "http://127.0.0.1:8888/#{gwt_module}/")
+                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', gwt_module)}/",
+                              :launch_page => "http://127.0.0.1:8888/#{path}")
   end
 
   ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources')
