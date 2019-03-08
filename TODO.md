@@ -18,8 +18,6 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
-- [ ] `share() == publish().refCount()`
-
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling

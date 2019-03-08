@@ -2429,6 +2429,35 @@ public abstract class Stream<T>
   }
 
   /**
+   * Create a stream that multicasts the source Stream. As long as there is at least one Subscriber
+   * this stream will be subscribed to the source Stream and emitting data. When all subscribers have
+   * unsubscribed it will unsubscribe from the source Stream.
+   *
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> share()
+  {
+    return share( null );
+  }
+
+  /**
+   * Create a stream that multicasts the source Stream. As long as there is at least one Subscriber
+   * this stream will be subscribed to the source Stream and emitting data. When all subscribers have
+   * unsubscribed it will unsubscribe from the source Stream.
+   *
+   * @param name the name specified by the user.
+   * @return the new stream.
+   */
+  @Nonnull
+  @DocCategory( DocCategory.Type.UNKNOWN )
+  public final Stream<T> share( @Nullable final String name )
+  {
+    return publish().refCount();
+  }
+
+  /**
    * Publish emitted items and signals to the specified subject.
    * When downstream stages subscribe they are subscribed to the subject.
    * This stage only subscribes to upstream when the {@link ConnectableStream#connect()} method is called on the
