@@ -18,13 +18,6 @@ complete as there is too much un-said.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
 
-**Subjects**
-
-- [ ] Create `Subject.create()`
-- [ ] Create `Subject.createReplayWithMaxSize()`
-- [ ] Create `Subject.createReplayWithMaxAge()`
-- [ ] Create `Subject.createReplay()`
-- [ ] Create `Subject.createCurrentValue(initialValue)`
 - [ ] `share() == publish().refCount()`
 
 ### Scheduler
