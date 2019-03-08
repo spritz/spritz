@@ -11,7 +11,8 @@ public class Example40
       Stream
         .periodic( 1000 )
         .take( 4 )
-        .publishReplay().refCount();
+        .publishReplay()
+        .refCount();
 
     value$.subscribe( new LoggingSubscriber<>( "S1" ) );
 
