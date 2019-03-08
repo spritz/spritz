@@ -3615,6 +3615,50 @@
     }
   },
   {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::share()",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "share",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method spritz.Stream<T> spritz.Stream<T>::share(java.lang.String)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "share",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "package": "spritz"
+    }
+  },
+  {
     "name": "removed annotation",
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
