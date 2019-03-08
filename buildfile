@@ -103,7 +103,6 @@ define 'spritz' do
 
   desc 'Spritz Support Annotation processor'
   define 'processor' do
-
     compile.with :autoservice,
                  :autocommon,
                  :javapoet,
