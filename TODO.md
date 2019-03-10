@@ -203,6 +203,8 @@ Steal some documentation terminology for timeline notation from https://mostcore
 
 Steal some general documentation concepts from https://mostcore.readthedocs.io/en/latest/concepts.html
 
+["Learn the difference between instantiating a Stream (aka Assembly time), triggering it (aka Subscription time) and executing it (aka Execution time)"](https://spring.io/blog/2019/03/06/flight-of-the-flux-1-assembly-vs-subscription)
+
 ### Sample Applications
 
 Once done build a few sample apps.
