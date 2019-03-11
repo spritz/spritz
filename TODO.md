@@ -6,6 +6,8 @@ complete as there is too much un-said.
 
 ### High Priority Tasks
 
+* Move `spritz.WebSocket*` to `spritz.dom`
+
 * Add `Elemental2` specific sources and sinks.
 
 * Copy the invariant code from Arez - including the documentation generator etc.
