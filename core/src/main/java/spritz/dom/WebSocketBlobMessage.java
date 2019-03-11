@@ -5,20 +5,20 @@ import elemental2.dom.WebSocket;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public final class StringMessageEvent
-  extends WebSocketEvent
+public final class WebSocketBlobMessage
+  extends WebSocketResponse
 {
   @Nonnull
-  private final String _data;
+  private final Blob _data;
 
-  public StringMessageEvent( @Nonnull final WebSocket webSocket, @Nonnull final String data )
+  public WebSocketBlobMessage( @Nonnull final WebSocket webSocket, @Nonnull final Blob data )
   {
     super( webSocket );
     _data = Objects.requireNonNull( data );
   }
 
   @Nonnull
-  public String getData()
+  public Blob getData()
   {
     return _data;
   }

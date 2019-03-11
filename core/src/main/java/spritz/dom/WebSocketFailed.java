@@ -4,13 +4,13 @@ import elemental2.dom.WebSocket;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public final class FailureEvent
-  extends WebSocketEvent
+public final class WebSocketFailed
+  extends WebSocketResponse
 {
   @Nullable
   private final Throwable _error;
 
-  public FailureEvent( @Nonnull final WebSocket webSocket, @Nullable final Throwable error )
+  public WebSocketFailed( @Nonnull final WebSocket webSocket, @Nullable final Throwable error )
   {
     super( webSocket );
     _error = error;

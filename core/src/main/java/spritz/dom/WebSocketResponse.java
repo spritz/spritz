@@ -4,12 +4,12 @@ import elemental2.dom.WebSocket;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public abstract class WebSocketEvent
+public abstract class WebSocketResponse
 {
   @Nonnull
   private final WebSocket _webSocket;
 
-  public WebSocketEvent( @Nonnull final WebSocket webSocket )
+  public WebSocketResponse( @Nonnull final WebSocket webSocket )
   {
     _webSocket = Objects.requireNonNull(webSocket);
   }
