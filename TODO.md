@@ -215,3 +215,4 @@ Once done build a few sample apps.
 * [rxsnake](https://github.com/ibaca/rxsnake-gwt) (Implementation described on [blog](http://philipnilsson.github.io/badness/)).
   Maybe style like in [react-game-snake](https://github.com/avin/react-game-snake). Could also look to
   [react-snake](https://github.com/taming-the-state-in-react/react-snake)
+* rxcanvas?
