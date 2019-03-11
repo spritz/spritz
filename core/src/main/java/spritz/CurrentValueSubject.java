@@ -33,9 +33,9 @@ final class CurrentValueSubject<T>
   }
 
   @Override
-  void doNext( @Nonnull final T item )
+  void downstreamNext( @Nonnull final T item )
   {
-    super.doNext( item );
+    super.downstreamNext( item );
     _currentValue = item;
   }
 }

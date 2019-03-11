@@ -76,7 +76,7 @@ public abstract class Hub<MessageInT, MessageOutT>
                     () -> "Spritz-0026: Hub.error(...) invoked after Hub.complete() invoked." );
     }
     _error = error;
-    Scheduler.current( () -> doError( error ) );
+    Scheduler.current( () -> downstreamError( error ) );
     terminateUpstreamSubscribers();
   }
 
@@ -94,7 +94,7 @@ public abstract class Hub<MessageInT, MessageOutT>
                  () -> "Spritz-0028: Hub.complete(...) invoked after Hub.complete() invoked." );
     }
     _complete = true;
-    Scheduler.current( this::doComplete );
+    Scheduler.current( this::downstreamComplete );
     terminateUpstreamSubscribers();
   }
 
@@ -135,7 +135,7 @@ public abstract class Hub<MessageInT, MessageOutT>
     return !_upstreamSubscribers.isEmpty();
   }
 
-  void doNext( @Nonnull final MessageOutT item )
+  void downstreamNext( @Nonnull final MessageOutT item )
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
@@ -143,7 +143,7 @@ public abstract class Hub<MessageInT, MessageOutT>
     }
   }
 
-  void doError( @Nonnull final Throwable error )
+  void downstreamError( @Nonnull final Throwable error )
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
@@ -152,7 +152,7 @@ public abstract class Hub<MessageInT, MessageOutT>
     _downstreamSubscriptions.clear();
   }
 
-  void doComplete()
+  void downstreamComplete()
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {

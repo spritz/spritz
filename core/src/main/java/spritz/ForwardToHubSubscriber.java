@@ -29,20 +29,20 @@ final class ForwardToHubSubscriber<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    _subject.doNext( item );
+    _subject.downstreamNext( item );
   }
 
   @Override
   public void onError( @Nonnull final Throwable error )
   {
-    _subject.doError( error );
+    _subject.downstreamError( error );
     _subscription = null;
   }
 
   @Override
   public void onComplete()
   {
-    _subject.doComplete();
+    _subject.downstreamComplete();
     _subscription = null;
   }
 

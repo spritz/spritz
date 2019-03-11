@@ -18,6 +18,6 @@ public class Subject<T>
   public final void next( @Nonnull final T item )
   {
     ensureNextValid();
-    Scheduler.current( () -> doNext( item ) );
+    Scheduler.current( () -> downstreamNext( item ) );
   }
 }

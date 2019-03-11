@@ -57,7 +57,7 @@ final class ReplaySubject<T>
   }
 
   @Override
-  void doNext( @Nonnull final T item )
+  void downstreamNext( @Nonnull final T item )
   {
     final int size = _buffer.size();
     if ( DEFAULT_VALUE != _maxSize && size == _maxSize )
@@ -74,7 +74,7 @@ final class ReplaySubject<T>
       }
     }
     _buffer.add( new Entry<>( Scheduler.now(), item ) );
-    super.doNext( item );
+    super.downstreamNext( item );
   }
 
   private static final class Entry<T>
