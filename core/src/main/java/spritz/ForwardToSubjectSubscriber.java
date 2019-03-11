@@ -11,11 +11,11 @@ final class ForwardToSubjectSubscriber<T>
   implements Subscriber<T>
 {
   @Nonnull
-  private final Subject<T> _subject;
+  private final Hub<?,T> _subject;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToSubjectSubscriber( @Nonnull final Subject<T> subject )
+  ForwardToSubjectSubscriber( @Nonnull final Hub<?,T> subject )
   {
     _subject = Objects.requireNonNull( subject );
   }
