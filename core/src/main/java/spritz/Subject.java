@@ -148,7 +148,7 @@ public class Subject<T>
     }
   }
 
-  final void doError( @Nonnull final Throwable error )
+  void doError( @Nonnull final Throwable error )
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
@@ -157,7 +157,7 @@ public class Subject<T>
     _downstreamSubscriptions.clear();
   }
 
-  final void doComplete()
+  void doComplete()
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
