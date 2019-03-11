@@ -11,7 +11,7 @@ public abstract class Hub<MessageInT, MessageOutT>
   extends Stream<MessageOutT>
   implements EventEmitter<MessageInT>
 {
-  private final Set<ForwardToSubjectSubscriber<MessageOutT>> _upstreamSubscribers = new HashSet<>();
+  private final Set<ForwardToHubSubscriber<MessageOutT>> _upstreamSubscribers = new HashSet<>();
   private final Set<DownstreamSubscription> _downstreamSubscriptions = new HashSet<>();
   @Nullable
   private Throwable _error;
@@ -100,7 +100,7 @@ public abstract class Hub<MessageInT, MessageOutT>
 
   final void terminateUpstreamSubscribers()
   {
-    for ( final ForwardToSubjectSubscriber<MessageOutT> subscriber : new ArrayList<>( _upstreamSubscribers ) )
+    for ( final ForwardToHubSubscriber<MessageOutT> subscriber : new ArrayList<>( _upstreamSubscribers ) )
     {
       subscriber.cancel();
     }
@@ -108,9 +108,9 @@ public abstract class Hub<MessageInT, MessageOutT>
   }
 
   @Nonnull
-  final ForwardToSubjectSubscriber<MessageOutT> newUpstreamSubscriber()
+  final ForwardToHubSubscriber<MessageOutT> newUpstreamSubscriber()
   {
-    final ForwardToSubjectSubscriber<MessageOutT> subscriber = new ForwardToSubjectSubscriber<>( this );
+    final ForwardToHubSubscriber<MessageOutT> subscriber = new ForwardToHubSubscriber<>( this );
     _upstreamSubscribers.add( subscriber );
     return subscriber;
   }

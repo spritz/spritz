@@ -7,15 +7,15 @@ import javax.annotation.Nullable;
 /**
  * A subscriber that forwards events onto a subject.
  */
-final class ForwardToSubjectSubscriber<T>
-  implements Subscriber<T>
+final class ForwardToHubSubscriber<T>
+  implements Subscriber<T>, Subscription
 {
   @Nonnull
   private final Hub<?,T> _subject;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToSubjectSubscriber( @Nonnull final Hub<?,T> subject )
+  ForwardToHubSubscriber( @Nonnull final Hub<?,T> subject )
   {
     _subject = Objects.requireNonNull( subject );
   }
@@ -46,7 +46,8 @@ final class ForwardToSubjectSubscriber<T>
     _subscription = null;
   }
 
-  void cancel()
+  @Override
+  public void cancel()
   {
     if ( null != _subscription )
     {
