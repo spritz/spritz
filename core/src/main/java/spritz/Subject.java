@@ -130,7 +130,7 @@ public class Subject<T>
    * {@inheritDoc}
    */
   @Override
-  public boolean isDone()
+  public final boolean isDone()
   {
     return _complete || null != _error;
   }
