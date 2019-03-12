@@ -35,4 +35,14 @@ public interface EventEmitter<T>
    * @return true if the emitter has emitted an error signal, a complete signal or has been cancelled.
    */
   boolean isDone();
+
+  /**
+   * Return true if {@link #isDone()} returns <code>false</code>.
+   *
+   * @return true if {@link #isDone()} returns <code>false</code>.
+   */
+  default boolean isNotDone()
+  {
+    return !isDone();
+  }
 }

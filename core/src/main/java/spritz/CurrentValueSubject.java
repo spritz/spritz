@@ -26,7 +26,7 @@ final class CurrentValueSubject<T>
   @Override
   void completeSubscribe( @Nonnull final DownstreamSubscription subscription )
   {
-    if ( !isDone() && subscription.isNotDone() )
+    if ( isNotDone() && subscription.isNotDone() )
     {
       subscription.getSubscriber().onNext( _currentValue );
     }

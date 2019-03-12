@@ -12,7 +12,7 @@ public class Example29
         s.next( 'F' );
         s.next( 'N' );
         s.next( '2' );
-        if ( !s.isDone() )
+        if ( s.isNotDone() )
         {
           s.next( '1' );
           s.next( '8' );

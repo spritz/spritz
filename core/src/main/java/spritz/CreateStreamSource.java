@@ -48,7 +48,7 @@ final class CreateStreamSource<T>
     @Override
     public void next( @Nonnull final T item )
     {
-      if ( !isDone() )
+      if ( isNotDone() )
       {
         _subscriber.onNext( item );
       }
@@ -60,7 +60,7 @@ final class CreateStreamSource<T>
     @Override
     public void error( @Nonnull final Throwable throwable )
     {
-      if ( !isDone() )
+      if ( isNotDone() )
       {
         _subscriber.onError( throwable );
         _done = true;
@@ -73,7 +73,7 @@ final class CreateStreamSource<T>
     @Override
     public void complete()
     {
-      if ( !isDone() )
+      if ( isNotDone() )
       {
         _subscriber.onComplete();
         _done = true;
