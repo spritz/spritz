@@ -1,0 +1,10 @@
+<module rename-to='web_socket'>
+  <inherits name="com.google.gwt.core.Core"/>
+  <inherits name='spritz.SpritzDev'/>
+  <inherits name='elemental2.dom.Dom'/>
+
+  <source path='' includes='WebSocketExample.java'/>
+  <public path='public'/>
+
+  <entry-point class='spritz.examples.dom.web_socket.WebSocketExample'/>
+</module>

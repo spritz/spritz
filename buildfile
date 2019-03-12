@@ -7,6 +7,7 @@ require 'buildr/jacoco'
 
 GWT_EXAMPLES =
   {
+    'WebSocketExample' => 'web_socket'
   }
 
 SPRITZ_TEST_OPTIONS =
