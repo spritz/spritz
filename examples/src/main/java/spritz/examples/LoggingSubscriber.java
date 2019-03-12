@@ -57,5 +57,4 @@ final class LoggingSubscriber<T>
   {
     return " on " + Scheduler.currentVpu().getName();
   }
-
 }
