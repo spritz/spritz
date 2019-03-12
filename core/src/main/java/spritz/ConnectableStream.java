@@ -75,9 +75,9 @@ public final class ConnectableStream<T>
   }
 
   /**
-   * Return true if strem is connected, false otherwise.
+   * Return true if stream is connected, false otherwise.
    *
-   * @return true if strem is connected, false otherwise.
+   * @return true if stream is connected, false otherwise.
    */
   public boolean isConnected()
   {
