@@ -73,7 +73,7 @@
     "name": "class added",
     "code": "java.class.added",
     "description": "Class was added.",
-    "newElement": "class spritz.WebSocketCloseException",
+    "newElement": "class spritz.WebSocketHub",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "oldElement": null,
     "oldElementModule": null,
@@ -82,73 +82,10 @@
       "BINARY": "NON_BREAKING"
     },
     "attachments": {
-      "classQualifiedName": "spritz.WebSocketCloseException",
-      "classSimpleName": "WebSocketCloseException",
+      "classQualifiedName": "spritz.WebSocketHub",
+      "classSimpleName": "WebSocketHub",
       "elementKind": "class",
-      "exampleUseChainInNewApi": "class spritz.WebSocketCloseException is part of the API",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "class added",
-    "code": "java.class.added",
-    "description": "Class was added.",
-    "newElement": "class spritz.WebSocketConfig",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.WebSocketConfig",
-      "classSimpleName": "WebSocketConfig",
-      "elementKind": "class",
-      "exampleUseChainInNewApi": "class spritz.WebSocketConfig is part of the API",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "class added",
-    "code": "java.class.added",
-    "description": "Class was added.",
-    "newElement": "class spritz.WebSocketErrorException",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.WebSocketErrorException",
-      "classSimpleName": "WebSocketErrorException",
-      "elementKind": "class",
-      "exampleUseChainInNewApi": "class spritz.WebSocketErrorException is part of the API",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
-      "package": "spritz"
-    }
-  },
-  {
-    "name": "class added",
-    "code": "java.class.added",
-    "description": "Class was added.",
-    "newElement": "class spritz.WebSocketSource",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
-    "oldElement": null,
-    "oldElementModule": null,
-    "classification": {
-      "SOURCE": "NON_BREAKING",
-      "BINARY": "NON_BREAKING"
-    },
-    "attachments": {
-      "classQualifiedName": "spritz.WebSocketSource",
-      "classSimpleName": "WebSocketSource",
-      "elementKind": "class",
-      "exampleUseChainInNewApi": "class spritz.WebSocketSource is part of the API",
+      "exampleUseChainInNewApi": "class spritz.WebSocketHub is part of the API",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "package": "spritz"
     }
@@ -220,6 +157,27 @@
     "name": "class added",
     "code": "java.class.added",
     "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketCloseException",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketCloseException",
+      "classSimpleName": "WebSocketCloseException",
+      "elementKind": "class",
+      "exampleUseChainInNewApi": "class spritz.dom.WebSocketCloseException is part of the API",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "name": "class added",
+    "code": "java.class.added",
+    "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketCloseRequest",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "oldElement": null,
@@ -254,6 +212,48 @@
       "classSimpleName": "WebSocketCloseStarting",
       "elementKind": "class",
       "exampleUseChainInNewApi": "class spritz.dom.WebSocketCloseStarting is part of the API",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "name": "class added",
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketConfig",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketConfig",
+      "classSimpleName": "WebSocketConfig",
+      "elementKind": "class",
+      "exampleUseChainInNewApi": "class spritz.dom.WebSocketConfig is part of the API",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "name": "class added",
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketErrorException",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketErrorException",
+      "classSimpleName": "WebSocketErrorException",
+      "elementKind": "class",
+      "exampleUseChainInNewApi": "class spritz.dom.WebSocketErrorException is part of the API",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "package": "spritz.dom"
     }
@@ -700,6 +700,50 @@
     "name": "method added",
     "code": "java.method.added",
     "description": "Method was added.",
+    "newElement": "method spritz.WebSocketHub spritz.Stream<T>::webSocket(java.lang.String, spritz.dom.WebSocketConfig)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "webSocket",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method added",
+    "code": "java.method.added",
+    "description": "Method was added.",
+    "newElement": "method spritz.WebSocketHub spritz.Stream<T>::webSocket(spritz.dom.WebSocketConfig)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "webSocket",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method added",
+    "code": "java.method.added",
+    "description": "Method was added.",
     "newElement": "method void java.lang.Object::finalize() throws java.lang.Throwable @ spritz.Subscription",
     "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "oldElement": null,
@@ -907,6 +951,28 @@
     }
   },
   {
+    "name": "final method added to non-final class",
+    "code": "java.method.finalMethodAddedToNonFinalClass",
+    "description": "A final method has been added to an inheritable class.",
+    "newElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": null,
+    "oldElementModule": null,
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
+      "methodName": "subscribe",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "package": "spritz"
+    }
+  },
+  {
     "name": "method added",
     "code": "java.method.added",
     "description": "Method was added.",
@@ -948,7 +1014,33 @@
       "exampleUseChainInOldApi": "interface spritz.Subscription is part of the API",
       "methodName": "cancel",
       "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
-      "newModifiers": "public",
+      "newModifiers": "public final",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
+      "oldModifiers": "public abstract",
+      "package": "spritz"
+    }
+  },
+  {
+    "name": "method now final",
+    "code": "java.method.nowFinal",
+    "description": "Method is now final.",
+    "newElement": "method void spritz.Subscription::cancel()",
+    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
+    "oldElement": "method void spritz.Subscription::cancel()",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.03",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Subscription",
+      "classSimpleName": "Subscription",
+      "elementKind": "method",
+      "exampleUseChainInNewApi": "class spritz.Subscription is part of the API",
+      "exampleUseChainInOldApi": "interface spritz.Subscription is part of the API",
+      "methodName": "cancel",
+      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
+      "newModifiers": "public final",
       "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.03",
       "oldModifiers": "public abstract",
       "package": "spritz"
