@@ -66,7 +66,6 @@ public final class Scheduler
 
   /**
    * Queue the task to execute on the current VPU.
-   * This method MUST NOT be invoked if there is no {@link VirtualProcessorUnit} activated.
    *
    * @param task the task.
    */
