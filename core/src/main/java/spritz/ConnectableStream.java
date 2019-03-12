@@ -55,7 +55,7 @@ public final class ConnectableStream<T>
     if ( Spritz.shouldCheckInvariants() )
     {
       apiInvariant( () -> !_connected,
-                    () -> "Spritz-0033: Subject.connect(...) invoked on subject '" + getName() + "' but " +
+                    () -> "Spritz-0033: ConnectableStream.connect(...) invoked on subject '" + getName() + "' but " +
                           "subject is already connected." );
     }
     _connected = true;
