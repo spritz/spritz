@@ -11,7 +11,7 @@ public final class ConnectableStream<T>
 {
   @Nonnull
   private final Subject<T> _subject;
-  private boolean _connectCalled;
+  private boolean _connected;
 
   ConnectableStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Subject<T> subject )
   {
@@ -54,11 +54,11 @@ public final class ConnectableStream<T>
   {
     if ( Spritz.shouldCheckInvariants() )
     {
-      apiInvariant( () -> !_connectCalled,
+      apiInvariant( () -> !_connected,
                     () -> "Spritz-0033: Subject.connect(...) invoked on subject '" + getName() + "' but " +
                           "subject is already connected." );
-      _connectCalled = true;
     }
+    _connected = true;
     getUpstream().subscribe( _subject.newUpstreamSubscriber() );
   }
 
@@ -66,12 +66,22 @@ public final class ConnectableStream<T>
   {
     if ( Spritz.shouldCheckInvariants() )
     {
-      apiInvariant( () -> _connectCalled,
+      apiInvariant( () -> _connected,
                     () -> "Spritz-1033: Subject.disconnect(...) invoked on subject '" + getName() + "' but " +
                           "subject is not connected." );
-      _connectCalled = false;
     }
+    _connected = false;
     _subject.terminateUpstreamSubscribers();
+  }
+
+  /**
+   * Return true if strem is connected, false otherwise.
+   *
+   * @return true if strem is connected, false otherwise.
+   */
+  public boolean isConnected()
+  {
+    return _connected;
   }
 
   @Nonnull
