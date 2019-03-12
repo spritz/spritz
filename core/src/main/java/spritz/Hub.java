@@ -139,9 +139,9 @@ public abstract class Hub<MessageInT, MessageOutT>
     return _complete || null != _error;
   }
 
-  final boolean hasUpstreamSubscribers()
+  final boolean hasDownstreamSubscribers()
   {
-    return !_upstreamSubscribers.isEmpty();
+    return !_downstreamSubscriptions.isEmpty();
   }
 
   void downstreamNext( @Nonnull final MessageOutT item )
