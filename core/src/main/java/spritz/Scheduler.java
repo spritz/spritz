@@ -65,6 +65,16 @@ public final class Scheduler
   }
 
   /**
+   * Return true if there is a current VPU activated.
+   *
+   * @return true if there is a current VPU activated.
+   */
+  public static boolean isVirtualProcessorUnitActivated()
+  {
+    return VirtualProcessorUnitsHolder.isVirtualProcessorUnitActivated();
+  }
+
+  /**
    * Queue the task to execute on the current VPU.
    *
    * @param task the task.
