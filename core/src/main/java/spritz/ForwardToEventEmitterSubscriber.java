@@ -5,19 +5,19 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * A subscriber that forwards events onto a subject.
+ * A subscriber that forwards events onto an EventEmitter.
  */
-final class ForwardToHubSubscriber<T>
+final class ForwardToEventEmitterSubscriber<T>
   implements Subscriber<T>, Subscription
 {
   @Nonnull
-  private final Hub<?, T> _hub;
+  private final EventEmitter<T> _eventEmitter;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToHubSubscriber( @Nonnull final Hub<?, T> hub )
+  ForwardToEventEmitterSubscriber( @Nonnull final EventEmitter<T> eventEmitter )
   {
-    _hub = Objects.requireNonNull( hub );
+    _eventEmitter = Objects.requireNonNull( eventEmitter );
   }
 
   @Override
@@ -29,20 +29,20 @@ final class ForwardToHubSubscriber<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    _hub.downstreamNext( item );
+    _eventEmitter.next( item );
   }
 
   @Override
   public void onError( @Nonnull final Throwable error )
   {
-    _hub.downstreamError( error );
+    _eventEmitter.error( error );
     _subscription = null;
   }
 
   @Override
   public void onComplete()
   {
-    _hub.downstreamComplete();
+    _eventEmitter.complete();
     _subscription = null;
   }
 
@@ -54,11 +54,5 @@ final class ForwardToHubSubscriber<T>
       _subscription.cancel();
       _subscription = null;
     }
-  }
-
-  @Nullable
-  Subscription getSubscription()
-  {
-    return _subscription;
   }
 }
