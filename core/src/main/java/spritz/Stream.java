@@ -13,6 +13,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import spritz.dom.WebSocketConfig;
 import static org.realityforge.braincheck.Guards.*;
 
 @SuppressWarnings( { "WeakerAccess", "unused" } )
@@ -382,6 +383,18 @@ public abstract class Stream<T>
   public static Stream<Integer> periodic( @Nullable final String name, final int period )
   {
     return new PeriodicStreamSource( name, period );
+  }
+
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static WebSocketHub webSocket( @Nonnull final WebSocketConfig config )
+  {
+    return webSocket( null, config );
+  }
+
+  @DocCategory( DocCategory.Type.CONSTRUCTION )
+  public static WebSocketHub webSocket( @Nullable final String name, @Nonnull final WebSocketConfig config )
+  {
+    return new WebSocketHub( name, config );
   }
 
   @DocCategory( DocCategory.Type.CONSTRUCTION )

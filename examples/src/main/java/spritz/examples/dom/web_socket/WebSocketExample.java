@@ -7,12 +7,14 @@ import elemental2.dom.WebSocket;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.Scheduler;
+import spritz.Stream;
 import spritz.Subscriber;
 import spritz.Subscription;
 import spritz.WebSocketHub;
 import spritz.dom.WebSocketCloseRequest;
 import spritz.dom.WebSocketConfig;
 import spritz.dom.WebSocketMessageRequest;
+import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
 
 public class WebSocketExample
@@ -21,9 +23,9 @@ public class WebSocketExample
   @Override
   public void onModuleLoad()
   {
-    final WebSocketConfig config = new WebSocketConfig( "wss://echo.websocket.org", null, "arraybuffer" );
+    final WebSocketHub hub =
+      Stream.webSocket( new WebSocketConfig( "wss://echo.websocket.org", null, "arraybuffer" ) );
 
-    final WebSocketHub hub = new WebSocketHub( null, config );
     DomGlobal.console.log( "Construction complete" );
     final LoggingSubscriber<WebSocketResponse> subscriber = new LoggingSubscriber<>( "WS" );
     hub.subscribe( subscriber );

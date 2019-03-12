@@ -27,7 +27,7 @@ public final class WebSocketHub
   @Nullable
   private ForwardToHubDownstreamSubscriber<WebSocketResponse> _subscriber;
 
-  public WebSocketHub( @Nullable final String name, @Nonnull final WebSocketConfig config )
+  WebSocketHub( @Nullable final String name, @Nonnull final WebSocketConfig config )
   {
     super( Spritz.areNamesEnabled() ? Stream.generateName( name, "webSocket" ) : null );
     _config = Objects.requireNonNull( config );
