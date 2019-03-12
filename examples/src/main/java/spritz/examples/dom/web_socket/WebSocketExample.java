@@ -31,6 +31,13 @@ public class WebSocketExample
     hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( new ArrayBuffer( 22 ) ) ) );
     hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "Hello" ) ) );
 
+    Stream.<WebSocketRequest>create( s -> {
+      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "ABC" ) ) );
+      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "def" ) ) );
+      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "GHI" ) ) );
+      // Never completes ....
+    } ).subscribe( hub );
+
     DomGlobal.setTimeout( e -> {
       DomGlobal.console.log( "PreCancel" );
       subscriber.getSubscription().cancel();

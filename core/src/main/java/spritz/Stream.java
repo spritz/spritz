@@ -518,6 +518,16 @@ public abstract class Stream<T>
   }
 
   /**
+   * Subscribe the eventEmitter to this stream and forward events from the stream to the emitter.
+   *
+   * @param eventEmitter the eventEmitter.
+   */
+  public final void subscribe( @Nonnull final EventEmitter<T> eventEmitter )
+  {
+    subscribe( new ForwardToEventEmitterSubscriber<>( eventEmitter ) );
+  }
+
+  /**
    * Subscribe the subscriber to this stream so that it can receive events.
    *
    * @param subscriber the subscriber.
