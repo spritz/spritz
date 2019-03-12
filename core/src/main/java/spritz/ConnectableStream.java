@@ -10,19 +10,19 @@ public final class ConnectableStream<T>
   extends AbstractStream<T, T>
 {
   @Nonnull
-  private final Subject<T> _subject;
+  private final Hub<T,T> _hub;
   private boolean _connected;
 
-  ConnectableStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Subject<T> subject )
+  ConnectableStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Hub<T,T> hub )
   {
     super( name, upstream );
-    _subject = Objects.requireNonNull( subject );
+    _hub = Objects.requireNonNull( hub );
   }
 
   @Override
   void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _subject.subscribe( subscriber );
+    _hub.subscribe( subscriber );
   }
 
   /**
@@ -59,7 +59,7 @@ public final class ConnectableStream<T>
                           "subject is already connected." );
     }
     _connected = true;
-    getUpstream().subscribe( _subject.newUpstreamSubscriber() );
+    getUpstream().subscribe( _hub.newUpstreamSubscriber() );
   }
 
   public void disconnect()
@@ -71,7 +71,7 @@ public final class ConnectableStream<T>
                           "subject is not connected." );
     }
     _connected = false;
-    _subject.terminateUpstreamSubscribers();
+    _hub.terminateUpstreamSubscribers();
   }
 
   /**
@@ -85,8 +85,8 @@ public final class ConnectableStream<T>
   }
 
   @Nonnull
-  Subject<T> getSubject()
+  Hub<T,T> getHub()
   {
-    return _subject;
+    return _hub;
   }
 }

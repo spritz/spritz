@@ -73,7 +73,7 @@ final class RefCountOperator<T>
 
     boolean subjectHasZeroSubscribers( @Nonnull final ConnectableStream<T> stream )
     {
-      return !stream.getSubject().hasDownstreamSubscribers();
+      return !stream.getHub().hasDownstreamSubscribers();
     }
 
     private ConnectableStream<T> getConnectableStream()
