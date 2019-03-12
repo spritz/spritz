@@ -121,6 +121,8 @@ Below are the old TODO notes:
 
 ## To Implement
 
+- [ ] `noComplete()` Operator that removes complete signal from stream and perhaps just filters it.
+
 **Elemental2 Sources**
 
 - [ ] `fromEvent(EventSource)` - Create events from DOM/JS event source.
@@ -181,6 +183,7 @@ All the windowing functions take an input stream that they cut up into segments 
 Other
 
 - [ ] `groupBy(GroupByFunction)` - Create an inner stream based on group returned by function. Stream can be concurrent.
+
 
 -----
 
