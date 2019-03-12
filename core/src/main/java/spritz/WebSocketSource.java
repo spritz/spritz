@@ -11,20 +11,19 @@ import spritz.dom.WebSocketArrayBufferMessage;
 import spritz.dom.WebSocketBlobMessage;
 import spritz.dom.WebSocketCloseCompleted;
 import spritz.dom.WebSocketOpenCompleted;
-import spritz.dom.WebSocketStringMessage;
 import spritz.dom.WebSocketResponse;
+import spritz.dom.WebSocketStringMessage;
 import spritz.dom.util.CloseEvent;
 import spritz.dom.util.EventMessageEventTypeParameterUnionType;
 import spritz.dom.util.OnerrorFn;
 
-// TODO: Return this to being package access
-public final class WebSocketSource
+final class WebSocketSource
   extends Stream<WebSocketResponse>
 {
   @Nonnull
   private final WebSocketConfig _config;
 
-  public WebSocketSource( @Nullable final String name, @Nonnull final WebSocketConfig config )
+  WebSocketSource( @Nullable final String name, @Nonnull final WebSocketConfig config )
   {
     super( Spritz.areNamesEnabled() ? generateName( name, "webSocket", config.getUrl() ) : null );
     _config = Objects.requireNonNull( config );
