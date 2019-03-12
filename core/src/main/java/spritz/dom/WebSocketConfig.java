@@ -1,4 +1,4 @@
-package spritz;
+package spritz.dom;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;

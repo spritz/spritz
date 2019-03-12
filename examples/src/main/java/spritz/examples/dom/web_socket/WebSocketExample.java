@@ -9,9 +9,9 @@ import javax.annotation.Nullable;
 import spritz.Scheduler;
 import spritz.Subscriber;
 import spritz.Subscription;
-import spritz.WebSocketConfig;
 import spritz.WebSocketHub;
 import spritz.dom.WebSocketCloseRequest;
+import spritz.dom.WebSocketConfig;
 import spritz.dom.WebSocketMessageRequest;
 import spritz.dom.WebSocketResponse;
 

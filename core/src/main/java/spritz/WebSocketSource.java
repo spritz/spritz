@@ -10,6 +10,8 @@ import jsinterop.base.Js;
 import spritz.dom.WebSocketArrayBufferMessage;
 import spritz.dom.WebSocketBlobMessage;
 import spritz.dom.WebSocketCloseCompleted;
+import spritz.dom.WebSocketConfig;
+import spritz.dom.WebSocketErrorException;
 import spritz.dom.WebSocketOpenCompleted;
 import spritz.dom.WebSocketResponse;
 import spritz.dom.WebSocketStringMessage;

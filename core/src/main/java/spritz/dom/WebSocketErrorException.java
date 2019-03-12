@@ -1,4 +1,4 @@
-package spritz;
+package spritz.dom;
 
 import elemental2.dom.Event;
 import java.util.Objects;
