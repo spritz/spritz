@@ -51,7 +51,11 @@ public abstract class Hub<MessageInT, MessageOutT>
   {
   }
 
-  final void ensureNextValid()
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final void next( @Nonnull final MessageInT item )
   {
     if ( Spritz.shouldCheckApiInvariants() )
     {
@@ -60,7 +64,10 @@ public abstract class Hub<MessageInT, MessageOutT>
       apiInvariant( () -> !_complete,
                     () -> "Hub-0024: Hub.next(...) invoked after Hub.complete() invoked." );
     }
+    performNext( item );
   }
+
+  abstract void performNext( @Nonnull MessageInT item );
 
   /**
    * {@inheritDoc}
@@ -76,9 +83,10 @@ public abstract class Hub<MessageInT, MessageOutT>
                     () -> "Spritz-0026: Hub.error(...) invoked after Hub.complete() invoked." );
     }
     _error = error;
-    Scheduler.current( () -> downstreamError( error ) );
-    terminateUpstreamSubscribers();
+    performError( error );
   }
+
+  abstract void performError( @Nonnull Throwable error );
 
   /**
    * {@inheritDoc}
@@ -94,9 +102,10 @@ public abstract class Hub<MessageInT, MessageOutT>
                  () -> "Spritz-0028: Hub.complete(...) invoked after Hub.complete() invoked." );
     }
     _complete = true;
-    Scheduler.current( this::downstreamComplete );
-    terminateUpstreamSubscribers();
+    performComplete();
   }
+
+  abstract void performComplete();
 
   final void terminateUpstreamSubscribers()
   {

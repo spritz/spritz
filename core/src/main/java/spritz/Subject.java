@@ -15,9 +15,28 @@ public class Subject<T>
    * {@inheritDoc}
    */
   @Override
-  public final void next( @Nonnull final T item )
+  void performNext( @Nonnull final T item )
   {
-    ensureNextValid();
     Scheduler.current( () -> downstreamNext( item ) );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  void performError( @Nonnull final Throwable error )
+  {
+    Scheduler.current( () -> downstreamError( error ) );
+    terminateUpstreamSubscribers();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  void performComplete()
+  {
+    Scheduler.current( this::downstreamComplete );
+    terminateUpstreamSubscribers();
   }
 }
