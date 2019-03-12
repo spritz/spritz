@@ -42,7 +42,7 @@ final class ValidatingSubscriber<T>
     try
     {
       _state = State.SUBSCRIBE_STARTED;
-      _target.onSubscribe( new WorkerSubscription<>( this, subscription ) );
+      _target.onSubscribe( new WorkerSubscription( subscription ) );
       _state = State.SUBSCRIBE_COMPLETED;
     }
     catch ( final Throwable throwable )
@@ -140,19 +140,14 @@ final class ValidatingSubscriber<T>
     }
   }
 
-  private static final class WorkerSubscription<T>
+  private static final class WorkerSubscription
     extends Subscription
   {
     @Nonnull
-    private final ValidatingSubscriber<T> _subscriber;
-    @Nonnull
     private final Subscription _subscription;
-    private boolean _cancelled;
 
-    WorkerSubscription( @Nonnull final ValidatingSubscriber<T> subscriber,
-                        @Nonnull final Subscription subscription )
+    WorkerSubscription( @Nonnull final Subscription subscription )
     {
-      _subscriber = Objects.requireNonNull( subscriber );
       _subscription = Objects.requireNonNull( subscription );
     }
 
@@ -160,32 +155,25 @@ final class ValidatingSubscriber<T>
      * {@inheritDoc}
      */
     @Override
-    public void cancel()
+    void doCancel()
     {
       if ( Spritz.shouldCheckInvariants() )
       {
         invariant( Scheduler::isVirtualProcessorUnitActivated,
                    () -> "Spritz-0029: Subscription.cancel() invoked when no VPU was active." );
-        invariant( () -> !_cancelled,
-                   () -> "Spritz-0013: Invoking Subscription.cancel(...) for subscriber '" + _subscriber +
-                         "' but the subscription is already cancelled." );
       }
-      if ( !_cancelled )
+      try
       {
-        try
+        _subscription.cancel();
+      }
+      catch ( final Throwable t )
+      {
+        if ( Spritz.shouldCheckInvariants() )
         {
-          _cancelled = true;
-          _subscription.cancel();
+          fail( () -> "Spritz-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
+                      "Exception:\n" + ErrorUtil.throwableToString( t ) );
         }
-        catch ( final Throwable t )
-        {
-          if ( Spritz.shouldCheckInvariants() )
-          {
-            fail( () -> "Spritz-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
-                        "Exception:\n" + ErrorUtil.throwableToString( t ) );
-          }
-          throw t;
-        }
+        throw t;
       }
     }
 

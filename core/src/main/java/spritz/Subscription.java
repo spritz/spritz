@@ -15,7 +15,7 @@ public abstract class Subscription
    * After this method is invoked the subscription will emit no items or signals to downstream stages
    * and will release resources associated with the subscription which may include upstream subscriptions.
    */
-  public void cancel()
+  public final void cancel()
   {
     if ( isNotDone() )
     {
