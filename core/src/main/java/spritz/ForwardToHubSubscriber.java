@@ -11,11 +11,11 @@ final class ForwardToHubSubscriber<T>
   implements Subscriber<T>, Subscription
 {
   @Nonnull
-  private final Hub<?,T> _hub;
+  private final Hub<?, T> _hub;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToHubSubscriber( @Nonnull final Hub<?,T> hub )
+  ForwardToHubSubscriber( @Nonnull final Hub<?, T> hub )
   {
     _hub = Objects.requireNonNull( hub );
   }
@@ -54,5 +54,11 @@ final class ForwardToHubSubscriber<T>
       _subscription.cancel();
       _subscription = null;
     }
+  }
+
+  @Nullable
+  Subscription getSubscription()
+  {
+    return _subscription;
   }
 }
