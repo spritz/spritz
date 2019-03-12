@@ -172,7 +172,6 @@ public abstract class Hub<MessageInT, MessageOutT>
 
   final class DownstreamSubscription
     extends AbstractSubscription<MessageOutT>
-    implements Subscription
   {
     DownstreamSubscription( @Nonnull final Subscriber<? super MessageOutT> subscriber )
     {
