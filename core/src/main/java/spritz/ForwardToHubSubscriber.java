@@ -11,13 +11,13 @@ final class ForwardToHubSubscriber<T>
   implements Subscriber<T>, Subscription
 {
   @Nonnull
-  private final Hub<?,T> _subject;
+  private final Hub<?,T> _hub;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToHubSubscriber( @Nonnull final Hub<?,T> subject )
+  ForwardToHubSubscriber( @Nonnull final Hub<?,T> hub )
   {
-    _subject = Objects.requireNonNull( subject );
+    _hub = Objects.requireNonNull( hub );
   }
 
   @Override
@@ -29,20 +29,20 @@ final class ForwardToHubSubscriber<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    _subject.downstreamNext( item );
+    _hub.downstreamNext( item );
   }
 
   @Override
   public void onError( @Nonnull final Throwable error )
   {
-    _subject.downstreamError( error );
+    _hub.downstreamError( error );
     _subscription = null;
   }
 
   @Override
   public void onComplete()
   {
-    _subject.downstreamComplete();
+    _hub.downstreamComplete();
     _subscription = null;
   }
 
