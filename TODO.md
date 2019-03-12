@@ -22,6 +22,10 @@ complete as there is too much un-said.
 
 * Add JDepend test.
 
+* Add `TodoMVC` to compile test for this project. As well as `react4j` and possibly `arez`?
+
+* `Stream.subscribe(...)` should return a `Subscription` so can be cancelled from container
+
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling
