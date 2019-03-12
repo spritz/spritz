@@ -8,7 +8,8 @@ import javax.annotation.Nullable;
  * A subscriber that forwards events onto an EventEmitter.
  */
 final class ForwardToEventEmitterSubscriber<T>
-  implements Subscriber<T>, Subscription
+  extends Subscription
+  implements Subscriber<T>
 {
   @Nonnull
   private final EventEmitter<T> _eventEmitter;
@@ -35,6 +36,7 @@ final class ForwardToEventEmitterSubscriber<T>
   @Override
   public void onError( @Nonnull final Throwable error )
   {
+    markAsDone();
     _eventEmitter.error( error );
     _subscription = null;
   }
@@ -42,17 +44,24 @@ final class ForwardToEventEmitterSubscriber<T>
   @Override
   public void onComplete()
   {
+    markAsDone();
     _eventEmitter.complete();
     _subscription = null;
   }
 
   @Override
-  public void cancel()
+  void doCancel()
   {
     if ( null != _subscription )
     {
       _subscription.cancel();
       _subscription = null;
     }
+  }
+
+  @Override
+  String getQualifiedName()
+  {
+    return null == _subscription ? "" : _subscription.getQualifiedName();
   }
 }

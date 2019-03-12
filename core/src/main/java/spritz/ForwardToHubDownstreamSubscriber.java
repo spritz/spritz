@@ -8,7 +8,8 @@ import javax.annotation.Nullable;
  * A subscriber that forwards events onto downstream subscribers form a hub.
  */
 final class ForwardToHubDownstreamSubscriber<T>
-  implements Subscriber<T>, Subscription
+  extends Subscription
+  implements Subscriber<T>
 {
   @Nonnull
   private final Hub<?, T> _hub;
@@ -35,6 +36,7 @@ final class ForwardToHubDownstreamSubscriber<T>
   @Override
   public void onError( @Nonnull final Throwable error )
   {
+    markAsDone();
     _hub.downstreamError( error );
     _subscription = null;
   }
@@ -42,18 +44,25 @@ final class ForwardToHubDownstreamSubscriber<T>
   @Override
   public void onComplete()
   {
+    markAsDone();
     _hub.downstreamComplete();
     _subscription = null;
   }
 
   @Override
-  public void cancel()
+  void doCancel()
   {
     if ( null != _subscription )
     {
       _subscription.cancel();
       _subscription = null;
     }
+  }
+
+  @Override
+  String getQualifiedName()
+  {
+    return null == _subscription ? "" : _subscription.getQualifiedName();
   }
 
   @Nullable

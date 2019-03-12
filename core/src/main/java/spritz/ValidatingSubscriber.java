@@ -141,7 +141,7 @@ final class ValidatingSubscriber<T>
   }
 
   private static final class WorkerSubscription<T>
-    implements Subscription
+    extends Subscription
   {
     @Nonnull
     private final ValidatingSubscriber<T> _subscriber;
@@ -193,9 +193,9 @@ final class ValidatingSubscriber<T>
      * {@inheritDoc}
      */
     @Override
-    public String toString()
+    String getQualifiedName()
     {
-      return _subscription.toString();
+      return _subscription.getQualifiedName();
     }
   }
 }
