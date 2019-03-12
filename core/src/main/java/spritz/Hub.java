@@ -107,7 +107,7 @@ public abstract class Hub<MessageInT, MessageOutT>
 
   abstract void performComplete();
 
-  final void terminateUpstreamSubscribers()
+  void terminateUpstreamSubscribers()
   {
     for ( final ForwardToEventEmitterSubscriber<MessageInT> subscriber : new ArrayList<>( _upstreamSubscribers ) )
     {
