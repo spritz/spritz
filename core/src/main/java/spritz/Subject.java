@@ -17,7 +17,7 @@ public class Subject<T>
   @Override
   void performNext( @Nonnull final T item )
   {
-    Scheduler.current( () -> downstreamNext( item ) );
+    downstreamNext( item );
   }
 
   /**
@@ -26,7 +26,7 @@ public class Subject<T>
   @Override
   void performError( @Nonnull final Throwable error )
   {
-    Scheduler.current( () -> downstreamError( error ) );
+    downstreamError( error );
     terminateUpstreamSubscribers();
   }
 
@@ -36,7 +36,7 @@ public class Subject<T>
   @Override
   void performComplete()
   {
-    Scheduler.current( this::downstreamComplete );
+    downstreamComplete();
     terminateUpstreamSubscribers();
   }
 }

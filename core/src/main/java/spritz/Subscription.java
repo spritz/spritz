@@ -20,14 +20,7 @@ public abstract class Subscription
     if ( isNotDone() )
     {
       markAsDone();
-      if ( Scheduler.isVirtualProcessorUnitActivated() )
-      {
-        doCancel();
-      }
-      else
-      {
-        Scheduler.current( this::doCancel );
-      }
+      doCancel();
     }
   }
 
