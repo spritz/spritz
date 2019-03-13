@@ -2,6 +2,7 @@ package spritz;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * The scheduler is responsible for scheduling and executing tasks asynchronously.
@@ -76,12 +77,10 @@ public final class Scheduler
 
   /**
    * Return the current VPU.
-   * If VPU is active then a "direct" VPU will be returned will execute task in the current execution context.
    *
    * @return the current VPU.
-   * @see #current(Runnable)
    */
-  @Nonnull
+  @Nullable
   public static VirtualProcessorUnit currentVpu()
   {
     return VirtualProcessorUnitsHolder.current();
