@@ -121,6 +121,8 @@ HEADER
           puts "Completed remote branch #{downstream_example}/#{full_branch}. Removed." if 0 == $?.exitstatus
         end
       end
+
+      FileUtils.rm_rf 'archive'
     end
 
     stage('GithubRelease', 'Create a Release on GitHub') do
