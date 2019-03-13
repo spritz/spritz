@@ -10,10 +10,10 @@ public final class ConnectableStream<T>
   extends AbstractStream<T, T>
 {
   @Nonnull
-  private final Hub<T,T> _hub;
+  private final Hub<T, T> _hub;
   private boolean _connected;
 
-  ConnectableStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Hub<T,T> hub )
+  ConnectableStream( @Nullable final String name, @Nonnull final Stream<T> upstream, @Nonnull final Hub<T, T> hub )
   {
     super( name, upstream );
     _hub = Objects.requireNonNull( hub );
@@ -89,7 +89,7 @@ public final class ConnectableStream<T>
   }
 
   @Nonnull
-  Hub<T,T> getHub()
+  Hub<T, T> getHub()
   {
     return _hub;
   }
