@@ -15,12 +15,14 @@ final class PeriodicStreamSource
     _period = period;
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.startTimer();
+    return subscription;
   }
 
   private static final class WorkerSubscription

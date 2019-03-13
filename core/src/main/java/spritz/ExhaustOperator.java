@@ -11,11 +11,13 @@ final class ExhaustOperator<T>
     super( Spritz.areNamesEnabled() ? generateName( null, "exhaust" ) : null, upstream );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    final WorkerSubscription<T> tWorkerSubscription = new WorkerSubscription<>( this, subscriber );
-    getUpstream().subscribe( tWorkerSubscription );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
+    getUpstream().subscribe( subscription );
+    return subscription;
   }
 
   private static final class WorkerSubscription<T>

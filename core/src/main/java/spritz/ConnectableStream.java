@@ -19,10 +19,14 @@ public final class ConnectableStream<T>
     _hub = Objects.requireNonNull( hub );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _hub.subscribe( subscriber );
+    final PassThroughSubscription<T, ConnectableStream<T>> subscription =
+      new PassThroughSubscription<>( this, subscriber );
+    _hub.subscribe( subscription );
+    return subscription;
   }
 
   /**

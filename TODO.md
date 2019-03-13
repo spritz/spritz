@@ -22,8 +22,6 @@ complete as there is too much un-said.
 
 * Add JDepend test.
 
-* `Stream.subscribe(...)` should return a `Subscription` so can be cancelled from container
-
 ### Scheduler
 
 * https://github.com/spanicker/main-thread-scheduling

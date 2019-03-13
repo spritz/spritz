@@ -22,10 +22,13 @@ final class ScanOperator<UpstreamT, DownstreamT>
     _initialValue = Objects.requireNonNull( initialValue );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super DownstreamT> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
+    final WorkerSubscription<UpstreamT, DownstreamT> subscription = new WorkerSubscription<>( this, subscriber );
+    getUpstream().subscribe( subscription );
+    return subscription;
   }
 
   private static final class WorkerSubscription<UpstreamT, DownstreamT>

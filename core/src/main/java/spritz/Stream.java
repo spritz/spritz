@@ -534,23 +534,28 @@ public abstract class Stream<T>
    * Subscribe the eventEmitter to this stream and forward events from the stream to the emitter.
    *
    * @param eventEmitter the eventEmitter.
+   * @return the subscription.
    */
-  public final void subscribe( @Nonnull final EventEmitter<T> eventEmitter )
+  @Nonnull
+  public final Subscription subscribe( @Nonnull final EventEmitter<T> eventEmitter )
   {
-    subscribe( new ForwardToEventEmitterSubscriber<>( eventEmitter ) );
+    return subscribe( new ForwardToEventEmitterSubscriber<>( eventEmitter ) );
   }
 
   /**
    * Subscribe the subscriber to this stream so that it can receive events.
    *
    * @param subscriber the subscriber.
+   * @return the subscription.
    */
-  public final void subscribe( @Nonnull final Subscriber<? super T> subscriber )
+  @Nonnull
+  public final Subscription subscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    doSubscribe( Spritz.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );
+    return doSubscribe( Spritz.shouldValidateSubscriptions() ? new ValidatingSubscriber<>( subscriber ) : subscriber );
   }
 
-  abstract void doSubscribe( @Nonnull Subscriber<? super T> subscriber );
+  @Nonnull
+  abstract Subscription doSubscribe( @Nonnull Subscriber<? super T> subscriber );
 
   /**
    * Return a stream containing all the items from this stream that invokes the action
@@ -2547,16 +2552,11 @@ public abstract class Stream<T>
     return compose( s -> new TimeoutOperator<>( name, s, timeoutTime ) );
   }
 
+  @Nonnull
   @DocCategory( DocCategory.Type.UNKNOWN )
-  public final void forEach( @Nonnull final Consumer<T> action )
+  public final Subscription forEach( @Nonnull final Consumer<T> action )
   {
-    terminate( () -> new ForEachSubscriber<>( action ) );
-  }
-
-  @DocCategory( DocCategory.Type.UNKNOWN )
-  public final void terminate( @Nonnull final Supplier<Subscriber<T>> terminateFunction )
-  {
-    subscribe( terminateFunction.get() );
+    return subscribe( new ForEachSubscriber<>( action ) );
   }
 
   /**

@@ -11,9 +11,14 @@ final class NeverStreamSource<T>
     super( Spritz.areNamesEnabled() ? generateName( name, "never" ) : null );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    subscriber.onSubscribe( new PassThroughSubscription<>( this, subscriber ) );
+    final PassThroughSubscription<T, NeverStreamSource<T>> subscription =
+      new PassThroughSubscription<>( this, subscriber );
+    subscriber.onSubscribe( subscription );
+    return subscription;
+
   }
 }

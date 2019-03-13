@@ -12,10 +12,13 @@ final class DistinctOperator<T>
     super( Spritz.areNamesEnabled() ? generateName( name, "distinct" ) : null, upstream );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    getUpstream().subscribe( new WorkerSubscription<>( this, subscriber ) );
+    final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
+    getUpstream().subscribe( subscription );
+    return subscription;
   }
 
   private static final class WorkerSubscription<T>

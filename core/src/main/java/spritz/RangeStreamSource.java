@@ -38,12 +38,14 @@ final class RangeStreamSource
   /**
    * {@inheritDoc}
    */
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )
+  Subscription doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
+    return subscription;
   }
 
   private static final class WorkerSubscription

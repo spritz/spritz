@@ -22,7 +22,9 @@ public abstract class Hub<MessageInT, MessageOutT>
     super( Spritz.areNamesEnabled() ? Stream.generateName( name, "subject" ) : null );
   }
 
-  final void doSubscribe( @Nonnull Subscriber<? super MessageOutT> subscriber )
+  @Nonnull
+  @Override
+  final Subscription doSubscribe( @Nonnull Subscriber<? super MessageOutT> subscriber )
   {
     final DownstreamSubscription subscription = new DownstreamSubscription( subscriber );
     subscriber.onSubscribe( subscription );
@@ -45,6 +47,7 @@ public abstract class Hub<MessageInT, MessageOutT>
         _downstreamSubscriptions.add( subscription );
       }
     }
+    return subscription;
   }
 
   void completeSubscribe( @Nonnull final DownstreamSubscription subscription )

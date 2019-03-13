@@ -16,10 +16,14 @@ final class FailStreamSource<T>
     _error = Objects.requireNonNull( error );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    subscriber.onSubscribe( new PassThroughSubscription<>( this, subscriber ) );
+    final PassThroughSubscription<T, FailStreamSource<T>> subscription =
+      new PassThroughSubscription<>( this, subscriber );
+    subscriber.onSubscribe( subscription );
     subscriber.onError( _error );
+    return subscription;
   }
 }

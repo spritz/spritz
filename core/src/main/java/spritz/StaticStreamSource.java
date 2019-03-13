@@ -24,12 +24,14 @@ final class StaticStreamSource<T>
     return str.substring( 1, str.length() - 1 );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
     final WorkerSubscription<T> subscription = new WorkerSubscription<>( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.pushData();
+    return subscription;
   }
 
   private static final class WorkerSubscription<T>

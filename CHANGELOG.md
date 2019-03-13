@@ -7,6 +7,9 @@
   method be invoked within the context of a VPU. This adds some unnecessary overhead and code complexity with
   no benefit when run on the target platform (i.e. Javascript).
 * Expose the `VirtualProcessorUnit.queue(Runnable)` method to enable queuing tasks directly on the VPU.
+* Refactor the `Stream.subscribe(...)` and `Stream.forEach(...)` methods to return the `Subscription`. This
+  makes it easy for the component subscribing to the `Stream`, to cancel the subscription if/when the component
+  no longer needs the stream to execute.
 
 ### [v0.04](https://github.com/spritz/spritz/tree/v0.04) (2019-03-12)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.03...v0.04)

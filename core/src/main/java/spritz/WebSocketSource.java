@@ -31,12 +31,14 @@ final class WebSocketSource
     _config = Objects.requireNonNull( config );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super WebSocketResponse> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super WebSocketResponse> subscriber )
   {
     final WorkerSubscription subscription = new WorkerSubscription( this, subscriber );
     subscriber.onSubscribe( subscription );
     subscription.connect();
+    return subscription;
   }
 
   private static final class WorkerSubscription

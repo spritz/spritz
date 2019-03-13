@@ -19,10 +19,13 @@ final class SubscribeOnOperator<T>
     _virtualProcessorUnit = Objects.requireNonNull( virtualProcessorUnit );
   }
 
+  @Nonnull
   @Override
-  void doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
+  Subscription doSubscribe( @Nonnull final Subscriber<? super T> subscriber )
   {
-    _virtualProcessorUnit.getExecutor()
-      .queue( () -> getUpstream().subscribe( new PassThroughSubscription<>( this, subscriber ) ) );
+    final PassThroughSubscription<T, SubscribeOnOperator<T>> subscription =
+      new PassThroughSubscription<>( this, subscriber );
+    _virtualProcessorUnit.getExecutor().queue( () -> getUpstream().subscribe( subscription ) );
+    return subscription;
   }
 }
