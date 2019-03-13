@@ -59,6 +59,17 @@ public final class VirtualProcessorUnit
     return _name;
   }
 
+  /**
+   * Queue task for execution and enable the executor for activation if necessary.
+   * The task must not be already queued.
+   *
+   * @param task the task.
+   */
+  public void queue( @Nonnull final Runnable task )
+  {
+    getExecutor().queue( task );
+  }
+
   @Nonnull
   Executor getExecutor()
   {

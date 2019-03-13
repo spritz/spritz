@@ -106,7 +106,7 @@ public final class Scheduler
    */
   public static void macroTask( @Nonnull final Runnable task )
   {
-    macroTaskVpu().getExecutor().queue( task );
+    macroTaskVpu().queue( task );
   }
 
   /**
@@ -143,7 +143,7 @@ public final class Scheduler
    */
   public static void microTask( @Nonnull final Runnable task )
   {
-    microTaskVpu().getExecutor().queue( task );
+    microTaskVpu().queue( task );
   }
 
   /**
@@ -167,7 +167,7 @@ public final class Scheduler
    */
   public static void animationFrame( @Nonnull final Runnable task )
   {
-    animationFrameVpu().getExecutor().queue( task );
+    animationFrameVpu().queue( task );
   }
 
   /**
@@ -191,7 +191,7 @@ public final class Scheduler
    */
   public static void afterFrame( @Nonnull final Runnable task )
   {
-    afterFrameVpu().getExecutor().queue( task );
+    afterFrameVpu().queue( task );
   }
 
   /**
@@ -219,7 +219,7 @@ public final class Scheduler
    */
   public static void onIdle( @Nonnull final Runnable task )
   {
-    onIdleVpu().getExecutor().queue( task );
+    onIdleVpu().queue( task );
   }
 
   /**
