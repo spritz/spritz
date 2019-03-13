@@ -5,6 +5,7 @@
 *.js text
 *.json text
 *.md text
+*.properties text
 *.rake text
 *.rb text
 *.xml text
