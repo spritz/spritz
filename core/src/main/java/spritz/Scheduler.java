@@ -75,16 +75,6 @@ public final class Scheduler
   }
 
   /**
-   * Queue the task to execute on the current VPU.
-   *
-   * @param task the task.
-   */
-  public static void current( @Nonnull final Runnable task )
-  {
-    currentVpu().getExecutor().queue( task );
-  }
-
-  /**
    * Return the current VPU.
    * If VPU is active then a "direct" VPU will be returned will execute task in the current execution context.
    *
