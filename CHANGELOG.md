@@ -21,6 +21,20 @@
 ### [v0.03](https://github.com/spritz/spritz/tree/v0.03) (2019-03-09)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.02...v0.03)
 
+* Remove the `spritz.internal.*` packages and move all classes into the `spritz` package with reduced access
+  levels as appropriate.
+* Add tracking of API changes for the `core` artifact so that breaking changes only occur when
+  explicitly acknowledged. API changes are tracked in reports generated per-release in the
+  `api-test/src/test/resources/fixtures` directory.
+* Initial implementation of Subjects. These are a combination of an `EventEmitter` and a `Stream` that can
+  be used to share a stream execution between multiple subscribers. The simple subject as well as a `replaySubject`
+  and a `currentValueSubject` (a.k.a. Behavior Subject) have been implemented.
+* Add a `ConnectableStream` that can be used to trigger a `Subject` to subscribe to and/or unsubscribe
+  from upstream stages.
+* Ensure that all methods on a Stream are invoked within the context of a VPU.
+* Add a `DirectExecutor` that invokes a task in the context of the caller.
+* Add basic javadocs to `EventEmitter` to reflect expected behaviour.
+
 ### [v0.02](https://github.com/spritz/spritz/tree/v0.02) (2019-03-01)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.01...v0.02)
 
