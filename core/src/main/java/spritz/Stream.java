@@ -2625,7 +2625,7 @@ public abstract class Stream<T>
   /**
    * Build name for Stream.
    * If {@link Spritz#areNamesEnabled()} returns false then this method will return null, otherwise the specified
-   * name will be returned or a name synthesized from the prefix and a running number if no name is
+   * name will be returned or a name synthesized from the prefix if no name is
    * specified.
    *
    * @param name   the name specified by the user.
@@ -2641,7 +2641,7 @@ public abstract class Stream<T>
   /**
    * Build name for Stream.
    * If {@link Spritz#areNamesEnabled()} returns false then this method will return null, otherwise the specified
-   * name will be returned or a name synthesized from the prefix, params and a running number if no name is
+   * name will be returned or a name synthesized from the prefix and params if no name is
    * specified.
    *
    * @param name   the name specified by the user.
