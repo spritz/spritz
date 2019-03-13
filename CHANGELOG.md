@@ -1,6 +1,7 @@
 # Change Log
 
-### Unreleased
+### [v0.05](https://github.com/spritz/spritz/tree/v0.05) (2019-03-13)
+[Full Changelog](https://github.com/spritz/spritz/compare/v0.04...v0.05)
 
 * Ensure that the Spritz TodoMVC is building as part fo build and release process.
 * Remove the requirement that all `Subscriber` methods, `Stream.subscribe(...)` and `Subscription.cancel()`
