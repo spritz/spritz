@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Ensure that the Spritz TodoMVC is building as part fo build and release process.
+
 ### [v0.04](https://github.com/spritz/spritz/tree/v0.04) (2019-03-12)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.03...v0.04)
 

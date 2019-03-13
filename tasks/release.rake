@@ -58,6 +58,12 @@ task 'perform_release' do
       sh "bundle exec buildr clean package install PRODUCT_VERSION=#{ENV['PRODUCT_VERSION']}"
     end
 
+    stage('ArchiveDownstream', 'Archive downstream projects that may need changes pushed') do
+      FileUtils.rm_rf 'archive'
+      FileUtils.mkdir_p 'archive'
+      mv 'target/spritz_downstream-test/deploy_test/workdir', 'archive/downstream'
+    end
+
     stage('PatchChangelog', 'Patch the changelog to update from previous release') do
       changelog = IO.read('CHANGELOG.md')
       from = '0.00' == ENV['PREVIOUS_PRODUCT_VERSION'] ? `git rev-list --max-parents=0 HEAD` : "v#{ENV['PREVIOUS_PRODUCT_VERSION']}"
@@ -103,6 +109,18 @@ HEADER
     stage('PushChanges', 'Push changes to git repository') do
       sh 'git push'
       sh 'git push --tags'
+
+      # Push the changes that have been made locally in downstream projects.
+      # Artifacts have been pushed to staging repository by this time so they should build
+      # even if it has not made it through the Maven release process
+      DOWNSTREAM_EXAMPLES.each_pair do |downstream_example, branches|
+        sh "cd archive/downstream/#{downstream_example} && git push --all"
+        branches.each do |branch|
+          full_branch = "#{branch}-SpritzUpgrade-#{ENV['PRODUCT_VERSION']}"
+          `cd archive/downstream/#{downstream_example} && git push origin :#{full_branch} 2>&1`
+          puts "Completed remote branch #{downstream_example}/#{full_branch}. Removed." if 0 == $?.exitstatus
+        end
+      end
     end
 
     stage('GithubRelease', 'Create a Release on GitHub') do
