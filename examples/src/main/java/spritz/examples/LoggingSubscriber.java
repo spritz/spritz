@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import spritz.Scheduler;
 import spritz.Subscriber;
 import spritz.Subscription;
+import spritz.VirtualProcessorUnit;
 
 final class LoggingSubscriber<T>
   implements Subscriber<T>
@@ -55,6 +56,7 @@ final class LoggingSubscriber<T>
   @Nonnull
   private String suffix()
   {
-    return " on " + Scheduler.currentVpu().getName();
+    final VirtualProcessorUnit currentVpu = Scheduler.currentVpu();
+    return null == currentVpu ? "" : " on " + currentVpu.getName();
   }
 }
