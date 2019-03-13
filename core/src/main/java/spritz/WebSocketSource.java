@@ -153,17 +153,17 @@ final class WebSocketSource
 
     private void doNext( @Nonnull final WebSocketResponse item )
     {
-      Scheduler.current( () -> getSubscriber().onNext( item ) );
+      getSubscriber().onNext( item );
     }
 
     private void onError( @Nonnull final Throwable error )
     {
-      Scheduler.current( () -> getSubscriber().onError( error ) );
+      getSubscriber().onError( error );
     }
 
     private void onComplete()
     {
-      Scheduler.current( () -> getSubscriber().onComplete() );
+      getSubscriber().onComplete();
     }
   }
 }
