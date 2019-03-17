@@ -17,7 +17,6 @@ import spritz.dom.WebSocketResponse;
 import spritz.dom.WebSocketStringMessage;
 import spritz.dom.util.CloseEvent;
 import spritz.dom.util.EventMessageEventTypeParameterUnionType;
-import spritz.dom.util.OnerrorFn;
 
 final class WebSocketSource
   extends Stream<WebSocketResponse>
@@ -64,9 +63,7 @@ final class WebSocketSource
       {
         _webSocket.binaryType = binaryType;
       }
-      //TODO: Use real property when supported by underlying Elemental2
-      final OnerrorFn onError = this::onWebSocketError;
-      Js.asPropertyMap( _webSocket ).set( "onerror", onError );
+      _webSocket.onerror = this::onWebSocketError;
       //TODO: Remove Js.uncheckedCast( e ) after next release of elemental2
       _webSocket.onmessage = e -> onWebSocketMessage( Js.uncheckedCast( e ) );
       _webSocket.onopen = e -> {
