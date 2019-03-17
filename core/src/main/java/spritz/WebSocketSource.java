@@ -56,8 +56,7 @@ final class WebSocketSource
       final WebSocketConfig config = getStream()._config;
       final String url = config.getUrl();
       final String[] protocols = config.getProtocols();
-      //TODO: Remove Js.uncheckedCast with next version of Elemental2 and possibly detect single value in array variant
-      _webSocket = null == protocols ? new WebSocket( url ) : new WebSocket( url, Js.uncheckedCast( protocols ) );
+      _webSocket = null == protocols ? new WebSocket( url ) : new WebSocket( url, protocols );
       final String binaryType = config.getBinaryType();
       if ( null != binaryType )
       {
