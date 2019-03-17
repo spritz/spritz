@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b20-bfe6e22`.
+
 ### [v0.05](https://github.com/spritz/spritz/tree/v0.05) (2019-03-13)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.04...v0.05)
 
