@@ -1,5 +1,6 @@
 package spritz;
 
+import elemental2.dom.CloseEvent;
 import elemental2.dom.Event;
 import elemental2.dom.MessageEvent;
 import elemental2.dom.WebSocket;
@@ -15,7 +16,6 @@ import spritz.dom.WebSocketErrorException;
 import spritz.dom.WebSocketOpenCompleted;
 import spritz.dom.WebSocketResponse;
 import spritz.dom.WebSocketStringMessage;
-import spritz.dom.util.CloseEvent;
 import spritz.dom.util.EventMessageEventTypeParameterUnionType;
 
 final class WebSocketSource
@@ -70,11 +70,7 @@ final class WebSocketSource
         onWebSocketOpen();
         return null;
       };
-      _webSocket.onclose = e -> {
-        onWebSocketClose( (CloseEvent) e );
-        //TODO: Remove return after Elemental2 update
-        return null;
-      };
+      _webSocket.onclose = this::onWebSocketClose;
     }
 
     private void onWebSocketOpen()
