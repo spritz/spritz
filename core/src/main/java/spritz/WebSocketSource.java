@@ -66,10 +66,7 @@ final class WebSocketSource
       _webSocket.onerror = this::onWebSocketError;
       //TODO: Remove Js.uncheckedCast( e ) after next release of elemental2
       _webSocket.onmessage = e -> onWebSocketMessage( Js.uncheckedCast( e ) );
-      _webSocket.onopen = e -> {
-        onWebSocketOpen();
-        return null;
-      };
+      _webSocket.onopen = e -> onWebSocketOpen();
       _webSocket.onclose = this::onWebSocketClose;
     }
 
