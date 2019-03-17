@@ -67,6 +67,7 @@ final class WebSocketSource
       //TODO: Use real property when supported by underlying Elemental2
       final OnerrorFn onError = this::onWebSocketError;
       Js.asPropertyMap( _webSocket ).set( "onerror", onError );
+      //TODO: Remove Js.uncheckedCast( e ) after next release of elemental2
       _webSocket.onmessage = e -> onWebSocketMessage( Js.uncheckedCast( e ) );
       _webSocket.onopen = e -> {
         onWebSocketOpen();
