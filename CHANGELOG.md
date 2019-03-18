@@ -1,5 +1,7 @@
 # Change Log
 
+### Unreleased
+
 ### [v0.06](https://github.com/spritz/spritz/tree/v0.06) (2019-03-18)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.05...v0.06)
 
