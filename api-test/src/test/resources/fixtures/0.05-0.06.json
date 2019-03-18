@@ -1,0 +1,65 @@
+[
+  {
+    "name": "class removed",
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "class spritz.dom.util.CloseEvent",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.util.CloseEvent",
+      "classSimpleName": "CloseEvent",
+      "elementKind": "class",
+      "exampleUseChainInOldApi": "class spritz.dom.util.CloseEvent is part of the API",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
+      "package": "spritz.dom.util"
+    }
+  },
+  {
+    "name": "class removed",
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "interface spritz.dom.util.CloseEventInit",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.util.CloseEventInit",
+      "classSimpleName": "CloseEventInit",
+      "elementKind": "interface",
+      "exampleUseChainInOldApi": "interface spritz.dom.util.CloseEventInit is part of the API",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
+      "package": "spritz.dom.util"
+    }
+  },
+  {
+    "name": "class removed",
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "newElement": null,
+    "newElementModule": null,
+    "oldElement": "interface spritz.dom.util.OnerrorFn",
+    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.util.OnerrorFn",
+      "classSimpleName": "OnerrorFn",
+      "elementKind": "interface",
+      "exampleUseChainInOldApi": "interface spritz.dom.util.OnerrorFn is part of the API",
+      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
+      "package": "spritz.dom.util"
+    }
+  }
+]
