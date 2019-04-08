@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b21-6a027d2`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.15.0`.
 * Upgrade the `org.realityforge.gir` artifact to version `0.08`.
 * **\[core\]** Add `SpritzConfig.native.js` so that spritz will pick up compile time constants when compiled
