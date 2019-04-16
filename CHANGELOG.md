@@ -7,6 +7,7 @@
 * Upgrade the `org.realityforge.gir` artifact to version `0.08`.
 * **\[core\]** Add `SpritzConfig.native.js` so that spritz will pick up compile time constants when compiled
   using J2CL.
+* Improve the way defines are handled in closure by assigning the results of `goog.define` to a module local variable.
 
 ### [v0.06](https://github.com/spritz/spritz/tree/v0.06) (2019-03-18)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.05...v0.06)
