@@ -1,6 +1,7 @@
 # Change Log
 
-### Unreleased
+### [v0.07](https://github.com/spritz/spritz/tree/v0.07) (2019-04-16)
+[Full Changelog](https://github.com/spritz/spritz/compare/v0.06...v0.07)
 
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b21-6a027d2`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.15.0`.
