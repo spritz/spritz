@@ -76,9 +76,6 @@ public final class VirtualProcessorUnit
     return _executor;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Nonnull
   @Override
   public final String toString()

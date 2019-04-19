@@ -35,9 +35,6 @@ final class LimitOperator<T>
       _remaining = stream._count;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     boolean shouldIncludeItem( @Nonnull final T item )
     {

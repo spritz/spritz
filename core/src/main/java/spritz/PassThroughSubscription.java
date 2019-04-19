@@ -10,9 +10,6 @@ class PassThroughSubscription<T, StreamT extends Stream<T>>
     super( stream, subscriber );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void onNext( @Nonnull final T item )
   {

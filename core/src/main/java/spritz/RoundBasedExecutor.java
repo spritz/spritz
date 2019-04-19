@@ -31,9 +31,6 @@ abstract class RoundBasedExecutor
    */
   private int _remainingTasksInCurrentRound;
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final void activate()
   {
@@ -129,9 +126,6 @@ abstract class RoundBasedExecutor
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final synchronized void queue( @Nonnull final Runnable task )
   {

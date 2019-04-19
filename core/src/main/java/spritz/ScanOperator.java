@@ -44,9 +44,6 @@ final class ScanOperator<UpstreamT, DownstreamT>
       _value = stream._initialValue;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final UpstreamT item )
     {

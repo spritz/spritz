@@ -37,9 +37,6 @@ final class PredicateFilterStream<T>
       super( stream, subscriber );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     boolean shouldIncludeItem( @Nonnull final T item )
     {

@@ -43,9 +43,6 @@ public abstract class Subscription
   {
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Nonnull
   @Override
   public final String toString()

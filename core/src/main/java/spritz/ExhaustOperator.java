@@ -41,9 +41,6 @@ final class ExhaustOperator<T>
       _activeStream = null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
@@ -54,9 +51,6 @@ final class ExhaustOperator<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onError( @Nonnull final Throwable error )
     {
@@ -64,9 +58,6 @@ final class ExhaustOperator<T>
       getSubscriber().onError( error );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

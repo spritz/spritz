@@ -48,9 +48,6 @@ final class RefCountOperator<T>
       onDone();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

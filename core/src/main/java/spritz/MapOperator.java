@@ -37,9 +37,6 @@ final class MapOperator<UpstreamT, DownstreamT>
       super( stream, subscriber );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final UpstreamT item )
     {

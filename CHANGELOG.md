@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Remove `{@inheritDoc}` as it only explicitly indicates that the default behaviour at the expense of significant visual clutter.
+
 ### [v0.08](https://github.com/spritz/spritz/tree/v0.08) (2019-04-16)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.07...v0.08)
 

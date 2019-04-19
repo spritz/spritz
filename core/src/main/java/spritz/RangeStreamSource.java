@@ -35,9 +35,6 @@ final class RangeStreamSource
     _count = count;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Nonnull
   @Override
   Subscription doSubscribe( @Nonnull Subscriber<? super Integer> subscriber )

@@ -71,9 +71,6 @@ final class UncaughtErrorHandlerSupport
     _errorHandlers.remove( Objects.requireNonNull( handler ) );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void onUncaughtError( @Nonnull final Throwable error )
   {

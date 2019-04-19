@@ -8,9 +8,6 @@ import elemental2.promise.Promise;
 final class MicroTaskExecutor
   extends RoundBasedExecutor
 {
-  /**
-   * {@inheritDoc}
-   */
   @Override
   final void scheduleForActivation()
   {

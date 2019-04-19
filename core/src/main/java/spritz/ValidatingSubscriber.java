@@ -142,9 +142,6 @@ final class ValidatingSubscriber<T>
       _subscription = Objects.requireNonNull( subscription );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     void doCancel()
     {
@@ -163,9 +160,6 @@ final class ValidatingSubscriber<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     String getQualifiedName()
     {

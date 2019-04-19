@@ -2605,9 +2605,6 @@ public abstract class Stream<T>
     return getName();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Nonnull
   @Override
   public final String toString()

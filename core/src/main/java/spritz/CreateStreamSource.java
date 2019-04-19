@@ -44,9 +44,6 @@ final class CreateStreamSource<T>
       _subscription = subscription;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void next( @Nonnull final T item )
     {
@@ -56,9 +53,6 @@ final class CreateStreamSource<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error( @Nonnull final Throwable throwable )
     {
@@ -69,9 +63,6 @@ final class CreateStreamSource<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void complete()
     {
@@ -82,9 +73,6 @@ final class CreateStreamSource<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isDone()
     {

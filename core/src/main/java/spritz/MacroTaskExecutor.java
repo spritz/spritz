@@ -6,9 +6,6 @@ package spritz;
 final class MacroTaskExecutor
   extends RoundBasedExecutor
 {
-  /**
-   * {@inheritDoc}
-   */
   @Override
   final void scheduleForActivation()
   {

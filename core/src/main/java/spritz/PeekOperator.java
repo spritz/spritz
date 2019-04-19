@@ -72,9 +72,6 @@ final class PeekOperator<T>
       super( stream, subscriber );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onSubscribe( @Nonnull final Subscription subscription )
     {
@@ -108,9 +105,6 @@ final class PeekOperator<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onError( @Nonnull final Throwable error )
     {
@@ -128,9 +122,6 @@ final class PeekOperator<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

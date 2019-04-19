@@ -33,9 +33,6 @@ abstract class AbstractStream<UpstreamT, DownstreamT>
     return _upstream;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Nonnull
   @Override
   final String getQualifiedName()

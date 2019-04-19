@@ -8,9 +8,6 @@ import elemental2.dom.DomGlobal;
 final class OnIdleExecutor
   extends DeadlineBasedExecutor
 {
-  /**
-   * {@inheritDoc}
-   */
   @Override
   final void scheduleForActivation()
   {

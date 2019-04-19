@@ -41,9 +41,6 @@ final class SwitchOperator<T>
       _activeStream = null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
@@ -55,9 +52,6 @@ final class SwitchOperator<T>
       _activeStream.pushData();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onError( @Nonnull final Throwable error )
     {
@@ -65,9 +59,6 @@ final class SwitchOperator<T>
       getSubscriber().onError( error );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

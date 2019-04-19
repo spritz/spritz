@@ -60,9 +60,6 @@ final class MergeOperator<T>
       _pendingUpstream = null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final Stream<T> item )
     {
@@ -83,9 +80,6 @@ final class MergeOperator<T>
       }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onError( @Nonnull final Throwable error )
     {
@@ -99,9 +93,6 @@ final class MergeOperator<T>
       getSubscriber().onError( error );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

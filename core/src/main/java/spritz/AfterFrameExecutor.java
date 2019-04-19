@@ -21,9 +21,6 @@ final class AfterFrameExecutor
     _channel.port2.onmessage = m -> activate();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   final void scheduleForActivation()
   {

@@ -62,9 +62,6 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
     return _upstream;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void onSubscribe( @Nonnull final Subscription subscription )
   {
@@ -72,9 +69,6 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
     getSubscriber().onSubscribe( this );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void onError( @Nonnull final Throwable error )
   {
@@ -82,9 +76,6 @@ abstract class AbstractOperatorSubscription<UpstreamT, DownstreamT, StreamT exte
     getSubscriber().onError( error );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void onComplete()
   {

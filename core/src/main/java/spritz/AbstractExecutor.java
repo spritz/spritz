@@ -36,9 +36,6 @@ abstract class AbstractExecutor
     _taskQueue.add( Objects.requireNonNull( task ) );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final void queueNext( @Nonnull final Runnable task )
   {
@@ -75,9 +72,6 @@ abstract class AbstractExecutor
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void init( @Nonnull final VirtualProcessorUnit.Context context )
   {

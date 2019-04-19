@@ -49,9 +49,6 @@ public final class SpritzProcessor
       throws Throwable;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public boolean process( final Set<? extends TypeElement> annotations, final RoundEnvironment env )
   {

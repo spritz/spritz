@@ -54,9 +54,6 @@ public abstract class Hub<MessageInT, MessageOutT>
   {
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final void next( @Nonnull final MessageInT item )
   {
@@ -72,9 +69,6 @@ public abstract class Hub<MessageInT, MessageOutT>
 
   abstract void performNext( @Nonnull MessageInT item );
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final void error( @Nonnull final Throwable error )
   {
@@ -91,9 +85,6 @@ public abstract class Hub<MessageInT, MessageOutT>
 
   abstract void performError( @Nonnull Throwable error );
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final void complete()
   {
@@ -133,9 +124,6 @@ public abstract class Hub<MessageInT, MessageOutT>
     return _error;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public final boolean isDone()
   {

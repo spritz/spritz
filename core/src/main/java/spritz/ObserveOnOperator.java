@@ -45,9 +45,6 @@ final class ObserveOnOperator<T>
       super( stream, subscriber );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onSubscribe( @Nonnull final Subscription subscription )
     {
@@ -55,9 +52,6 @@ final class ObserveOnOperator<T>
       scheduleObserve();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onNext( @Nonnull final T item )
     {
@@ -69,9 +63,6 @@ final class ObserveOnOperator<T>
       scheduleObserve();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onError( @Nonnull final Throwable error )
     {
@@ -79,9 +70,6 @@ final class ObserveOnOperator<T>
       scheduleObserve();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComplete()
     {

@@ -8,9 +8,6 @@ import elemental2.dom.DomGlobal;
 final class AnimationFrameExecutor
   extends RoundBasedExecutor
 {
-  /**
-   * {@inheritDoc}
-   */
   @Override
   final void scheduleForActivation()
   {

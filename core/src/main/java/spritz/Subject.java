@@ -11,18 +11,12 @@ public class Subject<T>
     super( Spritz.areNamesEnabled() ? Stream.generateName( name, "subject" ) : null );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   void performNext( @Nonnull final T item )
   {
     downstreamNext( item );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   void performError( @Nonnull final Throwable error )
   {
@@ -30,9 +24,6 @@ public class Subject<T>
     terminateUpstreamSubscribers();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   void performComplete()
   {
