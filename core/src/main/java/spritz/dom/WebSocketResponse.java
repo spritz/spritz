@@ -11,7 +11,7 @@ public abstract class WebSocketResponse
 
   public WebSocketResponse( @Nonnull final WebSocket webSocket )
   {
-    _webSocket = Objects.requireNonNull(webSocket);
+    _webSocket = Objects.requireNonNull( webSocket );
   }
 
   @Nonnull
