@@ -39,6 +39,6 @@ artifacts:
 
   gir: org.realityforge.gir:gir-core:jar:0.08
 
-  revapi_diff: org.realityforge.revapi.diff:revapi-diff:jar:all:0.05
+  revapi_diff: org.realityforge.revapi.diff:revapi-diff:jar:all:0.06
 
   gwt_symbolmap: org.realityforge.gwt.symbolmap:gwt-symbolmap:jar:0.08
