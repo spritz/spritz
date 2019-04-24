@@ -359,8 +359,7 @@
   {
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nullable'.",
-    "newElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "oldElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
+    "element": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -379,8 +378,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'javax.annotation.Nonnull'.",
-    "newElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "oldElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
+    "element": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -400,7 +398,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method void spritz.VirtualProcessorUnit::queue(java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -416,7 +413,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method void spritz.Scheduler::current(java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -433,7 +429,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method void spritz.Stream<T>::terminate(java.util.function.Supplier<spritz.Subscriber<T>>)",
     "classification": {
       "SOURCE": "BREAKING",

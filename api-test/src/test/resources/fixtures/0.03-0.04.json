@@ -3,7 +3,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -18,8 +17,7 @@
   {
     "code": "java.class.nonFinalClassInheritsFromNewClass",
     "description": "Non-final class now inherits from 'spritz.Hub<T extends java.lang.Object, T>'.",
-    "newElement": "class spritz.Subject<T extends java.lang.Object>",
-    "oldElement": "class spritz.Subject<T extends java.lang.Object>",
+    "element": "class spritz.Subject<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -54,7 +52,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.WebSocketHub",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -70,7 +67,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketArrayBufferMessage",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -86,7 +82,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketBlobMessage",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -102,7 +97,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketCloseCompleted",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -118,7 +112,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketCloseException",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -134,7 +127,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketCloseRequest",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -150,7 +142,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketCloseStarting",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -166,7 +157,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketConfig",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -182,7 +172,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketErrorException",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -198,7 +187,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketFailed",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -214,7 +202,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketMessageRequest",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -230,7 +217,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketOpenCompleted",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -246,7 +232,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketRequest",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -262,7 +247,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketResponse",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -278,7 +262,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.WebSocketStringMessage",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -294,7 +277,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.dom.util.CloseEvent",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -310,7 +292,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "interface spritz.dom.util.CloseEventInit",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -326,7 +307,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "interface spritz.dom.util.EventMessageEventTypeParameterUnionType",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -342,7 +322,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "interface spritz.dom.util.OnerrorFn",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -358,7 +337,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method boolean java.lang.Object::equals(java.lang.Object) @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -375,7 +353,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method boolean spritz.ConnectableStream<T>::isConnected()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -392,7 +369,6 @@
     "code": "java.method.defaultMethodAddedToInterface",
     "description": "A default method has been added to the interface.",
     "newElement": "method boolean spritz.EventEmitter<T>::isNotDone()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -447,7 +423,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method boolean spritz.Scheduler::isVirtualProcessorUnitActivated()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -464,7 +439,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method int java.lang.Object::hashCode() @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -481,7 +455,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method java.lang.Class<?> java.lang.Object::getClass() @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -498,7 +471,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method java.lang.Object java.lang.Object::clone() throws java.lang.CloneNotSupportedException @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -515,7 +487,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method java.lang.String spritz.Subscription::toString()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -532,7 +503,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method spritz.WebSocketHub spritz.Stream<T>::webSocket(java.lang.String, spritz.dom.WebSocketConfig)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -549,7 +519,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method spritz.WebSocketHub spritz.Stream<T>::webSocket(spritz.dom.WebSocketConfig)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -566,7 +535,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method void java.lang.Object::finalize() throws java.lang.Throwable @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -583,7 +551,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::notify() @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -600,7 +567,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::notifyAll() @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -617,7 +583,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait() throws java.lang.InterruptedException @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -634,7 +599,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait(long) throws java.lang.InterruptedException @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -651,7 +615,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait(long, int) throws java.lang.InterruptedException @ spritz.Subscription",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -725,7 +688,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -742,7 +704,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method void spritz.Subscription::<init>()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -758,8 +719,7 @@
   {
     "code": "java.method.noLongerAbstract",
     "description": "Method no longer abstract",
-    "newElement": "method void spritz.Subscription::cancel()",
-    "oldElement": "method void spritz.Subscription::cancel()",
+    "element": "method void spritz.Subscription::cancel()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT"
@@ -777,8 +737,7 @@
   {
     "code": "java.method.nowFinal",
     "description": "Method is now final.",
-    "newElement": "method void spritz.Subscription::cancel()",
-    "oldElement": "method void spritz.Subscription::cancel()",
+    "element": "method void spritz.Subscription::cancel()",
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"

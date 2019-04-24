@@ -3,7 +3,6 @@
     "code": "java.class.added",
     "description": "Class was added.",
     "newElement": "class spritz.ConnectableStream<T extends java.lang.Object>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -18,8 +17,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.MetaDataSource'.",
-    "newElement": "class spritz.Spritz",
-    "oldElement": "class spritz.Spritz",
+    "element": "class spritz.Spritz",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -37,8 +35,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.GwtIncompatible'.",
-    "newElement": "class spritz.SpritzTestUtil",
-    "oldElement": "class spritz.SpritzTestUtil",
+    "element": "class spritz.SpritzTestUtil",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -56,8 +53,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.MetaDataSource'.",
-    "newElement": "class spritz.Stream<T extends java.lang.Object>",
-    "oldElement": "class spritz.Stream<T extends java.lang.Object>",
+    "element": "class spritz.Stream<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -75,8 +71,7 @@
   {
     "code": "java.class.noLongerImplementsInterface",
     "description": "Class no longer implements interface 'spritz.Publisher<T extends java.lang.Object>'.",
-    "newElement": "class spritz.Stream<T extends java.lang.Object>",
-    "oldElement": "class spritz.Stream<T extends java.lang.Object>",
+    "element": "class spritz.Stream<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -162,8 +157,7 @@
   {
     "code": "java.class.noLongerImplementsInterface",
     "description": "Class no longer implements interface 'spritz.Cancelable'.",
-    "newElement": "interface spritz.Subscription",
-    "oldElement": "interface spritz.Subscription",
+    "element": "interface spritz.Subscription",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -179,8 +173,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
-    "oldElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
+    "element": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -199,8 +192,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.GwtIncompatible'.",
-    "newElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
-    "oldElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
+    "element": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.Class<DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -219,8 +211,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
-    "oldElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
+    "element": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -239,8 +230,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.GwtIncompatible'.",
-    "newElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
-    "oldElement": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
+    "element": "method <DownstreamT extends T extends java.lang.Object> spritz.Stream<DownstreamT> spritz.Stream<T>::ofType(java.lang.String, java.lang.Class<DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -259,8 +249,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::concatMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::concatMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::concatMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -279,8 +268,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::exhaustMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::exhaustMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::exhaustMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -299,8 +287,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.lang.String, java.util.function.Function<T, DownstreamT>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.lang.String, java.util.function.Function<T, DownstreamT>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.lang.String, java.util.function.Function<T, DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -319,8 +306,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.util.function.Function<T, DownstreamT>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.util.function.Function<T, DownstreamT>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::map(java.util.function.Function<T, DownstreamT>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -339,8 +325,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(DownstreamT)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(DownstreamT)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(DownstreamT)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -359,8 +344,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(java.lang.String, DownstreamT)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(java.lang.String, DownstreamT)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mapTo(java.lang.String, DownstreamT)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -379,8 +363,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -399,8 +382,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>, int)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>, int)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::mergeMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -419,8 +401,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(java.lang.String, spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(java.lang.String, spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(java.lang.String, spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -439,8 +420,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::scan(spritz.AccumulatorFunction<T, DownstreamT>, DownstreamT)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -459,8 +439,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::switchMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
-    "oldElement": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::switchMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
+    "element": "method <DownstreamT> spritz.Stream<DownstreamT> spritz.Stream<T>::switchMap(java.util.function.Function<T, spritz.Stream<DownstreamT>>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -479,8 +458,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::concat(spritz.Stream<T>[])",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::concat(spritz.Stream<T>[])",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::concat(spritz.Stream<T>[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -499,8 +477,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::create(java.lang.String, spritz.SourceCreator<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::create(java.lang.String, spritz.SourceCreator<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::create(java.lang.String, spritz.SourceCreator<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -519,8 +496,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::create(spritz.SourceCreator<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::create(spritz.SourceCreator<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::create(spritz.SourceCreator<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -539,8 +515,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::empty()",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::empty()",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::empty()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -559,8 +534,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::empty(java.lang.String)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::empty(java.lang.String)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::empty(java.lang.String)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -579,8 +553,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.String, java.lang.Throwable)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.String, java.lang.Throwable)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.String, java.lang.Throwable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -599,8 +572,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.Throwable)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.Throwable)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fail(java.lang.Throwable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -619,8 +591,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.lang.String, java.util.concurrent.Callable<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.lang.String, java.util.concurrent.Callable<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.lang.String, java.util.concurrent.Callable<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -639,8 +610,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.util.concurrent.Callable<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.util.concurrent.Callable<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCallable(java.util.concurrent.Callable<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -659,8 +629,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.lang.String, java.util.Collection<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.lang.String, java.util.Collection<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.lang.String, java.util.Collection<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -679,8 +648,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.util.Collection<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.util.Collection<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromCollection(java.util.Collection<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -699,8 +667,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.Runnable)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.Runnable)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -719,8 +686,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.String, java.lang.Runnable)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.String, java.lang.Runnable)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromRunnable(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -739,8 +705,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromStream(java.util.stream.Stream<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromStream(java.util.stream.Stream<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromStream(java.util.stream.Stream<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -759,8 +724,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.lang.String, java.util.function.Supplier<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.lang.String, java.util.function.Supplier<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.lang.String, java.util.function.Supplier<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -779,8 +743,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.util.function.Supplier<T>)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.util.function.Supplier<T>)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::fromSupplier(java.util.function.Supplier<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -799,8 +762,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.lang.String, java.util.function.Supplier<T>, int)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.lang.String, java.util.function.Supplier<T>, int)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.lang.String, java.util.function.Supplier<T>, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -819,8 +781,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.util.function.Supplier<T>, int)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.util.function.Supplier<T>, int)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::generate(java.util.function.Supplier<T>, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -839,8 +800,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::merge(spritz.Stream<T>[])",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::merge(spritz.Stream<T>[])",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::merge(spritz.Stream<T>[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -859,8 +819,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::never()",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::never()",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::never()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -879,8 +838,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::never(java.lang.String)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::never(java.lang.String)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::never(java.lang.String)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -899,8 +857,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::of(T[])",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::of(T[])",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::of(T[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -919,8 +876,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::of(java.lang.String, T[])",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::of(java.lang.String, T[])",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::of(java.lang.String, T[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -939,8 +895,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method <T> spritz.Stream<T> spritz.Stream<T>::ofNullable(T)",
-    "oldElement": "method <T> spritz.Stream<T> spritz.Stream<T>::ofNullable(T)",
+    "element": "method <T> spritz.Stream<T> spritz.Stream<T>::ofNullable(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -960,7 +915,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::currentValueSubject(T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -977,7 +931,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::currentValueSubject(java.lang.String, T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -994,7 +947,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubject()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1011,7 +963,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubject(int, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1028,7 +979,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubject(java.lang.String)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1045,7 +995,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubject(java.lang.String, int, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1062,7 +1011,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubjectWithMaxAge(int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1079,7 +1027,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubjectWithMaxAge(java.lang.String, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1096,7 +1043,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubjectWithMaxSize(int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1113,7 +1059,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::replaySubjectWithMaxSize(java.lang.String, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1130,7 +1075,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::subject()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1147,7 +1091,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method <T> spritz.Subject<T> spritz.Stream<T>::subject(java.lang.String)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1164,7 +1107,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method boolean java.lang.Object::equals(java.lang.Object) @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1181,7 +1123,6 @@
     "code": "java.method.addedToInterface",
     "description": "Method was added to an interface.",
     "newElement": "method boolean spritz.EventEmitter<T>::isDone()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "NON_BREAKING",
@@ -1199,7 +1140,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method boolean spritz.Subject<T>::isDone()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1216,7 +1156,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method int java.lang.Object::hashCode() @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1233,7 +1172,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method java.lang.Class<?> java.lang.Object::getClass() @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1250,7 +1188,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method java.lang.Object java.lang.Object::clone() throws java.lang.CloneNotSupportedException @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1267,7 +1204,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method java.lang.String java.lang.Object::toString() @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -1362,7 +1298,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishCurrentValue(T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1379,7 +1314,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishCurrentValue(java.lang.String, T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1396,7 +1330,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1413,7 +1346,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay(int, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1430,7 +1362,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplay(java.lang.String, int, int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1447,7 +1378,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplayWithMaxAge(int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1464,7 +1394,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.ConnectableStream<T> spritz.Stream<T>::publishReplayWithMaxSize(int)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -1480,8 +1409,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1500,8 +1428,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.String, java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.String, java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterCancel(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1520,8 +1447,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1540,8 +1466,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.String, java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.String, java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterComplete(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1560,8 +1485,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1580,8 +1504,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.util.function.Consumer<java.lang.Throwable>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.util.function.Consumer<java.lang.Throwable>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterError(java.util.function.Consumer<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1600,8 +1523,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.lang.String, java.util.function.Consumer<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.lang.String, java.util.function.Consumer<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.lang.String, java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1620,8 +1542,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.util.function.Consumer<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.util.function.Consumer<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterNext(java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1640,8 +1561,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1660,8 +1580,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.util.function.Consumer<spritz.Subscription>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.util.function.Consumer<spritz.Subscription>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterSubscribe(java.util.function.Consumer<spritz.Subscription>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1680,8 +1599,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1700,8 +1618,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.String, java.lang.Runnable)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.String, java.lang.Runnable)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::afterTerminate(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1720,8 +1637,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::append(spritz.Stream<T>[])",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::append(spritz.Stream<T>[])",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::append(spritz.Stream<T>[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1740,8 +1656,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::debounce(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1760,8 +1675,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1780,8 +1694,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, spritz.TimeoutForItemFn<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, spritz.TimeoutForItemFn<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::debounce(java.lang.String, spritz.TimeoutForItemFn<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1800,8 +1713,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(spritz.TimeoutForItemFn<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::debounce(spritz.TimeoutForItemFn<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::debounce(spritz.TimeoutForItemFn<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1820,8 +1732,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1840,8 +1751,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(java.lang.String, T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(java.lang.String, T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::defaultIfEmpty(java.lang.String, T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1860,8 +1770,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::distinct()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::distinct()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::distinct()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1880,8 +1789,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::distinct(java.lang.String)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::distinct(java.lang.String)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::distinct(java.lang.String)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1900,8 +1808,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::endWith(T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::endWith(T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::endWith(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1920,8 +1827,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.lang.String, java.util.function.Supplier<java.lang.Throwable>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.lang.String, java.util.function.Supplier<java.lang.Throwable>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.lang.String, java.util.function.Supplier<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1940,8 +1846,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.util.function.Supplier<java.lang.Throwable>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.util.function.Supplier<java.lang.Throwable>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::errorIfEmpty(java.util.function.Supplier<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1960,8 +1865,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::filter(java.lang.String, java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::filter(java.lang.String, java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::filter(java.lang.String, java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -1980,8 +1884,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::filter(java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::filter(java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::filter(java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2000,8 +1903,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(java.lang.String, spritz.SuccessivePredicate<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(java.lang.String, spritz.SuccessivePredicate<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(java.lang.String, spritz.SuccessivePredicate<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2020,8 +1922,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(spritz.SuccessivePredicate<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(spritz.SuccessivePredicate<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::filterSuccessive(spritz.SuccessivePredicate<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2040,8 +1941,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::first()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::first()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::first()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2060,8 +1960,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::firstOrDefault(T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::firstOrDefault(T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::firstOrDefault(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2080,8 +1979,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::firstOrError()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::firstOrError()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::firstOrError()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2100,8 +1998,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2120,8 +2017,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements(java.lang.String)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements(java.lang.String)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::ignoreElements(java.lang.String)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2140,8 +2036,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::last()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::last()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::last()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2160,8 +2055,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::last(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::last(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::last(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2180,8 +2074,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::last(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::last(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::last(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2200,8 +2093,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::lastOrDefault(T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::lastOrDefault(T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::lastOrDefault(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2220,8 +2112,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::lastOrError()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::lastOrError()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::lastOrError()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2240,8 +2131,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::limit(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::limit(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::limit(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2260,8 +2150,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::limit(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::limit(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::limit(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2281,7 +2170,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::mergeWith(spritz.Stream<T>[])",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2297,8 +2185,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::observeOn(java.lang.String, spritz.VirtualProcessorUnit)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::observeOn(java.lang.String, spritz.VirtualProcessorUnit)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::observeOn(java.lang.String, spritz.VirtualProcessorUnit)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2317,8 +2204,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::observeOn(spritz.VirtualProcessorUnit)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::observeOn(spritz.VirtualProcessorUnit)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::observeOn(spritz.VirtualProcessorUnit)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2337,8 +2223,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peek(java.lang.String, java.util.function.Consumer<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::peek(java.lang.String, java.util.function.Consumer<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::peek(java.lang.String, java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2357,8 +2242,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::peek(java.util.function.Consumer<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::peek(java.util.function.Consumer<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::peek(java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2378,7 +2262,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekCancel(java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2395,7 +2278,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekCancel(java.lang.String, java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2412,7 +2294,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekComplete(java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2429,7 +2310,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekComplete(java.lang.String, java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2446,7 +2326,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2463,7 +2342,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekError(java.util.function.Consumer<java.lang.Throwable>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2480,7 +2358,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2497,7 +2374,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekSubscribe(java.util.function.Consumer<spritz.Subscription>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2514,7 +2390,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekTerminate(java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2531,7 +2406,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::peekTerminate(java.lang.String, java.lang.Runnable)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2547,8 +2421,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::prepend(spritz.Stream<T>[])",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::prepend(spritz.Stream<T>[])",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::prepend(spritz.Stream<T>[])",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2567,8 +2440,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::repeat()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::repeat()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::repeat()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2587,8 +2459,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::repeat(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::repeat(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::repeat(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2607,8 +2478,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::repeat(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::repeat(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::repeat(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2628,7 +2498,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::rescue(java.lang.String, java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2645,7 +2514,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::rescue(java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2662,7 +2530,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::rescueThenReturn(T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2679,7 +2546,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::rescueThenReturn(java.lang.String, T)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2695,8 +2561,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::sample(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::sample(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::sample(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2715,8 +2580,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::sample(int, boolean)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::sample(int, boolean)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::sample(int, boolean)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2735,8 +2599,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2755,8 +2618,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int, boolean)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int, boolean)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::sample(java.lang.String, int, boolean)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2776,7 +2638,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::share()",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2793,7 +2654,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method spritz.Stream<T> spritz.Stream<T>::share(java.lang.String)",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -2809,8 +2669,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skip(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skip(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skip(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2829,8 +2688,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skip(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skip(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skip(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2849,8 +2707,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats()",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats()",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats()",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2869,8 +2726,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats(java.lang.String)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats(java.lang.String)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipRepeats(java.lang.String)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2889,8 +2745,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.lang.String, java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.lang.String, java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.lang.String, java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2909,8 +2764,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipUntil(java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2929,8 +2783,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.lang.String, java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.lang.String, java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.lang.String, java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2949,8 +2802,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::skipWhile(java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2969,8 +2821,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::startWith(T)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::startWith(T)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::startWith(T)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -2989,8 +2840,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(java.lang.String, spritz.VirtualProcessorUnit)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(java.lang.String, spritz.VirtualProcessorUnit)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(java.lang.String, spritz.VirtualProcessorUnit)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3009,8 +2859,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(spritz.VirtualProcessorUnit)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(spritz.VirtualProcessorUnit)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::subscribeOn(spritz.VirtualProcessorUnit)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3029,8 +2878,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::take(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::take(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::take(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3049,8 +2897,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::takeLast(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::takeLast(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::takeLast(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3069,8 +2916,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.lang.String, java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.lang.String, java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.lang.String, java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3089,8 +2935,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::takeUntil(java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3109,8 +2954,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.lang.String, java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.lang.String, java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.lang.String, java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3129,8 +2973,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.util.function.Predicate<? super T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.util.function.Predicate<? super T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::takeWhile(java.util.function.Predicate<? super T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3149,8 +2992,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::throttle(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3169,8 +3011,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3189,8 +3030,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, spritz.TimeoutForItemFn<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, spritz.TimeoutForItemFn<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::throttle(java.lang.String, spritz.TimeoutForItemFn<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3209,8 +3049,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(spritz.TimeoutForItemFn<T>)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::throttle(spritz.TimeoutForItemFn<T>)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::throttle(spritz.TimeoutForItemFn<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3229,8 +3068,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::timeout(int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::timeout(int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::timeout(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3249,8 +3087,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<T> spritz.Stream<T>::timeout(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<T> spritz.Stream<T>::timeout(java.lang.String, int)",
+    "element": "method spritz.Stream<T> spritz.Stream<T>::timeout(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3269,8 +3106,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(int)",
-    "oldElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(int)",
+    "element": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3289,8 +3125,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(java.lang.String, int)",
-    "oldElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(java.lang.String, int)",
+    "element": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::periodic(java.lang.String, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3309,8 +3144,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(int, int)",
-    "oldElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(int, int)",
+    "element": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(int, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3329,8 +3163,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(java.lang.String, int, int)",
-    "oldElement": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(java.lang.String, int, int)",
+    "element": "method spritz.Stream<java.lang.Integer> spritz.Stream<T>::range(java.lang.String, int, int)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3350,7 +3183,6 @@
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method void java.lang.Object::finalize() throws java.lang.Throwable @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -3367,7 +3199,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::notify() @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -3384,7 +3215,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::notifyAll() @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -3401,7 +3231,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait() throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -3418,7 +3247,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait(long) throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -3435,7 +3263,6 @@
     "code": "java.method.finalMethodAddedToNonFinalClass",
     "description": "A final method has been added to an inheritable class.",
     "newElement": "method void java.lang.Object::wait(long, int) throws java.lang.InterruptedException @ spritz.Subject<T>",
-    "oldElement": null,
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "POTENTIALLY_BREAKING"
@@ -3451,8 +3278,7 @@
   {
     "code": "java.method.visibilityReduced",
     "description": "visibility reduced",
-    "newElement": "method void spritz.Stream<T>::<init>(java.lang.String)",
-    "oldElement": "method void spritz.Stream<T>::<init>(java.lang.String)",
+    "element": "method void spritz.Stream<T>::<init>(java.lang.String)",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -3470,8 +3296,7 @@
   {
     "code": "java.method.visibilityReduced",
     "description": "visibility reduced",
-    "newElement": "method void spritz.Stream<T>::doSubscribe(spritz.Subscriber<? super T>)",
-    "oldElement": "method void spritz.Stream<T>::doSubscribe(spritz.Subscriber<? super T>)",
+    "element": "method void spritz.Stream<T>::doSubscribe(spritz.Subscriber<? super T>)",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -3489,8 +3314,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
-    "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
+    "element": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3509,8 +3333,7 @@
   {
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'spritz.internal.annotations.DocCategory'.",
-    "newElement": "method void spritz.Stream<T>::terminate(java.util.function.Supplier<spritz.Subscriber<T>>)",
-    "oldElement": "method void spritz.Stream<T>::terminate(java.util.function.Supplier<spritz.Subscriber<T>>)",
+    "element": "method void spritz.Stream<T>::terminate(java.util.function.Supplier<spritz.Subscriber<T>>)",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -3700,7 +3523,6 @@
   {
     "code": "java.annotation.noLongerPresent",
     "description": "Old API referenced the annotation type but the new API version no longer does.",
-    "newElement": null,
     "oldElement": "@interface spritz.internal.annotations.DocCategory",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3717,7 +3539,6 @@
   {
     "code": "java.annotation.noLongerPresent",
     "description": "Old API referenced the annotation type but the new API version no longer does.",
-    "newElement": null,
     "oldElement": "@interface spritz.internal.annotations.GwtIncompatible",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3734,7 +3555,6 @@
   {
     "code": "java.annotation.noLongerPresent",
     "description": "Old API referenced the annotation type but the new API version no longer does.",
-    "newElement": null,
     "oldElement": "@interface spritz.internal.annotations.MetaDataSource",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3751,7 +3571,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "class spritz.MulticastSubject<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3767,7 +3586,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "class spritz.internal.util.CircularBuffer<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3783,7 +3601,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "interface spritz.Publisher<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3799,7 +3616,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "interface spritz.SourceCreator.Observer<T extends java.lang.Object>",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3815,7 +3631,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onCancel(java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3832,7 +3647,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onCancel(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3849,7 +3663,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onComplete(java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3866,7 +3679,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onComplete(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3883,7 +3695,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onError(java.lang.String, java.util.function.Consumer<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3900,7 +3711,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onError(java.util.function.Consumer<java.lang.Throwable>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3917,7 +3727,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onErrorResumeWith(java.lang.String, java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3934,7 +3743,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onErrorResumeWith(java.util.function.Function<java.lang.Throwable, spritz.Stream<T>>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3951,7 +3759,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onErrorReturn(T)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3968,7 +3775,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onErrorReturn(java.lang.String, T)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -3985,7 +3791,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onNext(java.lang.String, java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4002,7 +3807,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onNext(java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4019,7 +3823,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onSubscribe(java.lang.String, java.util.function.Consumer<spritz.Subscription>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4036,7 +3839,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onSubscribe(java.util.function.Consumer<spritz.Subscription>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4053,7 +3855,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onTerminate(java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4070,7 +3871,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::onTerminate(java.lang.String, java.lang.Runnable)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4087,7 +3887,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::tap(java.lang.String, java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "BREAKING",
@@ -4104,7 +3903,6 @@
   {
     "code": "java.method.removed",
     "description": "Method was removed.",
-    "newElement": null,
     "oldElement": "method spritz.Stream<T> spritz.Stream<T>::tap(java.util.function.Consumer<? super T>)",
     "classification": {
       "SOURCE": "BREAKING",

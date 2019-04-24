@@ -2,7 +2,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "class spritz.dom.util.CloseEvent",
     "classification": {
       "SOURCE": "BREAKING",
@@ -18,7 +17,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "interface spritz.dom.util.CloseEventInit",
     "classification": {
       "SOURCE": "BREAKING",
@@ -34,7 +32,6 @@
   {
     "code": "java.class.removed",
     "description": "Class was removed.",
-    "newElement": null,
     "oldElement": "interface spritz.dom.util.OnerrorFn",
     "classification": {
       "SOURCE": "BREAKING",
