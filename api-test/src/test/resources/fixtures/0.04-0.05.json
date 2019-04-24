@@ -1,12 +1,9 @@
 [
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.ConnectableStream<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.ConnectableStream<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -18,21 +15,15 @@
       "classQualifiedName": "spritz.ConnectableStream",
       "classSimpleName": "ConnectableStream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -44,21 +35,15 @@
       "classQualifiedName": "spritz.Hub",
       "classSimpleName": "Hub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -70,21 +55,15 @@
       "classQualifiedName": "spritz.Subject",
       "classSimpleName": "Subject",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.WebSocketHub",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>) @ spritz.WebSocketHub",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -96,21 +75,15 @@
       "classQualifiedName": "spritz.WebSocketHub",
       "classSimpleName": "WebSocketHub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.WebSocketHub is part of the API",
-      "exampleUseChainInOldApi": "class spritz.WebSocketHub is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -122,21 +95,15 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "return type changed",
     "code": "java.method.returnTypeChanged",
     "description": "The return type changed from 'void' to  'spritz.Subscription'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::forEach(java.util.function.Consumer<T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "BREAKING"
@@ -145,24 +112,17 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "forEach",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "newType": "spritz.Subscription",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "oldType": "void",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.ConnectableStream<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.ConnectableStream<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -174,21 +134,15 @@
       "classQualifiedName": "spritz.ConnectableStream",
       "classSimpleName": "ConnectableStream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -200,21 +154,15 @@
       "classQualifiedName": "spritz.Hub",
       "classSimpleName": "Hub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -226,21 +174,15 @@
       "classQualifiedName": "spritz.Subject",
       "classSimpleName": "Subject",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.WebSocketHub",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>) @ spritz.WebSocketHub",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -252,21 +194,15 @@
       "classQualifiedName": "spritz.WebSocketHub",
       "classSimpleName": "WebSocketHub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.WebSocketHub is part of the API",
-      "exampleUseChainInOldApi": "class spritz.WebSocketHub is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -278,21 +214,15 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "return type changed",
     "code": "java.method.returnTypeChanged",
     "description": "The return type changed from 'void' to  'spritz.Subscription'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.EventEmitter<T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "BREAKING"
@@ -301,24 +231,17 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "newType": "spritz.Subscription",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "oldType": "void",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.ConnectableStream<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.ConnectableStream<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -330,21 +253,15 @@
       "classQualifiedName": "spritz.ConnectableStream",
       "classSimpleName": "ConnectableStream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.ConnectableStream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.Hub<MessageInT, MessageOutT>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -356,21 +273,15 @@
       "classQualifiedName": "spritz.Hub",
       "classSimpleName": "Hub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Hub<MessageInT extends java.lang.Object, MessageOutT extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.Subject<T>",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.Subject<T>",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -382,21 +293,15 @@
       "classQualifiedName": "spritz.Subject",
       "classSimpleName": "Subject",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Subject<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.WebSocketHub",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>) @ spritz.WebSocketHub",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -408,21 +313,15 @@
       "classQualifiedName": "spritz.WebSocketHub",
       "classSimpleName": "WebSocketHub",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.WebSocketHub is part of the API",
-      "exampleUseChainInOldApi": "class spritz.WebSocketHub is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -434,21 +333,15 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "return type changed",
     "code": "java.method.returnTypeChanged",
     "description": "The return type changed from 'void' to  'spritz.Subscription'.",
     "newElement": "method spritz.Subscription spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method void spritz.Stream<T>::subscribe(spritz.Subscriber<? super T>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "POTENTIALLY_BREAKING",
       "BINARY": "BREAKING"
@@ -457,24 +350,17 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "subscribe",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "newType": "spritz.Subscription",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "oldType": "void",
       "package": "spritz"
     }
   },
   {
-    "name": "new annotation",
     "code": "java.annotation.added",
     "description": "Element newly annotated with 'javax.annotation.Nullable'.",
     "newElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -486,21 +372,15 @@
       "classQualifiedName": "spritz.Scheduler",
       "classSimpleName": "Scheduler",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Scheduler is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Scheduler is part of the API",
       "methodName": "currentVpu",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "removed annotation",
     "code": "java.annotation.removed",
     "description": "Element no longer annotated with 'javax.annotation.Nonnull'.",
     "newElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": "method spritz.VirtualProcessorUnit spritz.Scheduler::currentVpu()",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "EQUIVALENT",
       "BINARY": "EQUIVALENT",
@@ -512,21 +392,15 @@
       "classQualifiedName": "spritz.Scheduler",
       "classSimpleName": "Scheduler",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.Scheduler is part of the API",
-      "exampleUseChainInOldApi": "class spritz.Scheduler is part of the API",
       "methodName": "currentVpu",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "package": "spritz"
     }
   },
   {
-    "name": "method added",
     "code": "java.method.added",
     "description": "Method was added.",
     "newElement": "method void spritz.VirtualProcessorUnit::queue(java.lang.Runnable)",
-    "newElementModule": "org.realityforge.spritz:spritz-core:jar:0.05",
     "oldElement": null,
-    "oldElementModule": null,
     "classification": {
       "SOURCE": "NON_BREAKING",
       "BINARY": "NON_BREAKING"
@@ -535,20 +409,15 @@
       "classQualifiedName": "spritz.VirtualProcessorUnit",
       "classSimpleName": "VirtualProcessorUnit",
       "elementKind": "method",
-      "exampleUseChainInNewApi": "class spritz.VirtualProcessorUnit is part of the API",
       "methodName": "queue",
-      "newArchive": "org.realityforge.spritz:spritz-core:jar:0.05",
       "package": "spritz"
     }
   },
   {
-    "name": "method removed",
     "code": "java.method.removed",
     "description": "Method was removed.",
     "newElement": null,
-    "newElementModule": null,
     "oldElement": "method void spritz.Scheduler::current(java.lang.Runnable)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -557,20 +426,15 @@
       "classQualifiedName": "spritz.Scheduler",
       "classSimpleName": "Scheduler",
       "elementKind": "method",
-      "exampleUseChainInOldApi": "class spritz.Scheduler is part of the API",
       "methodName": "current",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "package": "spritz"
     }
   },
   {
-    "name": "method removed",
     "code": "java.method.removed",
     "description": "Method was removed.",
     "newElement": null,
-    "newElementModule": null,
     "oldElement": "method void spritz.Stream<T>::terminate(java.util.function.Supplier<spritz.Subscriber<T>>)",
-    "oldElementModule": "org.realityforge.spritz:spritz-core:jar:0.04",
     "classification": {
       "SOURCE": "BREAKING",
       "BINARY": "BREAKING"
@@ -579,9 +443,7 @@
       "classQualifiedName": "spritz.Stream",
       "classSimpleName": "Stream",
       "elementKind": "method",
-      "exampleUseChainInOldApi": "class spritz.Stream<T extends java.lang.Object> is part of the API",
       "methodName": "terminate",
-      "oldArchive": "org.realityforge.spritz:spritz-core:jar:0.04",
       "package": "spritz"
     }
   }
