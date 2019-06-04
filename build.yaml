@@ -37,7 +37,7 @@ artifacts:
   junit: junit:junit:jar:4.12
   hamcrest_core: org.hamcrest:hamcrest-core:jar:1.3
 
-  gir: org.realityforge.gir:gir-core:jar:0.08
+  gir: org.realityforge.gir:gir-core:jar:0.10
 
   revapi_diff: org.realityforge.revapi.diff:revapi-diff:jar:all:0.08
 
