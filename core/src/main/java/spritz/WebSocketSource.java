@@ -7,7 +7,6 @@ import elemental2.dom.WebSocket;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import jsinterop.base.Js;
 import spritz.dom.WebSocketArrayBufferMessage;
 import spritz.dom.WebSocketBlobMessage;
 import spritz.dom.WebSocketCloseCompleted;
@@ -16,7 +15,6 @@ import spritz.dom.WebSocketErrorException;
 import spritz.dom.WebSocketOpenCompleted;
 import spritz.dom.WebSocketResponse;
 import spritz.dom.WebSocketStringMessage;
-import spritz.dom.util.EventMessageEventTypeParameterUnionType;
 
 final class WebSocketSource
   extends Stream<WebSocketResponse>
@@ -63,8 +61,7 @@ final class WebSocketSource
         _webSocket.binaryType = binaryType;
       }
       _webSocket.onerror = this::onWebSocketError;
-      //TODO: Remove Js.uncheckedCast( e ) after next release of elemental2
-      _webSocket.onmessage = e -> onWebSocketMessage( Js.uncheckedCast( e ) );
+      _webSocket.onmessage = this::onWebSocketMessage;
       _webSocket.onopen = e -> onWebSocketOpen();
       _webSocket.onclose = this::onWebSocketClose;
     }
@@ -82,7 +79,7 @@ final class WebSocketSource
       }
     }
 
-    private void onWebSocketMessage( @Nonnull final MessageEvent<EventMessageEventTypeParameterUnionType> event )
+    private void onWebSocketMessage( @Nonnull final MessageEvent<WebSocket.OnmessageFn.EventMessageEventTypeParameterUnionType> event )
     {
       if ( isDone() )
       {
@@ -94,7 +91,7 @@ final class WebSocketSource
       }
       else
       {
-        final EventMessageEventTypeParameterUnionType data = event.data;
+        final WebSocket.OnmessageFn.EventMessageEventTypeParameterUnionType data = event.data;
         if ( data.isString() )
         {
           doNext( new WebSocketStringMessage( _webSocket, data.asString() ) );

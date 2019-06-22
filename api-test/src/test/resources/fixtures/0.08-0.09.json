@@ -1,0 +1,17 @@
+[
+  {
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "oldElement": "interface spritz.dom.util.EventMessageEventTypeParameterUnionType",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.util.EventMessageEventTypeParameterUnionType",
+      "classSimpleName": "EventMessageEventTypeParameterUnionType",
+      "elementKind": "interface",
+      "package": "spritz.dom.util"
+    }
+  }
+]
