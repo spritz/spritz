@@ -1,6 +1,7 @@
 # Change Log
 
-### Unreleased
+### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22)
+[Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
 
 * Upgrade the `org.realityforge.gir` artifact to version `0.10`.
 * Upgrade the `org.realityforge.revapi.diff` artifact to version `0.08`.
