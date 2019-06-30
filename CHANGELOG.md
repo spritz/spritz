@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.braincheck` artifact to version `1.17.0`.
+
 ### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
 
