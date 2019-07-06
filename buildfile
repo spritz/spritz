@@ -50,9 +50,11 @@ define 'spritz' do
     package(:javadoc)
 
     test.using :testng
+    test.compile.with :jdepend
 
     test.options[:properties] =
-      SPRITZ_TEST_OPTIONS.merge('spritz.diagnostic_messages_file' => _('src/test/java/spritz/diagnostic_messages.json'))
+      SPRITZ_TEST_OPTIONS.merge('spritz.core.compile_target' => compile.target.to_s,
+                                'spritz.diagnostic_messages_file' => _('src/test/java/spritz/diagnostic_messages.json'))
     test.options[:java_args] = ['-ea']
   end
 
@@ -232,7 +234,7 @@ define 'spritz' do
                               :launch_page => "http://127.0.0.1:8888/#{path}")
   end
 
-  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources -Dspritz.diagnostic_messages_file=core/src/test/java/spritz/diagnostic_messages.json')
+  ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources -Dspritz.core.compile_target=target/spritz_core/idea/classes -Dspritz.diagnostic_messages_file=core/src/test/java/spritz/diagnostic_messages.json')
 
   ipr.add_component_from_artifact(:idea_codestyle)
 end
