@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.14`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.20.0`.
 * Add `JDepend` tests that enforce dependencies between packages.
 
