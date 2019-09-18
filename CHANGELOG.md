@@ -5,7 +5,7 @@
 * Upgrade the `org.realityforge.javax.annotation` artifact to version `1.0.1`.
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `2.25`.
 * Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.14`.
-* Upgrade the `org.realityforge.braincheck` artifact to version `1.20.0`.
+* Upgrade the `org.realityforge.braincheck` artifact to version `1.21.0`.
 * Add `JDepend` tests that enforce dependencies between packages.
 
 ### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22)
