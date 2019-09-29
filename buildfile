@@ -50,7 +50,7 @@ define 'spritz' do
     package(:javadoc)
 
     test.using :testng
-    test.compile.with :jdepend
+    test.compile.with :jdepend, :javax_json
 
     test.options[:properties] =
       SPRITZ_TEST_OPTIONS.merge('spritz.core.compile_target' => compile.target.to_s,

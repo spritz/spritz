@@ -7,6 +7,7 @@
 * Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.14`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.23.0`.
 * Add `JDepend` tests that enforce dependencies between packages.
+* Use capabilities in `braincheck` to start recording and verifying all invariant failures in `diagnostic_messages.json`.
 
 ### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22)
 [Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
