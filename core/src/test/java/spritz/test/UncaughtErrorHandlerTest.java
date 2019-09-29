@@ -3,7 +3,7 @@ package spritz.test;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.testng.annotations.Test;
-import spritz.AbstractSpritzTest;
+import spritz.AbstractTest;
 import spritz.Spritz;
 import spritz.SpritzTestUtil;
 import spritz.Stream;
@@ -12,7 +12,7 @@ import spritz.UncaughtErrorHandler;
 import static org.testng.Assert.*;
 
 public class UncaughtErrorHandlerTest
-  extends AbstractSpritzTest
+  extends AbstractTest
 {
   @Test
   public void basicOperation()

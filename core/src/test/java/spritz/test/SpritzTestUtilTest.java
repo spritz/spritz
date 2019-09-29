@@ -1,13 +1,13 @@
 package spritz.test;
 
 import org.testng.annotations.Test;
-import spritz.AbstractSpritzTest;
+import spritz.AbstractTest;
 import spritz.Spritz;
 import spritz.SpritzTestUtil;
 import static org.testng.Assert.*;
 
 public class SpritzTestUtilTest
-  extends AbstractSpritzTest
+  extends AbstractTest
 {
   @Test
   public void areNamesEnabled()

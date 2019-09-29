@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class StaticStreamSourceTest
-  extends AbstractSpritzTest
+  extends AbstractTest
 {
   @Test
   public void getName_default()

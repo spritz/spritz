@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class SpritzLoggerTest
-  extends AbstractSpritzTest
+  extends AbstractTest
 {
   @Test
   public void log()

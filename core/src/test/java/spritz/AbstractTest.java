@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import static org.testng.Assert.*;
 
-public abstract class AbstractSpritzTest
+public abstract class AbstractTest
 {
   private static final GuardMessageCollector c_messages = createCollector();
   @Nonnull
