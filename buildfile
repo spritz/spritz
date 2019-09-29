@@ -236,6 +236,13 @@ define 'spritz' do
 
   ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources -Dspritz.core.compile_target=target/spritz_core/idea/classes -Dspritz.diagnostic_messages_file=core/src/test/java/spritz/diagnostic_messages.json')
 
+  ipr.add_testng_configuration('core',
+                               :module => 'core',
+                               :jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.core.compile_target=../target/spritz_core/idea/classes -Dspritz.check_diagnostic_messages=false -Dspritz.diagnostic_messages_file=src/test/java/spritz/diagnostic_messages.json')
+  ipr.add_testng_configuration('core - update invariant messages',
+                               :module => 'core',
+                               :jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=true -Dspritz.core.compile_target=../target/spritz_core/idea/classes -Dspritz.check_diagnostic_messages=true -Dspritz.diagnostic_messages_file=src/test/java/spritz/diagnostic_messages.json')
+
   ipr.add_component_from_artifact(:idea_codestyle)
 end
 
