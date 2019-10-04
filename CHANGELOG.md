@@ -9,21 +9,18 @@
 * Add `JDepend` tests that enforce dependencies between packages.
 * Use capabilities in `braincheck` to start recording and verifying all invariant failures in `diagnostic_messages.json`.
 
-### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
+### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
 
 * Upgrade the `org.realityforge.gir` artifact to version `0.10`.
 * Upgrade the `org.realityforge.revapi.diff` artifact to version `0.08`.
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `2.24`.
 * Remove `{@inheritDoc}` as it only explicitly indicates that the default behaviour at the expense of significant visual clutter.
 
-### [v0.08](https://github.com/spritz/spritz/tree/v0.08) (2019-04-16)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.07...v0.08)
+### [v0.08](https://github.com/spritz/spritz/tree/v0.08) (2019-04-16) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.07...v0.08)
 
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.16.0`.
 
-### [v0.07](https://github.com/spritz/spritz/tree/v0.07) (2019-04-16)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.06...v0.07)
+### [v0.07](https://github.com/spritz/spritz/tree/v0.07) (2019-04-16) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.06...v0.07)
 
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b21-6a027d2`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.15.0`.
@@ -32,13 +29,11 @@
   using J2CL.
 * Improve the way defines are handled in closure by assigning the results of `goog.define` to a module local variable.
 
-### [v0.06](https://github.com/spritz/spritz/tree/v0.06) (2019-03-18)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.05...v0.06)
+### [v0.06](https://github.com/spritz/spritz/tree/v0.06) (2019-03-18) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.05...v0.06)
 
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b20-bfe6e22`.
 
-### [v0.05](https://github.com/spritz/spritz/tree/v0.05) (2019-03-13)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.04...v0.05)
+### [v0.05](https://github.com/spritz/spritz/tree/v0.05) (2019-03-13) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.04...v0.05)
 
 * Ensure that the Spritz TodoMVC is building as part fo build and release process.
 * Remove the requirement that all `Subscriber` methods, `Stream.subscribe(...)` and `Subscription.cancel()`
@@ -49,8 +44,7 @@
   makes it easy for the component subscribing to the `Stream`, to cancel the subscription if/when the component
   no longer needs the stream to execute.
 
-### [v0.04](https://github.com/spritz/spritz/tree/v0.04) (2019-03-12)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.03...v0.04)
+### [v0.04](https://github.com/spritz/spritz/tree/v0.04) (2019-03-12) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.03...v0.04)
 
 * Convert `Subscription` from an interface to a class and move common behaviour out of `AbstractSubscription`
   and into new `Subscription` class.
@@ -65,8 +59,7 @@
   communication over a `WebSocket`.
 * If `Subscription.cancel()` is invoked when a VPU is not active then activate VPU.
 
-### [v0.03](https://github.com/spritz/spritz/tree/v0.03) (2019-03-09)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.02...v0.03)
+### [v0.03](https://github.com/spritz/spritz/tree/v0.03) (2019-03-09) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.02...v0.03)
 
 * Remove the `spritz.internal.*` packages and move all classes into the `spritz` package with reduced access
   levels as appropriate.
@@ -82,14 +75,12 @@
 * Add a `DirectExecutor` that invokes a task in the context of the caller.
 * Add basic javadocs to `EventEmitter` to reflect expected behaviour.
 
-### [v0.02](https://github.com/spritz/spritz/tree/v0.02) (2019-03-01)
-[Full Changelog](https://github.com/spritz/spritz/compare/v0.01...v0.02)
+### [v0.02](https://github.com/spritz/spritz/tree/v0.02) (2019-03-01) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.01...v0.02)
 
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.13.0`.
 * Upgrade the `org.realityforge.com.google.jsinterop` artifact to version `1.0.0-b2-e6d791f`.
 * Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `1.0.0-b19-fb227e3`.
 
-### [v0.01](https://github.com/spritz/spritz/tree/v0.01) (2019-17-01)
-[Full Changelog](https://github.com/spritz/spritz/compare/f59605d9ede6d537d7b7d6286b2f5e34c6d246f8...v0.01)
+### [v0.01](https://github.com/spritz/spritz/tree/v0.01) (2019-17-01) · [Full Changelog](https://github.com/spritz/spritz/compare/f59605d9ede6d537d7b7d6286b2f5e34c6d246f8...v0.01)
 
  ‎🎉	Initial release ‎🎉
