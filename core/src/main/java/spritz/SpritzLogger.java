@@ -1,6 +1,5 @@
 package spritz;
 
-import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import jsinterop.annotations.JsMethod;
@@ -13,8 +12,7 @@ import jsinterop.annotations.JsType;
 final class SpritzLogger
 {
   private static final Logger c_logger =
-    "console".equals( SpritzConfig.loggerType() ) ? new BasicLogger() :
-    "console_js".equals( SpritzConfig.loggerType() ) ? new BasicJsLogger() :
+    "console".equals( SpritzConfig.loggerType() ) ? new ConsoleLogger() :
     "proxy".equals( SpritzConfig.loggerType() ) ? new ProxyLogger() :
     new NoopLogger();
 
@@ -59,11 +57,12 @@ final class SpritzLogger
   }
 
   /**
-   * The basic log provider implementation.
+   * The console log provider implementation.
    */
-  private static final class BasicLogger
-    implements Logger
+  private static final class ConsoleLogger
+    extends AbstractConsoleLogger
   {
+    @GwtIncompatible
     @Override
     public void log( @Nonnull final String message, @Nullable final Throwable throwable )
     {
@@ -83,9 +82,9 @@ final class SpritzLogger
   }
 
   /**
-   * The basic log provider implementation.
+   * The console log provider implementation providing javascript based console logging.
    */
-  private static final class BasicJsLogger
+  private static abstract class AbstractConsoleLogger
     implements Logger
   {
     @Override
