@@ -25,6 +25,6 @@
   <define-property name='spritz.enable_uncaught_error_handlers' values='true,false'/>
   <set-property name='spritz.enable_uncaught_error_handlers' value='false'/>
 
-  <define-property name='spritz.logger' values='console_js,jul,proxy,none'/>
+  <define-property name='spritz.logger' values='console_js,proxy,none'/>
   <set-property name='spritz.logger' value='console_js'/>
 </module>

@@ -136,7 +136,7 @@ final class SpritzConfig
     String loggerType()
     {
       /*
-       * Valid values are: "none", "basic", "jul" (java.util.logging) and "proxy" (for testing)
+       * Valid values are: "none", "basic" and "proxy" (for testing)
        */
       return System.getProperty( "spritz.logger" );
     }

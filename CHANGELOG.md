@@ -8,6 +8,7 @@
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.24.0`.
 * Add `JDepend` tests that enforce dependencies between packages.
 * Use capabilities in `braincheck` to start recording and verifying all invariant failures in `diagnostic_messages.json`.
+* Remove the `jul` (a.k.a. `java.util.logging`) strategy available when configuring the `SpritzLogger` via the compile-time property `spritz.logger`. This strategy was never used in practice.
 
 ### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
 

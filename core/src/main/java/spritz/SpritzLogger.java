@@ -15,7 +15,6 @@ final class SpritzLogger
   private static final Logger c_logger =
     "console".equals( SpritzConfig.loggerType() ) ? new BasicLogger() :
     "console_js".equals( SpritzConfig.loggerType() ) ? new BasicJsLogger() :
-    "jul".equals( SpritzConfig.loggerType() ) ? new JavaUtilLogger() :
     "proxy".equals( SpritzConfig.loggerType() ) ? new ProxyLogger() :
     new NoopLogger();
 
@@ -97,21 +96,6 @@ final class SpritzLogger
       {
         NativeJsLoggerUtil.log( throwable );
       }
-    }
-  }
-
-  /**
-   * The normal log provider implementation.
-   */
-  private static final class JavaUtilLogger
-    implements Logger
-  {
-    private final java.util.logging.Logger _logger = java.util.logging.Logger.getLogger( SpritzLogger.class.getName() );
-
-    @Override
-    public void log( @Nonnull final String message, @Nullable final Throwable throwable )
-    {
-      _logger.log( Level.INFO, message, throwable );
     }
   }
 
