@@ -230,8 +230,8 @@ define 'spritz' do
                               :start_javascript_debugger => false,
                               :open_in_browser => false,
                               :vm_parameters => '-Xmx2G',
-                              :shell_parameters => "-port 8888 -codeServerPort 8889 -bindAddress 0.0.0.0 -war #{_(:generated, 'gwt-export', gwt_module)}/",
-                              :launch_page => "http://127.0.0.1:8888/#{path}")
+                              :shell_parameters => "-strict -style PRETTY -XmethodNameDisplayMode FULL -nostartServer -incremental -codeServerPort 8889 -bindAddress 0.0.0.0 -deploy #{_(:generated, :gwt, 'deploy')} -extra #{_(:generated, :gwt, 'extra')} -war #{_(:generated, :gwt, 'war')}",
+                              :launch_page => "http://127.0.0.1:8889/#{path}/index.html")
   end
 
   ipr.add_default_testng_configuration(:jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=false -Dspritz.fixture_dir=support/processor/src/test/resources -Dspritz.core.compile_target=target/spritz_core/idea/classes -Dspritz.diagnostic_messages_file=core/src/test/java/spritz/diagnostic_messages.json')
