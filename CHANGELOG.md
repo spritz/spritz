@@ -5,7 +5,7 @@
 * Upgrade the `org.realityforge.gir` artifact to version `0.11`.
 * Upgrade the `org.realityforge.gwt.symbolmap` artifact to version `0.09`.
 * Upgrade the `org.realityforge.javax.annotation` artifact to version `1.0.1`.
-* Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `2.25`.
+* Upgrade the `org.realityforge.com.google.elemental2` artifacts to version `2.27`.
 * Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.14`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.25.0`.
 * Add `JDepend` tests that enforce dependencies between packages.
