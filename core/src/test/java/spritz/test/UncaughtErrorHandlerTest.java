@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import spritz.AbstractTest;
 import spritz.Spritz;
 import spritz.SpritzTestUtil;
-import spritz.Stream;
 import spritz.TestLogger;
 import spritz.UncaughtErrorHandler;
 import static org.testng.Assert.*;
@@ -95,7 +94,6 @@ public class UncaughtErrorHandlerTest
   @Test
   public void onUncaughtError_whereOneHandlerGeneratesError()
   {
-    final Stream<Object> stream = Stream.empty();
     final Throwable throwable = new IllegalStateException();
 
     final AtomicInteger callCount1 = new AtomicInteger();
