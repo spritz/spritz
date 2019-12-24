@@ -8,8 +8,10 @@ import java.text.BreakIterator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
@@ -18,6 +20,7 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
+import javax.lang.model.AnnotatedConstruct;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -108,7 +111,7 @@ public final class SpritzProcessor
           generator.write( "name", name );
           generator.write( "description", getDescription( variableElement ) );
           final boolean isSourceCategory =
-            null != ProcessorUtil.findAnnotationByType( variableElement, Constants.SOURCE_CATEGORY );
+            null != findAnnotationByType( variableElement, Constants.SOURCE_CATEGORY );
           generator.write( "type", isSourceCategory ? "source" : "operator" );
           generator.writeEnd();
           index++;
@@ -172,7 +175,7 @@ public final class SpritzProcessor
 
   private void processMethod( final ClassDescriptor metaData, final ExecutableElement method )
   {
-    final AnnotationMirror annotation = ProcessorUtil.findAnnotationByType( method, Constants.DOC_CATEGORY );
+    final AnnotationMirror annotation = findAnnotationByType( method, Constants.DOC_CATEGORY );
     final ExecutableType methodType =
       (ExecutableType) processingEnv.getTypeUtils()
         .asMemberOf( (DeclaredType) metaData.getTypeElement().asType(), method );
@@ -181,7 +184,7 @@ public final class SpritzProcessor
       final String description = getDescription( method );
       final OperatorDescriptor operator = new OperatorDescriptor( method, methodType, description );
       metaData.addOperator( operator );
-      final AnnotationValue value = ProcessorUtil.findAnnotationValueNoDefaults( annotation, "value" );
+      final AnnotationValue value = findAnnotationValueNoDefaults( annotation, "value" );
       assert null != value;
       @SuppressWarnings( "unchecked" )
       final List<AnnotationValue> categories = (List<AnnotationValue>) value.getValue();
@@ -234,5 +237,24 @@ public final class SpritzProcessor
     generator.flush();
     outputStream.write( '\n' );
     generator.close();
+  }
+
+  @Nullable
+  private AnnotationMirror findAnnotationByType( @Nonnull final AnnotatedConstruct annotated,
+                                                 @Nonnull final String annotationClassName )
+  {
+    return annotated.getAnnotationMirrors().stream().
+      filter( a -> a.getAnnotationType().toString().equals( annotationClassName ) ).findFirst().orElse( null );
+  }
+
+  @SuppressWarnings( "SameParameterValue" )
+  @Nullable
+  private AnnotationValue findAnnotationValueNoDefaults( @Nonnull final AnnotationMirror annotation,
+                                                         @Nonnull final String parameterName )
+  {
+    final Map<? extends ExecutableElement, ? extends AnnotationValue> values = annotation.getElementValues();
+    final ExecutableElement annotationKey = values.keySet().stream().
+      filter( k -> parameterName.equals( k.getSimpleName().toString() ) ).findFirst().orElse( null );
+    return values.get( annotationKey );
   }
 }
