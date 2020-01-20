@@ -2,66 +2,26 @@
   {
     "code": 52,
     "type": "API_INVARIANT",
-    "messagePattern": "Stream passed a name '%s' but Spritz.areNamesEnabled() is false",
-    "callers": [
-      {
-        "class": "spritz.Stream",
-        "method": "<init>",
-        "file": "Stream.java",
-        "lineNumber": 40
-      }
-    ]
+    "messagePattern": "Stream passed a name '%s' but Spritz.areNamesEnabled() is false"
   },
   {
     "code": 53,
     "type": "API_INVARIANT",
-    "messagePattern": "Stream.getName() invoked when Spritz.areNamesEnabled() is false",
-    "callers": [
-      {
-        "class": "spritz.Stream",
-        "method": "getName",
-        "file": "Stream.java",
-        "lineNumber": 2588
-      }
-    ]
+    "messagePattern": "Stream.getName() invoked when Spritz.areNamesEnabled() is false"
   },
   {
     "code": 96,
     "type": "API_INVARIANT",
-    "messagePattern": "Attempting to add handler %s that is already in the list of error handlers.",
-    "callers": [
-      {
-        "class": "spritz.UncaughtErrorHandlerSupport",
-        "method": "addUncaughtErrorHandler",
-        "file": "UncaughtErrorHandlerSupport.java",
-        "lineNumber": 50
-      }
-    ]
+    "messagePattern": "Attempting to add handler %s that is already in the list of error handlers."
   },
   {
     "code": 97,
     "type": "API_INVARIANT",
-    "messagePattern": "Attempting to remove handler %s that is not in the list of error handlers.",
-    "callers": [
-      {
-        "class": "spritz.UncaughtErrorHandlerSupport",
-        "method": "removeUncaughtErrorHandler",
-        "file": "UncaughtErrorHandlerSupport.java",
-        "lineNumber": 67
-      }
-    ]
+    "messagePattern": "Attempting to remove handler %s that is not in the list of error handlers."
   },
   {
     "code": 182,
     "type": "INVARIANT",
-    "messagePattern": "UncaughtErrorHandlerSupport.get() invoked when Spritz.areUncaughtErrorHandlersEnabled() returns false.",
-    "callers": [
-      {
-        "class": "spritz.UncaughtErrorHandlerSupport",
-        "method": "get",
-        "file": "UncaughtErrorHandlerSupport.java",
-        "lineNumber": 25
-      }
-    ]
+    "messagePattern": "UncaughtErrorHandlerSupport.get() invoked when Spritz.areUncaughtErrorHandlersEnabled() returns false."
   }
 ]

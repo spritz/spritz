@@ -23,6 +23,6 @@ public final class MessageCollector
     final String fixtureDir = System.getProperty( "spritz.diagnostic_messages_file" );
     assertNotNull( fixtureDir,
                    "Expected System.getProperty( \"spritz.diagnostic_messages_file\" ) to return location of diagnostic messages file" );
-    return new GuardMessageCollector( "Spritz", new File( fixtureDir ), saveIfChanged );
+    return new GuardMessageCollector( "Spritz", new File( fixtureDir ), saveIfChanged, true, false );
   }
 }

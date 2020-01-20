@@ -16,6 +16,7 @@
 * Use capabilities in `braincheck` to start recording and verifying all invariant failures in `diagnostic_messages.json`.
 * Remove the `jul` (a.k.a. `java.util.logging`) strategy available when configuring the `SpritzLogger` via the compile-time property `spritz.logger`. This strategy was never used in practice.
 * Rework the way `SpritzLogger` is implemented to consolidate the JRE and javascript based console loggers into the class `ConsoleLogger`. The involved renaming the `console_js` value to `console` for the compile-time property `spritz.logger`.
+* Stop recording source location where diagnostic messages are generated.
 
 ### [v0.09](https://github.com/spritz/spritz/tree/v0.09) (2019-06-22) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.08...v0.09)
 
