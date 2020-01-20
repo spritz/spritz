@@ -111,6 +111,7 @@ define 'spritz' do
                  :autocommon,
                  :javapoet,
                  :guava,
+                 :guava_failureaccess,
                  :javax_annotation,
                  :javax_json
 
