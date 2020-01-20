@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Upgrade the `com.google.testing.compile` artifact to version `0.18`.
 * Upgrade the `com.squareup` artifact to version `1.12.0`.
 * Upgrade the `org.realityforge.gir` artifact to version `0.11`.
 * Upgrade the `org.realityforge.gwt.symbolmap` artifact to version `0.09`.
