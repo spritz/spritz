@@ -32,7 +32,7 @@ artifacts:
   guava_failureaccess: com.google.guava:failureaccess:jar:1.0.1
 
   #test deps
-  compile_testing: com.google.testing.compile:compile-testing:jar:0.18
+  compile_testing: com.google.testing.compile:compile-testing:jar:0.18-rf
   truth: com.google.truth:truth:jar:0.44
   junit: junit:junit:jar:4.12
   hamcrest_core: org.hamcrest:hamcrest-core:jar:1.3

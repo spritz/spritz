@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Upgrade the `com.google.testing.compile` artifact to version `0.18-rf`.
+
 ### [v0.10](https://github.com/spritz/spritz/tree/v0.10) (2020-01-20) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.09...v0.10)
 
 Changes in this release:
