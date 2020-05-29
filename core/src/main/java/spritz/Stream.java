@@ -50,6 +50,7 @@ public abstract class Stream<T>
    * @param values the values to emit.
    * @return the new stream.
    */
+  @SuppressWarnings( "varargs" )
   @SafeVarargs
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> of( @Nonnull final T... values )
@@ -65,6 +66,7 @@ public abstract class Stream<T>
    * @param values the values to emit.
    * @return the new stream.
    */
+  @SuppressWarnings( "varargs" )
   @SafeVarargs
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   public static <T> Stream<T> of( @Nullable final String name, @Nonnull final T... values )
@@ -397,6 +399,7 @@ public abstract class Stream<T>
     return new WebSocketHub( name, config );
   }
 
+  @SuppressWarnings( "varargs" )
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   @SafeVarargs
   public static <T> Stream<T> concat( @Nonnull final Stream<T>... upstreams )
@@ -404,6 +407,7 @@ public abstract class Stream<T>
     return of( upstreams ).concatMap( v -> v );
   }
 
+  @SuppressWarnings( "varargs" )
   @DocCategory( DocCategory.Type.CONSTRUCTION )
   @SafeVarargs
   public static <T> Stream<T> merge( @Nonnull final Stream<T>... upstreams )
@@ -2021,7 +2025,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #mergeMap(Function)
    */
-  @SuppressWarnings( "unchecked" )
+  @SuppressWarnings( { "unchecked", "varargs", "rawtypes" } )
   @Nonnull
   @SafeVarargs
   @DocCategory( DocCategory.Type.MERGING )
@@ -2041,6 +2045,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #prepend(Stream[])
    */
+  @SuppressWarnings( "varargs" )
   @SafeVarargs
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
@@ -2061,6 +2066,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #prepend(Stream[])
    */
+  @SuppressWarnings( "varargs" )
   @SafeVarargs
   @Nonnull
   @DocCategory( DocCategory.Type.MERGING )
