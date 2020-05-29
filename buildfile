@@ -207,7 +207,8 @@ define 'spritz' do
     test.exclude '*BuildOutputTest' if ENV['BUILD_STATS'] == 'no'
 
     test.using :testng
-    test.compile.with :gwt_symbolmap
+    test.compile.with :gwt_symbolmap,
+                      :jetbrains_annotations
 
     project.jacoco.enabled = false
   end

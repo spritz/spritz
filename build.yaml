@@ -8,6 +8,7 @@ artifacts:
   idea_codestyle: au.com.stocksoftware.idea.codestyle:idea-codestyle:xml:1.14
 
   javax_annotation: org.realityforge.javax.annotation:javax.annotation:jar:1.0.1
+  jetbrains_annotations: org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:jar:1.5.0
 
   braincheck: org.realityforge.braincheck:braincheck:jar:1.28.0
 
