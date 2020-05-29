@@ -121,7 +121,9 @@ define 'spritz' do
     test.with :compile_testing,
               :junit,
               :hamcrest_core,
-              :truth
+              :truth,
+              :errorprone,
+              :error_prone_annotations
 
     test.compile.enhance(['copy-annotations'])
     task 'copy-annotations' do
