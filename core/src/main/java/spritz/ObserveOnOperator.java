@@ -79,7 +79,7 @@ final class ObserveOnOperator<T>
 
     private void scheduleObserve()
     {
-      getStream()._virtualProcessorUnit.getExecutor().queue( this::observe );
+      getStream()._virtualProcessorUnit.queue( this::observe );
     }
 
     /**
