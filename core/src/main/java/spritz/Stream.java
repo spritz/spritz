@@ -2025,7 +2025,7 @@ public abstract class Stream<T>
    * @return the new stream.
    * @see #mergeMap(Function)
    */
-  @SuppressWarnings( { "unchecked", "varargs", "rawtypes" } )
+  @SuppressWarnings( { "unchecked", "varargs" } )
   @Nonnull
   @SafeVarargs
   @DocCategory( DocCategory.Type.MERGING )
