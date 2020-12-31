@@ -4,6 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import elemental2.core.ArrayBuffer;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.WebSocket;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.Stream;
@@ -101,7 +102,7 @@ public final class WebSocketExample
     @Nonnull
     private String suffix()
     {
-      return " on " + Scheduler.currentVpu().getName();
+      return " on " + Objects.requireNonNull( Scheduler.currentVpu() ).getName();
     }
 
     Subscription getSubscription()
