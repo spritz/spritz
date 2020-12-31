@@ -44,15 +44,12 @@ public final class SpritzTestUtil
     {
       disableNames();
       noValidateSubscriptions();
-      disableUncaughtErrorHandlers();
     }
     else
     {
       enableNames();
       validateSubscriptions();
-      enableUncaughtErrorHandlers();
     }
-    purgeTasksWhenRunawayDetected();
     resetState();
   }
 
@@ -63,8 +60,6 @@ public final class SpritzTestUtil
   private static void resetState()
   {
     setLogger( null );
-    TemporalScheduler.reset();
-    UncaughtErrorHandlerSupport.reset();
   }
 
   /**
@@ -112,58 +107,6 @@ public final class SpritzTestUtil
   private static void setEnableNames( final boolean value )
   {
     setConstant( "ENABLE_NAMES", value );
-  }
-
-  /**
-   * Set `spritz.purge_tasks_when_runaway_detected` setting to true.
-   */
-  public static void purgeTasksWhenRunawayDetected()
-  {
-    setPurgeTasksWhenRunawayDetected( true );
-  }
-
-  /**
-   * Set `spritz.purge_tasks_when_runaway_detected` setting to false.
-   */
-  public static void noPurgeTasksWhenRunawayDetected()
-  {
-    setPurgeTasksWhenRunawayDetected( false );
-  }
-
-  /**
-   * Configure the `spritz.purge_tasks_when_runaway_detected` setting.
-   *
-   * @param value the setting.
-   */
-  private static void setPurgeTasksWhenRunawayDetected( final boolean value )
-  {
-    setConstant( "PURGE_ON_RUNAWAY", value );
-  }
-
-  /**
-   * Set `spritz.enable_uncaught_error_handlers` setting to true.
-   */
-  public static void enableUncaughtErrorHandlers()
-  {
-    setEnableUncaughtErrorHandlers( true );
-  }
-
-  /**
-   * Set `spritz.enable_uncaught_error_handlers` setting to false.
-   */
-  public static void disableUncaughtErrorHandlers()
-  {
-    setEnableUncaughtErrorHandlers( false );
-  }
-
-  /**
-   * Configure the `spritz.enable_uncaught_error_handlers` setting.
-   *
-   * @param value the setting.
-   */
-  private static void setEnableUncaughtErrorHandlers( final boolean value )
-  {
-    setConstant( "UNCAUGHT_ERROR_HANDLERS", value );
   }
 
   /**

@@ -2,10 +2,10 @@ package spritz.examples;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.Scheduler;
 import spritz.Subscriber;
 import spritz.Subscription;
-import spritz.VirtualProcessorUnit;
+import zemeckis.Scheduler;
+import zemeckis.VirtualProcessorUnit;
 
 final class LoggingSubscriber<T>
   implements Subscriber<T>

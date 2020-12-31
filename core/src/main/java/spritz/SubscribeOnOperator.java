@@ -3,6 +3,7 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import zemeckis.VirtualProcessorUnit;
 
 final class SubscribeOnOperator<T>
   extends AbstractStream<T, T>

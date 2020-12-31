@@ -10,8 +10,6 @@ final class SpritzConfig
   private static final boolean PRODUCTION_MODE = PROVIDER.isProductionMode();
   private static boolean ENABLE_NAMES = PROVIDER.areNamesEnabled();
   private static boolean VALIDATE_SUBSCRIPTIONS = PROVIDER.shouldValidateSubscriptions();
-  private static boolean PURGE_ON_RUNAWAY = PROVIDER.purgeTasksWhenRunawayDetected();
-  private static boolean UNCAUGHT_ERROR_HANDLERS = PROVIDER.areUncaughtErrorHandlersEnabled();
   private static final String LOGGER_TYPE = PROVIDER.loggerType();
 
   private SpritzConfig()
@@ -28,16 +26,6 @@ final class SpritzConfig
     return PRODUCTION_MODE;
   }
 
-  static boolean isJvm()
-  {
-    return true;
-  }
-
-  static boolean purgeTasksWhenRunawayDetected()
-  {
-    return PURGE_ON_RUNAWAY;
-  }
-
   static boolean areNamesEnabled()
   {
     return ENABLE_NAMES;
@@ -46,11 +34,6 @@ final class SpritzConfig
   static boolean shouldValidateSubscriptions()
   {
     return VALIDATE_SUBSCRIPTIONS;
-  }
-
-  static boolean areUncaughtErrorHandlersEnabled()
-  {
-    return UNCAUGHT_ERROR_HANDLERS;
   }
 
   static String loggerType()
@@ -85,21 +68,6 @@ final class SpritzConfig
 
     @GwtIncompatible
     @Override
-    boolean purgeTasksWhenRunawayDetected()
-    {
-      return "true".equals( System.getProperty( "spritz.purge_tasks_when_runaway_detected", "true" ) );
-    }
-
-    @GwtIncompatible
-    @Override
-    boolean areUncaughtErrorHandlersEnabled()
-    {
-      return "true".equals( System.getProperty( "spritz.enable_uncaught_error_handlers",
-                                                PRODUCTION_MODE ? "false" : "true" ) );
-    }
-
-    @GwtIncompatible
-    @Override
     String loggerType()
     {
       return System.getProperty( "spritz.logger", PRODUCTION_MODE ? "basic" : "proxy" );
@@ -122,16 +90,6 @@ final class SpritzConfig
     boolean shouldValidateSubscriptions()
     {
       return "true" == System.getProperty( "spritz.validate_subscriptions" );
-    }
-
-    boolean purgeTasksWhenRunawayDetected()
-    {
-      return "true" == System.getProperty( "spritz.purge_tasks_when_runaway_detected" );
-    }
-
-    boolean areUncaughtErrorHandlersEnabled()
-    {
-      return "true" == System.getProperty( "spritz.enable_uncaught_error_handlers" );
     }
 
     String loggerType()

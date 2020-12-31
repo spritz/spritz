@@ -2,6 +2,8 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import zemeckis.Cancelable;
+import zemeckis.Scheduler;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T, T>
@@ -65,7 +67,7 @@ final class TimeoutOperator<T>
     @Override
     public void run()
     {
-      Scheduler.runMacroTaskNow( () -> super.onError( new TimeoutException() ) );
+      Scheduler.becomeMacroTask( () -> super.onError( new TimeoutException() ) );
     }
 
     private void recordLastTime()

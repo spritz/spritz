@@ -24,18 +24,18 @@ public class JDependTest
 
     final DependencyConstraint constraint = new DependencyConstraint();
 
+    final JavaPackage zemeckis = constraint.addPackage( "zemeckis" );
     final JavaPackage spritz = constraint.addPackage( "spritz" );
     final JavaPackage braincheck = constraint.addPackage( "org.realityforge.braincheck" );
     final JavaPackage dom = constraint.addPackage( "spritz.dom" );
     constraint.addPackage( "spritz.annotations" );
     final JavaPackage jsinterop = constraint.addPackage( "jsinterop.annotations" );
-    final JavaPackage elementalPromise = constraint.addPackage( "elemental2.promise" );
     final JavaPackage elementalCore = constraint.addPackage( "elemental2.core" );
     final JavaPackage elementalDom = constraint.addPackage( "elemental2.dom" );
 
+    spritz.dependsUpon( zemeckis );
     spritz.dependsUpon( jsinterop );
     spritz.dependsUpon( braincheck );
-    spritz.dependsUpon( elementalPromise );
     spritz.dependsUpon( elementalDom );
 
     dom.dependsUpon( elementalCore );

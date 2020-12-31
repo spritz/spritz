@@ -13,6 +13,7 @@ GWT_EXAMPLES =
 SPRITZ_TEST_OPTIONS =
   {
     'braincheck.environment' => 'development',
+    'zemeckis.environment' => 'development',
     'spritz.environment' => 'development'
   }
 
@@ -39,6 +40,8 @@ define 'spritz' do
 
     compile.with :javax_annotation,
                  :braincheck,
+                 :zemeckis,
+                 :jetbrains_annotations,
                  :jsinterop_annotations,
                  :jsinterop_base,
                  :elemental2_core,

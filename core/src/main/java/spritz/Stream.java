@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import spritz.dom.WebSocketConfig;
+import zemeckis.VirtualProcessorUnit;
 import static org.realityforge.braincheck.Guards.*;
 
 @SuppressWarnings( { "WeakerAccess", "unused" } )
