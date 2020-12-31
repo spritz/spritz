@@ -17,7 +17,7 @@ import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
 import zemeckis.Scheduler;
 
-public class WebSocketExample
+public final class WebSocketExample
   implements EntryPoint
 {
   @Override
