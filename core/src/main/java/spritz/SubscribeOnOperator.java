@@ -25,7 +25,7 @@ final class SubscribeOnOperator<T>
   {
     final PassThroughSubscription<T, SubscribeOnOperator<T>> subscription =
       new PassThroughSubscription<>( this, subscriber );
-    _virtualProcessorUnit.getExecutor().queue( () -> getUpstream().subscribe( subscription ) );
+    _virtualProcessorUnit.queue( () -> getUpstream().subscribe( subscription ) );
     return subscription;
   }
 }
