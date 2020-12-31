@@ -3,6 +3,7 @@ package spritz;
 /**
  * Location of all compile time configuration settings for framework.
  */
+@SuppressWarnings( "FieldMayBeFinal" )
 final class SpritzConfig
 {
   private static final ConfigProvider PROVIDER = new ConfigProvider();
