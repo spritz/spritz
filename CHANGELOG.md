@@ -1,6 +1,10 @@
 # Change Log
 
-### Unreleased
+### [v0.11](https://github.com/spritz/spritz/tree/v0.11) (2020-12-31) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.10...v0.11)
+
+The release includes 4 potentially breaking API changes and 12 breaking API changes.
+
+Changes in this release:
 
 * Upgrade the `org.realityforge.org.jetbrains.annotations` artifact to version `1.7.0`.
 * Upgrade the `com.squareup` artifact to version `1.13.0`.
