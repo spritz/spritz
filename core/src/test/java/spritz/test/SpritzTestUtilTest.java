@@ -19,29 +19,11 @@ public class SpritzTestUtilTest
   }
 
   @Test
-  public void purgeTasksWhenRunawayDetected()
-  {
-    SpritzTestUtil.noPurgeTasksWhenRunawayDetected();
-    assertFalse( Spritz.purgeTasksWhenRunawayDetected() );
-    SpritzTestUtil.purgeTasksWhenRunawayDetected();
-    assertTrue( Spritz.purgeTasksWhenRunawayDetected() );
-  }
-
-  @Test
   public void shouldValidateSubscriptions()
   {
     SpritzTestUtil.noValidateSubscriptions();
     assertFalse( Spritz.shouldValidateSubscriptions() );
     SpritzTestUtil.validateSubscriptions();
     assertTrue( Spritz.shouldValidateSubscriptions() );
-  }
-
-  @Test
-  public void areUncaughtErrorHandlersEnabled()
-  {
-    SpritzTestUtil.disableUncaughtErrorHandlers();
-    assertFalse( Spritz.areUncaughtErrorHandlersEnabled() );
-    SpritzTestUtil.enableUncaughtErrorHandlers();
-    assertTrue( Spritz.areUncaughtErrorHandlersEnabled() );
   }
 }

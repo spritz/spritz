@@ -1,8 +1,8 @@
 package spritz.examples;
 
-import spritz.Scheduler;
 import spritz.Stream;
 import spritz.Subject;
+import zemeckis.Scheduler;
 
 public class Example41
 {

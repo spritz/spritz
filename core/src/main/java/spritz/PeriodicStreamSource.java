@@ -2,6 +2,9 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import zemeckis.Cancelable;
+import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 final class PeriodicStreamSource
   extends Stream<Integer>
@@ -47,7 +50,7 @@ final class PeriodicStreamSource
     @Override
     public void run()
     {
-      Scheduler.runMacroTaskNow( this::pushItem );
+      Scheduler.becomeMacroTask( this::pushItem );
     }
 
     synchronized void pushItem()
@@ -60,7 +63,7 @@ final class PeriodicStreamSource
       }
       catch ( final Throwable t )
       {
-        Spritz.reportUncaughtError( t );
+        Zemeckis.reportUncaughtError( t );
       }
     }
 

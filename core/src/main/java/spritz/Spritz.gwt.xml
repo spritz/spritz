@@ -1,5 +1,6 @@
 <module>
   <inherits name='org.realityforge.braincheck.BrainCheck'/>
+  <inherits name='zemeckis.Zemeckis'/>
   <inherits name='elemental2.dom.Dom'/>
 
   <source path='' includes='*.java'/>
@@ -18,12 +19,6 @@
 
   <define-property name='spritz.validate_subscriptions' values='true,false'/>
   <set-property name='spritz.validate_subscriptions' value='false'/>
-
-  <define-property name='spritz.purge_tasks_when_runaway_detected' values='true,false'/>
-  <set-property name='spritz.purge_tasks_when_runaway_detected' value='true'/>
-
-  <define-property name='spritz.enable_uncaught_error_handlers' values='true,false'/>
-  <set-property name='spritz.enable_uncaught_error_handlers' value='false'/>
 
   <define-property name='spritz.logger' values='console,proxy,none'/>
   <set-property name='spritz.logger' value='console'/>

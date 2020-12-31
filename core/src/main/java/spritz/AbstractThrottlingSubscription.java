@@ -2,6 +2,8 @@ package spritz;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import zemeckis.Cancelable;
+import zemeckis.Scheduler;
 
 abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   extends PassThroughSubscription<T, StreamT>
@@ -70,7 +72,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   @Override
   public final void run()
   {
-    Scheduler.runMacroTaskNow( this::executeTask );
+    Scheduler.becomeMacroTask( this::executeTask );
   }
 
   final boolean hasTask()

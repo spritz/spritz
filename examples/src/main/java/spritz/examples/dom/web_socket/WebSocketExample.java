@@ -6,7 +6,6 @@ import elemental2.dom.DomGlobal;
 import elemental2.dom.WebSocket;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import spritz.Scheduler;
 import spritz.Stream;
 import spritz.Subscriber;
 import spritz.Subscription;
@@ -16,6 +15,7 @@ import spritz.dom.WebSocketConfig;
 import spritz.dom.WebSocketMessageRequest;
 import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
+import zemeckis.Scheduler;
 
 public class WebSocketExample
   implements EntryPoint

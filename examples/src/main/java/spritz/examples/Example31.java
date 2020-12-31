@@ -1,7 +1,7 @@
 package spritz.examples;
 
-import spritz.Scheduler;
 import spritz.Stream;
+import zemeckis.Scheduler;
 
 public class Example31
 {

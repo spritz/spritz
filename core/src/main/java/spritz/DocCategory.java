@@ -56,7 +56,7 @@ import javax.annotation.Nonnull;
      */
     ACCUMULATING,
     /**
-     * Operators that change the {@link spritz.VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
+     * Operators that change the {@link zemeckis.VirtualProcessorUnit} on which events and signals are emitted or the time at which events and signals are emitted.
      */
     SCHEDULING,
     /**

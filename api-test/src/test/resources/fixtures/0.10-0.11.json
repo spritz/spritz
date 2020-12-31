@@ -1,0 +1,271 @@
+[
+  {
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "oldElement": "class spritz.Scheduler",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Scheduler",
+      "classSimpleName": "Scheduler",
+      "elementKind": "class",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "oldElement": "class spritz.VirtualProcessorUnit",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.VirtualProcessorUnit",
+      "classSimpleName": "VirtualProcessorUnit",
+      "elementKind": "class",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "oldElement": "interface spritz.Cancelable",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Cancelable",
+      "classSimpleName": "Cancelable",
+      "elementKind": "interface",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method boolean spritz.Spritz::areUncaughtErrorHandlersEnabled()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Spritz",
+      "classSimpleName": "Spritz",
+      "elementKind": "method",
+      "methodName": "areUncaughtErrorHandlersEnabled",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method boolean spritz.Spritz::purgeTasksWhenRunawayDetected()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Spritz",
+      "classSimpleName": "Spritz",
+      "elementKind": "method",
+      "methodName": "purgeTasksWhenRunawayDetected",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.Spritz::addUncaughtErrorHandler(spritz.UncaughtErrorHandler)",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Spritz",
+      "classSimpleName": "Spritz",
+      "elementKind": "method",
+      "methodName": "addUncaughtErrorHandler",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.Spritz::removeUncaughtErrorHandler(spritz.UncaughtErrorHandler)",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Spritz",
+      "classSimpleName": "Spritz",
+      "elementKind": "method",
+      "methodName": "removeUncaughtErrorHandler",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.Spritz::reportUncaughtError(java.lang.Throwable)",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Spritz",
+      "classSimpleName": "Spritz",
+      "elementKind": "method",
+      "methodName": "reportUncaughtError",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.SpritzTestUtil::disableUncaughtErrorHandlers()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SpritzTestUtil",
+      "classSimpleName": "SpritzTestUtil",
+      "elementKind": "method",
+      "methodName": "disableUncaughtErrorHandlers",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.SpritzTestUtil::enableUncaughtErrorHandlers()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SpritzTestUtil",
+      "classSimpleName": "SpritzTestUtil",
+      "elementKind": "method",
+      "methodName": "enableUncaughtErrorHandlers",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.SpritzTestUtil::noPurgeTasksWhenRunawayDetected()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SpritzTestUtil",
+      "classSimpleName": "SpritzTestUtil",
+      "elementKind": "method",
+      "methodName": "noPurgeTasksWhenRunawayDetected",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.SpritzTestUtil::purgeTasksWhenRunawayDetected()",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.SpritzTestUtil",
+      "classSimpleName": "SpritzTestUtil",
+      "elementKind": "method",
+      "methodName": "purgeTasksWhenRunawayDetected",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'spritz.VirtualProcessorUnit' to 'zemeckis.VirtualProcessorUnit'.",
+    "newElement": "parameter spritz.Stream<T> spritz.Stream<T>::observeOn(===zemeckis.VirtualProcessorUnit===)",
+    "oldElement": "parameter spritz.Stream<T> spritz.Stream<T>::observeOn(===spritz.VirtualProcessorUnit===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "parameter",
+      "methodName": "observeOn",
+      "newType": "zemeckis.VirtualProcessorUnit",
+      "oldType": "spritz.VirtualProcessorUnit",
+      "package": "spritz",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'spritz.VirtualProcessorUnit' to 'zemeckis.VirtualProcessorUnit'.",
+    "newElement": "parameter spritz.Stream<T> spritz.Stream<T>::observeOn(java.lang.String, ===zemeckis.VirtualProcessorUnit===)",
+    "oldElement": "parameter spritz.Stream<T> spritz.Stream<T>::observeOn(java.lang.String, ===spritz.VirtualProcessorUnit===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "parameter",
+      "methodName": "observeOn",
+      "newType": "zemeckis.VirtualProcessorUnit",
+      "oldType": "spritz.VirtualProcessorUnit",
+      "package": "spritz",
+      "parameterIndex": "1"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'spritz.VirtualProcessorUnit' to 'zemeckis.VirtualProcessorUnit'.",
+    "newElement": "parameter spritz.Stream<T> spritz.Stream<T>::subscribeOn(===zemeckis.VirtualProcessorUnit===)",
+    "oldElement": "parameter spritz.Stream<T> spritz.Stream<T>::subscribeOn(===spritz.VirtualProcessorUnit===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "parameter",
+      "methodName": "subscribeOn",
+      "newType": "zemeckis.VirtualProcessorUnit",
+      "oldType": "spritz.VirtualProcessorUnit",
+      "package": "spritz",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'spritz.VirtualProcessorUnit' to 'zemeckis.VirtualProcessorUnit'.",
+    "newElement": "parameter spritz.Stream<T> spritz.Stream<T>::subscribeOn(java.lang.String, ===zemeckis.VirtualProcessorUnit===)",
+    "oldElement": "parameter spritz.Stream<T> spritz.Stream<T>::subscribeOn(java.lang.String, ===spritz.VirtualProcessorUnit===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Stream",
+      "classSimpleName": "Stream",
+      "elementKind": "parameter",
+      "methodName": "subscribeOn",
+      "newType": "zemeckis.VirtualProcessorUnit",
+      "oldType": "spritz.VirtualProcessorUnit",
+      "package": "spritz",
+      "parameterIndex": "1"
+    }
+  }
+]
