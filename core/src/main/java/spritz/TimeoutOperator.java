@@ -28,7 +28,6 @@ final class TimeoutOperator<T>
 
   private static final class WorkerSubscription<T>
     extends PassThroughSubscription<T, TimeoutOperator<T>>
-    implements Runnable
   {
     private int _lastTime;
     @Nonnull
@@ -64,12 +63,6 @@ final class TimeoutOperator<T>
       super.onComplete();
     }
 
-    @Override
-    public void run()
-    {
-      Scheduler.becomeMacroTask( () -> super.onError( new TimeoutException() ) );
-    }
-
     private void recordLastTime()
     {
       _lastTime = Scheduler.now();
@@ -78,7 +71,8 @@ final class TimeoutOperator<T>
     @Nonnull
     private Cancelable scheduleTimeout()
     {
-      return Scheduler.schedule( this, _lastTime + getStream()._timeoutTime );
+      return Scheduler.delayedTask( () -> super.onError( new TimeoutException() ),
+                                    _lastTime + getStream()._timeoutTime );
     }
   }
 }

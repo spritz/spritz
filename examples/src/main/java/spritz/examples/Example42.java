@@ -22,7 +22,7 @@ public class Example42
 
     value$.next( Math.random() );
 
-    Scheduler.schedule( value$::complete, 100 );
+    Scheduler.delayedTask( value$::complete, 100 );
 
     ExampleUtil.run( value$ );
   }

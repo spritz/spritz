@@ -7,7 +7,6 @@ import zemeckis.Scheduler;
 
 abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   extends PassThroughSubscription<T, StreamT>
-  implements Runnable
 {
   @Nullable
   private T _nextItem;
@@ -69,12 +68,6 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
     super.onComplete();
   }
 
-  @Override
-  public final void run()
-  {
-    Scheduler.becomeMacroTask( this::executeTask );
-  }
-
   final boolean hasTask()
   {
     return null != _task;
@@ -125,7 +118,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   final void scheduleTask( final int delay )
   {
     assert delay > 0;
-    _task = Scheduler.schedule( this, delay );
+    _task = Scheduler.delayedTask( this::executeTask, delay );
     _nextTaskTime = Scheduler.now() + delay;
   }
 
