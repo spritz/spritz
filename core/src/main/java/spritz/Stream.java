@@ -1014,7 +1014,7 @@ public abstract class Stream<T>
   @DocCategory( DocCategory.Type.PEEKING )
   public final Stream<T> peekTerminate( @Nullable final String name, @Nonnull final Runnable action )
   {
-    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "onTerminate" ) : null,
+    return compose( s -> new PeekOperator<>( Spritz.areNamesEnabled() ? generateName( name, "peekTerminate" ) : null,
                                              s,
                                              null,
                                              null,
