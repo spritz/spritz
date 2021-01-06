@@ -40,6 +40,7 @@ define 'spritz' do
 
     compile.with :javax_annotation,
                  :braincheck,
+                 :grim_annotations,
                  :zemeckis,
                  :jetbrains_annotations,
                  :jsinterop_annotations,
