@@ -47,7 +47,7 @@ final class ValidatingSubscriber<T>
       if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0003: Invoking Subscriber.onSubscribe(...) incorrectly threw an exception. " +
-                    "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
+                    "Exception:\n" + SpritzUtil.throwableToString( throwable ) );
       }
       throw throwable;
     }
@@ -73,7 +73,7 @@ final class ValidatingSubscriber<T>
       if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0004: Invoking Subscriber.onNext(...) incorrectly threw an exception. " +
-                    "Exception:\n" + ErrorUtil.throwableToString( throwable ) );
+                    "Exception:\n" + SpritzUtil.throwableToString( throwable ) );
       }
       throw throwable;
     }
@@ -99,7 +99,7 @@ final class ValidatingSubscriber<T>
       if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0007: Invoking Subscriber.onError(...) incorrectly threw an exception. " +
-                    "Exception:\n" + ErrorUtil.throwableToString( t ) );
+                    "Exception:\n" + SpritzUtil.throwableToString( t ) );
       }
       throw t;
     }
@@ -125,7 +125,7 @@ final class ValidatingSubscriber<T>
       if ( Spritz.shouldCheckInvariants() )
       {
         fail( () -> "Spritz-0009: Invoking Subscriber.onComplete(...) incorrectly threw an exception. " +
-                    "Exception:\n" + ErrorUtil.throwableToString( t ) );
+                    "Exception:\n" + SpritzUtil.throwableToString( t ) );
       }
       throw t;
     }
@@ -154,7 +154,7 @@ final class ValidatingSubscriber<T>
         if ( Spritz.shouldCheckInvariants() )
         {
           fail( () -> "Spritz-0020: Invoking Subscription.cancel(...) incorrectly threw an exception. " +
-                      "Exception:\n" + ErrorUtil.throwableToString( t ) );
+                      "Exception:\n" + SpritzUtil.throwableToString( t ) );
         }
         throw t;
       }
