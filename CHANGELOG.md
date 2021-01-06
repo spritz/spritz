@@ -1,6 +1,8 @@
 # Change Log
 
-### Unreleased
+### [v0.13](https://github.com/spritz/spritz/tree/v0.13) (2021-01-06) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.12...v0.13)
+
+Changes in this release:
 
 * Upgrade the `org.realityforge.zemeckis:zemeckis-core` artifact to version `0.04`.
 
