@@ -10,8 +10,6 @@ complete as there is too much un-said.
 
 * Add `Elemental2` specific sources and sinks.
 
-* Add annotation and enhance processor so that VPUs are included in the documentation.
-
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
 * Javadoc Doclet that generates a separate page per method in `Stream`
