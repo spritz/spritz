@@ -1358,7 +1358,7 @@ public abstract class Stream<T>
   /**
    * Drop all items except for the last item.
    * Once the complete signal has been received the operator will emit the last item received
-   * if any prior to sending the complete signal. This is equivalent to invoking the {@link #last(int)}
+   * if any prior to emitting the complete signal. This is equivalent to invoking the {@link #last(int)}
    * method and passing the value <code>1</code> to the parameter <code>maxElements</code>.
    *
    * @return the new stream.
@@ -1403,7 +1403,7 @@ public abstract class Stream<T>
   /**
    * Drop all items except for the last {@code maxElements} items.
    * This operator will buffer up to {@code maxElements} items until it receives the complete
-   * signal and then it will send all the buffered items and the complete signal. If less than
+   * signal and then it will emit all the buffered items and the complete signal. If less than
    * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
    * less than {@code maxElements} items.
    *
@@ -1420,7 +1420,7 @@ public abstract class Stream<T>
   /**
    * Drop all items except for the last {@code maxElements} items.
    * This operator will buffer up to {@code maxElements} items until it receives the complete
-   * signal and then it will send all the buffered items and the complete signal. If less than
+   * signal and then it will emit all the buffered items and the complete signal. If less than
    * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
    * less than {@code maxElements} items.
    *
@@ -1438,7 +1438,7 @@ public abstract class Stream<T>
   /**
    * Drop all items except for the last {@code maxElements} items.
    * This operator will buffer up to {@code maxElements} items until it receives the complete
-   * signal and then it will send all the buffered items and the complete signal. If less than
+   * signal and then it will emit all the buffered items and the complete signal. If less than
    * {@code maxElements} are emitted by the upstream then it is possible for the downstream to receive
    * less than {@code maxElements} items. This method is an alias for the {@link #last(int)} method.
    *
