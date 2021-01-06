@@ -57,9 +57,6 @@ complete as there is too much un-said.
   - Use `item` or `element` to refer to the data elements that are passed downstream. At the moment the
     code uses both terms but one should be selected and the other purged. Consider renaming `onNext` to
     `onItem` or `onElement` to align with the selected terminology.
-  - Use the term `signal` rather than `message` when referring to invoking
-    the `onError` or `onComplete` methods in downstream. It is unclear if there is a consistent term for
-    passing the data element downstream.
   - downstream and upstream seem reasonably useful descriptions defining which direction data is flowing.
     However we don't have a good way to describe distinguish between each step or stage and the complete
     stream definition nor the stream executable data (which is really a chain of subscriptions). `Stage`
