@@ -12,13 +12,13 @@ final class ForwardToEventEmitterSubscriber<T>
   implements Subscriber<T>
 {
   @Nonnull
-  private final EventEmitter<T> _eventEmitter;
+  private final EventEmitter<T> _emitter;
   @Nullable
   private Subscription _subscription;
 
-  ForwardToEventEmitterSubscriber( @Nonnull final EventEmitter<T> eventEmitter )
+  ForwardToEventEmitterSubscriber( @Nonnull final EventEmitter<T> emitter )
   {
-    _eventEmitter = Objects.requireNonNull( eventEmitter );
+    _emitter = Objects.requireNonNull( emitter );
   }
 
   @Override
@@ -30,14 +30,14 @@ final class ForwardToEventEmitterSubscriber<T>
   @Override
   public void onNext( @Nonnull final T item )
   {
-    _eventEmitter.next( item );
+    _emitter.next( item );
   }
 
   @Override
   public void onError( @Nonnull final Throwable error )
   {
     markAsDone();
-    _eventEmitter.error( error );
+    _emitter.error( error );
     _subscription = null;
   }
 
@@ -45,7 +45,7 @@ final class ForwardToEventEmitterSubscriber<T>
   public void onComplete()
   {
     markAsDone();
-    _eventEmitter.complete();
+    _emitter.complete();
     _subscription = null;
   }
 
