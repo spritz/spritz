@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.zemeckis` artifact to version `0.05`.
+
 ### [v0.13](https://github.com/spritz/spritz/tree/v0.13) (2021-01-06) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.12...v0.13)
 
 Changes in this release:

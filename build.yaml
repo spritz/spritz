@@ -48,5 +48,5 @@ artifacts:
 
   gwt_symbolmap: org.realityforge.gwt.symbolmap:gwt-symbolmap:jar:0.09
 
-  zemeckis: org.realityforge.zemeckis:zemeckis-core:jar:0.04
+  zemeckis: org.realityforge.zemeckis:zemeckis-core:jar:0.05
   grim_annotations: org.realityforge.grim:grim-annotations:jar:0.04
