@@ -16,7 +16,7 @@ import spritz.dom.WebSocketConfig;
 import spritz.dom.WebSocketMessageRequest;
 import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 public final class WebSocketExample
   implements EntryPoint
@@ -102,7 +102,7 @@ public final class WebSocketExample
     @Nonnull
     private String suffix()
     {
-      return " on " + Objects.requireNonNull( Scheduler.currentVpu() ).getName();
+      return " on " + Objects.requireNonNull( Zemeckis.currentVpu() ).getName();
     }
 
     Subscription getSubscription()

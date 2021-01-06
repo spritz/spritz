@@ -3,7 +3,6 @@ package spritz;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import zemeckis.Cancelable;
-import zemeckis.Scheduler;
 import zemeckis.Zemeckis;
 
 final class PeriodicStreamSource
@@ -43,7 +42,9 @@ final class PeriodicStreamSource
 
     synchronized void startTimer()
     {
-      _task = Scheduler.periodicTask( this::pushItem, getStream()._period );
+      _task = Zemeckis.periodicTask( Spritz.areNamesEnabled() ? getStream().getName() : null,
+                                     this::pushItem,
+                                     getStream()._period );
     }
 
     synchronized void pushItem()

@@ -3,7 +3,7 @@ package spritz;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import zemeckis.Cancelable;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 final class TimeoutOperator<T>
   extends AbstractStream<T, T>
@@ -65,14 +65,15 @@ final class TimeoutOperator<T>
 
     private void recordLastTime()
     {
-      _lastTime = Scheduler.now();
+      _lastTime = Zemeckis.now();
     }
 
     @Nonnull
     private Cancelable scheduleTimeout()
     {
-      return Scheduler.delayedTask( () -> super.onError( new TimeoutException() ),
-                                    _lastTime + getStream()._timeoutTime );
+      return Zemeckis.delayedTask( Spritz.areNamesEnabled() ? getStream().getName() : null,
+                                   () -> super.onError( new TimeoutException() ),
+                                   _lastTime + getStream()._timeoutTime );
     }
   }
 }

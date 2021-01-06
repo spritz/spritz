@@ -80,7 +80,7 @@ final class ObserveOnOperator<T>
 
     private void scheduleObserve()
     {
-      getStream()._virtualProcessorUnit.queue( this::observe );
+      getStream()._virtualProcessorUnit.queue( Spritz.areNamesEnabled() ? getStream().getName() : null, this::observe );
     }
 
     /**

@@ -2,7 +2,7 @@ package spritz.examples;
 
 import spritz.Stream;
 import spritz.Subject;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 public class Example41
 {
@@ -24,7 +24,7 @@ public class Example41
 
     value$.next( Math.random() );
 
-    Scheduler.delayedTask( value$::complete, 100 );
+    Zemeckis.delayedTask( value$::complete, 100 );
 
     ExampleUtil.run( value$ );
   }

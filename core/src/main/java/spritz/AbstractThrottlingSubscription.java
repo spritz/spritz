@@ -3,7 +3,7 @@ package spritz;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import zemeckis.Cancelable;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   extends PassThroughSubscription<T, StreamT>
@@ -23,7 +23,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   @Override
   public final void onNext( @Nonnull final T item )
   {
-    final int now = Scheduler.now();
+    final int now = Zemeckis.now();
 
     /*
      * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
@@ -118,8 +118,8 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   final void scheduleTask( final int delay )
   {
     assert delay > 0;
-    _task = Scheduler.delayedTask( this::executeTask, delay );
-    _nextTaskTime = Scheduler.now() + delay;
+    _task = Zemeckis.delayedTask( Spritz.areNamesEnabled() ? getStream().getName() : null, this::executeTask, delay );
+    _nextTaskTime = Zemeckis.now() + delay;
   }
 
   /**

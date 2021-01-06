@@ -26,7 +26,8 @@ final class SubscribeOnOperator<T>
   {
     final PassThroughSubscription<T, SubscribeOnOperator<T>> subscription =
       new PassThroughSubscription<>( this, subscriber );
-    _virtualProcessorUnit.queue( () -> getUpstream().subscribe( subscription ) );
+    _virtualProcessorUnit.queue( Spritz.areNamesEnabled() ? getName() : null,
+                                 () -> getUpstream().subscribe( subscription ) );
     return subscription;
   }
 }

@@ -3,7 +3,7 @@ package spritz.examples;
 import spritz.Stream;
 import spritz.Subject;
 import spritz.Subscription;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 public class Example42
 {
@@ -22,7 +22,7 @@ public class Example42
 
     value$.next( Math.random() );
 
-    Scheduler.delayedTask( value$::complete, 100 );
+    Zemeckis.delayedTask( value$::complete, 100 );
 
     ExampleUtil.run( value$ );
   }

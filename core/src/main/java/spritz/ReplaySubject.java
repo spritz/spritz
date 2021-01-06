@@ -3,7 +3,7 @@ package spritz;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import zemeckis.Scheduler;
+import zemeckis.Zemeckis;
 
 /**
  * A ReplaySubject records multiple values from the stream execution and replays them to new subscribers.
@@ -36,7 +36,7 @@ final class ReplaySubject<T>
   @Override
   void completeSubscribe( @Nonnull final DownstreamSubscription subscription )
   {
-    final int now = Scheduler.now();
+    final int now = Zemeckis.now();
     final Subscriber<? super T> subscriber = subscription.getSubscriber();
     final int size = _buffer.size();
     for ( int i = 0; i < size; i++ )
@@ -69,12 +69,12 @@ final class ReplaySubject<T>
     {
       final Entry<T> peek = _buffer.peek();
       assert null != peek;
-      if ( peek._time + _maxAge < Scheduler.now() )
+      if ( peek._time + _maxAge < Zemeckis.now() )
       {
         _buffer.pop();
       }
     }
-    _buffer.add( new Entry<>( Scheduler.now(), item ) );
+    _buffer.add( new Entry<>( Zemeckis.now(), item ) );
     super.downstreamNext( item );
   }
 
