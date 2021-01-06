@@ -139,7 +139,7 @@ public abstract class Hub<MessageInT, MessageOutT>
   {
     for ( final DownstreamSubscription subscription : _downstreamSubscriptions )
     {
-      subscription.getSubscriber().onNext( item );
+      subscription.getSubscriber().onItem( item );
     }
   }
 

@@ -44,16 +44,16 @@ final class DefaultIfEmptyOperator<T>
     {
       if ( !_itemEmitted )
       {
-        super.onNext( getStream()._defaultValue );
+        super.onItem( getStream()._defaultValue );
       }
       super.onComplete();
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
       _itemEmitted = true;
-      super.onNext( item );
+      super.onItem( item );
     }
   }
 }

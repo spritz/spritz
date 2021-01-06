@@ -54,7 +54,7 @@ final class ObserveOnOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
       if ( null == _buffer )
       {
@@ -98,7 +98,7 @@ final class ObserveOnOperator<T>
         T item;
         while ( null != ( item = _buffer.pop() ) )
         {
-          super.onNext( item );
+          super.onItem( item );
         }
       }
       if ( null != _error )

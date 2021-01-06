@@ -44,7 +44,7 @@ final class CollectionStreamSource<T>
         {
           return;
         }
-        subscriber.onNext( item );
+        subscriber.onItem( item );
       }
       if ( isNotDone() )
       {

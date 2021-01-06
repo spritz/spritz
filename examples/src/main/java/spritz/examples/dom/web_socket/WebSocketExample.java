@@ -76,9 +76,9 @@ public final class WebSocketExample
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
-      DomGlobal.console.log( prefix() + "onNext(" + item + ")" + suffix() );
+      DomGlobal.console.log( prefix() + "onItem(" + item + ")" + suffix() );
     }
 
     @Override

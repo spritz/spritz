@@ -1,0 +1,35 @@
+[
+  {
+    "code": "java.method.addedToInterface",
+    "description": "Method was added to an interface.",
+    "newElement": "method void spritz.Subscriber<T>::onItem(T)",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "NON_BREAKING",
+      "SEMANTIC": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Subscriber",
+      "classSimpleName": "Subscriber",
+      "elementKind": "method",
+      "methodName": "onItem",
+      "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.removed",
+    "description": "Method was removed.",
+    "oldElement": "method void spritz.Subscriber<T>::onNext(T)",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.Subscriber",
+      "classSimpleName": "Subscriber",
+      "elementKind": "method",
+      "methodName": "onNext",
+      "package": "spritz"
+    }
+  }
+]

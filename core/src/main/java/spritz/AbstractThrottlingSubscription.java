@@ -21,14 +21,14 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
   }
 
   @Override
-  public final void onNext( @Nonnull final T item )
+  public final void onItem( @Nonnull final T item )
   {
     final int now = Zemeckis.now();
 
     /*
      * Sometimes the schedulers are lagging behind and thus we check to see if there is an item
      * pending that we have expected to emitted and if so emit the item before performing normal
-     * onNext action.
+     * onItem action.
      */
     if ( hasNextItem() && now > _nextTaskTime )
     {
@@ -89,7 +89,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
     assert null != _task;
     if ( isNotDone() )
     {
-      super.onNext( _nextItem );
+      super.onItem( _nextItem );
     }
     _nextItem = null;
     _task = null;
@@ -105,7 +105,7 @@ abstract class AbstractThrottlingSubscription<T, StreamT extends Stream<T>>
     assert timeout >= 0;
     if ( 0 == timeout )
     {
-      super.onNext( item );
+      super.onItem( item );
       setNextItem( null );
     }
     else

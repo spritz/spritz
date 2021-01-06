@@ -30,7 +30,7 @@ complete as there is too much un-said.
 
 * Ensure that cancel after `onComplete` or `onError` is a noop.
 
-* Ensure tests verify that every stream source supports being disposed in `onNext(item)` invocation.
+* Ensure tests verify that every stream source supports being disposed in `onItem(item)` invocation.
 
 * Every callable/supplier/predicate/runnable/function passed to an operator should be tested to ensure
   errors are caught and emitted as error signals.
@@ -54,9 +54,6 @@ complete as there is too much un-said.
   marble diagram and can be formatted and places in the documentation.
 
 * Use consistent terminology throughout the javadocs and code.
-  - Use `item` or `element` to refer to the data elements that are passed downstream. At the moment the
-    code uses both terms but one should be selected and the other purged. Consider renaming `onNext` to
-    `onItem` or `onElement` to align with the selected terminology.
   - downstream and upstream seem reasonably useful descriptions defining which direction data is flowing.
     However we don't have a good way to describe distinguish between each step or stage and the complete
     stream definition nor the stream executable data (which is really a chain of subscriptions). `Stage`
@@ -133,7 +130,7 @@ Below are the old TODO notes:
 
 All the windowing functions take an input stream that they cut up into segments where each segment is a new stream.
 
-- [ ] `window(ControlStream)` - Create an inner stream each time next occurs on control stream and forward all `onNext` calls onto inner stream.
+- [ ] `window(ControlStream)` - Create an inner stream each time next occurs on control stream and forward all `onItem` calls onto inner stream.
 - [ ] `windowByTime(WindowTime)` - Create a new inner stream every `WindowTime` time.
 - [ ] `windowByCount(Count)` - Create a new inner stream every `Count` items.
 - [ ] `window(OnControlStream,OffControlStream)` - Create a new inner stream every starting on signal from `OnControlStream` and then ending when signal occurs on `OffControlStream`.

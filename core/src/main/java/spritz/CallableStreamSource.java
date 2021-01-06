@@ -42,7 +42,7 @@ final class CallableStreamSource<T>
       {
         while ( isNotDone() )
         {
-          subscriber.onNext( getStream()._callable.call() );
+          subscriber.onItem( getStream()._callable.call() );
         }
       }
       catch ( final Throwable error )

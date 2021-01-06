@@ -12,9 +12,9 @@ final class PeekOperator<T>
   @Nullable
   private final Consumer<Subscription> _afterSubscription;
   @Nullable
-  private final Consumer<? super T> _onNext;
+  private final Consumer<? super T> _onItem;
   @Nullable
-  private final Consumer<? super T> _afterNext;
+  private final Consumer<? super T> _afterItem;
   @Nullable
   private final Consumer<Throwable> _onError;
   @Nullable
@@ -32,8 +32,8 @@ final class PeekOperator<T>
                 @Nonnull final Stream<T> upstream,
                 @Nullable final Consumer<Subscription> onSubscription,
                 @Nullable final Consumer<Subscription> afterSubscription,
-                @Nullable final Consumer<? super T> onNext,
-                @Nullable final Consumer<? super T> afterNext,
+                @Nullable final Consumer<? super T> onItem,
+                @Nullable final Consumer<? super T> afterItem,
                 @Nullable final Consumer<Throwable> onError,
                 @Nullable final Consumer<Throwable> afterError,
                 @Nullable final Runnable onComplete,
@@ -44,8 +44,8 @@ final class PeekOperator<T>
     super( Spritz.areNamesEnabled() ? generateName( name, "peek" ) : null, upstream );
     _onSubscription = onSubscription;
     _afterSubscription = afterSubscription;
-    _onNext = onNext;
-    _afterNext = afterNext;
+    _onItem = onItem;
+    _afterItem = afterItem;
     _onError = onError;
     _afterError = afterError;
     _onComplete = onComplete;
@@ -90,15 +90,15 @@ final class PeekOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
-      final Consumer<? super T> onNext = getStream()._onNext;
-      if ( null != onNext )
+      final Consumer<? super T> onItem = getStream()._onItem;
+      if ( null != onItem )
       {
-        onNext.accept( item );
+        onItem.accept( item );
       }
-      super.onNext( item );
-      final Consumer<? super T> afterNext = getStream()._afterNext;
+      super.onItem( item );
+      final Consumer<? super T> afterNext = getStream()._afterItem;
       if ( null != afterNext )
       {
         afterNext.accept( item );

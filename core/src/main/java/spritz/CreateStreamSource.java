@@ -49,7 +49,7 @@ final class CreateStreamSource<T>
     {
       if ( isNotDone() )
       {
-        _subscriber.onNext( item );
+        _subscriber.onItem( item );
       }
     }
 

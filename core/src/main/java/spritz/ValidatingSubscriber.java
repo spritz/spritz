@@ -54,25 +54,25 @@ final class ValidatingSubscriber<T>
   }
 
   @Override
-  public void onNext( @Nonnull final T item )
+  public void onItem( @Nonnull final T item )
   {
     if ( Spritz.shouldCheckInvariants() )
     {
       invariant( () -> State.SUBSCRIBE_COMPLETED == _state,
-                 () -> "Spritz-0005: Subscriber.onNext(...) called and expected state " +
+                 () -> "Spritz-0005: Subscriber.onItem(...) called and expected state " +
                        "to be SUBSCRIBED but is " + _state );
       Objects.requireNonNull( item );
     }
 
     try
     {
-      _target.onNext( item );
+      _target.onItem( item );
     }
     catch ( final Throwable throwable )
     {
       if ( Spritz.shouldCheckInvariants() )
       {
-        fail( () -> "Spritz-0004: Invoking Subscriber.onNext(...) incorrectly threw an exception. " +
+        fail( () -> "Spritz-0004: Invoking Subscriber.onItem(...) incorrectly threw an exception. " +
                     "Exception:\n" + SpritzUtil.throwableToString( throwable ) );
       }
       throw throwable;

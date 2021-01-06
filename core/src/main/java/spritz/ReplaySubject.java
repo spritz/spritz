@@ -47,7 +47,7 @@ final class ReplaySubject<T>
       {
         if ( isNotDone() && subscription.isNotDone() )
         {
-          subscriber.onNext( entry.getItem() );
+          subscriber.onItem( entry.getItem() );
         }
         else
         {

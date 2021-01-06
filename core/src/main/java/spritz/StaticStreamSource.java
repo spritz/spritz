@@ -50,7 +50,7 @@ final class StaticStreamSource<T>
       {
         final T item = data[ offset ];
         offset++;
-        getSubscriber().onNext( item );
+        getSubscriber().onItem( item );
       }
       if ( isNotDone() )
       {

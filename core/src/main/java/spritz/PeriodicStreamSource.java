@@ -53,7 +53,7 @@ final class PeriodicStreamSource
       final int value = _counter++;
       try
       {
-        getSubscriber().onNext( value );
+        getSubscriber().onItem( value );
       }
       catch ( final Throwable t )
       {

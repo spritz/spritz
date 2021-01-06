@@ -63,7 +63,7 @@ final class RangeStreamSource
       {
         final int value = current;
         current++;
-        getSubscriber().onNext( value );
+        getSubscriber().onItem( value );
       }
       if ( isNotDone() )
       {

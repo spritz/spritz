@@ -28,7 +28,7 @@ final class CurrentValueSubject<T>
   {
     if ( isNotDone() && subscription.isNotDone() )
     {
-      subscription.getSubscriber().onNext( _currentValue );
+      subscription.getSubscriber().onItem( _currentValue );
     }
   }
 

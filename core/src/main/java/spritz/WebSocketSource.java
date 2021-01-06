@@ -142,7 +142,7 @@ final class WebSocketSource
 
     private void doNext( @Nonnull final WebSocketResponse item )
     {
-      getSubscriber().onNext( item );
+      getSubscriber().onItem( item );
     }
 
     private void onError( @Nonnull final Throwable error )

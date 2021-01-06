@@ -64,7 +64,7 @@ final class SampleOperator<T>
         if ( getStream()._emitFirst )
         {
           // Emit here and return immediately so don't schedule emit.
-          super.onNext( item );
+          super.onItem( item );
           return;
         }
       }

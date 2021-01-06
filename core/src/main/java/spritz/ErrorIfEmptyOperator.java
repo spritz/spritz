@@ -52,10 +52,10 @@ final class ErrorIfEmptyOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
       _itemEmitted = true;
-      super.onNext( item );
+      super.onItem( item );
     }
   }
 }

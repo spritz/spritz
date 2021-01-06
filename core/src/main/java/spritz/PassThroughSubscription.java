@@ -11,8 +11,8 @@ class PassThroughSubscription<T, StreamT extends Stream<T>>
   }
 
   @Override
-  public void onNext( @Nonnull final T item )
+  public void onItem( @Nonnull final T item )
   {
-    getSubscriber().onNext( item );
+    getSubscriber().onItem( item );
   }
 }

@@ -45,10 +45,10 @@ final class ScanOperator<UpstreamT, DownstreamT>
     }
 
     @Override
-    public void onNext( @Nonnull final UpstreamT item )
+    public void onItem( @Nonnull final UpstreamT item )
     {
       _value = getStream()._accumulator.accumulate( item, _value );
-      getSubscriber().onNext( _value );
+      getSubscriber().onItem( _value );
     }
   }
 }

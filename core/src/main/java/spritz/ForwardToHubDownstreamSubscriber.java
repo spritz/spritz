@@ -28,7 +28,7 @@ final class ForwardToHubDownstreamSubscriber<T>
   }
 
   @Override
-  public void onNext( @Nonnull final T item )
+  public void onItem( @Nonnull final T item )
   {
     _hub.downstreamNext( item );
   }

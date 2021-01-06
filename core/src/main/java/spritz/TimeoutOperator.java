@@ -41,12 +41,12 @@ final class TimeoutOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
       recordLastTime();
       _task.cancel();
       _task = scheduleTimeout();
-      super.onNext( item );
+      super.onItem( item );
     }
 
     @Override

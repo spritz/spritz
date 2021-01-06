@@ -28,7 +28,7 @@ final class ForwardToEventEmitterSubscriber<T>
   }
 
   @Override
-  public void onNext( @Nonnull final T item )
+  public void onItem( @Nonnull final T item )
   {
     _emitter.next( item );
   }

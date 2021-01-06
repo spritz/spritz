@@ -37,7 +37,7 @@ final class LastOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final T item )
+    public void onItem( @Nonnull final T item )
     {
       if ( _buffer.size() == _buffer.getCapacity() )
       {
@@ -52,7 +52,7 @@ final class LastOperator<T>
       T value;
       while ( null != ( value = _buffer.pop() ) )
       {
-        super.onNext( value );
+        super.onItem( value );
       }
       super.onComplete();
     }

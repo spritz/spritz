@@ -46,7 +46,7 @@ final class LimitOperator<T>
       else if ( 1 == _remaining )
       {
         _remaining = 0;
-        getSubscriber().onNext( item );
+        getSubscriber().onItem( item );
       }
       doComplete();
       return false;

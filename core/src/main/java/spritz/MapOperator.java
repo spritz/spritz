@@ -38,9 +38,9 @@ final class MapOperator<UpstreamT, DownstreamT>
     }
 
     @Override
-    public void onNext( @Nonnull final UpstreamT item )
+    public void onItem( @Nonnull final UpstreamT item )
     {
-      getSubscriber().onNext( getStream()._transform.apply( item ) );
+      getSubscriber().onItem( getStream()._transform.apply( item ) );
     }
   }
 }

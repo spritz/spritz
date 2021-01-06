@@ -30,9 +30,9 @@ final class LoggingSubscriber<T>
   }
 
   @Override
-  public void onNext( @Nonnull final T item )
+  public void onItem( @Nonnull final T item )
   {
-    System.out.println( prefix() + "onNext(" + item + ")" + suffix() );
+    System.out.println( prefix() + "onItem(" + item + ")" + suffix() );
   }
 
   @Override

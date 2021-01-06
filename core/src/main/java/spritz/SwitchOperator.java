@@ -42,7 +42,7 @@ final class SwitchOperator<T>
     }
 
     @Override
-    public void onNext( @Nonnull final Stream<T> item )
+    public void onItem( @Nonnull final Stream<T> item )
     {
       if ( null != _activeStream )
       {

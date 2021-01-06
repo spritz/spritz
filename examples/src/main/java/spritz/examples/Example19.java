@@ -28,7 +28,7 @@ public class Example19
     return stream
       .peekSubscribe( e1 -> System.out.println( "\uD83D\uDC41 onSubscribe(" + e1 + ")" ) )
       .afterSubscribe( e1 -> System.out.println( "\uD83D\uDC41 afterSubscribe(" + e1 + ")" ) )
-      .peek( (Consumer<? super T>) e2 -> System.out.println( "\uD83D\uDC41 onNext(" + e2 + ")" ) )
+      .peek( (Consumer<? super T>) e2 -> System.out.println( "\uD83D\uDC41 onItem(" + e2 + ")" ) )
       .afterNext( e -> System.out.println( "\uD83D\uDC41 afterNext(" + e + ")" ) )
       .peekComplete( () -> System.out.println( "\uD83D\uDC41 onComplete()" ) )
       .afterComplete( () -> System.out.println( "\uD83D\uDC41 afterComplete()" ) )
