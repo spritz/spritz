@@ -2,11 +2,13 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.zemeckis:zemeckis-core` artifact to version `0.04`.
+
 ### [v0.12](https://github.com/spritz/spritz/tree/v0.12) (2021-01-05) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.11...v0.12)
 
 Changes in this release:
 
-* Upgrade the `org.realityforge.zemeckis:zemeckis-core` artifact to version `0.04`.
+* Upgrade the `org.realityforge.zemeckis:zemeckis-core` artifact to version `0.03`.
 
 ### [v0.11](https://github.com/spritz/spritz/tree/v0.11) (2020-12-31) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.10...v0.11)
 
