@@ -57,7 +57,7 @@ complete as there is too much un-said.
   - Use `item` or `element` to refer to the data elements that are passed downstream. At the moment the
     code uses both terms but one should be selected and the other purged. Consider renaming `onNext` to
     `onItem` or `onElement` to align with the selected terminology.
-  - Use the term `signal` rather than `notification` or `event` or `message` when referring to invoking
+  - Use the term `signal` rather than `event` or `message` when referring to invoking
     the `onError` or `onComplete` methods in downstream. It is unclear if there is a consistent term for
     passing the data element downstream.
   - downstream and upstream seem reasonably useful descriptions defining which direction data is flowing.
