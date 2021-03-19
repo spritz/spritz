@@ -34,9 +34,8 @@ define 'spritz' do
 
   desc 'Core Event Streaming Library'
   define 'core' do
-    project.enable_annotation_processor = true
-    project.processorpath << project('processor').package(:jar)
-    project.processorpath << project('processor').compile.dependencies
+    project.compile.options[:processor_path] << project('processor').package(:jar)
+    project.compile.options[:processor_path] << project('processor').compile.dependencies
 
     compile.with :javax_annotation,
                  :braincheck,
@@ -254,6 +253,9 @@ define 'spritz' do
                                :jvm_args => '-ea -Dbraincheck.environment=development -Dspritz.environment=development -Dspritz.output_fixture_data=true -Dspritz.core.compile_target=../target/spritz_core/idea/classes -Dspritz.check_diagnostic_messages=true -Dspritz.diagnostic_messages_file=src/test/java/spritz/diagnostic_messages.json')
 
   ipr.add_component_from_artifact(:idea_codestyle)
+  ipr.add_code_insight_settings
+  ipr.add_nullable_manager
+  ipr.add_javac_settings('-Xlint:all,-processing,-serial')
 end
 
 # Avoid uploading any packages except those we explicitly allow
