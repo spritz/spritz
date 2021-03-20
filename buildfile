@@ -5,6 +5,8 @@ require 'buildr/top_level_generate_dir'
 require 'buildr/gwt'
 require 'buildr/jacoco'
 
+Buildr::MavenCentral.define_publish_tasks(:profile_name => 'org.realityforge', :username => 'realityforge')
+
 GWT_EXAMPLES =
   {
     'WebSocketExample' => 'web_socket'
