@@ -1,6 +1,10 @@
 # Change Log
 
-### Unreleased
+### [v0.14](https://github.com/spritz/spritz/tree/v0.14) (2021-03-23) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.13...v0.14)
+
+The release includes 4 non breaking API changes, 15 potentially breaking API changes and 3 breaking API changes.
+
+Changes in this release:
 
 * Upgrade the `org.realityforge.grim` artifacts to version `0.05`.
 * Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.17`.
