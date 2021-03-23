@@ -1,18 +1,21 @@
 package spritz;
 
-import elemental2.dom.WebSocket;
+import akasha.WebSocket;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import spritz.dom.WebSocketArrayBufferMessageRequest;
+import spritz.dom.WebSocketArrayBufferViewMessageRequest;
+import spritz.dom.WebSocketBlobMessageRequest;
 import spritz.dom.WebSocketCloseCompleted;
 import spritz.dom.WebSocketCloseException;
 import spritz.dom.WebSocketCloseRequest;
 import spritz.dom.WebSocketConfig;
-import spritz.dom.WebSocketMessageRequest;
 import spritz.dom.WebSocketOpenCompleted;
 import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
+import spritz.dom.WebSocketStringMessageRequest;
 
 public final class WebSocketHub
   extends Hub<WebSocketRequest, WebSocketResponse>
@@ -52,9 +55,21 @@ public final class WebSocketHub
     {
       bufferRequest( item );
     }
-    else if ( item instanceof WebSocketMessageRequest )
+    else if ( item instanceof WebSocketStringMessageRequest )
     {
-      _webSocket.send( ( (WebSocketMessageRequest) item ).getData() );
+      _webSocket.send( ( (WebSocketStringMessageRequest) item ).getData() );
+    }
+    else if ( item instanceof WebSocketArrayBufferMessageRequest )
+    {
+      _webSocket.send( ( (WebSocketArrayBufferMessageRequest) item ).getData() );
+    }
+    else if ( item instanceof WebSocketArrayBufferViewMessageRequest )
+    {
+      _webSocket.send( ( (WebSocketArrayBufferViewMessageRequest) item ).getData() );
+    }
+    else if ( item instanceof WebSocketBlobMessageRequest )
+    {
+      _webSocket.send( ( (WebSocketBlobMessageRequest) item ).getData() );
     }
     else
     {

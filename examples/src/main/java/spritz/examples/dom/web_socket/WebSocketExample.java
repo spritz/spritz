@@ -1,9 +1,10 @@
 package spritz.examples.dom.web_socket;
 
+import akasha.BinaryType;
+import akasha.Console;
+import akasha.Global;
+import akasha.core.ArrayBuffer;
 import com.google.gwt.core.client.EntryPoint;
-import elemental2.core.ArrayBuffer;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.WebSocket;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -11,11 +12,12 @@ import spritz.Stream;
 import spritz.Subscriber;
 import spritz.Subscription;
 import spritz.WebSocketHub;
+import spritz.dom.WebSocketArrayBufferMessageRequest;
 import spritz.dom.WebSocketCloseRequest;
 import spritz.dom.WebSocketConfig;
-import spritz.dom.WebSocketMessageRequest;
 import spritz.dom.WebSocketRequest;
 import spritz.dom.WebSocketResponse;
+import spritz.dom.WebSocketStringMessageRequest;
 import zemeckis.Zemeckis;
 
 public final class WebSocketExample
@@ -25,35 +27,34 @@ public final class WebSocketExample
   public void onModuleLoad()
   {
     final WebSocketHub hub =
-      Stream.webSocket( new WebSocketConfig( "wss://echo.websocket.org", null, "arraybuffer" ) );
+      Stream.webSocket( new WebSocketConfig( "wss://echo.websocket.org", null, BinaryType.arraybuffer ) );
 
-    DomGlobal.console.log( "Construction complete" );
+    Console.log( "Construction complete" );
     final LoggingSubscriber<WebSocketResponse> subscriber = new LoggingSubscriber<>( "WS" );
     hub.subscribe( subscriber );
-    hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "Hello" ) ) );
-    hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( new ArrayBuffer( 22 ) ) ) );
-    hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "Hello" ) ) );
+    hub.next( new WebSocketStringMessageRequest( "Hello" ) );
+    hub.next( new WebSocketArrayBufferMessageRequest( new ArrayBuffer( 22 ) ) );
+    hub.next( new WebSocketStringMessageRequest( "Hello" ) );
 
     Stream.<WebSocketRequest>create( s -> {
-      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "ABC" ) ) );
-      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "def" ) ) );
-      s.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "GHI" ) ) );
+      s.next( new WebSocketStringMessageRequest( "ABC" ) );
+      s.next( new WebSocketStringMessageRequest( "def" ) );
+      s.next( new WebSocketStringMessageRequest( "GHI" ) );
       // Never completes ....
     } ).subscribe( hub );
 
-    DomGlobal.setTimeout( e -> {
-      DomGlobal.console.log( "PreCancel" );
+    Global.setTimeout( () -> {
+      Console.log( "PreCancel" );
       subscriber.getSubscription().cancel();
-      DomGlobal.console.log( "PostCancel" );
+      Console.log( "PostCancel" );
     }, 2000 );
 
-    DomGlobal.setTimeout( e -> hub.next( new WebSocketMessageRequest( WebSocket.SendDataUnionType.of( "Hello" ) ) ),
-                          3000 );
-    DomGlobal.setTimeout( e -> hub.subscribe( subscriber ), 3500 );
-    DomGlobal.setTimeout( e -> hub.next( new WebSocketCloseRequest( 3000, "Hello" ) ), 4000 );
-    DomGlobal.setTimeout( e -> hub.complete(), 5000 );
+    Global.setTimeout( () -> hub.next( new WebSocketStringMessageRequest( "Hello" ) ), 3000 );
+    Global.setTimeout( () -> hub.subscribe( subscriber ), 3500 );
+    Global.setTimeout( () -> hub.next( new WebSocketCloseRequest( 3000, "Hello" ) ), 4000 );
+    Global.setTimeout( hub::complete, 5000 );
 
-    DomGlobal.console.log( "Subscribe complete" );
+    Console.log( "Subscribe complete" );
   }
 
   static final class LoggingSubscriber<T>
@@ -71,26 +72,26 @@ public final class WebSocketExample
     @Override
     public void onSubscribe( @Nonnull final Subscription subscription )
     {
-      DomGlobal.console.log( prefix() + "onSubscribe(" + subscription + ")" + suffix() );
+      Console.log( prefix() + "onSubscribe(" + subscription + ")" + suffix() );
       _subscription = subscription;
     }
 
     @Override
     public void onItem( @Nonnull final T item )
     {
-      DomGlobal.console.log( prefix() + "onItem(" + item + ")" + suffix() );
+      Console.log( prefix() + "onItem(" + item + ")" + suffix() );
     }
 
     @Override
     public void onError( @Nonnull final Throwable error )
     {
-      DomGlobal.console.log( prefix() + "onError(" + error + ")" + suffix() );
+      Console.log( prefix() + "onError(" + error + ")" + suffix() );
     }
 
     @Override
     public void onComplete()
     {
-      DomGlobal.console.log( prefix() + "onComplete()" + suffix() );
+      Console.log( prefix() + "onComplete()" + suffix() );
     }
 
     @Nonnull

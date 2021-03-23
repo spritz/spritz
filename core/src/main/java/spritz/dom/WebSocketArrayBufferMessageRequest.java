@@ -1,19 +1,21 @@
 package spritz.dom;
 
-import akasha.WebSocket;
+import akasha.Blob;
 import akasha.core.ArrayBuffer;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-public final class WebSocketArrayBufferMessage
-  extends WebSocketResponse
+public final class WebSocketArrayBufferMessageRequest
+  extends WebSocketRequest
 {
+  /**
+   * The data to transmit.
+   */
   @Nonnull
   private final ArrayBuffer _data;
 
-  public WebSocketArrayBufferMessage( @Nonnull final WebSocket webSocket, @Nonnull final ArrayBuffer data )
+  public WebSocketArrayBufferMessageRequest( @Nonnull final ArrayBuffer data )
   {
-    super( webSocket );
     _data = Objects.requireNonNull( data );
   }
 

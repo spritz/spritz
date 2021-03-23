@@ -1,5 +1,6 @@
 package spritz.dom;
 
+import akasha.BinaryType;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -11,6 +12,7 @@ public final class WebSocketConfig
   @Nullable
   private final String[] _protocols;
   @Nullable
+  @BinaryType
   private final String _binaryType;
 
   public WebSocketConfig( @Nonnull final String url )
@@ -20,7 +22,7 @@ public final class WebSocketConfig
 
   public WebSocketConfig( @Nonnull final String url,
                           @Nullable final String[] protocols,
-                          @Nullable final String binaryType )
+                          @BinaryType @Nullable final String binaryType )
   {
     _url = Objects.requireNonNull( url );
     _protocols = protocols;
@@ -40,6 +42,7 @@ public final class WebSocketConfig
   }
 
   @Nullable
+  @BinaryType
   public String getBinaryType()
   {
     return _binaryType;

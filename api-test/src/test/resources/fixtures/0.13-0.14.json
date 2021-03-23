@@ -1,5 +1,160 @@
 [
   {
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketArrayBufferMessageRequest",
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketArrayBufferMessageRequest",
+      "classSimpleName": "WebSocketArrayBufferMessageRequest",
+      "elementKind": "class",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketArrayBufferViewMessageRequest",
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketArrayBufferViewMessageRequest",
+      "classSimpleName": "WebSocketArrayBufferViewMessageRequest",
+      "elementKind": "class",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketBlobMessageRequest",
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketBlobMessageRequest",
+      "classSimpleName": "WebSocketBlobMessageRequest",
+      "elementKind": "class",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.class.added",
+    "description": "Class was added.",
+    "newElement": "class spritz.dom.WebSocketStringMessageRequest",
+    "classification": {
+      "SOURCE": "NON_BREAKING",
+      "BINARY": "NON_BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketStringMessageRequest",
+      "classSimpleName": "WebSocketStringMessageRequest",
+      "elementKind": "class",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.method.returnTypeChanged",
+    "description": "The return type changed from 'elemental2.dom.Blob' to  'akasha.Blob'.",
+    "newElement": "method akasha.Blob spritz.dom.WebSocketBlobMessage::getData()",
+    "oldElement": "method elemental2.dom.Blob spritz.dom.WebSocketBlobMessage::getData()",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketBlobMessage",
+      "classSimpleName": "WebSocketBlobMessage",
+      "elementKind": "method",
+      "methodName": "getData",
+      "newType": "akasha.Blob",
+      "oldType": "elemental2.dom.Blob",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.method.returnTypeChanged",
+    "description": "The return type changed from 'elemental2.dom.Event' to  'akasha.Event'.",
+    "newElement": "method akasha.Event spritz.dom.WebSocketErrorException::getEvent()",
+    "oldElement": "method elemental2.dom.Event spritz.dom.WebSocketErrorException::getEvent()",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketErrorException",
+      "classSimpleName": "WebSocketErrorException",
+      "elementKind": "method",
+      "methodName": "getEvent",
+      "newType": "akasha.Event",
+      "oldType": "elemental2.dom.Event",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.method.returnTypeChanged",
+    "description": "The return type changed from 'elemental2.dom.WebSocket' to  'akasha.WebSocket'.",
+    "newElement": "method akasha.WebSocket spritz.dom.WebSocketResponse::getWebSocket()",
+    "oldElement": "method elemental2.dom.WebSocket spritz.dom.WebSocketResponse::getWebSocket()",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketResponse",
+      "classSimpleName": "WebSocketResponse",
+      "elementKind": "method",
+      "methodName": "getWebSocket",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.method.returnTypeChanged",
+    "description": "The return type changed from 'elemental2.core.ArrayBuffer' to  'akasha.core.ArrayBuffer'.",
+    "newElement": "method akasha.core.ArrayBuffer spritz.dom.WebSocketArrayBufferMessage::getData()",
+    "oldElement": "method elemental2.core.ArrayBuffer spritz.dom.WebSocketArrayBufferMessage::getData()",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketArrayBufferMessage",
+      "classSimpleName": "WebSocketArrayBufferMessage",
+      "elementKind": "method",
+      "methodName": "getData",
+      "newType": "akasha.core.ArrayBuffer",
+      "oldType": "elemental2.core.ArrayBuffer",
+      "package": "spritz.dom"
+    }
+  },
+  {
+    "code": "java.annotation.added",
+    "description": "Element newly annotated with 'akasha.BinaryType'.",
+    "element": "method java.lang.String spritz.dom.WebSocketConfig::getBinaryType()",
+    "classification": {
+      "SOURCE": "EQUIVALENT",
+      "BINARY": "EQUIVALENT",
+      "SEMANTIC": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "annotation": "@akasha.BinaryType",
+      "annotationType": "akasha.BinaryType",
+      "classQualifiedName": "spritz.dom.WebSocketConfig",
+      "classSimpleName": "WebSocketConfig",
+      "elementKind": "method",
+      "methodName": "getBinaryType",
+      "package": "spritz.dom"
+    }
+  },
+  {
     "code": "java.method.addedToInterface",
     "description": "Method was added to an interface.",
     "newElement": "method void spritz.Subscriber<T>::onItem(T)",
@@ -17,6 +172,21 @@
     }
   },
   {
+    "code": "java.class.removed",
+    "description": "Class was removed.",
+    "oldElement": "class spritz.dom.WebSocketMessageRequest",
+    "classification": {
+      "SOURCE": "BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketMessageRequest",
+      "classSimpleName": "WebSocketMessageRequest",
+      "elementKind": "class",
+      "package": "spritz.dom"
+    }
+  },
+  {
     "code": "java.method.removed",
     "description": "Method was removed.",
     "oldElement": "method void spritz.Subscriber<T>::onNext(T)",
@@ -30,6 +200,246 @@
       "elementKind": "method",
       "methodName": "onNext",
       "package": "spritz"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketArrayBufferMessage::<init>(===akasha.WebSocket===, akasha.core.ArrayBuffer)",
+    "oldElement": "parameter void spritz.dom.WebSocketArrayBufferMessage::<init>(===elemental2.dom.WebSocket===, elemental2.core.ArrayBuffer)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketArrayBufferMessage",
+      "classSimpleName": "WebSocketArrayBufferMessage",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.core.ArrayBuffer' to 'akasha.core.ArrayBuffer'.",
+    "newElement": "parameter void spritz.dom.WebSocketArrayBufferMessage::<init>(akasha.WebSocket, ===akasha.core.ArrayBuffer===)",
+    "oldElement": "parameter void spritz.dom.WebSocketArrayBufferMessage::<init>(elemental2.dom.WebSocket, ===elemental2.core.ArrayBuffer===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketArrayBufferMessage",
+      "classSimpleName": "WebSocketArrayBufferMessage",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.core.ArrayBuffer",
+      "oldType": "elemental2.core.ArrayBuffer",
+      "package": "spritz.dom",
+      "parameterIndex": "1"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketBlobMessage::<init>(===akasha.WebSocket===, akasha.Blob)",
+    "oldElement": "parameter void spritz.dom.WebSocketBlobMessage::<init>(===elemental2.dom.WebSocket===, elemental2.dom.Blob)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketBlobMessage",
+      "classSimpleName": "WebSocketBlobMessage",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.Blob' to 'akasha.Blob'.",
+    "newElement": "parameter void spritz.dom.WebSocketBlobMessage::<init>(akasha.WebSocket, ===akasha.Blob===)",
+    "oldElement": "parameter void spritz.dom.WebSocketBlobMessage::<init>(elemental2.dom.WebSocket, ===elemental2.dom.Blob===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketBlobMessage",
+      "classSimpleName": "WebSocketBlobMessage",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.Blob",
+      "oldType": "elemental2.dom.Blob",
+      "package": "spritz.dom",
+      "parameterIndex": "1"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketCloseCompleted::<init>(===akasha.WebSocket===, int, java.lang.String, boolean)",
+    "oldElement": "parameter void spritz.dom.WebSocketCloseCompleted::<init>(===elemental2.dom.WebSocket===, int, java.lang.String, boolean)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketCloseCompleted",
+      "classSimpleName": "WebSocketCloseCompleted",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketCloseStarting::<init>(===akasha.WebSocket===, int, java.lang.String)",
+    "oldElement": "parameter void spritz.dom.WebSocketCloseStarting::<init>(===elemental2.dom.WebSocket===, int, java.lang.String)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketCloseStarting",
+      "classSimpleName": "WebSocketCloseStarting",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.annotation.added",
+    "description": "Element newly annotated with 'akasha.BinaryType'.",
+    "element": "parameter void spritz.dom.WebSocketConfig::<init>(java.lang.String, java.lang.String[], ===java.lang.String===)",
+    "classification": {
+      "SOURCE": "EQUIVALENT",
+      "BINARY": "EQUIVALENT",
+      "SEMANTIC": "POTENTIALLY_BREAKING"
+    },
+    "attachments": {
+      "annotation": "@akasha.BinaryType",
+      "annotationType": "akasha.BinaryType",
+      "classQualifiedName": "spritz.dom.WebSocketConfig",
+      "classSimpleName": "WebSocketConfig",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "package": "spritz.dom",
+      "parameterIndex": "2"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.Event' to 'akasha.Event'.",
+    "newElement": "parameter void spritz.dom.WebSocketErrorException::<init>(===akasha.Event===)",
+    "oldElement": "parameter void spritz.dom.WebSocketErrorException::<init>(===elemental2.dom.Event===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketErrorException",
+      "classSimpleName": "WebSocketErrorException",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.Event",
+      "oldType": "elemental2.dom.Event",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketFailed::<init>(===akasha.WebSocket===, java.lang.Throwable)",
+    "oldElement": "parameter void spritz.dom.WebSocketFailed::<init>(===elemental2.dom.WebSocket===, java.lang.Throwable)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketFailed",
+      "classSimpleName": "WebSocketFailed",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketOpenCompleted::<init>(===akasha.WebSocket===)",
+    "oldElement": "parameter void spritz.dom.WebSocketOpenCompleted::<init>(===elemental2.dom.WebSocket===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketOpenCompleted",
+      "classSimpleName": "WebSocketOpenCompleted",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketResponse::<init>(===akasha.WebSocket===)",
+    "oldElement": "parameter void spritz.dom.WebSocketResponse::<init>(===elemental2.dom.WebSocket===)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketResponse",
+      "classSimpleName": "WebSocketResponse",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
+    }
+  },
+  {
+    "code": "java.method.parameterTypeChanged",
+    "description": "The type of the parameter changed from 'elemental2.dom.WebSocket' to 'akasha.WebSocket'.",
+    "newElement": "parameter void spritz.dom.WebSocketStringMessage::<init>(===akasha.WebSocket===, java.lang.String)",
+    "oldElement": "parameter void spritz.dom.WebSocketStringMessage::<init>(===elemental2.dom.WebSocket===, java.lang.String)",
+    "classification": {
+      "SOURCE": "POTENTIALLY_BREAKING",
+      "BINARY": "BREAKING"
+    },
+    "attachments": {
+      "classQualifiedName": "spritz.dom.WebSocketStringMessage",
+      "classSimpleName": "WebSocketStringMessage",
+      "elementKind": "parameter",
+      "methodName": "<init>",
+      "newType": "akasha.WebSocket",
+      "oldType": "elemental2.dom.WebSocket",
+      "package": "spritz.dom",
+      "parameterIndex": "0"
     }
   }
 ]

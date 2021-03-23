@@ -1,6 +1,6 @@
 package spritz.dom;
 
-import elemental2.dom.WebSocket;
+import akasha.WebSocket;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 

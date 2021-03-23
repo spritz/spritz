@@ -46,9 +46,7 @@ define 'spritz' do
                  :jetbrains_annotations,
                  :jsinterop_annotations,
                  :jsinterop_base,
-                 :elemental2_core,
-                 :elemental2_dom,
-                 :elemental2_promise
+                 :akasha
 
     gwt_enhance(project)
 

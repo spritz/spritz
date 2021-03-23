@@ -1,9 +1,11 @@
 package spritz;
 
-import elemental2.dom.CloseEvent;
-import elemental2.dom.Event;
-import elemental2.dom.MessageEvent;
-import elemental2.dom.WebSocket;
+import akasha.Blob;
+import akasha.CloseEvent;
+import akasha.Event;
+import akasha.MessageEvent;
+import akasha.WebSocket;
+import akasha.core.ArrayBuffer;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -79,31 +81,32 @@ final class WebSocketSource
       }
     }
 
-    private void onWebSocketMessage( @Nonnull final MessageEvent<WebSocket.OnmessageFn.EventMessageEventTypeParameterUnionType> event )
+    private void onWebSocketMessage( @Nonnull final MessageEvent event )
     {
       if ( isDone() )
       {
         // The subscription has been cancelled before the message received
-        if ( WebSocket.OPEN == _webSocket.readyState || WebSocket.CONNECTING == _webSocket.readyState )
+        if ( WebSocket.OPEN == _webSocket.readyState() || WebSocket.CONNECTING == _webSocket.readyState() )
         {
           _webSocket.close();
         }
       }
       else
       {
-        final WebSocket.OnmessageFn.EventMessageEventTypeParameterUnionType data = event.data;
-        if ( data.isString() )
+        final Object data = event.data();
+        //noinspection ConstantConditions
+        if ( data instanceof String )
         {
-          doNext( new WebSocketStringMessage( _webSocket, data.asString() ) );
+          doNext( new WebSocketStringMessage( _webSocket, (String)data ) );
         }
-        else if ( data.isArrayBuffer() )
+        else if ( data instanceof ArrayBuffer )
         {
-          doNext( new WebSocketArrayBufferMessage( _webSocket, data.asArrayBuffer() ) );
+          doNext( new WebSocketArrayBufferMessage( _webSocket, (ArrayBuffer) data ) );
         }
         else
         {
-          assert data.isBlob();
-          doNext( new WebSocketBlobMessage( _webSocket, data.asBlob() ) );
+          assert data instanceof Blob;
+          doNext( new WebSocketBlobMessage( _webSocket, (Blob)data ) );
         }
       }
     }
@@ -112,8 +115,8 @@ final class WebSocketSource
     {
       if ( isNotDone() )
       {
-        doNext( new WebSocketCloseCompleted( _webSocket, event.code, event.reason, event.wasClean ) );
-        if ( event.wasClean )
+        doNext( new WebSocketCloseCompleted( _webSocket, event.code(), event.reason(), event.wasClean() ) );
+        if ( event.wasClean() )
         {
           onComplete();
         }
@@ -129,7 +132,8 @@ final class WebSocketSource
       if ( isDone() )
       {
         // The subscription has been cancelled before the error received
-        if ( WebSocket.OPEN == _webSocket.readyState || WebSocket.CONNECTING == _webSocket.readyState )
+        final int readyState = _webSocket.readyState();
+        if ( WebSocket.OPEN == readyState || WebSocket.CONNECTING == readyState )
         {
           _webSocket.close();
         }

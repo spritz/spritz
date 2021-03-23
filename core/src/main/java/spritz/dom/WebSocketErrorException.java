@@ -1,6 +1,6 @@
 package spritz.dom;
 
-import elemental2.dom.Event;
+import akasha.Event;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 

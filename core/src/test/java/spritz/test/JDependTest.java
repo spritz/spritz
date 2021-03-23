@@ -30,16 +30,17 @@ public class JDependTest
     final JavaPackage dom = constraint.addPackage( "spritz.dom" );
     constraint.addPackage( "spritz.annotations" );
     final JavaPackage jsinterop = constraint.addPackage( "jsinterop.annotations" );
-    final JavaPackage elementalCore = constraint.addPackage( "elemental2.core" );
-    final JavaPackage elementalDom = constraint.addPackage( "elemental2.dom" );
+    final JavaPackage akasha = constraint.addPackage( "akasha" );
+    final JavaPackage akashaCore = constraint.addPackage( "akasha.core" );
 
     spritz.dependsUpon( zemeckis );
     spritz.dependsUpon( jsinterop );
     spritz.dependsUpon( braincheck );
-    spritz.dependsUpon( elementalDom );
+    spritz.dependsUpon( akasha );
+    spritz.dependsUpon( akashaCore );
 
-    dom.dependsUpon( elementalCore );
-    dom.dependsUpon( elementalDom );
+    dom.dependsUpon( akashaCore );
+    dom.dependsUpon( akasha );
     spritz.dependsUpon( dom );
 
     final DependencyConstraint.MatchResult result = jdepend.analyzeDependencies( constraint );

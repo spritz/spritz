@@ -1,7 +1,7 @@
 <module>
   <inherits name='org.realityforge.braincheck.BrainCheck'/>
   <inherits name='zemeckis.Zemeckis'/>
-  <inherits name='elemental2.dom.Dom'/>
+  <inherits name='akasha.Akasha'/>
 
   <source path='' includes='*.java'/>
   <source path='dom' includes='**/*.java'/>
