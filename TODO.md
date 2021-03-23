@@ -8,7 +8,7 @@ complete as there is too much un-said.
 
 * Move `spritz.WebSocket*` to `spritz.dom`
 
-* Add `Elemental2` specific sources and sinks.
+* Add `Akasha` specific sources and sinks.
 
 * Build a testing VPU/Scheduler based on ideas in [reactor-by-example](https://www.infoq.com/articles/reactor-by-example) article.
 
