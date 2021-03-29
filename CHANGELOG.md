@@ -2,6 +2,8 @@
 
 ### Unreleased
 
+* Upgrade the `org.realityforge.akasha` artifact to version `0.04`.
+
 ### [v0.14](https://github.com/spritz/spritz/tree/v0.14) (2021-03-23) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.13...v0.14)
 
 The release includes 4 non breaking API changes, 15 potentially breaking API changes and 3 breaking API changes.
