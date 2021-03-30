@@ -9,7 +9,7 @@ def load_error_codes
     select {|f| !(f =~ /[\/\\]src[\/\\]test[\/\\]/)}.
     each do |f|
     content = IO.read(f)
-    matches = content.scan(/"Spritz\-(\d\d\d\d): /)
+    matches = content.scan(/"Spritz-(\d\d\d\d): /)
     matches.each do |match|
       match = match.first
       if error_map[match]
