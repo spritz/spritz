@@ -4,7 +4,6 @@ import gir.io.Exec;
 import gir.sys.SystemProperty;
 import java.io.File;
 import java.io.FileInputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import javax.annotation.Nonnull;
