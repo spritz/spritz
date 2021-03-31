@@ -9,7 +9,7 @@ end
 task 'do_update_api_diff' do
   a = Buildr.project('spritz:core').package(:jar)
   a.invoke
-  Buildr::ApiDiffTool.update_differences_report("org.realityforge.spritz:spritz-core:jar", ENV['PREVIOUS_PRODUCT_VERSION'], ENV['PRODUCT_VERSION'], a.to_s, "#{WORKSPACE_DIR}/api-test/src/test/resources/fixtures")
+  Buildr::ApiDiffTool.update_differences_report("org.realityforge.spritz:spritz-core:jar", ENV['PREVIOUS_PRODUCT_VERSION'], ENV['PRODUCT_VERSION'], a.to_s, "#{WORKSPACE_DIR}/api-test")
 end
 
 desc 'Test the api differences for the next version'
@@ -21,5 +21,5 @@ end
 task 'do_test_api_diff' do
   a = Buildr.project('spritz:core').package(:jar)
   a.invoke
-  Buildr::ApiDiffTool.test_differences_report("org.realityforge.spritz:spritz-core:jar", ENV['PREVIOUS_PRODUCT_VERSION'], ENV['PRODUCT_VERSION'], a.to_s, "#{WORKSPACE_DIR}/api-test/src/test/resources/fixtures")
+  Buildr::ApiDiffTool.test_differences_report("org.realityforge.spritz:spritz-core:jar", ENV['PREVIOUS_PRODUCT_VERSION'], ENV['PRODUCT_VERSION'], a.to_s, "#{WORKSPACE_DIR}/api-test")
 end
