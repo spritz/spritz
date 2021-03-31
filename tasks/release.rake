@@ -18,7 +18,7 @@ Buildr::ReleaseTool.define_release_task do |t|
 
     header = "### [v#{ENV['PRODUCT_VERSION']}](https://github.com/spritz/spritz/tree/v#{ENV['PRODUCT_VERSION']}) (#{ENV['RELEASE_DATE']}) · [Full Changelog](https://github.com/spritz/spritz/compare/#{from}...v#{ENV['PRODUCT_VERSION']})"
 
-    api_diff_filename = "#{WORKSPACE_DIR}/api-test/src/test/resources/fixtures/#{ENV['PREVIOUS_PRODUCT_VERSION']}-#{ENV['PRODUCT_VERSION']}.json"
+    api_diff_filename = "#{WORKSPACE_DIR}/api-test/#{ENV['PREVIOUS_PRODUCT_VERSION']}-#{ENV['PRODUCT_VERSION']}.json"
     if File.exist?(api_diff_filename)
       # TODO: When we actually have a website we can add the next section back in
       #header += " · [API Differences](https://spritz.github.io/api-diff?key=spritz&old=#{ENV['PREVIOUS_PRODUCT_VERSION']}&new=#{ENV['PRODUCT_VERSION']})"
