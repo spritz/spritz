@@ -8,6 +8,12 @@ module Buildr
         old_artifact = Buildr.artifact("#{artifact_coordinate}:#{old_version}")
         old_artifact.invoke
 
+        unless new_file
+          new_artifact = Buildr.artifact("#{artifact_coordinate}:#{new_version}")
+          new_artifact.invoke
+          new_file = new_artifact.to_s
+        end
+
         args = []
         args << Java::Commands.path_to_bin('java')
         args << '-jar'
