@@ -14,6 +14,8 @@ module Buildr
           new_file = new_artifact.to_s
         end
 
+        FileUtils.mkdir_p File.dirname(output_file)
+
         args = []
         args << Java::Commands.path_to_bin('java')
         args << '-jar'
