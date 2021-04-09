@@ -39,20 +39,14 @@ module Buildr
       end
 
       def derive_versions_from_changelog(options = {})
-        next_version_action = options[:next_version_action]
-        changelog = IO.read('CHANGELOG.md')
-        ENV['PREVIOUS_PRODUCT_VERSION'] ||= changelog[/^### \[v(\d+\.\d+(\.\d+)?)\]/, 1] || '0.00'
+        ENV['PREVIOUS_PRODUCT_VERSION'] ||= IO.read('CHANGELOG.md')[/^### \[v(\d+\.\d+(\.\d+)?)\]/, 1] || '0.00'
+        ENV['PRODUCT_VERSION'] ||= derive_next_version(ENV['PREVIOUS_PRODUCT_VERSION'], options)
+      end
 
-        next_version = ENV['PRODUCT_VERSION']
-        unless next_version
-          if next_version_action
-            next_version = next_version_action.call
-          else
-            version_parts = ENV['PREVIOUS_PRODUCT_VERSION'].split('.')
-            next_version = "#{version_parts[0]}.#{sprintf('%02d', version_parts[1].to_i + 1)}#{version_parts.length > 2 ? ".#{version_parts[2]}" : ''}"
-          end
-          ENV['PRODUCT_VERSION'] = next_version
-        end
+      def derive_next_version(current_version, options = {})
+        return options[:next_version_action].call(current_version) if options[:next_version_action]
+        version_parts = current_version.split('.')
+        next_version = "#{version_parts[0]}.#{sprintf('%02d', version_parts[1].to_i + 1)}#{version_parts.length > 2 ? ".#{version_parts[2]}" : ''}"
       end
 
       private
@@ -115,8 +109,9 @@ module Buildr
 
         header = "### [v#{ENV['PRODUCT_VERSION']}](https://github.com/#{repository_name}/tree/v#{ENV['PRODUCT_VERSION']}) (#{ENV['RELEASE_DATE']}) · [Full Changelog](https://github.com/spritz/spritz/compare/#{from}...v#{ENV['PRODUCT_VERSION']})"
 
-        api_diff_directory = options[:api_diff_directory]
+        sub_header_text = ''
 
+        api_diff_directory = options[:api_diff_directory]
         api_diff_filename = api_diff_directory ? "#{api_diff_directory}/#{ENV['PREVIOUS_PRODUCT_VERSION']}-#{ENV['PRODUCT_VERSION']}.json" : nil
         if api_diff_filename && File.exist?(api_diff_filename)
 
@@ -144,9 +139,13 @@ module Buildr
               description += "#{change_descriptions[0]}, #{change_descriptions[1]} and #{change_descriptions[2]}"
             end
 
-            header += "\n\n#{description}."
+            sub_header_text = description
           end
         end
+
+        header_suffix = options[:header_suffix]
+        header += header_suffix if header_suffix
+        header += "\n\n#{sub_header_text}" unless sub_header_text.empty?
         header += "\n"
 
         header += <<CONTENT
