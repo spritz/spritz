@@ -10,7 +10,8 @@ artifacts:
   javax_annotation: org.realityforge.javax.annotation:javax.annotation:jar:1.0.1
   jetbrains_annotations: org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:jar:1.7.0
 
-  braincheck: org.realityforge.braincheck:braincheck-core:jar:1.30.0
+  braincheck_core: org.realityforge.braincheck:braincheck-core:jar:1.30.0
+  braincheck_testng: org.realityforge.braincheck:braincheck-testng:jar:1.30.0
 
   # GWT deps
   gwt_user: com.google.gwt:gwt-user:jar:2.9.0

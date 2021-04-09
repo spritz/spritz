@@ -40,7 +40,7 @@ define 'spritz' do
     project.compile.options[:processor_path] << project('processor').compile.dependencies
 
     compile.with :javax_annotation,
-                 :braincheck,
+                 :braincheck_core,
                  :grim_annotations,
                  :zemeckis,
                  :jetbrains_annotations,
@@ -55,7 +55,7 @@ define 'spritz' do
     package(:javadoc)
 
     test.using :testng
-    test.compile.with :jdepend, :javax_json
+    test.compile.with :braincheck_testng, :jdepend, :javax_json
 
     test.options[:properties] =
       SPRITZ_TEST_OPTIONS.merge('spritz.core.compile_target' => compile.target.to_s,
