@@ -4,7 +4,7 @@
 
 * Upgrade the `org.realityforge.braincheck` artifacts to version `1.31.0`.
 * Upgrade the `org.realityforge.akasha` artifact to version `0.07`.
-* Upgrade the `org.realityforge.zemeckis` artifact to version `0.10`.
+* Upgrade the `org.realityforge.zemeckis` artifact to version `0.11`.
 * Upgrade the `org.realityforge.braincheck` artifact to version `1.31.0`.
 
 ### [v0.16](https://github.com/spritz/spritz/tree/v0.16) (2021-03-31) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.15...v0.16)
