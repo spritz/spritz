@@ -2,7 +2,6 @@ package spritz.examples.dom.web_socket;
 
 import akasha.BinaryType;
 import akasha.Console;
-import akasha.Global;
 import akasha.core.ArrayBuffer;
 import com.google.gwt.core.client.EntryPoint;
 import java.util.Objects;
@@ -43,16 +42,16 @@ public final class WebSocketExample
       // Never completes ....
     } ).subscribe( hub );
 
-    Global.setTimeout( () -> {
+    Zemeckis.delayedTask( () -> {
       Console.log( "PreCancel" );
       subscriber.getSubscription().cancel();
       Console.log( "PostCancel" );
     }, 2000 );
 
-    Global.setTimeout( () -> hub.next( new WebSocketStringMessageRequest( "Hello" ) ), 3000 );
-    Global.setTimeout( () -> hub.subscribe( subscriber ), 3500 );
-    Global.setTimeout( () -> hub.next( new WebSocketCloseRequest( 3000, "Hello" ) ), 4000 );
-    Global.setTimeout( hub::complete, 5000 );
+    Zemeckis.delayedTask( () -> hub.next( new WebSocketStringMessageRequest( "Hello" ) ), 3000 );
+    Zemeckis.delayedTask( () -> hub.subscribe( subscriber ), 3500 );
+    Zemeckis.delayedTask( () -> hub.next( new WebSocketCloseRequest( 3000, "Hello" ) ), 4000 );
+    Zemeckis.delayedTask( hub::complete, 5000 );
 
     Console.log( "Subscribe complete" );
   }
