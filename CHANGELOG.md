@@ -1,6 +1,8 @@
 # Change Log
 
-### Unreleased
+### [v0.17](https://github.com/spritz/spritz/tree/v0.17) (2021-04-22) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.16...v0.17)
+
+Changes in this release:
 
 * Upgrade the `org.realityforge.braincheck` artifacts to version `1.31.0`.
 * Upgrade the `org.realityforge.akasha` artifact to version `0.10`.
