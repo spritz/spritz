@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Update the `org.realityforge.gir` artifact to version `0.12`.
 * Upgrade the `org.realityforge.akasha` artifacts to version `0.15`.
 
 ### [v0.17](https://github.com/spritz/spritz/tree/v0.17) (2021-04-22) · [Full Changelog](https://github.com/spritz/spritz/compare/v0.16...v0.17)

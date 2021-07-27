@@ -39,7 +39,7 @@ artifacts:
   errorprone: com.google.errorprone:javac-shaded:jar:9-dev-r4023-3
   error_prone_annotations: com.google.errorprone:error_prone_annotations:jar:2.0.15
 
-  gir: org.realityforge.gir:gir-core:jar:0.11
+  gir: org.realityforge.gir:gir-core:jar:0.12
 
   jdepend: guru.nidi:jdepend:jar:2.9.5
 
