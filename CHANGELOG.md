@@ -2,7 +2,7 @@
 
 ### Unreleased
 
-* Update the `org.realityforge.akasha` artifacts to version `0.18`.
+* Update the `org.realityforge.akasha` artifacts to version `0.19`.
 * Update the `org.realityforge.gir` artifact to version `0.12`.
 * Upgrade the `org.realityforge.akasha` artifacts to version `0.15`.
 
