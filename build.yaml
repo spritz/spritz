@@ -21,7 +21,7 @@ artifacts:
 
   jsinterop_base: com.google.jsinterop:base:jar:1.0.0
 
-  akasha: org.realityforge.akasha:akasha-gwt:jar:0.29
+  akasha: org.realityforge.akasha:akasha-gwt:jar:0.30
 
   javax_json: org.glassfish:javax.json:jar:1.1
 

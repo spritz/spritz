@@ -4,7 +4,7 @@
 
 * Update the `org.realityforge.grim` artifacts to version `0.06`.
 * Update the `org.realityforge.zemeckis` artifact to version `0.13`.
-* Update the `org.realityforge.akasha` artifacts to version `0.29`.
+* Update the `org.realityforge.akasha` artifacts to version `0.30`.
 * Update the `org.realityforge.gir` artifact to version `0.12`.
 * Upgrade the `org.realityforge.akasha` artifacts to version `0.15`.
 
