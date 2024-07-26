@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Update the `org.realityforge.javax.annotation` artifact to version `1.1.1`.
 * Update the `org.realityforge.grim` artifacts to version `0.09`.
 * Update the `org.realityforge.zemeckis` artifact to version `0.14`.
 * Update the `org.realityforge.akasha` artifacts to version `0.30`.
