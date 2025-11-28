@@ -2,6 +2,7 @@
 
 ### Unreleased
 
+* Update the `org.realityforge.braincheck` artifacts to version `1.32.0`.
 * Update the `org.realityforge.javax.annotation` artifact to version `1.1.1`.
 * Update the `org.realityforge.grim` artifacts to version `0.09`.
 * Update the `org.realityforge.zemeckis` artifact to version `0.14`.
