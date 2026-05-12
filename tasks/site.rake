@@ -6,25 +6,18 @@ desc 'Publish the website'
 task 'site:publish' => 'doc' do
   origin_url = 'https://github.com/spritz/spritz.github.io.git'
 
-  travis_build_number = ENV['TRAVIS_BUILD_NUMBER']
-  if travis_build_number
-    origin_url = origin_url.gsub('https://github.com/', 'git@github.com:')
-  end
-
   local_dir = "#{WORKSPACE_DIR}/target/remote_site"
   rm_rf local_dir
 
   sh "git clone -b master --depth 1 #{origin_url} #{local_dir}"
 
   in_dir(local_dir) do
-    message = "Publishing docs#{travis_build_number.nil? ? '' : " - Travis build: #{travis_build_number}"}"
-
     sh 'git rm -rf .'
 
     cp_r Dir["#{SITE_DIR}/*"], "#{local_dir}/."
     cp Dir["#{SITE_DIR}/*.*"], local_dir
     sh 'git add . -f'
-    puts `git commit -m "#{message}"`
+    puts `git commit -m "Publishing docs"`
     if 0 == $?.exitstatus
       sh 'git push origin master'
     end
@@ -47,7 +40,7 @@ end
 
 def get_head_tag_if_any
   version = `git describe --exact-match --tags 2>&1`
-  if 0 == $?.exitstatus && version =~ /^v[0-9]/ && (ENV['TRAVIS_BUILD_ID'].nil? || ENV['TRAVIS_TAG'].to_s != '')
+  if 0 == $?.exitstatus && version =~ /^v[0-9]/
     version.strip
   else
     nil
